@@ -1,0 +1,5002 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forta Match — Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F6F2EC;
+  --bg-card: #FBF8F3;
+  --bg-deep: #EFE9DF;
+  --ink: #1A1410;
+  --ink-soft: #4A3F38;
+  --ink-muted: #8A7E73;
+  --burgundy: #5C1A2E;
+  --burgundy-deep: #3D0F1E;
+  --burgundy-soft: #F2E0E2;
+  --gold: #B8893A;
+  --gold-soft: #F4E9D2;
+  --green: #2D6A4F;
+  --green-soft: #DCEEE3;
+  --amber: #C77B30;
+  --amber-soft: #FAEAD2;
+  --red: #A8331F;
+  --red-soft: #F4D9D1;
+  --rule: #E0D7C9;
+  --rule-soft: #EBE3D5;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  font-family: 'Geist', -apple-system, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+.serif { font-family: 'Fraunces', Georgia, serif; font-optical-sizing: auto; }
+.mono { font-family: 'Geist Mono', monospace; }
+
+/* ====== LAYOUT ====== */
+.app { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+
+.sidebar {
+  background: var(--burgundy-deep);
+  color: rgba(255,255,255,0.9);
+  padding: 28px 18px;
+  position: sticky; top: 0;
+  height: 100vh;
+  display: flex; flex-direction: column;
+}
+
+.logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+}
+.logo-tag {
+  font-size: 10.5px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.role-switcher {
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.role-switcher-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 8px;
+}
+.role-switcher-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(0,0,0,0.2);
+  padding: 4px;
+  border-radius: 8px;
+}
+.role-btn {
+  font-family: inherit;
+  font-size: 12.5px;
+  text-align: left;
+  padding: 8px 12px;
+  border-radius: 5px;
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+  transition: all 0.15s;
+  font-weight: 400;
+}
+.role-btn:hover { color: rgba(255,255,255,0.9); }
+.role-btn.active {
+  background: var(--gold);
+  color: var(--burgundy-deep);
+  font-weight: 500;
+}
+
+.nav-section {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.4);
+  margin: 22px 0 6px;
+}
+.nav-item {
+  padding: 8px 12px;
+  margin: 0 -12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13.5px;
+  color: rgba(255,255,255,0.7);
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.nav-item:hover { background: rgba(255,255,255,0.06); color: rgba(255,255,255,1); }
+.nav-item.active { background: rgba(255,255,255,0.1); color: #fff; }
+.nav-num {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  font-size: 10px;
+  font-family: 'Geist Mono', monospace;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,0.6);
+}
+.nav-item.active .nav-num { background: var(--gold); color: var(--burgundy-deep); }
+
+.badge-mini {
+  font-size: 10px;
+  font-family: 'Geist Mono', monospace;
+  background: var(--burgundy);
+  color: #fff;
+  padding: 2px 7px;
+  border-radius: 100px;
+  margin-left: auto;
+}
+
+.user-card {
+  margin-top: auto;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; gap: 10px;
+}
+.user-avatar {
+  width: 32px; height: 32px;
+  background: var(--gold);
+  color: var(--burgundy-deep);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600; font-size: 12px;
+}
+.user-info { font-size: 12.5px; }
+.user-info strong { display: block; color: #fff; font-weight: 500; }
+.user-info span { color: rgba(255,255,255,0.5); font-size: 11.5px; }
+
+/* ====== MAIN ====== */
+.main { overflow-x: hidden; }
+
+.topbar {
+  height: 56px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 36px;
+  position: sticky; top: 0;
+  z-index: 50;
+}
+.brief-indicator {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brief-indicator .dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.brief-indicator strong { color: var(--ink); font-weight: 500; }
+.brief-indicator .sep { color: var(--rule); }
+
+.role-chip {
+  padding: 5px 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 100px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.page {
+  padding: 32px 36px 80px;
+  max-width: 1320px;
+  display: none;
+  animation: fadeIn 0.3s ease-out;
+}
+.page.active { display: block; }
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page-header { margin-bottom: 26px; }
+.page-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.page-header-main { flex: 1; min-width: 280px; }
+
+.feedback-cta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 12px 16px 12px 14px;
+  cursor: pointer;
+  transition: all 0.18s;
+  text-decoration: none;
+  color: inherit;
+  max-width: 320px;
+}
+.feedback-cta:hover {
+  border-color: var(--burgundy);
+  background: linear-gradient(180deg, #FBF7F1, var(--bg-card));
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(60,30,30,0.06);
+}
+.feedback-cta-avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--burgundy), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 16px;
+  flex-shrink: 0;
+  position: relative;
+}
+.feedback-cta-avatar::after {
+  content: '';
+  position: absolute;
+  bottom: -1px; right: -1px;
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: var(--green);
+  border: 2px solid var(--bg-card);
+}
+.feedback-cta-text { display: flex; flex-direction: column; gap: 1px; }
+.feedback-cta-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.feedback-cta-sub {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  line-height: 1.35;
+}
+.page-eyebrow {
+  font-size: 11.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--burgundy);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.page-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 34px;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.page-subtitle {
+  font-size: 14px;
+  color: var(--ink-soft);
+  margin-top: 8px;
+  max-width: 720px;
+  line-height: 1.55;
+}
+
+/* ====== BUTTONS ====== */
+.btn {
+  border: 1px solid transparent;
+  background: transparent;
+  font-family: 'Geist', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 9px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--burgundy); color: #fff; }
+.btn-primary:hover { background: var(--burgundy-deep); }
+.btn-secondary { background: var(--bg-card); color: var(--ink); border-color: var(--rule); }
+.btn-secondary:hover { background: var(--bg-deep); border-color: var(--ink-muted); }
+.btn-ghost { background: transparent; color: var(--ink-soft); }
+.btn-ghost:hover { color: var(--burgundy); }
+.btn-warn { background: var(--amber); color: #fff; }
+.btn-warn:hover { background: #A8631F; }
+.btn-danger { background: var(--red); color: #fff; }
+.btn-danger:hover { background: #8A2818; }
+.btn-flex { flex: 1; justify-content: center; }
+.btn-sm { padding: 6px 12px; font-size: 12px; }
+
+/* ====== CLIENT CARD ====== */
+.client-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.client-info { display: flex; align-items: center; gap: 14px; }
+.client-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  color: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 500;
+  font-family: 'Fraunces', serif;
+  font-size: 16px;
+}
+.client-naam { font-weight: 500; font-size: 14.5px; }
+.client-meta { font-size: 12px; color: var(--ink-muted); margin-top: 2px; }
+.client-pills { display: flex; gap: 6px; }
+.client-pill {
+  background: var(--bg-deep);
+  border: 1px solid var(--rule);
+  padding: 3px 9px;
+  border-radius: 100px;
+  font-size: 11.5px;
+  color: var(--ink-soft);
+}
+
+/* ====== BRIEF + CHECK PANES ====== */
+.detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 24px;
+}
+
+.brief-pane {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.brief-pane-head {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg-deep);
+  display: flex; justify-content: space-between; align-items: center;
+}
+.brief-pane-title {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+.brief-pane-body {
+  padding: 22px 26px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-height: 720px;
+  overflow-y: auto;
+}
+.brief-pane-body h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--ink);
+  margin: 14px 0 6px;
+}
+.brief-pane-body h4:first-child { margin-top: 0; }
+.brief-pane-body .field-grid {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 4px 12px;
+  margin: 8px 0 14px;
+  font-size: 12.5px;
+}
+.brief-pane-body .field-grid > div:nth-child(odd) { color: var(--ink-muted); }
+.brief-pane-body .highlight {
+  background: var(--gold-soft);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+.brief-pane-body .highlight.green { background: var(--green-soft); }
+.brief-pane-body .highlight.red { background: var(--red-soft); }
+
+.check-pane {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  height: fit-content;
+  position: sticky;
+  top: 80px;
+  overflow: hidden;
+}
+.check-head {
+  padding: 18px 20px 16px;
+  border-bottom: 1px solid var(--rule);
+}
+.check-head h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 17px;
+}
+.check-head .summary {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin-top: 6px;
+}
+
+.check-list { padding: 6px 0; }
+.check-item {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 10px;
+  padding: 10px 20px;
+  font-size: 13px;
+  align-items: start;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.check-item:last-child { border-bottom: none; }
+.check-icon {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 1px;
+}
+.check-icon.ok { background: var(--green-soft); color: var(--green); }
+.check-icon.warn { background: var(--gold-soft); color: var(--gold); }
+.check-icon.miss { background: var(--red-soft); color: var(--red); }
+.check-label { color: var(--ink); font-weight: 500; }
+.check-value { color: var(--ink-soft); font-size: 12px; margin-top: 1px; }
+.check-value.warn-text { color: var(--gold); }
+
+.knockout-banner {
+  padding: 14px 20px;
+  margin: 14px 20px;
+  border-radius: 8px;
+  background: var(--green-soft);
+  border-left: 3px solid var(--green);
+}
+.knockout-banner h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 14.5px;
+  color: var(--green);
+  margin-bottom: 4px;
+}
+.knockout-banner p {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+.check-actions {
+  padding: 16px 20px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  gap: 8px;
+}
+
+/* ====== TAGS ====== */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11.5px;
+  background: var(--burgundy-soft);
+  color: var(--burgundy);
+  border: 1px solid transparent;
+}
+.tag.tag-positive { background: var(--green-soft); color: var(--green); }
+.tag.tag-warn { background: var(--gold-soft); color: var(--gold); }
+.tag.tag-neutral { background: var(--bg-deep); color: var(--ink-soft); }
+.tag.tag-negative { background: var(--red-soft); color: var(--red); }
+.tag.tag-business {
+  background: linear-gradient(135deg, #F4E9D2, #E8D9B5);
+  color: #8A6322;
+  font-weight: 500;
+}
+.tag-score {
+  font-weight: 600;
+  font-size: 11px;
+  font-family: 'Geist Mono', monospace;
+}
+
+/* ====== MATCHING ====== */
+.matching-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+}
+
+.tags-panel {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 18px 20px;
+  height: fit-content;
+  position: sticky;
+  top: 80px;
+}
+.tags-panel h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.tags-panel .desc {
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+.tag-group { margin-bottom: 16px; }
+.tag-group-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.tag-list { display: flex; flex-wrap: wrap; gap: 5px; }
+
+.match-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 18px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 12.5px;
+  color: var(--ink-soft);
+}
+.match-toolbar strong { color: var(--ink); font-weight: 500; }
+
+.matches-list { display: flex; flex-direction: column; gap: 10px; }
+
+.matches-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.matches-column { display: flex; flex-direction: column; gap: 10px; }
+
+.matches-column-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+}
+.matches-column-head .icon-circle {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.matches-column-head.offline .icon-circle {
+  background: var(--burgundy-soft);
+  color: var(--burgundy);
+}
+.matches-column-head.online .icon-circle {
+  background: var(--green-soft);
+  color: var(--green);
+}
+.matches-column-head h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 14.5px;
+  flex: 1;
+  letter-spacing: -0.005em;
+}
+.matches-column-head .count {
+  font-size: 11px;
+  color: var(--ink-muted);
+  font-family: 'Geist Mono', monospace;
+}
+
+.match-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.15s;
+}
+.match-card:hover { border-color: var(--ink-muted); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(60,30,30,0.05); }
+.match-card.recommended {
+  border-color: var(--burgundy);
+  border-width: 1.5px;
+  position: relative;
+  background: linear-gradient(180deg, #FBF7F1, var(--bg-card) 60%);
+}
+.match-card.recommended::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 4px; height: 100%;
+  background: var(--burgundy);
+}
+.match-card.afwijkend { background: linear-gradient(180deg, #FAF5EC, var(--bg-card) 50%); }
+.match-card.afwijzen { opacity: 0.85; }
+
+.match-head {
+  padding: 16px 20px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+}
+.match-rank-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.match-rank {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+.recommended-badge, .afwijkend-badge, .knockout-badge {
+  color: #fff;
+  font-size: 10.5px;
+  letter-spacing: 0.05em;
+  padding: 2px 8px;
+  border-radius: 100px;
+  font-weight: 500;
+}
+.recommended-badge { background: var(--burgundy); }
+.afwijkend-badge { background: var(--amber); }
+.knockout-badge { background: var(--red); }
+
+.match-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+.match-locatie {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 4px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.match-locatie span:not(:last-child)::after {
+  content: '·';
+  margin-left: 12px;
+  color: var(--ink-muted);
+}
+
+.match-score {
+  font-family: 'Fraunces', serif;
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--burgundy);
+  letter-spacing: -0.02em;
+}
+.match-score.afwijkend { color: var(--amber); }
+.match-score.zero { color: var(--ink-muted); }
+.match-score.dark { color: var(--ink); }
+
+.match-tags {
+  padding: 0 20px 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.match-actions {
+  padding: 12px 20px;
+  border-top: 1px solid var(--rule-soft);
+  background: var(--bg-deep);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.match-actions-meta { font-size: 11.5px; color: var(--ink-muted); }
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 18px 0 8px;
+}
+.section-divider .line { flex: 1; height: 1px; background: var(--rule); }
+.section-divider .label {
+  font-size: 11.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+
+/* ====== DECISION + FEEDBACK ====== */
+.decision-grid {
+  display: grid;
+  grid-template-columns: 1fr 460px;
+  gap: 24px;
+}
+.decision-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 22px 26px;
+}
+.decision-summary {
+  background: var(--green-soft);
+  border-left: 3px solid var(--green);
+  padding: 14px 18px;
+  border-radius: 6px;
+  margin-bottom: 22px;
+}
+.decision-summary h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--green);
+  margin-bottom: 4px;
+}
+.decision-summary p { font-size: 13px; color: var(--ink-soft); }
+
+.decision-section { margin-bottom: 20px; }
+.decision-section-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.decision-info-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 13px;
+}
+.decision-info-row > div:first-child { color: var(--ink-muted); font-size: 12px; }
+
+.feedback-pane {
+  background: linear-gradient(180deg, var(--bg-card), #FAF5EC);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  height: fit-content;
+  position: sticky;
+  top: 80px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.feedback-head {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.feedback-head .title { display: flex; align-items: center; gap: 10px; }
+.feedback-head h4 { font-family: 'Fraunces', serif; font-weight: 500; font-size: 15px; }
+.agent-avatar {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--burgundy), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Fraunces', serif;
+}
+.feedback-head .meta { font-size: 11.5px; color: var(--ink-muted); }
+
+.chat-body {
+  padding: 18px 20px;
+  max-height: 480px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.chat-msg {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  animation: msgIn 0.4s ease-out;
+}
+@keyframes msgIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.chat-msg.user { flex-direction: row-reverse; }
+.chat-bubble {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.chat-msg.agent .chat-bubble {
+  background: var(--bg-deep);
+  color: var(--ink);
+  border-top-left-radius: 4px;
+}
+.chat-msg.user .chat-bubble {
+  background: var(--burgundy);
+  color: #fff;
+  border-top-right-radius: 4px;
+}
+.chat-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 4px 0 4px 38px;
+}
+.chat-option {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  padding: 6px 12px;
+  border-radius: 100px;
+  font-size: 12px;
+  color: var(--ink);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.chat-option:hover { border-color: var(--burgundy); color: var(--burgundy); }
+
+.chat-input-area {
+  padding: 12px 16px 16px;
+  border-top: 1px solid var(--rule);
+  background: var(--bg-card);
+}
+.chat-input-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  background: var(--bg-deep);
+  border-radius: 8px;
+  padding: 6px 6px 6px 14px;
+}
+.chat-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  outline: none;
+}
+.chat-send {
+  width: 32px; height: 32px;
+  background: var(--burgundy);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ====== FEEDBACK SESSION PAGE ====== */
+.feedback-session-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 24px;
+  margin-top: 8px;
+}
+
+.feedback-context {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 22px;
+  height: fit-content;
+  position: sticky;
+  top: 80px;
+}
+.feedback-context h4 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.feedback-context-label {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+  line-height: 1.25;
+}
+.feedback-context-locatie {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+}
+.feedback-context-score {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  background: var(--burgundy-soft);
+  padding: 6px 14px;
+  border-radius: 100px;
+  font-family: 'Fraunces', serif;
+  margin-bottom: 16px;
+}
+.feedback-context-score .num {
+  font-size: 18px;
+  color: var(--burgundy);
+  font-weight: 500;
+}
+.feedback-context-score .sub {
+  font-family: 'Geist', sans-serif;
+  font-size: 11px;
+  color: var(--burgundy);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.feedback-context-section {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule-soft);
+}
+.feedback-context-section h5 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+.feedback-context-section .info-row {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 8px;
+  padding: 5px 0;
+  font-size: 12.5px;
+}
+.feedback-context-section .info-row > div:first-child { color: var(--ink-muted); }
+
+/* main chat panel */
+.feedback-main {
+  background: linear-gradient(180deg, var(--bg-card) 0%, #FAF5EC 100%);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  min-height: 620px;
+  overflow: hidden;
+}
+
+.feedback-main-head {
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.feedback-main-head .agent-info {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.feedback-main-head .agent-avatar-lg {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--burgundy), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 18px;
+  position: relative;
+}
+.feedback-main-head .agent-avatar-lg::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--green);
+  border: 2px solid var(--bg-card);
+}
+.feedback-main-head .agent-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+.feedback-main-head .agent-status {
+  font-size: 12px;
+  color: var(--ink-muted);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.feedback-main-head .agent-status .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+}
+
+.feedback-progress {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  color: var(--ink-muted);
+}
+.feedback-progress .step-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--rule);
+  transition: all 0.3s;
+}
+.feedback-progress .step-dot.done { background: var(--green); }
+.feedback-progress .step-dot.active {
+  background: var(--burgundy);
+  transform: scale(1.3);
+}
+
+.feedback-chat-body {
+  flex: 1;
+  padding: 28px 32px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 360px;
+}
+.feedback-chat-body .chat-msg .chat-bubble {
+  max-width: 540px;
+  font-size: 14px;
+  line-height: 1.55;
+  padding: 12px 16px;
+}
+.feedback-chat-body .chat-msg.agent .chat-bubble {
+  border-radius: 4px 16px 16px 16px;
+}
+.feedback-chat-body .chat-msg.user .chat-bubble {
+  border-radius: 16px 4px 16px 16px;
+}
+.feedback-chat-body .chat-msg .avatar-mini {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px;
+  font-weight: 500;
+  font-family: 'Fraunces', serif;
+}
+.feedback-chat-body .chat-msg.agent .avatar-mini {
+  background: linear-gradient(135deg, var(--burgundy), var(--gold));
+  color: #fff;
+}
+.feedback-chat-body .chat-msg.user .avatar-mini {
+  background: var(--gold);
+  color: var(--burgundy-deep);
+}
+.feedback-chat-body .chat-options {
+  padding: 0 0 0 42px;
+}
+
+.feedback-input-area {
+  padding: 18px 24px 22px;
+  border-top: 1px solid var(--rule);
+  background: var(--bg-card);
+}
+.feedback-input-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background: var(--bg-deep);
+  border-radius: 10px;
+  padding: 8px 8px 8px 16px;
+}
+.feedback-input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--ink);
+  outline: none;
+}
+.feedback-send {
+  width: 36px; height: 36px;
+  background: var(--burgundy);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+.feedback-input-hint {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  margin-top: 8px;
+  padding-left: 4px;
+}
+
+/* typing indicator */
+.typing {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px 0;
+}
+.typing span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--ink-muted);
+  animation: bounce 1.4s infinite;
+}
+.typing span:nth-child(2) { animation-delay: 0.15s; }
+.typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+.beheer-toolbar {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+.search-box {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 13px;
+  width: 220px;
+  font-family: inherit;
+  color: var(--ink);
+}
+.toolbar-spacer { flex: 1; }
+
+.label-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.label-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 22px 24px;
+}
+.label-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+  gap: 12px;
+}
+.label-card h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+.label-code {
+  font-size: 11px;
+  color: var(--ink-muted);
+  font-family: 'Geist Mono', monospace;
+  margin-top: 2px;
+}
+.status-active {
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-weight: 500;
+}
+.label-section {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule-soft);
+}
+.label-section h5 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.label-section h5 .add-tag {
+  font-size: 10px;
+  color: var(--burgundy);
+  cursor: pointer;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+}
+.label-meta {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 4px 12px;
+  font-size: 12.5px;
+}
+.label-meta > div:nth-child(odd) { color: var(--ink-muted); }
+
+/* TAG TAXONOMY */
+.taxonomy-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.taxonomy-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 20px 22px;
+}
+.taxonomy-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--rule-soft);
+  padding-bottom: 10px;
+}
+.taxonomy-card h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 15px;
+}
+.taxonomy-card .count {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  font-family: 'Geist Mono', monospace;
+}
+.taxonomy-card .desc {
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-bottom: 14px;
+  line-height: 1.45;
+}
+
+.tag-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  margin: 0 -10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.tag-row:hover { background: var(--bg-deep); }
+.tag-row .tag-name { font-size: 13px; font-weight: 500; }
+.tag-row .tag-syn {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+.tag-row .tag-meta {
+  font-size: 11px;
+  color: var(--ink-muted);
+  font-family: 'Geist Mono', monospace;
+}
+
+/* BUSINESS LOGICA */
+.modus-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.modus-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 18px 22px;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+}
+.modus-card:hover { border-color: var(--ink-muted); }
+.modus-card.active {
+  border-color: var(--burgundy);
+  border-width: 1.5px;
+  background: linear-gradient(180deg, #FBF7F1, var(--bg-card) 60%);
+}
+.modus-card.active::after {
+  content: '✓';
+  position: absolute;
+  top: 14px; right: 14px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--burgundy);
+  color: #fff;
+  font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 600;
+}
+.modus-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+.modus-desc {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.modus-weights {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.weight-pill {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: var(--bg-deep);
+  color: var(--ink-soft);
+  font-family: 'Geist Mono', monospace;
+}
+.weight-pill.high { background: var(--green-soft); color: var(--green); }
+.weight-pill.low { background: var(--red-soft); color: var(--red); }
+
+.voorkeur-section {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 22px 24px;
+}
+.voorkeur-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
+}
+.voorkeur-section h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 17px;
+}
+.voorkeur-section .desc {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  margin-bottom: 18px;
+  max-width: 680px;
+  line-height: 1.5;
+}
+
+.voorkeur-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.voorkeur-table th {
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  font-weight: 500;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--rule);
+}
+.voorkeur-table td {
+  padding: 12px 10px;
+  font-size: 13px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.voorkeur-table td:first-child { font-weight: 500; }
+.voorkeur-boost {
+  background: linear-gradient(135deg, #F4E9D2, #E8D9B5);
+  color: #8A6322;
+  padding: 2px 10px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: 'Geist Mono', monospace;
+}
+.voorkeur-reden {
+  font-size: 12px;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+.voorkeur-vervaldatum {
+  font-size: 12px;
+  color: var(--ink-soft);
+  font-family: 'Geist Mono', monospace;
+}
+.voorkeur-table .row-actions {
+  display: flex;
+  gap: 8px;
+  font-size: 12px;
+}
+.voorkeur-table .row-actions a {
+  color: var(--burgundy);
+  cursor: pointer;
+  text-decoration: none;
+}
+.voorkeur-table .row-actions a:hover { text-decoration: underline; }
+
+.voorkeur-add {
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ====== WERKLIJST (secretariaat home) ====== */
+.upload-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.upload-zone {
+  background: var(--bg-card);
+  border: 2px dashed var(--rule);
+  border-radius: 12px;
+  padding: 28px 26px;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  position: relative;
+}
+.upload-zone:hover {
+  border-color: var(--burgundy);
+  background: linear-gradient(180deg, #FBF7F1, var(--bg-card));
+}
+.upload-zone.dragover {
+  border-color: var(--burgundy);
+  border-style: solid;
+  background: var(--burgundy-soft);
+}
+.upload-icon {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  background: var(--burgundy-soft);
+  color: var(--burgundy);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.upload-zone.bulk .upload-icon {
+  background: var(--gold-soft);
+  color: var(--gold);
+}
+.upload-text { flex: 1; }
+.upload-text h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.upload-text p {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.upload-text p strong { color: var(--burgundy); font-weight: 500; }
+.upload-zone.bulk .upload-text p strong { color: var(--gold); }
+.upload-input { display: none; }
+
+.upload-toast {
+  background: var(--green-soft);
+  border-left: 3px solid var(--green);
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  color: var(--ink);
+  animation: toastIn 0.4s ease-out;
+}
+@keyframes toastIn {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.upload-toast .check-icon-lg {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.werklijst-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.werklijst-toolbar h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+.werklijst-toolbar .meta {
+  font-size: 12.5px;
+  color: var(--ink-muted);
+  margin-left: 8px;
+}
+.werklijst-filters {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.werklijst-table {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.werklijst-row {
+  display: grid;
+  grid-template-columns: 8px 110px 1fr 130px 160px 24px;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px 14px 8px;
+  border-bottom: 1px solid var(--rule-soft);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.werklijst-row:hover { background: var(--bg-deep); }
+.werklijst-row:last-child { border-bottom: none; }
+.werklijst-row.header {
+  background: var(--bg-deep);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  font-weight: 500;
+  cursor: default;
+  padding: 11px 16px 11px 22px;
+  grid-template-columns: 110px 1fr 130px 160px 24px;
+}
+.werklijst-row.header:hover { background: var(--bg-deep); }
+
+.kleur-bar.geel { background: var(--gold); }
+.kleur-bar.grijs { background: var(--rule); }
+
+.werklijst-naam {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.werklijst-naam-sub {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+.fase-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11.5px;
+  font-weight: 500;
+}
+.fase-badge.upload { background: var(--bg-deep); color: var(--ink-soft); }
+.fase-badge.check { background: var(--burgundy-soft); color: var(--burgundy); }
+.fase-badge.beslis-groen { background: var(--green-soft); color: var(--green); }
+.fase-badge.beslis-oranje { background: var(--amber-soft); color: var(--amber); }
+.fase-badge.beslis-rood { background: var(--red-soft); color: var(--red); }
+.fase-badge.beslis-besluit { background: var(--bg-deep); color: var(--ink-soft); border: 1px solid var(--rule); }
+.fase-badge.incompleet { background: var(--red-soft); color: var(--red); }
+
+.werklijst-empty {
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--ink-muted);
+  font-size: 13px;
+}
+/* List filters */
+.screen-toolbar {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+  align-items: center;
+}
+.filter-group { display: flex; align-items: center; gap: 6px; }
+.filter-group-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-right: 4px;
+}
+.filter-chip {
+  padding: 5px 12px;
+  font-size: 12px;
+  border-radius: 100px;
+  background: var(--bg-deep);
+  color: var(--ink-soft);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.filter-chip:hover { border-color: var(--ink-muted); }
+.filter-chip.active {
+  background: var(--burgundy);
+  color: #fff;
+}
+.filter-chip.kleur-rood.active { background: var(--red); }
+.filter-chip.kleur-oranje.active { background: var(--amber); }
+.filter-chip .chip-count {
+  font-size: 10.5px;
+  margin-left: 4px;
+  opacity: 0.8;
+  font-family: 'Geist Mono', monospace;
+}
+
+/* Screen list summary stats */
+.screen-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.screen-stat {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 14px 18px;
+}
+.screen-stat .label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+.screen-stat .value {
+  font-family: 'Fraunces', serif;
+  font-size: 24px;
+  font-weight: 400;
+  margin-top: 6px;
+  letter-spacing: -0.01em;
+}
+.screen-stat .value.red { color: var(--red); }
+.screen-stat .value.amber { color: var(--amber); }
+.screen-stat .meta { font-size: 11.5px; color: var(--ink-muted); margin-top: 2px; }
+
+/* Screen list table */
+.screen-table {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.screen-row {
+  display: grid;
+  grid-template-columns: 8px 90px 1fr 120px 130px 130px 100px 24px;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px 14px 8px;
+  border-bottom: 1px solid var(--rule-soft);
+  cursor: pointer;
+  transition: background 0.12s;
+}
+.screen-row:hover { background: var(--bg-deep); }
+.screen-row:last-child { border-bottom: none; }
+.screen-row.header {
+  background: var(--bg-deep);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-muted);
+  font-weight: 500;
+  cursor: default;
+  padding: 11px 16px 11px 22px;
+  grid-template-columns: 90px 1fr 120px 130px 130px 100px 24px;
+  gap: 14px;
+}
+.screen-row.header:hover { background: var(--bg-deep); }
+
+.kleur-bar { width: 4px; height: 40px; border-radius: 2px; align-self: center; }
+.kleur-bar.rood { background: var(--red); }
+.kleur-bar.oranje { background: var(--amber); }
+
+.screen-ref {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.screen-ref-sub {
+  font-size: 10.5px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+}
+
+.screen-naam {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.screen-naam-sub {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+  margin-top: 2px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  align-items: center;
+}
+.complex-tag {
+  background: var(--bg-deep);
+  padding: 1px 7px;
+  border-radius: 100px;
+  font-size: 10.5px;
+  color: var(--ink-soft);
+  border: 1px solid var(--rule);
+}
+.complex-tag.knockout-likely {
+  background: var(--red-soft);
+  color: var(--red);
+  border-color: transparent;
+  font-weight: 500;
+}
+
+.tijd-cel { font-size: 12px; color: var(--ink-soft); }
+.tijd-cel .urgent { color: var(--red); font-weight: 500; }
+.tijd-cel .meta { font-size: 11px; color: var(--ink-muted); margin-top: 2px; }
+
+.bel-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+.bel-status .icon-circle {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px;
+}
+.bel-status.belt-nog .icon-circle { background: var(--bg-deep); color: var(--ink-muted); }
+.bel-status.gebeld-ok .icon-circle { background: var(--green-soft); color: var(--green); }
+.bel-status.geen-gehoor .icon-circle { background: var(--gold-soft); color: var(--gold); }
+.bel-status .meta { font-size: 10.5px; color: var(--ink-muted); }
+
+.case-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11.5px;
+  font-weight: 500;
+}
+.case-status.nieuw { background: var(--burgundy-soft); color: var(--burgundy); }
+.case-status.voorbereid { background: var(--gold-soft); color: var(--gold); }
+.case-status.gebeld { background: var(--green-soft); color: var(--green); }
+.case-status.wacht-cliënt { background: var(--bg-deep); color: var(--ink-muted); }
+
+.advies-color {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.advies-color .dot { width: 8px; height: 8px; border-radius: 50%; }
+.advies-color.oranje { color: var(--amber); }
+.advies-color.oranje .dot { background: var(--amber); }
+.advies-color.rood { color: var(--red); }
+.advies-color.rood .dot { background: var(--red); }
+
+/* Case detail */
+.case-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 22px;
+}
+
+.case-pane {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 22px 26px;
+}
+.case-pane + .case-pane { margin-top: 18px; }
+
+.case-pane-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.case-pane-head h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+}
+.case-pane-head .meta {
+  font-size: 12px;
+  color: var(--ink-muted);
+}
+
+.case-recap {
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.case-recap strong { color: var(--ink); }
+
+.case-meta-grid {
+  display: grid;
+  grid-template-columns: 130px 1fr;
+  gap: 6px 16px;
+  font-size: 13px;
+  margin-top: 14px;
+}
+.case-meta-grid > div:nth-child(odd) { color: var(--ink-muted); font-size: 12px; padding-top: 1px; }
+
+.advies-banner {
+  display: flex;
+  gap: 12px;
+  padding: 16px 18px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+.advies-banner.oranje {
+  background: var(--amber-soft);
+  border-left: 3px solid var(--amber);
+}
+.advies-banner.rood {
+  background: var(--red-soft);
+  border-left: 3px solid var(--red);
+}
+.advies-banner-icon {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 600;
+  font-size: 14px;
+}
+.advies-banner.oranje .advies-banner-icon { background: var(--amber); color: #fff; }
+.advies-banner.rood .advies-banner-icon { background: var(--red); color: #fff; }
+.advies-banner h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 14.5px;
+  margin-bottom: 2px;
+}
+.advies-banner.oranje h4 { color: var(--amber); }
+.advies-banner.rood h4 { color: var(--red); }
+.advies-banner p {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+/* Generated questions */
+.questions-intro {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  background: linear-gradient(180deg, #FBF7F1, var(--bg-card));
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+.questions-intro .agent-mini {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--burgundy), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 13px;
+  flex-shrink: 0;
+}
+.questions-intro p {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.questions-intro p strong { color: var(--ink); font-weight: 500; }
+
+.question-list { display: flex; flex-direction: column; gap: 8px; }
+
+.question-item {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--bg-deep);
+  border-radius: 8px;
+  align-items: start;
+  transition: background 0.12s;
+}
+.question-item:hover { background: #E5DCC9; }
+.question-item.user-added {
+  background: var(--gold-soft);
+}
+
+.question-num {
+  width: 24px; height: 24px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  color: var(--ink-soft);
+  font-size: 11px;
+  font-weight: 600;
+  font-family: 'Geist Mono', monospace;
+  display: flex; align-items: center; justify-content: center;
+  border: 1px solid var(--rule);
+  margin-top: 1px;
+}
+.question-item.user-added .question-num {
+  background: var(--gold);
+  color: #fff;
+  border-color: transparent;
+}
+
+.question-text {
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink);
+}
+.question-text .source-tag {
+  display: inline-block;
+  font-size: 10.5px;
+  background: var(--bg-card);
+  color: var(--ink-muted);
+  padding: 1px 7px;
+  border-radius: 100px;
+  margin-top: 6px;
+  border: 1px solid var(--rule);
+}
+.question-item.user-added .question-text .source-tag {
+  background: rgba(184, 137, 58, 0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.question-actions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+.q-icon-btn {
+  width: 26px; height: 26px;
+  border-radius: 5px;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--ink-muted);
+  transition: all 0.15s;
+}
+.q-icon-btn:hover {
+  background: var(--bg-card);
+  border-color: var(--rule);
+  color: var(--ink);
+}
+
+.add-question {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  padding: 10px 12px;
+  background: var(--bg-deep);
+  border: 1px dashed var(--rule);
+  border-radius: 8px;
+  align-items: center;
+}
+.add-question input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  outline: none;
+  padding: 4px 0;
+}
+.add-question input::placeholder { color: var(--ink-muted); }
+
+/* Right column: case actions */
+.case-side {
+  height: fit-content;
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.case-side-card {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 18px 20px;
+}
+.case-side-card h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+.case-side-card .desc {
+  font-size: 12px;
+  color: var(--ink-muted);
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.tag-section { margin-top: 12px; }
+.tag-section-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: var(--bg-deep);
+  border-radius: 6px;
+  margin-bottom: 8px;
+}
+.contact-row .who {
+  flex: 1;
+  font-size: 12.5px;
+}
+.contact-row .who strong { display: block; color: var(--ink); }
+.contact-row .who .num { color: var(--ink-muted); font-size: 11.5px; }
+
+.action-btn-stack { display: flex; flex-direction: column; gap: 6px; }
+
+/* AUDIO PAGE */
+.audio-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 22px;
+}
+
+.audio-main {
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.audio-step {
+  padding: 26px 30px;
+  border-bottom: 1px solid var(--rule);
+}
+.audio-step:last-child { border-bottom: none; }
+.audio-step-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.audio-step-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--burgundy);
+  color: #fff;
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.audio-step-num.done { background: var(--green); }
+.audio-step-num.future { background: var(--bg-deep); color: var(--ink-muted); border: 1px solid var(--rule); }
+.audio-step-head h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 17px;
+  letter-spacing: -0.01em;
+  flex: 1;
+}
+.audio-step-head .step-status {
+  font-size: 11.5px;
+  color: var(--ink-muted);
+}
+.audio-step-head .step-status.done { color: var(--green); font-weight: 500; }
+
+/* Motivation generator */
+.motivation-toolbar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.motivation-toolbar .toolbar-pill {
+  font-size: 12px;
+  padding: 5px 11px;
+  border-radius: 100px;
+  background: var(--bg-deep);
+  color: var(--ink-soft);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.motivation-toolbar .toolbar-pill:hover { border-color: var(--ink-muted); }
+.motivation-toolbar .toolbar-pill.active {
+  background: var(--burgundy);
+  color: #fff;
+}
+
+.motivation-textarea {
+  width: 100%;
+  min-height: 160px;
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 14px 16px;
+  font-family: inherit;
+  font-size: 13.5px;
+  line-height: 1.65;
+  color: var(--ink);
+  background: var(--bg-deep);
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.motivation-textarea:focus { border-color: var(--burgundy); }
+
+.motivation-helper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 11.5px;
+  color: var(--ink-muted);
+}
+.motivation-helper .agent-help {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  color: var(--burgundy);
+  text-decoration: none;
+  font-weight: 500;
+}
+.motivation-helper .agent-help:hover { text-decoration: underline; }
+
+/* Audio recorder */
+.recorder {
+  background: var(--bg-deep);
+  border-radius: 10px;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.record-button {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+  box-shadow: 0 0 0 0 rgba(168, 51, 31, 0.4);
+}
+.record-button:hover { background: #8A2818; }
+.record-button.recording {
+  animation: recordPulse 1.5s infinite;
+  background: var(--red);
+}
+@keyframes recordPulse {
+  0% { box-shadow: 0 0 0 0 rgba(168, 51, 31, 0.6); }
+  70% { box-shadow: 0 0 0 14px rgba(168, 51, 31, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(168, 51, 31, 0); }
+}
+.record-button.done {
+  background: var(--green);
+}
+
+.record-info { flex: 1; }
+.record-info h5 {
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.record-info .timer {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12.5px;
+  color: var(--ink-muted);
+}
+
+.waveform {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  height: 32px;
+  flex: 1;
+  padding: 0 4px;
+}
+.wave-bar {
+  flex: 1;
+  background: var(--ink-muted);
+  border-radius: 1px;
+  transition: height 0.3s ease;
+}
+.recording-active .wave-bar {
+  background: var(--red);
+  animation: waveAnim 1.2s infinite;
+}
+@keyframes waveAnim {
+  0%, 100% { height: 6px; }
+  50% { height: 26px; }
+}
+
+/* Generated transcript card */
+.transcript-card {
+  background: linear-gradient(180deg, #FBF7F1, var(--bg-card));
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin-top: 14px;
+}
+.transcript-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.transcript-card-head h5 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 14.5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.transcript-card-head .agent-mini {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--burgundy), var(--gold));
+  color: #fff;
+  font-family: 'Fraunces', serif;
+  font-size: 11px;
+  font-weight: 500;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.transcript-text {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--bg-card);
+  border-radius: 8px;
+  padding: 14px 16px;
+  border: 1px solid var(--rule-soft);
+}
+
+.audio-attachment {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  margin-top: 10px;
+}
+.audio-attachment .file-icon {
+  width: 36px; height: 36px;
+  border-radius: 8px;
+  background: var(--burgundy-soft);
+  color: var(--burgundy);
+  display: flex; align-items: center; justify-content: center;
+}
+.audio-attachment .file-info { flex: 1; }
+.audio-attachment .file-name { font-size: 13px; font-weight: 500; }
+.audio-attachment .file-meta { font-size: 11.5px; color: var(--ink-muted); }
+
+/* Send panel */
+.send-recipient {
+  background: var(--bg-deep);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+.send-recipient h6 {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  font-weight: 500;
+  margin-bottom: 6px;
+}
+.send-recipient .person {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.send-recipient .avatar {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+  color: var(--gold);
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  display: flex; align-items: center; justify-content: center;
+}
+.send-recipient .person-info { font-size: 13px; }
+.send-recipient .person-info strong { display: block; }
+.send-recipient .person-info span { color: var(--ink-muted); font-size: 11.5px; }
+
+.send-channels {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.channel-pill {
+  padding: 5px 12px;
+  font-size: 12px;
+  border-radius: 100px;
+  background: var(--bg-deep);
+  color: var(--ink-soft);
+  border: 1px solid transparent;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.channel-pill:hover { border-color: var(--ink-muted); }
+.channel-pill.active { background: var(--burgundy); color: #fff; }
+
+/* ====== END SCREENTEAM ====== */
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 1100px) {
+  .matching-layout, .detail-grid, .decision-grid { grid-template-columns: 1fr; }
+  .tags-panel, .check-pane, .feedback-pane { position: static; }
+  .label-grid, .taxonomy-grid, .modus-grid { grid-template-columns: 1fr; }
+  .matches-split { grid-template-columns: 1fr; }
+  .feedback-session-grid { grid-template-columns: 1fr; }
+  .feedback-context { position: static; }
+  .case-grid, .audio-grid { grid-template-columns: 1fr; }
+  .case-side { position: static; }
+  .screen-stats { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 800px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .page { padding: 20px 16px 60px; }
+}
+</style>
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ====== SIDEBAR ====== -->
+  <aside class="sidebar">
+    <div class="logo">Forta Match</div>
+    <div class="logo-tag">Pilot 1a · Demo</div>
+
+    <!-- Role switcher -->
+    <div class="role-switcher">
+      <div class="role-switcher-label">Ingelogd als</div>
+      <div class="role-switcher-buttons">
+        <button class="role-btn active" data-role="secretariaat" onclick="switchRole('secretariaat')">Secretariaat</button>
+        <button class="role-btn" data-role="screenteam" onclick="switchRole('screenteam')">Screenteam</button>
+        <button class="role-btn" data-role="beheer" onclick="switchRole('beheer')">Beheer</button>
+      </div>
+    </div>
+
+    <!-- Secretariaat nav -->
+    <div class="role-nav" data-role-nav="secretariaat">
+      <div class="nav-section">Werkstroom</div>
+      <div class="nav-item active" data-nav="werklijst">
+        <span class="nav-num">1</span>
+        <span>Upload &amp; werklijst</span>
+        <span class="badge-mini">9</span>
+      </div>
+      <div class="nav-item" data-nav="check">
+        <span class="nav-num">2</span>
+        <span>Volledigheidscheck</span>
+      </div>
+      <div class="nav-item" data-nav="matching">
+        <span class="nav-num">3</span>
+        <span>Matching &amp; advies</span>
+      </div>
+      <div class="nav-item" data-nav="decision">
+        <span class="nav-num">4</span>
+        <span>Beslissing</span>
+      </div>
+    </div>
+
+    <!-- Screenteam nav -->
+    <div class="role-nav" data-role-nav="screenteam" style="display:none;">
+      <div class="nav-section">Werkstroom</div>
+      <div class="nav-item" data-nav="screen-list">
+        <span class="nav-num">1</span>
+        <span>Aanvragenlijst</span>
+        <span class="badge-mini">14</span>
+      </div>
+      <div class="nav-item" data-nav="screen-case">
+        <span class="nav-num">2</span>
+        <span>Casevoorbereiding</span>
+      </div>
+      <div class="nav-item" data-nav="screen-audio">
+        <span class="nav-num">3</span>
+        <span>Beslissing &amp; bericht</span>
+      </div>
+    </div>
+
+    <!-- Beheer nav -->
+    <div class="role-nav" data-role-nav="beheer" style="display:none;">
+      <div class="nav-section">Configuratie</div>
+      <div class="nav-item" data-nav="labels">
+        <span>Label-bibliotheek</span>
+      </div>
+      <div class="nav-item" data-nav="tags">
+        <span>Tag-taxonomie</span>
+      </div>
+      <div class="nav-item" data-nav="logica">
+        <span>Business-logica</span>
+      </div>
+    </div>
+
+    <div class="user-card" id="userCard">
+      <div class="user-avatar" id="userAvatar">MB</div>
+      <div class="user-info">
+        <strong id="userName">Maria Boom</strong>
+        <span id="userRole">Secretariaat</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ====== MAIN ====== -->
+  <main class="main">
+
+    <div class="topbar">
+      <div class="brief-indicator" id="briefIndicator">
+        <span class="dot"></span>
+        <span class="indicator-text">In behandeling: <strong>verwijsbrief #ZD194240016</strong></span>
+        <span class="sep">·</span>
+        <span class="indicator-meta">gestart 13:42</span>
+      </div>
+      <div class="role-chip" id="topbarRoleChip">Maria Boom · Secretariaat</div>
+    </div>
+
+    <!-- ====== PAGE: WERKLIJST (secretariaat home) ====== -->
+    <div class="page" id="page-werklijst">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div class="page-header-main">
+            <div class="page-eyebrow">Stap 1 van 4 · Upload &amp; werklijst</div>
+            <h1 class="page-title serif">Goedemorgen, Maria.</h1>
+            <p class="page-subtitle">Upload een nieuwe verwijsbrief — los of in bulk — en pak openstaande aanvragen op vanuit de werklijst hieronder. Een aanvraag blijft op de werklijst staan totdat er een definitief besluit is genomen.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="uploadToast" class="upload-toast" style="display:none;">
+        <div class="check-icon-lg">✓</div>
+        <div>
+          <strong>3 verwijsbrieven geüpload</strong> — verwerking gestart, ze verschijnen zo in de werklijst.
+        </div>
+      </div>
+
+      <div class="upload-grid">
+
+        <label class="upload-zone" for="uploadSingle" onclick="simulateUpload('single')">
+          <div class="upload-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/>
+              <path d="M14 3v5h5"/>
+              <path d="M12 18v-6M9 15l3-3 3 3"/>
+            </svg>
+          </div>
+          <div class="upload-text">
+            <h4>Upload verwijsbrief</h4>
+            <p>Sleep een PDF hierheen of <strong>kies een bestand</strong>. Je krijgt direct de volledigheidscheck en het matching-advies te zien.</p>
+          </div>
+          <input type="file" class="upload-input" id="uploadSingle" accept=".pdf">
+        </label>
+
+        <label class="upload-zone bulk" for="uploadBulk" onclick="simulateUpload('bulk')">
+          <div class="upload-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <path d="M16 5H8a2 2 0 0 0-2 2v0M16 5a2 2 0 0 1 2 2v0M16 5V3M8 5V3"/>
+              <rect x="3" y="7" width="18" height="14" rx="2"/>
+              <path d="M8 12h8M8 16h5"/>
+            </svg>
+          </div>
+          <div class="upload-text">
+            <h4>Bulk-upload</h4>
+            <p>Meerdere brieven tegelijk uploaden — handig na de ochtendpost. Match verwerkt ze parallel en zet ze in de werklijst. <strong>Sleep meerdere PDFs hierheen</strong> of klik.</p>
+          </div>
+          <input type="file" class="upload-input" id="uploadBulk" accept=".pdf" multiple>
+        </label>
+
+      </div>
+
+      <div class="werklijst-toolbar">
+        <div>
+          <h3 style="display:inline;">Openstaande aanvragen</h3>
+          <span class="meta">9 brieven · nog geen besluit genomen</span>
+        </div>
+        <div class="werklijst-filters">
+          <button class="filter-chip active">Alles<span class="chip-count">9</span></button>
+          <button class="filter-chip">Gematched · groen<span class="chip-count">3</span></button>
+          <button class="filter-chip">Gematched · oranje<span class="chip-count">1</span></button>
+          <button class="filter-chip">Gematched · rood<span class="chip-count">2</span></button>
+          <button class="filter-chip">Incompleet<span class="chip-count">2</span></button>
+          <button class="filter-chip">Besluit genomen<span class="chip-count">1</span></button>
+        </div>
+      </div>
+
+      <div class="werklijst-table">
+        <div class="werklijst-row header">
+          <div>Referentie</div>
+          <div>Bestandsnaam &amp; cliënt</div>
+          <div>Geüpload</div>
+          <div>Status</div>
+          <div></div>
+        </div>
+
+        <div class="werklijst-row" onclick="goto('check')">
+          <div class="kleur-bar burgundy" style="background:var(--burgundy);"></div>
+          <div>
+            <div class="screen-ref">VB-2026-1041</div>
+            <div class="screen-ref-sub">ZD194240016</div>
+          </div>
+          <div>
+            <div class="werklijst-naam">verwijsbrief_klein_M.pdf</div>
+            <div class="werklijst-naam-sub">M. — 34 jr · Utrecht · ADHD-vraag</div>
+          </div>
+          <div class="tijd-cel">
+            Vandaag 13:42
+            <div class="meta">12 min geleden</div>
+          </div>
+          <div><span class="fase-badge beslis-groen">Gematched · groen</span></div>
+          <div class="chevron" style="color: var(--ink-muted);">›</div>
+        </div>
+
+        <div class="werklijst-row">
+          <div class="kleur-bar grijs"></div>
+          <div>
+            <div class="screen-ref">VB-2026-1040</div>
+            <div class="screen-ref-sub">ZV-2026-0844</div>
+          </div>
+          <div>
+            <div class="werklijst-naam">verwijsbrief_verstraeten.pdf</div>
+            <div class="werklijst-naam-sub">P. — 41 jr · Amsterdam · angst &amp; stemming</div>
+          </div>
+          <div class="tijd-cel">
+            Vandaag 11:08
+            <div class="meta">3 uur geleden</div>
+          </div>
+          <div><span class="fase-badge beslis-groen">Gematched · groen</span></div>
+          <div class="chevron" style="color: var(--ink-muted);">›</div>
+        </div>
+
+        <div class="werklijst-row">
+          <div class="kleur-bar geel"></div>
+          <div>
+            <div class="screen-ref">VB-2026-1039</div>
+            <div class="screen-ref-sub">M-2026-0231</div>
+          </div>
+          <div>
+            <div class="werklijst-naam">scan_verwijsbrief_anoniem.pdf</div>
+            <div class="werklijst-naam-sub">Cliënt — Den Haag · trauma-vermoeden</div>
+          </div>
+          <div class="tijd-cel">
+            Vandaag 09:55
+            <div class="meta">~ 4 uur geleden</div>
+          </div>
+          <div><span class="fase-badge incompleet">Incompleet</span></div>
+          <div class="chevron" style="color: var(--ink-muted);">›</div>
+        </div>
+
+        <div class="werklijst-row">
+          <div class="kleur-bar grijs"></div>
+          <div>
+            <div class="screen-ref">VB-2026-1038</div>
+            <div class="screen-ref-sub">ZD194240017</div>
+          </div>
+          <div>
+            <div class="werklijst-naam">verwijsbrief_de_vries.pdf</div>
+            <div class="werklijst-naam-sub">J. — 47 jr · Utrecht · depressie / burn-out</div>
+          </div>
+          <div class="tijd-cel">
+            Gisteren 16:30
+            <div class="meta">~ 22 uur geleden</div>
+          </div>
+          <div><span class="fase-badge beslis-besluit">Besluit genomen</span></div>
+          <div class="chevron" style="color: var(--ink-muted);">›</div>
+        </div>
+
+        <div class="werklijst-row">
+          <div class="kleur-bar grijs"></div>
+          <div>
+            <div class="screen-ref">VB-2026-1037</div>
+            <div class="screen-ref-sub">ZD194240018</div>
+          </div>
+          <div>
+            <div class="werklijst-naam">verwijsbrief_bakker.pdf</div>
+            <div class="werklijst-naam-sub">L. — 29 jr · Amersfoort · persoonlijkheid</div>
+          </div>
+          <div class="tijd-cel">
+            Gisteren 14:12
+            <div class="meta">~ 1 dag geleden</div>
+          </div>
+          <div><span class="fase-badge beslis-oranje">Gematched · oranje</span></div>
+          <div class="chevron" style="color: var(--ink-muted);">›</div>
+        </div>
+
+        <div class="werklijst-row">
+          <div class="kleur-bar grijs"></div>
+          <div>
+            <div class="screen-ref">VB-2026-1036</div>
+            <div class="screen-ref-sub">M-2026-0229</div>
+          </div>
+          <div>
+            <div class="werklijst-naam">verwijzing_neurologie.pdf</div>
+            <div class="werklijst-naam-sub">F. — 58 jr · Den Haag · ziekenhuiscontext</div>
+          </div>
+          <div class="tijd-cel">
+            Gisteren 11:00
+            <div class="meta">~ 1 dag geleden</div>
+          </div>
+          <div><span class="fase-badge beslis-rood">Gematched · rood</span></div>
+          <div class="chevron" style="color: var(--ink-muted);">›</div>
+        </div>
+
+        <div class="werklijst-row">
+          <div class="kleur-bar geel"></div>
+          <div>
+            <div class="screen-ref">VB-2026-1035</div>
+            <div class="screen-ref-sub">ZV-2026-0838</div>
+          </div>
+          <div>
+            <div class="werklijst-naam">verwijsbrief_el_madkouri.pdf</div>
+            <div class="werklijst-naam-sub">A. — 28 jr · Den Haag · intercultureel</div>
+          </div>
+          <div class="tijd-cel">
+            2 dagen geleden
+            <div class="meta">25-02-2026</div>
+          </div>
+          <div><span class="fase-badge incompleet">Incompleet</span></div>
+          <div class="chevron" style="color: var(--ink-muted);">›</div>
+        </div>
+
+        <div class="werklijst-row">
+          <div class="kleur-bar grijs"></div>
+          <div>
+            <div class="screen-ref">VB-2026-1034</div>
+            <div class="screen-ref-sub">ZD194240015</div>
+          </div>
+          <div>
+            <div class="werklijst-naam">verwijsbrief_jansen.pdf</div>
+            <div class="werklijst-naam-sub">B. — 36 jr · Hilversum · eetstoornis</div>
+          </div>
+          <div class="tijd-cel">
+            3 dagen geleden
+            <div class="meta">24-02-2026</div>
+          </div>
+          <div><span class="fase-badge beslis-groen">Gematched · groen</span></div>
+          <div class="chevron" style="color: var(--ink-muted);">›</div>
+        </div>
+
+        <div class="werklijst-row">
+          <div class="kleur-bar grijs"></div>
+          <div>
+            <div class="screen-ref">VB-2026-1033</div>
+            <div class="screen-ref-sub">M-2026-0226</div>
+          </div>
+          <div>
+            <div class="werklijst-naam">verwijzing_ziekenhuis_vumc.pdf</div>
+            <div class="werklijst-naam-sub">D. — 52 jr · Amsterdam · neurologische verwijzing</div>
+          </div>
+          <div class="tijd-cel">
+            3 dagen geleden
+            <div class="meta">24-02-2026</div>
+          </div>
+          <div><span class="fase-badge beslis-rood">Gematched · rood</span></div>
+          <div class="chevron" style="color: var(--ink-muted);">›</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ====== PAGE: VOLLEDIGHEIDSCHECK ====== -->
+    <div class="page" id="page-check">
+      <div class="page-header">
+        <div class="page-eyebrow">Stap 1 van 3</div>
+        <h1 class="page-title serif">Volledigheidscheck</h1>
+        <p class="page-subtitle">Match heeft de geüploade brief gescand op alle verplichte velden uit het handboek. Hieronder de samenvatting — controleer de oranje en rode markeringen voordat je doorzet naar de matching.</p>
+      </div>
+
+      <div class="client-card">
+        <div class="client-info">
+          <div class="client-avatar">M</div>
+          <div>
+            <div class="client-naam">M. — geboortejaar 1992 (34)</div>
+            <div class="client-meta">Verzekering CZ · Utrecht (3555 HW) · Zorgdomein-verwijzing van J. Klein, huisarts</div>
+          </div>
+        </div>
+        <div class="client-pills">
+          <span class="client-pill">Volwassen</span>
+          <span class="client-pill">Spec. GGZ</span>
+          <span class="client-pill">ADHD-vraag</span>
+        </div>
+      </div>
+
+      <div class="detail-grid">
+
+        <div class="brief-pane">
+          <div class="brief-pane-head">
+            <span class="brief-pane-title">Verwijsbrief — Zorgdomein</span>
+            <span class="brief-pane-title">ZD194240016</span>
+          </div>
+          <div class="brief-pane-body">
+            <h4>Verwijzing</h4>
+            <div class="field-grid">
+              <div>Datum</div><div>27-02-2026 08:15</div>
+              <div>ZD-nummer</div><div>ZD194240016</div>
+              <div>Toegangstijd</div><div>77 dagen</div>
+              <div>Zorgvraag</div><div>Geestelijke gezondheidszorg › <span class="highlight">ADHD</span></div>
+              <div>Org. AGB-code</div><div><span class="highlight green">73732118</span> — Forta Volwassenen</div>
+            </div>
+
+            <h4>Reden van verwijzing</h4>
+            <p><em>"Is er sprake van <span class="highlight">ADHD</span>? Zie onderstaande consult."</em></p>
+
+            <h4>Klacht / hulpvraag</h4>
+            <p>S/ In voorgeschiedenis <span class="highlight">angst-/paniekaanvallen</span>, waarvoor gesprekken bij POH GGZ. Laatste jaar bij Gestalt-therapeut. Daar mogelijkheid van <span class="highlight">ADHD</span> besproken. Terugkijkend veel <span class="highlight">spanning/angst</span> bij nieuwe baan. Alvast medicatie starten?</p>
+            <p style="margin-top: 8px;">E/ <strong>dd ADHD is ingewikkeld</strong>, zeker bij volwassenen. <span class="highlight red">Niet zo beginnen met medicatie, eerst goed diagnostisch onderzoek.</span></p>
+
+            <h4>Procedurevoorstel</h4>
+            <p><span class="highlight red">Verdere diagnostiek</span> — geen bestaande diagnose</p>
+
+            <h4>Vermoeden DSM-5 stoornis</h4>
+            <p>ADHD</p>
+
+            <h4>Suïcidaliteit</h4>
+            <p><span class="highlight green">Nee</span> (expliciet benoemd)</p>
+
+            <h4>Journaal-fragmenten</h4>
+            <p style="font-size:12px;color:var(--ink-muted);">19-02-2026 (sombere gedachten, P03) — voicemail ingesproken over diagnose ADHD, waar gesteld? Afspraak plannen bij huisarts.</p>
+            <p style="font-size:12px;color:var(--ink-muted);margin-top:6px;">19-11-2024 (sombere gedachten, P03) — POH GGZ: pt is in balans met zichzelf, erkent dat een veeleisende werkomgeving ook bekend is door zijn gezin van herkomst.</p>
+          </div>
+        </div>
+
+        <div class="check-pane">
+          <div class="check-head">
+            <h3>Controle-resultaat</h3>
+            <p class="summary">10 van 11 velden volledig en valide. Eén aandachtspunt — geen blokkades.</p>
+          </div>
+          <div class="check-list">
+            <div class="check-item">
+              <span class="check-icon ok">✓</span>
+              <div>
+                <div class="check-label">AGB-code verwijzer</div>
+                <div class="check-value">73732118 — gevalideerd in Vektis</div>
+              </div>
+            </div>
+            <div class="check-item">
+              <span class="check-icon ok">✓</span>
+              <div>
+                <div class="check-label">Datum verwijsbrief</div>
+                <div class="check-value">27-02-2026 — geldig (47 dagen oud)</div>
+              </div>
+            </div>
+            <div class="check-item">
+              <span class="check-icon ok">✓</span>
+              <div>
+                <div class="check-label">Handtekening arts</div>
+                <div class="check-value">Automatisch via Zorgdomein</div>
+              </div>
+            </div>
+            <div class="check-item">
+              <span class="check-icon ok">✓</span>
+              <div>
+                <div class="check-label">Vermoedelijke DSM-5</div>
+                <div class="check-value">ADHD — gemapt op tag</div>
+              </div>
+            </div>
+            <div class="check-item">
+              <span class="check-icon ok">✓</span>
+              <div>
+                <div class="check-label">Locatievoorkeur</div>
+                <div class="check-value">3555 HW Utrecht</div>
+              </div>
+            </div>
+            <div class="check-item">
+              <span class="check-icon ok">✓</span>
+              <div>
+                <div class="check-label">Hulpvraag</div>
+                <div class="check-value">Voldoende lengte en context</div>
+              </div>
+            </div>
+            <div class="check-item">
+              <span class="check-icon warn">!</span>
+              <div>
+                <div class="check-label">Procedurevoorstel</div>
+                <div class="check-value warn-text">Diagnostiek-vraag zonder bestaande DSM — let op behandelvorm-match</div>
+              </div>
+            </div>
+            <div class="check-item">
+              <span class="check-icon ok">✓</span>
+              <div>
+                <div class="check-label">GGZ-context</div>
+                <div class="check-value">Huisartsverwijzing (geen ziekenhuis)</div>
+              </div>
+            </div>
+            <div class="check-item">
+              <span class="check-icon ok">✓</span>
+              <div>
+                <div class="check-label">Suïcidaliteit</div>
+                <div class="check-value">Nee — expliciet benoemd</div>
+              </div>
+            </div>
+            <div class="check-item">
+              <span class="check-icon ok">✓</span>
+              <div>
+                <div class="check-label">Contactgegevens</div>
+                <div class="check-value">E-mail aanwezig</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="knockout-banner">
+            <h4>Geen knock-out gedetecteerd</h4>
+            <p>De diagnostiek-vraag is een aandachtspunt voor de matching maar geen blokkade — Forta heeft ADHD-diagnostiek-labels in het portfolio.</p>
+          </div>
+
+          <div class="check-actions">
+            <button class="btn btn-secondary btn-flex">Markeer incompleet</button>
+            <button class="btn btn-primary btn-flex" onclick="goto('matching')">Naar matching →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== PAGE: MATCHING ====== -->
+    <div class="page" id="page-matching">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div class="page-header-main">
+            <div class="page-eyebrow">Stap 2 van 3</div>
+            <h1 class="page-title serif">Matching &amp; advies</h1>
+            <p class="page-subtitle">Match heeft de brief gescoord tegen alle actieve labels en locaties. De aanbevolen optie staat bovenaan, met daaronder twee alternatieven en twee afwijkende routes. Iedere score is opgebouwd uit zichtbare tags — geen verborgen weging.</p>
+          </div>
+          <a class="feedback-cta" onclick="goto('feedback')">
+            <div class="feedback-cta-avatar">F</div>
+            <div class="feedback-cta-text">
+              <span class="feedback-cta-title">Start feedback-sessie</span>
+              <span class="feedback-cta-sub">Vertel Match wat er verbeterd kan worden</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="matching-layout">
+
+        <div class="tags-panel">
+          <h3>Uit de brief gehaald</h3>
+          <p class="desc">Tags die het systeem uit de brieftekst heeft geëxtraheerd. Deze vormen samen de input voor de matching.</p>
+
+          <div class="tag-group">
+            <div class="tag-group-label">Klachtprofiel</div>
+            <div class="tag-list">
+              <span class="tag">ADHD-vermoeden</span>
+              <span class="tag">Angst</span>
+              <span class="tag">Paniekaanvallen</span>
+              <span class="tag tag-warn">Somberheid (mild)</span>
+            </div>
+          </div>
+
+          <div class="tag-group">
+            <div class="tag-group-label">Doelgroep</div>
+            <div class="tag-list">
+              <span class="tag">Volwassene</span>
+              <span class="tag">34 jaar</span>
+            </div>
+          </div>
+
+          <div class="tag-group">
+            <div class="tag-group-label">Procedureel</div>
+            <div class="tag-list">
+              <span class="tag tag-warn">Diagnostiek-vraag</span>
+              <span class="tag tag-neutral">Geen bestaande DSM</span>
+            </div>
+          </div>
+
+          <div class="tag-group">
+            <div class="tag-group-label">Locatie &amp; Zorgtype</div>
+            <div class="tag-list">
+              <span class="tag tag-neutral">Utrecht 3555 HW</span>
+              <span class="tag tag-neutral">Spec. GGZ</span>
+            </div>
+          </div>
+
+          <div class="tag-group">
+            <div class="tag-group-label">Veiligheid &amp; Exclusie</div>
+            <div class="tag-list">
+              <span class="tag tag-positive">Suïcidaliteit · nee</span>
+              <span class="tag tag-positive">Geen psychose</span>
+              <span class="tag tag-positive">Geen verslaving</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="match-toolbar">
+            <span><strong>4 labels + 2 routes</strong> beoordeeld · gesplitst op offline / online</span>
+            <span style="font-size:11.5px;color:var(--ink-muted);">Modus: <strong style="color:var(--ink);">Snelste hulp</strong></span>
+          </div>
+
+          <div class="matches-list">
+
+            <div class="matches-split">
+
+              <!-- ===== OFFLINE COLUMN ===== -->
+              <div class="matches-column">
+                <div class="matches-column-head offline">
+                  <div class="icon-circle">
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z"/>
+                      <circle cx="8" cy="6" r="1.5" fill="currentColor"/>
+                    </svg>
+                  </div>
+                  <h4>Offline locaties</h4>
+                  <span class="count">2 opties</span>
+                </div>
+
+                <div class="match-card recommended">
+                  <div class="match-head">
+                    <div>
+                      <div class="match-rank-row">
+                        <span class="match-rank">Beste optie</span>
+                        <span class="recommended-badge">Aanbevolen</span>
+                      </div>
+                      <div class="match-title">ADHD-diagnostiek volwassenen</div>
+                      <div class="match-locatie">
+                        <span>Forta Utrecht — Demkaweg 11</span>
+                        <span>Reistijd ±18 min</span>
+                        <span>Wachttijd 9 wkn</span>
+                      </div>
+                    </div>
+                    <div class="match-score">+28</div>
+                  </div>
+                  <div class="match-tags">
+                    <span class="tag tag-positive">ADHD-diagnostiek <span class="tag-score">+8</span></span>
+                    <span class="tag tag-positive">Inclusie: 18+ <span class="tag-score">+5</span></span>
+                    <span class="tag tag-positive">Klachtprofiel angst <span class="tag-score">+4</span></span>
+                    <span class="tag tag-positive">Diagnostiek-route <span class="tag-score">+5</span></span>
+                    <span class="tag tag-positive">Reistijd &lt;30 min <span class="tag-score">+3</span></span>
+                    <span class="tag tag-positive">Wachttijd &lt;12 wkn <span class="tag-score">+3</span></span>
+                    <span class="tag tag-neutral">Plafond CZ 62%</span>
+                  </div>
+                  <div class="match-actions">
+                    <span class="match-actions-meta">Geen knock-outs · alle inclusiecriteria voldaan</span>
+                    <button class="btn btn-primary btn-sm" onclick="goto('decision')">Bevestig →</button>
+                  </div>
+                </div>
+
+                <div class="match-card">
+                  <div class="match-head">
+                    <div>
+                      <div class="match-rank-row">
+                        <span class="match-rank">2e optie offline</span>
+                      </div>
+                      <div class="match-title">ADHD-diagnostiek volwassenen</div>
+                      <div class="match-locatie">
+                        <span>Forta Leiden — Stationsweg 47</span>
+                        <span>Reistijd ±42 min</span>
+                        <span>Wachttijd onbekend</span>
+                      </div>
+                    </div>
+                    <div class="match-score dark">+19</div>
+                  </div>
+                  <div class="match-tags">
+                    <span class="tag tag-positive">ADHD-diagnostiek <span class="tag-score">+8</span></span>
+                    <span class="tag tag-positive">Inclusie: 18+ <span class="tag-score">+5</span></span>
+                    <span class="tag tag-positive">Klachtprofiel angst <span class="tag-score">+4</span></span>
+                    <span class="tag tag-positive">Diagnostiek-route <span class="tag-score">+5</span></span>
+                    <span class="tag tag-negative">Reistijd &gt;30 min <span class="tag-score">−3</span></span>
+                    <span class="tag tag-warn">Geen wachttijddata</span>
+                  </div>
+                  <div class="match-actions">
+                    <span class="match-actions-meta">Verder weg · zelfde label</span>
+                    <button class="btn btn-secondary btn-sm">Selecteer →</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- ===== ONLINE COLUMN ===== -->
+              <div class="matches-column">
+                <div class="matches-column-head online">
+                  <div class="icon-circle">
+                    <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <circle cx="8" cy="8" r="6.5"/>
+                      <path d="M1.5 8h13"/>
+                      <path d="M8 1.5c1.8 2 1.8 11 0 13M8 1.5c-1.8 2-1.8 11 0 13"/>
+                    </svg>
+                  </div>
+                  <h4>Online aanbod</h4>
+                  <span class="count">2 opties</span>
+                </div>
+
+                <div class="match-card">
+                  <div class="match-head">
+                    <div>
+                      <div class="match-rank-row">
+                        <span class="match-rank">Beste online</span>
+                        <span class="tag tag-business" style="font-size:10.5px;padding:2px 8px;">Forta-voorkeur</span>
+                      </div>
+                      <div class="match-title">Online ADHD &amp; angst-traject</div>
+                      <div class="match-locatie">
+                        <span>Forta Online</span>
+                        <span>Wachttijd 4 wkn</span>
+                      </div>
+                    </div>
+                    <div class="match-score dark">+24</div>
+                  </div>
+                  <div class="match-tags">
+                    <span class="tag tag-positive">ADHD-diagnostiek <span class="tag-score">+8</span></span>
+                    <span class="tag tag-positive">Inclusie: 18+ <span class="tag-score">+5</span></span>
+                    <span class="tag tag-positive">Wachttijd &lt;6 wkn <span class="tag-score">+4</span></span>
+                    <span class="tag tag-positive">Diagnostiek-route <span class="tag-score">+5</span></span>
+                    <span class="tag tag-business">Forta-voorkeur <span class="tag-score">+5</span></span>
+                    <span class="tag tag-warn">Geen reistijd-bonus</span>
+                    <span class="tag tag-neutral">Plafond CZ 41%</span>
+                  </div>
+                  <div class="match-actions">
+                    <span class="match-actions-meta">Voorkeursboost t/m 15-07-2026</span>
+                    <button class="btn btn-secondary btn-sm">Selecteer →</button>
+                  </div>
+                </div>
+
+                <div class="match-card">
+                  <div class="match-head">
+                    <div>
+                      <div class="match-rank-row">
+                        <span class="match-rank">2e optie online</span>
+                      </div>
+                      <div class="match-title">Online angst- &amp; stemmingstraject</div>
+                      <div class="match-locatie">
+                        <span>Forta Online</span>
+                        <span>Wachttijd 8 wkn</span>
+                      </div>
+                    </div>
+                    <div class="match-score dark">+18</div>
+                  </div>
+                  <div class="match-tags">
+                    <span class="tag tag-positive">Klachtprofiel angst <span class="tag-score">+8</span></span>
+                    <span class="tag tag-positive">Inclusie: 18+ <span class="tag-score">+5</span></span>
+                    <span class="tag tag-positive">Diagnostiek-route <span class="tag-score">+5</span></span>
+                    <span class="tag tag-warn">Geen reistijd-bonus</span>
+                    <span class="tag tag-warn">ADHD niet primair label-focus</span>
+                    <span class="tag tag-neutral">Plafond CZ 31%</span>
+                  </div>
+                  <div class="match-actions">
+                    <span class="match-actions-meta">Angst-primair · ADHD secundair behandeld</span>
+                    <button class="btn btn-secondary btn-sm">Selecteer →</button>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="section-divider">
+              <span class="line"></span>
+              <span class="label">Afwijkende routes</span>
+              <span class="line"></span>
+            </div>
+
+            <div class="match-card afwijkend">
+              <div class="match-head">
+                <div>
+                  <div class="match-rank-row">
+                    <span class="match-rank">Doorsturen</span>
+                    <span class="afwijkend-badge">Twijfelgeval</span>
+                  </div>
+                  <div class="match-title">Screenteam — telefonische uitvraag</div>
+                  <div class="match-locatie"><span>Standaardroute bij ambigue klachten</span></div>
+                </div>
+                <div class="match-score afwijkend">+8</div>
+              </div>
+              <div class="match-tags">
+                <span class="tag tag-warn">Somberheid (ambigu) <span class="tag-score">+8</span></span>
+                <span class="tag tag-neutral">Geen harde uitsluitcriteria</span>
+              </div>
+              <div class="match-actions">
+                <span class="match-actions-meta">Adviseerbaar als secretariaat aanvullende signalen vermoedt</span>
+                <button class="btn btn-warn btn-sm">Doorsturen →</button>
+              </div>
+            </div>
+
+            <div class="match-card afwijzen">
+              <div class="match-head">
+                <div>
+                  <div class="match-rank-row">
+                    <span class="match-rank">Afwijzen</span>
+                    <span class="knockout-badge">Buiten kader</span>
+                  </div>
+                  <div class="match-title">Buiten behandelkader</div>
+                  <div class="match-locatie"><span>Geen passend aanbod binnen Forta</span></div>
+                </div>
+                <div class="match-score zero">0</div>
+              </div>
+              <div class="match-tags">
+                <span class="tag tag-negative">Enkelvoudige ADHD-vraag — niet aanwezig</span>
+                <span class="tag tag-negative">Psychose — niet aanwezig</span>
+              </div>
+              <div class="match-actions">
+                <span class="match-actions-meta">Alleen relevant als geen van de bovenste opties past</span>
+                <button class="btn btn-danger btn-sm">Afwijzen — terugstuurbrief →</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== PAGE: FEEDBACK SESSIE ====== -->
+    <div class="page" id="page-feedback">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div class="page-header-main">
+            <div class="page-eyebrow">Feedback-sessie</div>
+            <h1 class="page-title serif">Vertel Match wat er beter kan.</h1>
+            <p class="page-subtitle">De agent stelt een paar gerichte vragen. Antwoord kort — alles wat je deelt komt in de beheerlaag terecht en helpt bij het verbeteren van prompts, tag-definities en regeldrempels. Geen training op het LLM zelf.</p>
+          </div>
+          <button class="btn btn-secondary" onclick="goto('matching')">← Terug naar matching</button>
+        </div>
+      </div>
+
+      <div class="feedback-session-grid">
+
+        <aside class="feedback-context">
+          <h4>Sessie over</h4>
+          <div class="feedback-context-label">ADHD-diagnostiek volwassenen</div>
+          <div class="feedback-context-locatie">Forta Utrecht — Demkaweg 11</div>
+          <div class="feedback-context-score">
+            <span class="num">+28</span>
+            <span class="sub">Aanbevolen</span>
+          </div>
+
+          <div class="feedback-context-section">
+            <h5>Verwijsbrief</h5>
+            <div class="info-row"><div>ID</div><div>ZD194240016</div></div>
+            <div class="info-row"><div>Cliënt</div><div>M. — 34 jaar</div></div>
+            <div class="info-row"><div>Datum brief</div><div>27-02-2026</div></div>
+            <div class="info-row"><div>Kanaal</div><div>Zorgdomein</div></div>
+          </div>
+
+          <div class="feedback-context-section">
+            <h5>Versies</h5>
+            <div class="info-row"><div>Prompt</div><div>v3.2</div></div>
+            <div class="info-row"><div>Taxonomie</div><div>v1.4</div></div>
+            <div class="info-row"><div>Rules</div><div>v0.7</div></div>
+            <div class="info-row"><div>Modus</div><div>Snelste hulp</div></div>
+          </div>
+
+          <div class="feedback-context-section">
+            <h5>Wat gebeurt met deze feedback?</h5>
+            <p style="font-size:12px;color:var(--ink-soft);line-height:1.55;">Gestructureerde antwoorden gaan in dashboards. Open observaties komen op de review-lijst van de applicatiebeheerder.</p>
+          </div>
+        </aside>
+
+        <section class="feedback-main">
+          <div class="feedback-main-head">
+            <div class="agent-info">
+              <div class="agent-avatar-lg">F</div>
+              <div>
+                <div class="agent-name">Match Feedback-agent</div>
+                <div class="agent-status"><span class="dot"></span> Actief · ~ 1 minuut</div>
+              </div>
+            </div>
+            <div class="feedback-progress" id="feedbackProgress">
+              <span class="step-dot active"></span>
+              <span class="step-dot"></span>
+              <span class="step-dot"></span>
+              <span class="step-dot"></span>
+            </div>
+          </div>
+
+          <div class="feedback-chat-body" id="feedbackChatBody">
+            <div class="chat-msg agent">
+              <div class="avatar-mini">F</div>
+              <div class="chat-bubble">Hoi Maria — bedankt dat je even tijd neemt. Ik stel je vier korte vragen over de match die je net hebt bekeken: ADHD-diagnostiek Utrecht (+28). Klopte het advies inhoudelijk wat jou betreft?</div>
+            </div>
+            <div class="chat-options">
+              <button class="chat-option" onclick="fbStep()">Ja, helemaal goed</button>
+              <button class="chat-option" onclick="fbStep()">Twijfel — kanttekening</button>
+              <button class="chat-option" onclick="fbStep()">Nee, ik zou anders kiezen</button>
+            </div>
+          </div>
+
+          <div class="feedback-input-area">
+            <div class="feedback-input-row">
+              <input class="feedback-input" placeholder="Of typ een eigen reactie…">
+              <button class="feedback-send">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+              </button>
+            </div>
+            <div class="feedback-input-hint">Sessie wordt automatisch opgeslagen — je kunt op elk moment stoppen.</div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- ====== PAGE: DECISION + FEEDBACK ====== -->
+    <div class="page" id="page-decision">
+      <div class="page-header">
+        <div class="page-eyebrow">Stap 3 van 3 · Beslissing</div>
+        <h1 class="page-title serif">Match bevestigd.</h1>
+        <p class="page-subtitle">De cliënt is gekoppeld aan ADHD-diagnostiek volwassenen — Forta Utrecht. Geef de feedback-agent kort terug hoe het advies aanvoelde — dat helpt het systeem leren.</p>
+      </div>
+
+      <div class="decision-grid">
+
+        <div class="decision-card">
+          <div class="decision-summary">
+            <h4>#ZD194240016 → ADHD-diagnostiek Utrecht</h4>
+            <p>Bevestigd op 30 april 2026, 14:22 · Maria Boom (Secretariaat) · Score +28</p>
+          </div>
+
+          <div class="decision-section">
+            <div class="decision-section-label">Match</div>
+            <div class="decision-info-row"><div>Label</div><div>ADHD-diagnostiek volwassenen</div></div>
+            <div class="decision-info-row"><div>Locatie</div><div>Forta Utrecht — Demkaweg 11</div></div>
+            <div class="decision-info-row"><div>Wachttijd</div><div>9 weken</div></div>
+            <div class="decision-info-row"><div>AGB-code</div><div>73732118</div></div>
+          </div>
+
+          <div class="decision-section">
+            <div class="decision-section-label">Cliënt &amp; verzekering</div>
+            <div class="decision-info-row"><div>Cliënt-ID</div><div>ZD194240016</div></div>
+            <div class="decision-info-row"><div>Verzekeraar</div><div>CZ — contract aanwezig, plafond 62% benut</div></div>
+            <div class="decision-info-row"><div>Locatie cliënt</div><div>Utrecht (3555 HW)</div></div>
+          </div>
+
+          <div class="decision-section">
+            <div class="decision-section-label">Audit-trail</div>
+            <div class="decision-info-row"><div>Versies</div><div>prompt v3.2 · taxonomie v1.4 · rules v0.7</div></div>
+            <div class="decision-info-row"><div>Vervolgstap</div><div>Cliëntkaart aangemaakt — uitnodiging volgt binnen 3 werkdagen</div></div>
+          </div>
+
+          <div style="display:flex;gap:8px;margin-top:24px;">
+            <button class="btn btn-secondary" onclick="goto('check')">← Volgende verwijsbrief</button>
+            <button class="btn btn-ghost">Beslissing herzien</button>
+          </div>
+        </div>
+
+        <div class="feedback-pane">
+          <div class="feedback-head">
+            <div class="title">
+              <div class="agent-avatar">F</div>
+              <div>
+                <h4>Feedback-agent</h4>
+                <div class="meta">~ 1 minuut</div>
+              </div>
+            </div>
+            <button class="btn btn-ghost btn-sm">Overslaan</button>
+          </div>
+
+          <div class="chat-body" id="chatBody">
+            <div class="chat-msg agent">
+              <div class="chat-bubble">Hoi Maria — je hebt het advies bevestigd. Klopte het advies inhoudelijk wat jou betreft?</div>
+            </div>
+            <div class="chat-options">
+              <button class="chat-option" onclick="chatStep()">Ja, helemaal goed</button>
+              <button class="chat-option" onclick="chatStep()">Twijfel — kanttekening</button>
+              <button class="chat-option" onclick="chatStep()">Nee, ik koos anders</button>
+            </div>
+          </div>
+
+          <div class="chat-input-area">
+            <div class="chat-input-row">
+              <input class="chat-input" placeholder="Of typ een eigen reactie…">
+              <button class="chat-send">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ====== PAGE: SCREENTEAM AANVRAGENLIJST ====== -->
+    <!-- ============================================ -->
+    <div class="page" id="page-screen-list">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div class="page-header-main">
+            <div class="page-eyebrow">Screenteam · Werkstroom</div>
+            <h1 class="page-title serif">Aanvragenlijst</h1>
+            <p class="page-subtitle">Aanvragen die door het secretariaat als oranje (twijfel) of rood (waarschijnlijke knock-out) zijn doorgezet. Filter op urgentie, complexiteit of belstatus om je werkdag te plannen.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="screen-stats">
+        <div class="screen-stat">
+          <div class="label">Open vandaag</div>
+          <div class="value">14</div>
+          <div class="meta">+3 t.o.v. gemiddelde</div>
+        </div>
+        <div class="screen-stat">
+          <div class="label">Oranje · twijfel</div>
+          <div class="value amber">9</div>
+          <div class="meta">Inhoudelijke beoordeling nodig</div>
+        </div>
+        <div class="screen-stat">
+          <div class="label">Rood · waarschijnlijk knock-out</div>
+          <div class="value red">5</div>
+          <div class="meta">Snel te behandelen</div>
+        </div>
+        <div class="screen-stat">
+          <div class="label">Belt nog open</div>
+          <div class="value">7</div>
+          <div class="meta">Eerste contact te maken</div>
+        </div>
+      </div>
+
+      <div class="screen-toolbar">
+        <div class="filter-group">
+          <span class="filter-group-label">Kleur</span>
+          <button class="filter-chip active">Alles<span class="chip-count">14</span></button>
+          <button class="filter-chip kleur-rood">Rood<span class="chip-count">5</span></button>
+          <button class="filter-chip kleur-oranje">Oranje<span class="chip-count">9</span></button>
+        </div>
+        <div class="filter-group">
+          <span class="filter-group-label">Urgentie</span>
+          <button class="filter-chip">Vandaag binnen</button>
+          <button class="filter-chip">&gt; 3 dagen</button>
+          <button class="filter-chip">&gt; 1 week</button>
+        </div>
+        <div class="filter-group">
+          <span class="filter-group-label">Type</span>
+          <button class="filter-chip">Knock-out kandidaat</button>
+          <button class="filter-chip">Comorbiditeit</button>
+          <button class="filter-chip">Onduidelijke vraag</button>
+        </div>
+        <div class="filter-group">
+          <span class="filter-group-label">Belstatus</span>
+          <button class="filter-chip">Belt nog</button>
+          <button class="filter-chip">Geen gehoor</button>
+          <button class="filter-chip">Gebeld</button>
+        </div>
+        <div style="margin-left: auto;">
+          <input class="search-box" placeholder="Zoek op referentie of naam…">
+        </div>
+      </div>
+
+      <div class="screen-table">
+        <div class="screen-row header">
+          <div>Referentie</div>
+          <div>Cliënt &amp; complexiteit</div>
+          <div>Aangemeld</div>
+          <div>Belstatus</div>
+          <div>Casestatus</div>
+          <div>Advies</div>
+          <div></div>
+        </div>
+
+        <div class="screen-row" onclick="goto('screen-case')">
+          <div class="kleur-bar oranje"></div>
+          <div>
+            <div class="screen-ref">ST-2026-0247</div>
+            <div class="screen-ref-sub">ZD194240016</div>
+          </div>
+          <div>
+            <div class="screen-naam">M. — 34 jr · Utrecht</div>
+            <div class="screen-naam-sub">
+              <span class="complex-tag">ADHD-vraag</span>
+              <span class="complex-tag">angst comorbiditeit</span>
+              <span class="complex-tag">somberheid</span>
+            </div>
+          </div>
+          <div class="tijd-cel">
+            27-02-2026
+            <div class="meta">Gisteren doorgezet · 14:22</div>
+          </div>
+          <div>
+            <div class="bel-status belt-nog">
+              <span class="icon-circle">
+                <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 3c0-.5.5-1 1-1h2l1 3-1.5 1c.5 1.5 1.5 2.5 3 3l1-1.5 3 1v2c0 .5-.5 1-1 1A9 9 0 0 1 2.5 3z"/></svg>
+              </span>
+              <span>Belt nog</span>
+            </div>
+            <div class="bel-status-meta" style="font-size:10.5px;color:var(--ink-muted);margin-top:2px;margin-left:30px;">0 pogingen</div>
+          </div>
+          <div>
+            <span class="case-status nieuw">Nieuw</span>
+          </div>
+          <div><span class="advies-color oranje"><span class="dot"></span>Twijfel</span></div>
+          <div class="chevron" style="color: var(--ink-muted)">›</div>
+        </div>
+
+        <div class="screen-row">
+          <div class="kleur-bar rood"></div>
+          <div>
+            <div class="screen-ref">ST-2026-0246</div>
+            <div class="screen-ref-sub">M-2026-0226</div>
+          </div>
+          <div>
+            <div class="screen-naam">P. — 58 jr · Amsterdam</div>
+            <div class="screen-naam-sub">
+              <span class="complex-tag knockout-likely">Ziekenhuiscontext</span>
+              <span class="complex-tag">neurologie</span>
+              <span class="complex-tag">geen GGZ-vraag</span>
+            </div>
+          </div>
+          <div class="tijd-cel">
+            25-02-2026
+            <div class="meta">3 dagen open</div>
+          </div>
+          <div>
+            <div class="bel-status gebeld-ok">
+              <span class="icon-circle">✓</span>
+              <span>Gebeld 27-02</span>
+            </div>
+            <div class="bel-status-meta" style="font-size:10.5px;color:var(--ink-muted);margin-top:2px;margin-left:30px;">Verwijzer akkoord</div>
+          </div>
+          <div>
+            <span class="case-status gebeld">Beslissing klaar</span>
+          </div>
+          <div><span class="advies-color rood"><span class="dot"></span>Knock-out</span></div>
+          <div class="chevron" style="color: var(--ink-muted)">›</div>
+        </div>
+
+        <div class="screen-row">
+          <div class="kleur-bar oranje"></div>
+          <div>
+            <div class="screen-ref">ST-2026-0245</div>
+            <div class="screen-ref-sub">ZV-2026-0838</div>
+          </div>
+          <div>
+            <div class="screen-naam">F. — 28 jr · Den Haag</div>
+            <div class="screen-naam-sub">
+              <span class="complex-tag">intercultureel</span>
+              <span class="complex-tag">trauma-vermoeden</span>
+              <span class="complex-tag">taal NL/AR</span>
+            </div>
+          </div>
+          <div class="tijd-cel">
+            <span class="urgent">23-02-2026</span>
+            <div class="meta urgent">5 dagen open · oudste</div>
+          </div>
+          <div>
+            <div class="bel-status geen-gehoor">
+              <span class="icon-circle">
+                <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 3c0-.5.5-1 1-1h2l1 3-1.5 1c.5 1.5 1.5 2.5 3 3l1-1.5 3 1v2c0 .5-.5 1-1 1A9 9 0 0 1 2.5 3z"/></svg>
+              </span>
+              <span>Geen gehoor</span>
+            </div>
+            <div class="bel-status-meta" style="font-size:10.5px;color:var(--ink-muted);margin-top:2px;margin-left:30px;">2 pogingen</div>
+          </div>
+          <div>
+            <span class="case-status wacht-cliënt">Wacht op cliënt</span>
+          </div>
+          <div><span class="advies-color oranje"><span class="dot"></span>Twijfel</span></div>
+          <div class="chevron" style="color: var(--ink-muted)">›</div>
+        </div>
+
+        <div class="screen-row">
+          <div class="kleur-bar rood"></div>
+          <div>
+            <div class="screen-ref">ST-2026-0244</div>
+            <div class="screen-ref-sub">M-2026-0224</div>
+          </div>
+          <div>
+            <div class="screen-naam">R. — 31 jr · Rotterdam</div>
+            <div class="screen-naam-sub">
+              <span class="complex-tag knockout-likely">Forensisch profiel</span>
+              <span class="complex-tag">justitieel kader</span>
+            </div>
+          </div>
+          <div class="tijd-cel">
+            24-02-2026
+            <div class="meta">4 dagen open</div>
+          </div>
+          <div>
+            <div class="bel-status belt-nog">
+              <span class="icon-circle">
+                <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 3c0-.5.5-1 1-1h2l1 3-1.5 1c.5 1.5 1.5 2.5 3 3l1-1.5 3 1v2c0 .5-.5 1-1 1A9 9 0 0 1 2.5 3z"/></svg>
+              </span>
+              <span>Belt nog</span>
+            </div>
+            <div class="bel-status-meta" style="font-size:10.5px;color:var(--ink-muted);margin-top:2px;margin-left:30px;">0 pogingen</div>
+          </div>
+          <div>
+            <span class="case-status nieuw">Nieuw</span>
+          </div>
+          <div><span class="advies-color rood"><span class="dot"></span>Knock-out</span></div>
+          <div class="chevron" style="color: var(--ink-muted)">›</div>
+        </div>
+
+        <div class="screen-row">
+          <div class="kleur-bar oranje"></div>
+          <div>
+            <div class="screen-ref">ST-2026-0243</div>
+            <div class="screen-ref-sub">ZD194240018</div>
+          </div>
+          <div>
+            <div class="screen-naam">J. — 47 jr · Amersfoort</div>
+            <div class="screen-naam-sub">
+              <span class="complex-tag">persoonlijkheidsproblematiek</span>
+              <span class="complex-tag">depressie historie</span>
+              <span class="complex-tag">eerder traject</span>
+            </div>
+          </div>
+          <div class="tijd-cel">
+            24-02-2026
+            <div class="meta">4 dagen open</div>
+          </div>
+          <div>
+            <div class="bel-status gebeld-ok">
+              <span class="icon-circle">✓</span>
+              <span>Gebeld 26-02</span>
+            </div>
+            <div class="bel-status-meta" style="font-size:10.5px;color:var(--ink-muted);margin-top:2px;margin-left:30px;">Vragenlijst Kompas uitgezet</div>
+          </div>
+          <div>
+            <span class="case-status voorbereid">Wacht op Kompas</span>
+          </div>
+          <div><span class="advies-color oranje"><span class="dot"></span>Twijfel</span></div>
+          <div class="chevron" style="color: var(--ink-muted)">›</div>
+        </div>
+
+        <div class="screen-row">
+          <div class="kleur-bar oranje"></div>
+          <div>
+            <div class="screen-ref">ST-2026-0242</div>
+            <div class="screen-ref-sub">ZV-2026-0834</div>
+          </div>
+          <div>
+            <div class="screen-naam">S. — 22 jr · Utrecht</div>
+            <div class="screen-naam-sub">
+              <span class="complex-tag">eetstoornis</span>
+              <span class="complex-tag">verslaving historie</span>
+              <span class="complex-tag">comorbiditeit</span>
+            </div>
+          </div>
+          <div class="tijd-cel">
+            26-02-2026
+            <div class="meta">2 dagen open</div>
+          </div>
+          <div>
+            <div class="bel-status belt-nog">
+              <span class="icon-circle">
+                <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 3c0-.5.5-1 1-1h2l1 3-1.5 1c.5 1.5 1.5 2.5 3 3l1-1.5 3 1v2c0 .5-.5 1-1 1A9 9 0 0 1 2.5 3z"/></svg>
+              </span>
+              <span>Belt nog</span>
+            </div>
+            <div class="bel-status-meta" style="font-size:10.5px;color:var(--ink-muted);margin-top:2px;margin-left:30px;">Voorbereid door collega</div>
+          </div>
+          <div>
+            <span class="case-status voorbereid">Voorbereid</span>
+          </div>
+          <div><span class="advies-color oranje"><span class="dot"></span>Twijfel</span></div>
+          <div class="chevron" style="color: var(--ink-muted)">›</div>
+        </div>
+
+        <div class="screen-row">
+          <div class="kleur-bar rood"></div>
+          <div>
+            <div class="screen-ref">ST-2026-0241</div>
+            <div class="screen-ref-sub">M-2026-0220</div>
+          </div>
+          <div>
+            <div class="screen-naam">A. — 71 jr · Bussum</div>
+            <div class="screen-naam-sub">
+              <span class="complex-tag knockout-likely">Buiten leeftijdsgroep</span>
+              <span class="complex-tag">somatisch</span>
+            </div>
+          </div>
+          <div class="tijd-cel">
+            26-02-2026
+            <div class="meta">2 dagen open</div>
+          </div>
+          <div>
+            <div class="bel-status belt-nog">
+              <span class="icon-circle">
+                <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2.5 3c0-.5.5-1 1-1h2l1 3-1.5 1c.5 1.5 1.5 2.5 3 3l1-1.5 3 1v2c0 .5-.5 1-1 1A9 9 0 0 1 2.5 3z"/></svg>
+              </span>
+              <span>Belt nog</span>
+            </div>
+            <div class="bel-status-meta" style="font-size:10.5px;color:var(--ink-muted);margin-top:2px;margin-left:30px;">0 pogingen</div>
+          </div>
+          <div>
+            <span class="case-status nieuw">Nieuw</span>
+          </div>
+          <div><span class="advies-color rood"><span class="dot"></span>Knock-out</span></div>
+          <div class="chevron" style="color: var(--ink-muted)">›</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ====== PAGE: SCREENTEAM CASE DETAIL ======== -->
+    <!-- ============================================ -->
+    <div class="page" id="page-screen-case">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div class="page-header-main">
+            <div class="page-eyebrow"><a onclick="goto('screen-list')" style="color: var(--burgundy); cursor: pointer;">← Terug naar aanvragenlijst</a> · <span class="mono" style="color: var(--ink-muted);">ST-2026-0247</span></div>
+            <h1 class="page-title serif">Casevoorbereiding</h1>
+            <p class="page-subtitle">Recap van de aanvraag, geëxtraheerde tags en het advies van het secretariaat. Onderaan stelt Match een set vragen voor om het klachtbeeld scherp te krijgen vóór het telefoongesprek — vul aan of pas aan.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-grid">
+
+        <div>
+          <!-- Recap pane -->
+          <div class="case-pane">
+            <div class="case-pane-head">
+              <h3>Case-recap</h3>
+              <span class="meta">Aangemeld 27-02-2026 · 14:22 · door Maria Boom</span>
+            </div>
+
+            <div class="advies-banner oranje">
+              <div class="advies-banner-icon">!</div>
+              <div>
+                <h4>Secretariaat-advies: oranje · twijfel</h4>
+                <p>Hoogste matching-score (+9 voor screenteam-route) ligt onder de Ja-drempel. Geen knock-out, maar meervoudige problematiek (ADHD-vraag + angst + somberheid) maakt eenduidige labelmatch lastig. Maria heeft handmatig overruled van Twijfel naar het screenteam vanwege onduidelijke primaire klacht.</p>
+              </div>
+            </div>
+
+            <div class="case-recap">
+              <p>Verwijzing van <strong>J. Klein, huisarts</strong> via Zorgdomein. <strong>Cliënt M., 34 jaar</strong>, Utrecht. Verwijsbrief stelt de vraag: <em>"Is er sprake van ADHD?"</em> Procedurevoorstel is verdere diagnostiek — geen bestaande DSM-diagnose.</p>
+              <p style="margin-top: 8px;">Hulpvraag bevat meerdere lagen: in voorgeschiedenis angst- en paniekaanvallen (POH GGZ), laatste jaar Gestalt-therapeut waar mogelijkheid van ADHD ter sprake kwam. Terugkijkend veel spanning bij nieuwe baan. Cliënt vraagt naar medicatie; arts geeft expliciet aan dat eerst diagnostiek nodig is.</p>
+              <p style="margin-top: 8px;">Open journaal-episodes: <strong>sombere gedachten (P03)</strong> meermaals genoteerd. Geen suïcidaliteit, geen psychose, geen verslaving. Verzekering CZ — contract aanwezig, plafond 62% benut.</p>
+            </div>
+          </div>
+
+          <!-- Voorbereide vragen -->
+          <div class="case-pane">
+            <div class="case-pane-head">
+              <h3>Voorbereide vragen voor telefoongesprek</h3>
+              <span class="meta">Gegenereerd · aanvulbaar</span>
+            </div>
+
+            <div class="questions-intro">
+              <div class="agent-mini">F</div>
+              <p><strong>Match heeft op basis van de brief, tags en het ambigue klachtbeeld zes vragen voorbereid.</strong> Doel: scherp krijgen wat de primaire klacht is, of ADHD-diagnostiek dan wel een ander traject het meest passend is, en of er signalen zijn die in de brief niet expliciet stonden. Vul aan of pas aan — alles dat hier staat verschijnt straks in het belscherm.</p>
+            </div>
+
+            <div class="question-list">
+
+              <div class="question-item">
+                <div class="question-num">1</div>
+                <div class="question-text">
+                  Wat is op dit moment de klacht waar je zelf het meeste last van hebt — de aandachtsproblemen, de angst/paniekaanvallen, of de somberheid?
+                  <div class="source-tag">o.b.v. tags: ADHD + angst + somberheid</div>
+                </div>
+                <div class="question-actions">
+                  <button class="q-icon-btn" title="Bewerken">
+                    <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 2l2.5 2.5L4.5 12l-3 .5.5-3z"/></svg>
+                  </button>
+                  <button class="q-icon-btn" title="Verwijderen">
+                    <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h8M5 4V2.5h4V4M4 4l.5 8h5L10 4"/></svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="question-item">
+                <div class="question-num">2</div>
+                <div class="question-text">
+                  Wanneer ben je voor het eerst tegen de aandachts- of concentratieproblemen aangelopen? Speelden die ook al op school?
+                  <div class="source-tag">DSM-criterium: ADHD vereist symptomen vóór 12 jr</div>
+                </div>
+                <div class="question-actions">
+                  <button class="q-icon-btn"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 2l2.5 2.5L4.5 12l-3 .5.5-3z"/></svg></button>
+                  <button class="q-icon-btn"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h8M5 4V2.5h4V4M4 4l.5 8h5L10 4"/></svg></button>
+                </div>
+              </div>
+
+              <div class="question-item">
+                <div class="question-num">3</div>
+                <div class="question-text">
+                  De therapeut bij wie je nu loopt — heeft die ADHD specifiek besproken, of kwam het naar aanleiding van iets anders ter sprake?
+                  <div class="source-tag">brief: "daar mogelijkheid van ADHD besproken"</div>
+                </div>
+                <div class="question-actions">
+                  <button class="q-icon-btn"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 2l2.5 2.5L4.5 12l-3 .5.5-3z"/></svg></button>
+                  <button class="q-icon-btn"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h8M5 4V2.5h4V4M4 4l.5 8h5L10 4"/></svg></button>
+                </div>
+              </div>
+
+              <div class="question-item">
+                <div class="question-num">4</div>
+                <div class="question-text">
+                  Hoe ervaar je je nieuwe baan op dit moment? Speelt de spanning vooral op het werk, of ook daarbuiten?
+                  <div class="source-tag">brief: "spanning/angst bij nieuwe baan"</div>
+                </div>
+                <div class="question-actions">
+                  <button class="q-icon-btn"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 2l2.5 2.5L4.5 12l-3 .5.5-3z"/></svg></button>
+                  <button class="q-icon-btn"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h8M5 4V2.5h4V4M4 4l.5 8h5L10 4"/></svg></button>
+                </div>
+              </div>
+
+              <div class="question-item">
+                <div class="question-num">5</div>
+                <div class="question-text">
+                  Heeft het ooit zo somber geweest dat je dacht het niet meer aan te kunnen? Wat hielp toen?
+                  <div class="source-tag">journaal: meerdere P03 episodes</div>
+                </div>
+                <div class="question-actions">
+                  <button class="q-icon-btn"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 2l2.5 2.5L4.5 12l-3 .5.5-3z"/></svg></button>
+                  <button class="q-icon-btn"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h8M5 4V2.5h4V4M4 4l.5 8h5L10 4"/></svg></button>
+                </div>
+              </div>
+
+              <div class="question-item">
+                <div class="question-num">6</div>
+                <div class="question-text">
+                  Wat verwacht je zelf van een diagnostisch traject — duidelijkheid over wat er aan de hand is, of vooral een richting voor behandeling?
+                  <div class="source-tag">verwachtingsmanagement</div>
+                </div>
+                <div class="question-actions">
+                  <button class="q-icon-btn"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 2l2.5 2.5L4.5 12l-3 .5.5-3z"/></svg></button>
+                  <button class="q-icon-btn"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h8M5 4V2.5h4V4M4 4l.5 8h5L10 4"/></svg></button>
+                </div>
+              </div>
+
+              <div class="question-item user-added">
+                <div class="question-num">7</div>
+                <div class="question-text">
+                  Heb je een voorkeur voor een mannelijke of vrouwelijke behandelaar?
+                  <div class="source-tag">eigen toevoeging</div>
+                </div>
+                <div class="question-actions">
+                  <button class="q-icon-btn"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 2l2.5 2.5L4.5 12l-3 .5.5-3z"/></svg></button>
+                  <button class="q-icon-btn"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h8M5 4V2.5h4V4M4 4l.5 8h5L10 4"/></svg></button>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="add-question">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="var(--ink-muted)" stroke-width="1.5"><path d="M7 2v10M2 7h10"/></svg>
+              <input placeholder="Voeg een eigen vraag toe…" id="newQuestionInput">
+              <button class="btn btn-secondary btn-sm" onclick="addQuestion()">Toevoegen</button>
+            </div>
+
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:16px;border-top:1px solid var(--rule-soft);">
+              <span style="font-size:12px;color:var(--ink-muted);">7 vragen klaar voor het gesprek</span>
+              <div style="display:flex;gap:8px;">
+                <button class="btn btn-secondary btn-sm">Print belkaartje</button>
+                <button class="btn btn-primary btn-sm" onclick="goto('screen-audio')">Naar beslissing &amp; audio →</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="case-side">
+
+          <div class="case-side-card">
+            <h4>Cliënt &amp; verwijzer</h4>
+
+            <div class="contact-row">
+              <div style="width:30px;height:30px;border-radius:50%;background:var(--gold-soft);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:500;flex-shrink:0;">M</div>
+              <div class="who">
+                <strong>Cliënt — M., 34 jr</strong>
+                <span class="num">06-1234 5678</span>
+              </div>
+              <button class="btn btn-secondary btn-sm">Bel</button>
+            </div>
+
+            <div class="contact-row">
+              <div style="width:30px;height:30px;border-radius:50%;background:var(--burgundy-soft);color:var(--burgundy);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-weight:500;flex-shrink:0;">JK</div>
+              <div class="who">
+                <strong>J. Klein — huisarts</strong>
+                <span class="num">030-555 1234 · AGB 73732118</span>
+              </div>
+              <button class="btn btn-secondary btn-sm">Bel</button>
+            </div>
+          </div>
+
+          <div class="case-side-card">
+            <h4>Geëxtraheerde tags</h4>
+            <p class="desc">Door Match uit de brief gehaald — relevantie zichtbaar in de score-opbouw.</p>
+
+            <div class="tag-section">
+              <div class="tag-section-label">Klachtprofiel</div>
+              <div class="tag-list">
+                <span class="tag">ADHD-vermoeden</span>
+                <span class="tag">Angst</span>
+                <span class="tag">Paniekaanvallen</span>
+                <span class="tag tag-warn">Somberheid (mild)</span>
+              </div>
+            </div>
+
+            <div class="tag-section">
+              <div class="tag-section-label">Procedureel</div>
+              <div class="tag-list">
+                <span class="tag tag-warn">Diagnostiek-vraag</span>
+                <span class="tag tag-neutral">Geen bestaande DSM</span>
+              </div>
+            </div>
+
+            <div class="tag-section">
+              <div class="tag-section-label">Veiligheid</div>
+              <div class="tag-list">
+                <span class="tag tag-positive">Suïcidaliteit · nee</span>
+                <span class="tag tag-positive">Geen psychose</span>
+                <span class="tag tag-positive">Geen verslaving</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="case-side-card">
+            <h4>Acties</h4>
+            <div class="action-btn-stack">
+              <button class="btn btn-primary btn-sm" onclick="goto('screen-audio')">Bel uitvoeren →</button>
+              <button class="btn btn-secondary btn-sm">Open verwijsbrief</button>
+              <button class="btn btn-secondary btn-sm">Kompas-vragenlijst uitzetten</button>
+              <button class="btn btn-ghost btn-sm">Terug naar lijst</button>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- ====== PAGE: AUDIO BERICHT VERWIJZER ======= -->
+    <!-- ============================================ -->
+    <div class="page" id="page-screen-audio">
+      <div class="page-header">
+        <div class="page-header-row">
+          <div class="page-header-main">
+            <div class="page-eyebrow"><a onclick="goto('screen-case')" style="color: var(--burgundy); cursor: pointer;">← Terug naar casevoorbereiding</a> · <span class="mono" style="color: var(--ink-muted);">ST-2026-0247</span></div>
+            <h1 class="page-title serif">Beslissing &amp; bericht aan verwijzer</h1>
+            <p class="page-subtitle">Telefoongesprek is afgerond. Schrijf in twee stappen de motivatie en het bericht aan de verwijzer: korte zakelijke tekst voor het systeem, en een ingesproken audiobericht dat de agent transcribeert.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="audio-grid">
+
+        <div class="audio-main">
+
+          <!-- STEP 1: Decision -->
+          <div class="audio-step">
+            <div class="audio-step-head">
+              <div class="audio-step-num done">✓</div>
+              <h3>Beslissing</h3>
+              <span class="step-status done">Genomen</span>
+            </div>
+            <div class="advies-banner oranje" style="margin-bottom:0;">
+              <div class="advies-banner-icon">→</div>
+              <div>
+                <h4>Doorzetten naar matching · ADHD-diagnostiek volwassenen — Utrecht</h4>
+                <p>Na telefoongesprek (12 min, 28-02 11:14) blijkt cliënt zoekt vooral naar duidelijkheid. Concentratieproblemen sinds tienertijd, niet alleen werkgerelateerd. Somberheid is reactief op overbelasting, geen primaire stemmingsstoornis. Diagnostisch traject ADHD-Utrecht is passend.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 2: Motivation -->
+          <div class="audio-step">
+            <div class="audio-step-head">
+              <div class="audio-step-num">2</div>
+              <h3>Motivatie voor in het systeem</h3>
+              <span class="step-status">In bewerking</span>
+            </div>
+
+            <div class="motivation-toolbar">
+              <button class="toolbar-pill active">Zakelijk</button>
+              <button class="toolbar-pill">Beknopt</button>
+              <button class="toolbar-pill">Uitgebreid</button>
+              <button class="toolbar-pill">Met klinische termen</button>
+            </div>
+
+            <textarea class="motivation-textarea" id="motivationText">Cliënt M. (34) heeft tijdens telefonisch contact (28-02-2026) bevestigd dat aandachts- en concentratieproblemen al sinds tienertijd spelen, niet alleen werkgerelateerd. De somberheid en angst beoordeelt cliënt zelf als reactief op overbelasting. Primaire hulpvraag richt zich op diagnostische duidelijkheid t.a.v. ADHD. Geen acute veiligheidsrisico's. Comorbiditeit (angst/somberheid) zal in het diagnostisch traject worden meegewogen. Doorgezet naar ADHD-diagnostiek volwassenen — Utrecht (wachttijd 9 wkn).</textarea>
+
+            <div class="motivation-helper">
+              <span>132 woorden · automatisch opgeslagen</span>
+              <a class="agent-help">
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="7" cy="7" r="6"/><path d="M7 4v3M7 9.5v.5"/></svg>
+                Laat agent helpen
+              </a>
+            </div>
+          </div>
+
+          <!-- STEP 3: Audio recording -->
+          <div class="audio-step">
+            <div class="audio-step-head">
+              <div class="audio-step-num">3</div>
+              <h3>Audiobericht inspreken</h3>
+              <span class="step-status">Bericht voor verwijzer</span>
+            </div>
+
+            <p style="font-size:13px;color:var(--ink-soft);margin-bottom:14px;line-height:1.55;">Spreek vrij in voor de verwijzer — je hoeft niet vooraf alles op te schrijven. De agent transcribeert je bericht automatisch tot een nette tekst en koppelt het audiobestand mee als bijlage zodat de verwijzer het origineel kan terugluisteren.</p>
+
+            <div class="recorder" id="recorder">
+              <button class="record-button" id="recordBtn" onclick="toggleRecording()">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor"><circle cx="10" cy="10" r="6"/></svg>
+              </button>
+              <div class="record-info">
+                <h5 id="recordLabel">Klik om op te nemen</h5>
+                <div class="timer" id="recordTimer">00:00</div>
+              </div>
+              <div class="waveform" id="waveform">
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+                <div class="wave-bar" style="height: 6px;"></div>
+              </div>
+            </div>
+
+            <!-- Generated transcript - hidden until recording done -->
+            <div class="transcript-card" id="transcriptCard" style="display:none;">
+              <div class="transcript-card-head">
+                <h5><span class="agent-mini">F</span> Door agent gegenereerd · controleer voor verzenden</h5>
+                <span style="font-size:11.5px;color:var(--ink-muted);font-family:'Geist Mono',monospace;">3 sec geleden</span>
+              </div>
+              <div class="transcript-text" contenteditable="true" id="transcriptText">Beste collega Klein,
+
+Bedankt voor de verwijzing van M. We hebben vandaag telefonisch contact gehad met cliënt en op basis van het gesprek hebben we besloten de aanvraag in te plannen voor ADHD-diagnostiek bij ons in Utrecht. De huidige wachttijd is ongeveer negen weken.
+
+Cliënt gaf zelf aan dat de aandachtsproblemen al langer spelen — ook in de tienertijd — en dat de huidige somberheid en spanning reactief lijken op overbelasting in de nieuwe baan. Het diagnostisch traject zal de comorbiditeit meenemen in de beoordeling.
+
+Mocht je nog vragen hebben, dan hoor ik het graag. Met vriendelijke groet, Linda van Dijk — Forta Volwassenen.</div>
+
+              <div class="audio-attachment">
+                <div class="file-icon">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.6">
+                    <path d="M9 2v10M9 12c1.5 0 2.5-1 2.5-2.5v-5c0-1.5-1-2.5-2.5-2.5s-2.5 1-2.5 2.5v5C6.5 11 7.5 12 9 12z"/>
+                    <path d="M4 9v.5C4 12.5 6.5 15 9 15s5-2.5 5-5.5V9M9 15v2"/>
+                  </svg>
+                </div>
+                <div class="file-info">
+                  <div class="file-name">bericht-verwijzer-ST-2026-0247.m4a</div>
+                  <div class="file-meta">Origineel audiobestand · 1:42 · 1.4 MB · wordt meegestuurd</div>
+                </div>
+                <button class="btn btn-secondary btn-sm">▶ Beluister</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar with send panel -->
+        <aside class="case-side">
+
+          <div class="case-side-card">
+            <h4>Verzenden naar verwijzer</h4>
+            <p class="desc">Bericht inclusief audiobestand wordt verstuurd zodra je op verzenden drukt.</p>
+
+            <div class="send-recipient">
+              <h6>Aan</h6>
+              <div class="person">
+                <div class="avatar">JK</div>
+                <div class="person-info">
+                  <strong>J. Klein</strong>
+                  <span>Huisarts · jklein@huisartsenutrecht.nl</span>
+                </div>
+              </div>
+            </div>
+
+            <h6 style="font-size:11px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-muted);font-weight:500;margin-bottom:6px;">Verzendkanaal</h6>
+            <div class="send-channels">
+              <button class="channel-pill active">
+                <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="10" height="8" rx="1"/><path d="M2 5l5 3 5-3"/></svg>
+                ZIVVER
+              </button>
+              <button class="channel-pill">
+                <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="10" height="8" rx="1"/><path d="M2 5l5 3 5-3"/></svg>
+                ZorgMail
+              </button>
+              <button class="channel-pill">
+                <svg width="11" height="11" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="10" height="8" rx="1"/><path d="M2 5l5 3 5-3"/></svg>
+                Beveiligd e-mail
+              </button>
+            </div>
+
+            <div class="action-btn-stack">
+              <button class="btn btn-primary" id="sendBtn" disabled style="opacity:0.5;cursor:not-allowed;">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+                Verzend bericht
+              </button>
+              <button class="btn btn-secondary btn-sm">Opslaan als concept</button>
+            </div>
+
+            <p style="font-size:11.5px;color:var(--ink-muted);margin-top:12px;line-height:1.5;" id="sendHint">Beschikbaar zodra audiobericht is opgenomen en gecontroleerd.</p>
+          </div>
+
+          <div class="case-side-card">
+            <h4>Vastlegging</h4>
+            <p class="desc">Bij verzenden worden deze gegevens automatisch geregistreerd:</p>
+            <div class="case-meta-grid" style="font-size:12px;">
+              <div>Beslissing</div><div>Doorgezet — ADHD-diagnostiek</div>
+              <div>Locatie</div><div>Forta Utrecht</div>
+              <div>Genomen door</div><div>Linda van Dijk</div>
+              <div>Telefoongesprek</div><div>12 min · 28-02 11:14</div>
+              <div>Bericht verzonden</div><div>—</div>
+              <div>Audiobestand</div><div>—</div>
+              <div>Feedback aan AI</div><div>Twijfel → Match (correct)</div>
+            </div>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+
+    <!-- ====== PAGE: BEHEER · LABELS ====== -->
+    <div class="page" id="page-labels">
+      <div class="page-header">
+        <div class="page-eyebrow">Beheer · Applicatiebeheerder</div>
+        <h1 class="page-title serif">Label-bibliotheek</h1>
+        <p class="page-subtitle">Iedere behandeling die Forta aanbiedt is hier vastgelegd als label. Een label gebruikt tags uit de centrale taxonomie om aan te geven wat het bedient en wat het uitsluit, plus operationele en commerciële parameters.</p>
+      </div>
+
+      <div class="beheer-toolbar">
+        <button class="btn btn-primary btn-sm">+ Nieuw label</button>
+        <button class="btn btn-secondary btn-sm">Filter: alle</button>
+        <div class="toolbar-spacer"></div>
+        <input class="search-box" placeholder="Zoek labels…">
+      </div>
+
+      <div class="label-grid">
+
+        <div class="label-card">
+          <div class="label-card-head">
+            <div>
+              <h3>ADHD-diagnostiek volwassenen</h3>
+              <div class="label-code">ADHD-DIAG-UTR-001</div>
+            </div>
+            <span class="status-active">Actief</span>
+          </div>
+
+          <div class="label-section">
+            <h5><span>Doelgroep</span><span class="add-tag">+ koppel tag</span></h5>
+            <div class="tag-list">
+              <span class="tag">Volwassen</span>
+              <span class="tag">18+</span>
+            </div>
+          </div>
+
+          <div class="label-section">
+            <h5><span>Inclusie verplicht</span><span class="add-tag">+ koppel tag</span></h5>
+            <div class="tag-list">
+              <span class="tag tag-positive">ADHD-diagnostiek</span>
+              <span class="tag tag-positive">Spec. GGZ</span>
+              <span class="tag tag-positive">Diagnostiek-route</span>
+            </div>
+          </div>
+
+          <div class="label-section">
+            <h5><span>Inclusie gewenst</span><span class="add-tag">+ koppel tag</span></h5>
+            <div class="tag-list">
+              <span class="tag">Vermoeden autisme</span>
+              <span class="tag">Klachtprofiel angst</span>
+            </div>
+          </div>
+
+          <div class="label-section">
+            <h5><span>Exclusie hard</span><span class="add-tag">+ koppel tag</span></h5>
+            <div class="tag-list">
+              <span class="tag tag-negative">Actieve psychose</span>
+              <span class="tag tag-negative">Forensisch profiel</span>
+              <span class="tag tag-negative">Acute suïcidaliteit</span>
+            </div>
+          </div>
+
+          <div class="label-section">
+            <h5>Operationeel</h5>
+            <div class="label-meta">
+              <div>Locatie</div><div>Forta Utrecht — Demkaweg 11</div>
+              <div>Capaciteit</div><div>20 cliënten / maand</div>
+              <div>Bezetting</div><div>62% (12 / 20 deze maand)</div>
+              <div>Wachttijd</div><div>9 weken</div>
+              <div>AGB-code</div><div>73732118</div>
+            </div>
+          </div>
+
+          <div class="label-section">
+            <h5>Verzekeraarscontracten</h5>
+            <div class="label-meta">
+              <div>CZ</div><div>Contract · plafond 62% benut</div>
+              <div>Zilveren Kruis</div><div>Contract · plafond 71% benut</div>
+              <div>VGZ</div><div>Contract · plafond 38% benut</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="label-card">
+          <div class="label-card-head">
+            <div>
+              <h3>Online ADHD &amp; angst-traject</h3>
+              <div class="label-code">ADHD-ANG-ONL-002</div>
+            </div>
+            <span class="status-active">Actief</span>
+          </div>
+
+          <div class="label-section">
+            <h5><span>Doelgroep</span><span class="add-tag">+ koppel tag</span></h5>
+            <div class="tag-list">
+              <span class="tag">Volwassen</span>
+              <span class="tag">18+</span>
+            </div>
+          </div>
+
+          <div class="label-section">
+            <h5><span>Inclusie verplicht</span><span class="add-tag">+ koppel tag</span></h5>
+            <div class="tag-list">
+              <span class="tag tag-positive">ADHD-diagnostiek</span>
+              <span class="tag tag-positive">Klachtprofiel angst</span>
+              <span class="tag tag-positive">Diagnostiek-route</span>
+            </div>
+          </div>
+
+          <div class="label-section">
+            <h5><span>Inclusie gewenst</span><span class="add-tag">+ koppel tag</span></h5>
+            <div class="tag-list">
+              <span class="tag">Klachtprofiel depressie</span>
+              <span class="tag">Burn-out</span>
+            </div>
+          </div>
+
+          <div class="label-section">
+            <h5><span>Exclusie hard</span><span class="add-tag">+ koppel tag</span></h5>
+            <div class="tag-list">
+              <span class="tag tag-negative">Actieve psychose</span>
+              <span class="tag tag-negative">Acute suïcidaliteit</span>
+              <span class="tag tag-negative">Geen digitale geletterdheid</span>
+            </div>
+          </div>
+
+          <div class="label-section">
+            <h5>Operationeel</h5>
+            <div class="label-meta">
+              <div>Locatie</div><div>Forta Online (geen fysieke locatie)</div>
+              <div>Capaciteit</div><div>40 cliënten / maand</div>
+              <div>Bezetting</div><div>34% (14 / 40 deze maand)</div>
+              <div>Wachttijd</div><div>4 weken</div>
+              <div>Forta-voorkeur</div><div style="color:var(--gold);font-weight:500;">+5 t/m 15-07-2026</div>
+            </div>
+          </div>
+
+          <div class="label-section">
+            <h5>Verzekeraarscontracten</h5>
+            <div class="label-meta">
+              <div>CZ</div><div>Contract · plafond 41% benut</div>
+              <div>Zilveren Kruis</div><div>Contract · plafond 28% benut</div>
+              <div>VGZ</div><div>Contract · plafond 19% benut</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== PAGE: BEHEER · TAGS ====== -->
+    <div class="page" id="page-tags">
+      <div class="page-header">
+        <div class="page-eyebrow">Beheer · Applicatiebeheerder</div>
+        <h1 class="page-title serif">Tag-taxonomie</h1>
+        <p class="page-subtitle">Het centrale woordenboek waarmee zowel verwijsbrieven als labels worden beschreven. Tags zijn georganiseerd in zeven categorieën. Wijzigingen hier raken alle labels en de LLM-extractie — daarom worden alle aanpassingen gelogd.</p>
+      </div>
+
+      <div class="beheer-toolbar">
+        <button class="btn btn-primary btn-sm">+ Nieuwe tag</button>
+        <button class="btn btn-secondary btn-sm">Versie 1.4</button>
+        <div class="toolbar-spacer"></div>
+        <input class="search-box" placeholder="Zoek tags…">
+      </div>
+
+      <div class="taxonomy-grid">
+
+        <div class="taxonomy-card">
+          <div class="taxonomy-card-head">
+            <h4>Klachtprofiel</h4>
+            <span class="count">12 tags</span>
+          </div>
+          <p class="desc">DSM-5 hoofdcategorieën. Vormt de hoofdscoring in de matching.</p>
+
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">ADHD</div>
+              <div class="tag-syn">ADD, AD/HD, aandachtstekortstoornis</div>
+            </div>
+            <div class="tag-meta">×8</div>
+          </div>
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Angst</div>
+              <div class="tag-syn">paniekstoornis, sociale fobie, GAS</div>
+            </div>
+            <div class="tag-meta">×6</div>
+          </div>
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Autisme</div>
+              <div class="tag-syn">ASS, autismespectrum</div>
+            </div>
+            <div class="tag-meta">×5</div>
+          </div>
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Depressie</div>
+              <div class="tag-syn">stemmingsstoornis, dysthymie</div>
+            </div>
+            <div class="tag-meta">×6</div>
+          </div>
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Trauma / PTSS</div>
+              <div class="tag-syn">posttraumatisch, complex trauma</div>
+            </div>
+            <div class="tag-meta">×7</div>
+          </div>
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Eetstoornis</div>
+              <div class="tag-syn">anorexia, boulimia, BED</div>
+            </div>
+            <div class="tag-meta">×7</div>
+          </div>
+        </div>
+
+        <div class="taxonomy-card">
+          <div class="taxonomy-card-head">
+            <h4>Doelgroep</h4>
+            <span class="count">5 tags</span>
+          </div>
+          <p class="desc">Filter — moet matchen tussen brief en label.</p>
+
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Volwassen</div>
+              <div class="tag-syn">18+, adult</div>
+            </div>
+            <div class="tag-meta">×5</div>
+          </div>
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Jeugd</div>
+              <div class="tag-syn">kinderen, jongeren, &lt;18</div>
+            </div>
+            <div class="tag-meta">×5</div>
+          </div>
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Ouderen</div>
+              <div class="tag-syn">65+, senioren, ouderdom</div>
+            </div>
+            <div class="tag-meta">×5</div>
+          </div>
+        </div>
+
+        <div class="taxonomy-card">
+          <div class="taxonomy-card-head">
+            <h4>Procedureel</h4>
+            <span class="count">3 tags</span>
+          </div>
+          <p class="desc">Bepaalt of brief past bij label-vorm (diagnostiek, behandeling, beide).</p>
+
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Diagnostiek-route</div>
+              <div class="tag-syn">verdere diagnostiek, onderzoek</div>
+            </div>
+            <div class="tag-meta">×5</div>
+          </div>
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Behandeling</div>
+              <div class="tag-syn">therapie, behandeltraject</div>
+            </div>
+            <div class="tag-meta">×5</div>
+          </div>
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Second opinion</div>
+              <div class="tag-syn">tweede mening, herbeoordeling</div>
+            </div>
+            <div class="tag-meta">×3</div>
+          </div>
+        </div>
+
+        <div class="taxonomy-card">
+          <div class="taxonomy-card-head">
+            <h4>Exclusie</h4>
+            <span class="count">8 tags</span>
+          </div>
+          <p class="desc">Harde of zachte uitsluiting. Hard exclusie = knock-out.</p>
+
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Actieve psychose</div>
+              <div class="tag-syn">psychotische symptomen, paranoia</div>
+            </div>
+            <div class="tag-meta">×10 (hard)</div>
+          </div>
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Acute suïcidaliteit</div>
+              <div class="tag-syn">actuele suïcidale gedachten</div>
+            </div>
+            <div class="tag-meta">×10 (hard)</div>
+          </div>
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Forensisch profiel</div>
+              <div class="tag-syn">justitieel, TBS</div>
+            </div>
+            <div class="tag-meta">×10 (hard)</div>
+          </div>
+          <div class="tag-row">
+            <div>
+              <div class="tag-name">Verslaving — actief</div>
+              <div class="tag-syn">middelengebruik, verslavingsproblematiek</div>
+            </div>
+            <div class="tag-meta">×6 (zacht)</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ====== PAGE: BEHEER · BUSINESS-LOGICA ====== -->
+    <div class="page" id="page-logica">
+      <div class="page-header">
+        <div class="page-eyebrow">Beheer · Applicatiebeheerder</div>
+        <h1 class="page-title serif">Business-logica</h1>
+        <p class="page-subtitle">Hier bepaalt het management hoe de matching score-dimensies tegen elkaar worden afgewogen. Eén globale modus plus per label-locatie een tijdelijke voorkeursboost. Wijzigingen werken alleen op nieuwe matches en worden gelogd.</p>
+      </div>
+
+      <h2 class="serif" style="font-size:18px;font-weight:500;margin-bottom:14px;">Score-modus</h2>
+
+      <div class="modus-grid">
+
+        <div class="modus-card active">
+          <div class="modus-name">Snelste hulp</div>
+          <p class="modus-desc">Cliënt zo snel mogelijk geholpen. Korte wachttijd telt zwaar mee.</p>
+          <div class="modus-weights">
+            <span class="weight-pill">Inhoud ×1.0</span>
+            <span class="weight-pill high">Wachttijd ×1.5</span>
+            <span class="weight-pill">Reistijd ×1.0</span>
+            <span class="weight-pill low">Bezetting ×0.5</span>
+          </div>
+        </div>
+
+        <div class="modus-card">
+          <div class="modus-name">Labelbalans</div>
+          <p class="modus-desc">Onderbezette labels krijgen voorkeur. Voorkomt scheve groei van het portfolio.</p>
+          <div class="modus-weights">
+            <span class="weight-pill">Inhoud ×1.0</span>
+            <span class="weight-pill">Wachttijd ×1.0</span>
+            <span class="weight-pill">Reistijd ×1.0</span>
+            <span class="weight-pill high">Bezetting (omgekeerd)</span>
+          </div>
+        </div>
+
+        <div class="modus-card">
+          <div class="modus-name">Match-kwaliteit</div>
+          <p class="modus-desc">Best inhoudelijke match telt zwaarst. Wachttijd en bezetting bijna nul gewicht.</p>
+          <div class="modus-weights">
+            <span class="weight-pill high">Inhoud ×1.5</span>
+            <span class="weight-pill low">Wachttijd ×0.3</span>
+            <span class="weight-pill low">Reistijd ×0.3</span>
+            <span class="weight-pill low">Bezetting ×0.3</span>
+          </div>
+        </div>
+
+        <div class="modus-card">
+          <div class="modus-name">Custom</div>
+          <p class="modus-desc">Beheerder stelt gewichten zelf in via sliders. Vereist motivatie en periodieke review.</p>
+          <div class="modus-weights">
+            <span class="weight-pill">Sliders per dimensie</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="voorkeur-section">
+        <div class="voorkeur-head">
+          <h3>Forta-voorkeur — actieve boosts</h3>
+          <button class="btn btn-primary btn-sm">+ Nieuwe voorkeur</button>
+        </div>
+        <p class="desc">Strategische hefboom waarmee management labels tijdelijk laat voorrang krijgen — bv. bij onderbezetting, nieuwe locaties of capaciteitsoverschot. Boosts zijn altijd zichtbaar als tag in de score-opbouw, en hebben een verplichte vervaldatum.</p>
+
+        <table class="voorkeur-table">
+          <thead>
+            <tr>
+              <th>Label · locatie</th>
+              <th>Boost</th>
+              <th>Reden</th>
+              <th>Vervaldatum</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Online ADHD &amp; angst-traject<br><span style="font-size:11px;color:var(--ink-muted);font-family:'Geist Mono',monospace;">ADHD-ANG-ONL-002</span></td>
+              <td><span class="voorkeur-boost">+5</span></td>
+              <td class="voorkeur-reden">Onderbezetting nieuwe online locatie — opstartfase</td>
+              <td class="voorkeur-vervaldatum">15-07-2026</td>
+              <td class="row-actions">
+                <a>Bewerk</a>
+                <a>Stop nu</a>
+              </td>
+            </tr>
+            <tr>
+              <td>Eetstoornis-traject volwassenen<br><span style="font-size:11px;color:var(--ink-muted);font-family:'Geist Mono',monospace;">ETS-VOL-ROT-007</span></td>
+              <td><span class="voorkeur-boost">+10</span></td>
+              <td class="voorkeur-reden">Capaciteit Rotterdam ruim beschikbaar — gerichte instroom</td>
+              <td class="voorkeur-vervaldatum">01-06-2026</td>
+              <td class="row-actions">
+                <a>Bewerk</a>
+                <a>Stop nu</a>
+              </td>
+            </tr>
+            <tr>
+              <td>Trauma-behandeling intercultureel<br><span style="font-size:11px;color:var(--ink-muted);font-family:'Geist Mono',monospace;">TRA-INT-DH-013</span></td>
+              <td><span class="voorkeur-boost">+8</span></td>
+              <td class="voorkeur-reden">Strategisch label in opbouw — Den Haag</td>
+              <td class="voorkeur-vervaldatum">22-05-2026</td>
+              <td class="row-actions">
+                <a>Bewerk</a>
+                <a>Stop nu</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+// ====== ROLE SWITCHING ======
+const ROLES = {
+  secretariaat: {
+    name: 'Maria Boom',
+    initials: 'MB',
+    role: 'Secretariaat',
+    home: 'werklijst',
+    pages: ['werklijst', 'check', 'matching', 'feedback', 'decision'],
+    indicator: { show: true, text: 'In behandeling: <strong>verwijsbrief #ZD194240016</strong>', meta: 'gestart 13:42' }
+  },
+  screenteam: {
+    name: 'Linda van Dijk',
+    initials: 'LD',
+    role: 'Screenteam',
+    home: 'screen-list',
+    pages: ['screen-list', 'screen-case', 'screen-audio'],
+    indicator: { show: false }
+  },
+  beheer: {
+    name: 'Tom Brouwer',
+    initials: 'TB',
+    role: 'Applicatiebeheerder',
+    home: 'labels',
+    pages: ['labels', 'tags', 'logica'],
+    indicator: { show: false }
+  }
+};
+
+// Pages where the topbar "in behandeling" indicator should be hidden
+// (overview/list pages don't have a single brief in focus)
+const PAGES_WITHOUT_INDICATOR = ['werklijst', 'screen-list', 'labels', 'tags', 'logica'];
+
+let currentRole = 'secretariaat';
+
+function applyIndicator(page) {
+  const cfg = ROLES[currentRole];
+  const indicator = document.getElementById('briefIndicator');
+  if (!indicator) return;
+  const show = cfg.indicator.show && !PAGES_WITHOUT_INDICATOR.includes(page);
+  if (show) {
+    indicator.style.display = 'flex';
+    indicator.querySelector('.indicator-text').innerHTML = cfg.indicator.text;
+    const metaEl = indicator.querySelector('.indicator-meta');
+    if (metaEl) metaEl.textContent = cfg.indicator.meta;
+  } else {
+    indicator.style.display = 'none';
+  }
+}
+
+function switchRole(role) {
+  if (!ROLES[role]) return;
+  currentRole = role;
+  const cfg = ROLES[role];
+
+  // toggle role-nav blocks
+  document.querySelectorAll('.role-nav').forEach(n => {
+    n.style.display = n.getAttribute('data-role-nav') === role ? 'block' : 'none';
+  });
+
+  // toggle role buttons
+  document.querySelectorAll('.role-btn').forEach(b => {
+    b.classList.toggle('active', b.getAttribute('data-role') === role);
+  });
+
+  // update user card
+  document.getElementById('userAvatar').textContent = cfg.initials;
+  document.getElementById('userName').textContent = cfg.name;
+  document.getElementById('userRole').textContent = cfg.role;
+
+  // update topbar role chip
+  const roleChip = document.getElementById('topbarRoleChip');
+  if (roleChip) roleChip.textContent = cfg.name + ' · ' + cfg.role;
+
+  // jump to home page of this role (which also handles indicator)
+  goto(cfg.home);
+}
+
+// ====== NAVIGATION ======
+function goto(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if (target) target.classList.add('active');
+
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  const navTarget = document.querySelector('[data-nav="' + page + '"]');
+  if (navTarget) navTarget.classList.add('active');
+
+  // If page belongs to a role other than current → switch role too
+  for (const [roleKey, cfg] of Object.entries(ROLES)) {
+    if (cfg.pages.includes(page) && roleKey !== currentRole) {
+      currentRole = roleKey;
+      document.querySelectorAll('.role-nav').forEach(n => {
+        n.style.display = n.getAttribute('data-role-nav') === roleKey ? 'block' : 'none';
+      });
+      document.querySelectorAll('.role-btn').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-role') === roleKey);
+      });
+      document.getElementById('userAvatar').textContent = cfg.initials;
+      document.getElementById('userName').textContent = cfg.name;
+      document.getElementById('userRole').textContent = cfg.role;
+      const roleChip = document.getElementById('topbarRoleChip');
+      if (roleChip) roleChip.textContent = cfg.name + ' · ' + cfg.role;
+      break;
+    }
+  }
+
+  applyIndicator(page);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+document.querySelectorAll('.nav-item').forEach(n => {
+  n.addEventListener('click', () => {
+    const target = n.getAttribute('data-nav');
+    if (target) goto(target);
+  });
+});
+
+// Modus selection
+document.querySelectorAll('.modus-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('.modus-card').forEach(c => c.classList.remove('active'));
+    card.classList.add('active');
+  });
+});
+
+// Filter chips (visual toggle within their group)
+document.querySelectorAll('.filter-group').forEach(group => {
+  group.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      group.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+});
+
+// Motivation toolbar pills (visual toggle)
+document.querySelectorAll('.motivation-toolbar').forEach(group => {
+  group.querySelectorAll('.toolbar-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      group.querySelectorAll('.toolbar-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+});
+
+// Send channel pills (visual toggle)
+document.querySelectorAll('.send-channels').forEach(group => {
+  group.querySelectorAll('.channel-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      group.querySelectorAll('.channel-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
+  });
+});
+
+// ====== UPLOAD SIM (secretariaat werklijst) ======
+function simulateUpload(type) {
+  const toast = document.getElementById('uploadToast');
+  if (!toast) return;
+  if (type === 'single') {
+    toast.querySelector('div:last-child').innerHTML = '<strong>1 verwijsbrief geüpload</strong> — verwerking gestart, je gaat door naar de volledigheidscheck.';
+  } else {
+    toast.querySelector('div:last-child').innerHTML = '<strong>3 verwijsbrieven geüpload</strong> — eerste brief geopend, de rest verschijnt zo in de werklijst.';
+  }
+  toast.style.display = 'flex';
+  setTimeout(() => {
+    toast.style.display = 'none';
+    goto('check');
+  }, 1200);
+}
+
+// ====== SCREENTEAM: add question ======
+function addQuestion() {
+  const input = document.getElementById('newQuestionInput');
+  if (!input || !input.value.trim()) return;
+  const text = input.value.trim();
+  const list = document.querySelector('#page-screen-case .question-list');
+  const items = list.querySelectorAll('.question-item');
+  const newNum = items.length + 1;
+
+  const item = document.createElement('div');
+  item.className = 'question-item user-added';
+  item.innerHTML = `
+    <div class="question-num">${newNum}</div>
+    <div class="question-text">
+      ${text}
+      <div class="source-tag">eigen toevoeging</div>
+    </div>
+    <div class="question-actions">
+      <button class="q-icon-btn"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.5 2l2.5 2.5L4.5 12l-3 .5.5-3z"/></svg></button>
+      <button class="q-icon-btn"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 4h8M5 4V2.5h4V4M4 4l.5 8h5L10 4"/></svg></button>
+    </div>`;
+  list.appendChild(item);
+  input.value = '';
+  input.focus();
+}
+
+// allow Enter key
+document.addEventListener('DOMContentLoaded', () => {
+  const qInput = document.getElementById('newQuestionInput');
+  if (qInput) {
+    qInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') { e.preventDefault(); addQuestion(); }
+    });
+  }
+  // Initialize: secretariaat starts on werklijst (no indicator on overview pages)
+  goto('werklijst');
+});
+
+// ====== AUDIO RECORDER SIM ======
+let recordingState = 'idle'; // idle, recording, done
+let recordTimerInterval = null;
+let recordSeconds = 0;
+
+function toggleRecording() {
+  const btn = document.getElementById('recordBtn');
+  const label = document.getElementById('recordLabel');
+  const timer = document.getElementById('recordTimer');
+  const waveform = document.getElementById('waveform');
+
+  if (recordingState === 'idle') {
+    // Start recording
+    recordingState = 'recording';
+    btn.classList.add('recording');
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><rect x="4" y="4" width="8" height="8" rx="1"/></svg>';
+    label.textContent = 'Aan het opnemen…';
+    waveform.classList.add('recording-active');
+    // Animate wave bars
+    document.querySelectorAll('#waveform .wave-bar').forEach((bar, i) => {
+      bar.style.animationDelay = (i * 0.06) + 's';
+    });
+
+    recordSeconds = 0;
+    recordTimerInterval = setInterval(() => {
+      recordSeconds++;
+      const min = String(Math.floor(recordSeconds / 60)).padStart(2, '0');
+      const sec = String(recordSeconds % 60).padStart(2, '0');
+      timer.textContent = `${min}:${sec}`;
+    }, 1000);
+
+  } else if (recordingState === 'recording') {
+    // Stop recording
+    recordingState = 'done';
+    clearInterval(recordTimerInterval);
+    btn.classList.remove('recording');
+    btn.classList.add('done');
+    btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 10l3.5 3.5L15 7"/></svg>';
+    label.textContent = 'Opname afgerond — agent transcribeert…';
+    waveform.classList.remove('recording-active');
+    document.querySelectorAll('#waveform .wave-bar').forEach((bar, i) => {
+      const heights = [10, 18, 24, 14, 8, 22, 16, 12, 26, 20, 14, 18, 8, 22, 12, 16, 24, 10, 18, 14];
+      bar.style.height = heights[i % heights.length] + 'px';
+      bar.style.animation = 'none';
+    });
+
+    // Show transcript card after delay (mimicking transcription)
+    setTimeout(() => {
+      label.textContent = 'Opname klaar · 1:42';
+      const transcriptCard = document.getElementById('transcriptCard');
+      if (transcriptCard) transcriptCard.style.display = 'block';
+
+      // Mark step 3 as done
+      const step3Header = document.querySelectorAll('.audio-step-num')[2];
+      const step3Status = document.querySelectorAll('.audio-step .step-status')[2];
+      if (step3Header) {
+        step3Header.classList.add('done');
+        step3Header.textContent = '✓';
+      }
+      if (step3Status) {
+        step3Status.classList.add('done');
+        step3Status.textContent = 'Klaar';
+      }
+
+      // Enable send button
+      const sendBtn = document.getElementById('sendBtn');
+      const sendHint = document.getElementById('sendHint');
+      if (sendBtn) {
+        sendBtn.disabled = false;
+        sendBtn.style.opacity = '1';
+        sendBtn.style.cursor = 'pointer';
+      }
+      if (sendHint) sendHint.textContent = 'Bericht is klaar voor verzending. Bij verzenden wordt audio + transcript meegestuurd via ZIVVER.';
+    }, 1500);
+  }
+}
+
+// Feedback chat
+const chatScript = [
+  { agent: 'Helder. En de geëxtraheerde tags — heeft Match volgens jou de juiste signalen uit de brief gehaald?',
+    options: ['Ja, klopt', 'Eén tag mist', 'Eén tag onterecht'] },
+  { agent: 'Goed om te weten. Klopt de keuze voor Utrecht boven de online optie wat jou betreft? Online stond op +24.',
+    options: ['Klopt — locatie is beter', 'Online had ook gepast', 'Geen sterke voorkeur'] },
+  { agent: 'Tot slot — zie je iets aan het systeem dat structureel beter kan?',
+    options: ['Nee, alles oké', 'Ja, ik typ het zelf', 'Later misschien'] },
+  { agent: 'Bedankt Maria — alles vastgelegd. Dit gaat naar de applicatiebeheerder. Tot de volgende!', options: [] }
+];
+
+let chatStepIdx = 0;
+function chatStep() {
+  const userOptionEl = window.event.target;
+  const userText = userOptionEl.textContent;
+  const optsEl = userOptionEl.parentElement;
+  optsEl.remove();
+
+  const body = document.getElementById('chatBody');
+  const userMsg = document.createElement('div');
+  userMsg.className = 'chat-msg user';
+  userMsg.innerHTML = '<div class="chat-bubble">' + userText + '</div>';
+  body.appendChild(userMsg);
+  setTimeout(() => body.scrollTop = body.scrollHeight, 50);
+
+  if (chatStepIdx < chatScript.length) {
+    setTimeout(() => {
+      const next = chatScript[chatStepIdx];
+      const agentMsg = document.createElement('div');
+      agentMsg.className = 'chat-msg agent';
+      agentMsg.innerHTML = '<div class="chat-bubble">' + next.agent + '</div>';
+      body.appendChild(agentMsg);
+
+      if (next.options.length > 0) {
+        const optsContainer = document.createElement('div');
+        optsContainer.className = 'chat-options';
+        next.options.forEach(o => {
+          const btn = document.createElement('button');
+          btn.className = 'chat-option';
+          btn.textContent = o;
+          btn.onclick = (e) => { window.event = e; chatStep(); };
+          optsContainer.appendChild(btn);
+        });
+        body.appendChild(optsContainer);
+      }
+      body.scrollTop = body.scrollHeight;
+      chatStepIdx++;
+    }, 600);
+  }
+}
+
+// Dedicated feedback-session page chat (richer, with typing indicator + progress dots)
+const fbScript = [
+  { agent: 'Helder. En de geëxtraheerde tags links — heeft Match de juiste signalen uit de brief gehaald? Zat er iets bij dat er niet hoorde, of misten er belangrijke?',
+    options: ['Klopt — niets aan te merken', 'Eén tag ontbreekt', 'Eén tag stond er onterecht'] },
+  { agent: 'Bedankt. Online ADHD &amp; angst stond op +24, vlak achter Utrecht (+28). Klopt het volgens jou dat Utrecht voorop kwam, of had online beter gepast voor deze cliënt?',
+    options: ['Utrecht is terecht eerste', 'Online had eigenlijk beter gepast', 'Voor mij gelijkwaardig'] },
+  { agent: 'Goed om te weten. Tot slot iets breders — zie je een patroon in hoe Match werkt dat structureel beter kan? Iets dat je vaker tegenkomt?',
+    options: ['Nee, alles oké', 'Ja, ik wil iets toelichten', 'Later misschien'] },
+  { agent: 'Dank je wel, Maria. Je antwoorden zijn vastgelegd en gaan naar de applicatiebeheerder voor analyse. Tot de volgende sessie!',
+    options: [],
+    isFinal: true }
+];
+
+let fbStepIdx = 0;
+function fbStep() {
+  const userOptionEl = window.event.target;
+  const userText = userOptionEl.textContent;
+  const optsEl = userOptionEl.parentElement;
+  optsEl.remove();
+
+  const body = document.getElementById('feedbackChatBody');
+
+  // Add user message
+  const userMsg = document.createElement('div');
+  userMsg.className = 'chat-msg user';
+  userMsg.innerHTML = '<div class="chat-bubble">' + userText + '</div><div class="avatar-mini">M</div>';
+  body.appendChild(userMsg);
+  setTimeout(() => body.scrollTop = body.scrollHeight, 50);
+
+  // Update progress dots
+  const dots = document.querySelectorAll('#feedbackProgress .step-dot');
+  if (dots[fbStepIdx]) {
+    dots[fbStepIdx].classList.remove('active');
+    dots[fbStepIdx].classList.add('done');
+  }
+  if (dots[fbStepIdx + 1]) {
+    dots[fbStepIdx + 1].classList.add('active');
+  }
+
+  if (fbStepIdx < fbScript.length) {
+    // Typing indicator
+    const typingMsg = document.createElement('div');
+    typingMsg.className = 'chat-msg agent';
+    typingMsg.id = 'fbTyping';
+    typingMsg.innerHTML = '<div class="avatar-mini">F</div><div class="chat-bubble"><div class="typing"><span></span><span></span><span></span></div></div>';
+    body.appendChild(typingMsg);
+    body.scrollTop = body.scrollHeight;
+
+    setTimeout(() => {
+      typingMsg.remove();
+      const next = fbScript[fbStepIdx];
+      const agentMsg = document.createElement('div');
+      agentMsg.className = 'chat-msg agent';
+      agentMsg.innerHTML = '<div class="avatar-mini">F</div><div class="chat-bubble">' + next.agent + '</div>';
+      body.appendChild(agentMsg);
+
+      if (next.options.length > 0) {
+        const optsContainer = document.createElement('div');
+        optsContainer.className = 'chat-options';
+        next.options.forEach(o => {
+          const btn = document.createElement('button');
+          btn.className = 'chat-option';
+          btn.textContent = o;
+          btn.onclick = (e) => { window.event = e; fbStep(); };
+          optsContainer.appendChild(btn);
+        });
+        body.appendChild(optsContainer);
+      } else if (next.isFinal) {
+        // Mark all dots as done on final message
+        document.querySelectorAll('#feedbackProgress .step-dot').forEach(d => {
+          d.classList.remove('active');
+          d.classList.add('done');
+        });
+        // Add a back-to-matching CTA
+        const ctaWrap = document.createElement('div');
+        ctaWrap.style.cssText = 'padding: 10px 0 0 42px;';
+        ctaWrap.innerHTML = '<button class="btn btn-primary btn-sm" onclick="goto(\'matching\')">← Terug naar matching</button>';
+        body.appendChild(ctaWrap);
+      }
+      body.scrollTop = body.scrollHeight;
+      fbStepIdx++;
+    }, 900);
+  }
+}
+</script>
+
+</body>
+</html>
