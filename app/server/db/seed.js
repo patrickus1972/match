@@ -2,12 +2,16 @@ import { db, setSetting } from './index.js';
 
 console.log('Seeding Forta Match…');
 
-// Wipe (idempotent reseed) — seed-relevant tables + demo cases
+// Wipe (idempotent reseed) — seed-relevant tables + demo cases.
+// Foreign keys are disabled during the wipe so the delete order can't trigger
+// constraint failures when the database already contains related rows.
 const tables = ['forta_preferences','insurer_contracts','insurers','label_tags','locations','labels','tags',
                 'case_questions','feedback_sessions','decisions','match_runs','knockout_results','completeness_results','case_extractions','cases'];
+db.pragma('foreign_keys = OFF');
 db.transaction(() => {
   for (const t of tables) db.prepare(`DELETE FROM ${t}`).run();
 })();
+db.pragma('foreign_keys = ON');
 
 const insertTag = db.prepare('INSERT INTO tags (name, category, synonyms, weight) VALUES (?, ?, ?, ?)');
 const tagIds = {};
@@ -261,6 +265,8 @@ setSetting('business_modus', 'snelste_hulp');
 
 console.log(`Done. Forta-labels: ${labels.length}, sociaal-domein-labels: ${sociaalLabels.length}, tags: ${Object.keys(tagIds).length}.`);
 
-// Chain demo cases so één `npm run reset` ook werklijst + screenteam vult
+// Chain rules + business-modes so the matching engine has its rule-set,
+// then demo cases so één `npm run reset` ook werklijst + screenteam vult
+await import('./seed-rules.js');
 await import('./seed-screen.js');
 await import('./seed-werklijst.js');
