@@ -265,6 +265,8 @@ setSetting('business_modus', 'snelste_hulp');
 
 console.log(`Done. Forta-labels: ${labels.length}, sociaal-domein-labels: ${sociaalLabels.length}, tags: ${Object.keys(tagIds).length}.`);
 
-// Chain demo cases so één `npm run reset` ook werklijst + screenteam vult
+// Chain rules + business-modes so the matching engine has its rule-set,
+// then demo cases so één `npm run reset` ook werklijst + screenteam vult
+await import('./seed-rules.js');
 await import('./seed-screen.js');
 await import('./seed-werklijst.js');
