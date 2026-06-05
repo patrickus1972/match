@@ -2593,6 +2593,8 @@ Datum: ${new Date().toISOString().slice(0,10)}`;
   async function renderTags({ refetch = true } = {}) {
     const grid = document.getElementById('taxonomyGrid');
     if (!grid) return;
+    const createBtn = document.getElementById('tagCreateBtn');
+    if (createBtn) createBtn.onclick = () => openTagCreateModal();
     if (refetch || !state.tagsCache) {
       try { state.tagsCache = await api('/api/tags'); } catch { return; }
     }
@@ -2626,6 +2628,92 @@ Datum: ${new Date().toISOString().slice(0,10)}`;
         ${items.map(t => `<div class="tag-row"><div><div class="tag-name">${escape(t.name)}</div><div class="tag-syn">${escape(t.synonyms.join(', '))}</div></div><div class="tag-meta">×${t.weight}</div></div>`).join('')}`;
       grid.appendChild(card);
     }
+  }
+
+  // Nieuwe tag aanmaken — zelfde modal-patroon als openLabelEditModal.
+  const TAG_CATEGORIES = ['klachtprofiel','doelgroep','comorbiditeit','procedureel','zorgtype','locatie','exclusie'];
+  function openTagCreateModal() {
+    document.getElementById('tagCreateModal')?.remove();
+
+    const modal = document.createElement('div');
+    modal.id = 'tagCreateModal';
+    modal.style.cssText = 'position:fixed;inset:0;background:rgba(20,16,14,0.55);z-index:1000;display:flex;align-items:center;justify-content:center;';
+    modal.innerHTML = `
+      <div style="background:var(--bg-card);width:460px;max-width:92vw;border-radius:10px;padding:24px;border:1px solid var(--rule);max-height:90vh;overflow-y:auto;">
+        <h3 class="serif" style="font-size:18px;font-weight:500;margin-bottom:16px;">Nieuwe tag</h3>
+
+        <div style="display:flex;flex-direction:column;gap:14px;">
+          <div>
+            <label style="font-size:12px;font-weight:500;color:var(--ink-muted);display:block;margin-bottom:4px;">Naam</label>
+            <input type="text" id="tagCreateName" placeholder="bijv. burn-out" style="width:100%;padding:8px 10px;border:1px solid var(--rule);border-radius:5px;font-size:13px;">
+          </div>
+
+          <div>
+            <label style="font-size:12px;font-weight:500;color:var(--ink-muted);display:block;margin-bottom:4px;">Categorie</label>
+            <select id="tagCreateCategory" style="width:100%;padding:8px 10px;border:1px solid var(--rule);border-radius:5px;font-size:13px;">
+              ${TAG_CATEGORIES.map(c => `<option value="${c}">${escape(c)}</option>`).join('')}
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size:12px;font-weight:500;color:var(--ink-muted);display:block;margin-bottom:4px;">Synoniemen <span style="font-weight:400;">(komma-gescheiden)</span></label>
+            <input type="text" id="tagCreateSynonyms" placeholder="bijv. overspannen, surmenage" style="width:100%;padding:8px 10px;border:1px solid var(--rule);border-radius:5px;font-size:13px;">
+          </div>
+
+          <div>
+            <label style="font-size:12px;font-weight:500;color:var(--ink-muted);display:block;margin-bottom:4px;">Gewicht</label>
+            <input type="number" id="tagCreateWeight" value="1" min="0" max="20" step="0.5" style="width:100%;padding:8px 10px;border:1px solid var(--rule);border-radius:5px;font-size:13px;">
+          </div>
+        </div>
+
+        <div id="tagCreateError" style="color:var(--red);font-size:12px;margin-top:12px;display:none;"></div>
+
+        <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:20px;">
+          <button type="button" class="btn btn-secondary" id="tagCreateCancel">Annuleren</button>
+          <button type="button" class="btn btn-primary" id="tagCreateSave">Aanmaken</button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(modal);
+
+    modal.onclick = (e) => { if (e.target === modal) modal.remove(); };
+    document.getElementById('tagCreateCancel').onclick = () => modal.remove();
+    document.getElementById('tagCreateName').focus();
+
+    document.getElementById('tagCreateSave').onclick = async () => {
+      const errorEl = document.getElementById('tagCreateError');
+      const name = document.getElementById('tagCreateName').value.trim();
+      const synonyms = document.getElementById('tagCreateSynonyms').value
+        .split(',').map(s => s.trim()).filter(Boolean);
+      const data = {
+        name,
+        category: document.getElementById('tagCreateCategory').value,
+        synonyms,
+        weight: parseFloat(document.getElementById('tagCreateWeight').value) || 1
+      };
+
+      if (!data.name) {
+        errorEl.textContent = 'Naam is verplicht.';
+        errorEl.style.display = 'block';
+        return;
+      }
+      if (state.tagsCache?.some(t => t.name.toLowerCase() === data.name.toLowerCase())) {
+        errorEl.textContent = 'Er bestaat al een tag met deze naam.';
+        errorEl.style.display = 'block';
+        return;
+      }
+
+      try {
+        await api('/api/tags', { method: 'POST', body: data });
+        modal.remove();
+        state.tagsCache = null;
+        renderTags();
+      } catch (e) {
+        errorEl.textContent = 'Aanmaken mislukt: ' + e.message;
+        errorEl.style.display = 'block';
+      }
+    };
   }
 
   // ====== Beheer: logica (modus + voorkeuren) ======
