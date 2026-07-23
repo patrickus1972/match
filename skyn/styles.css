@@ -17,10 +17,10 @@
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;background:#fff}
 body{
   margin:0;
-  background:var(--panel);
+  background:#fff;
   color:var(--ink);
   font-family:"Inter","Segoe UI","Helvetica Neue",Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
