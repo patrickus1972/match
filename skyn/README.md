@@ -1,52 +1,62 @@
-# SKYN — Advanced HTML (component-based)
+# SKYN — pixel-perfect landing page
 
-An advanced, fully component-driven HTML build of the SKYN landing-page design.
-Everything is built from **native Web Components** (custom elements), styled by a
-single shared design-system in `index.html`. All buttons have hover states, the
-FAQ is an interactive accordion, and the upload zone reacts to drag & hover.
+The approved page renders (`assets/section-1..3.png`) are the visual
+foundation, so typography, gradients, avatars and card styling stay exactly
+on-design. Interactive layers are positioned on top and **scale with the
+image at every viewport**.
+
+## Run locally
+
+```bash
+python3 -m http.server 8080
+# open http://localhost:8080/skyn/
+```
+
+No build step, no dependencies.
+
+## How it works
+
+Each section is a `container-type: inline-size` positioning context holding its
+render as a full-width `<img>`. Interactive elements sit on top:
+
+- **Position** is set in `%` of the image → stays aligned when the image scales.
+- **Size / type** inside overlays use **container-query units (`cqw`)** → every
+  hotspot, the whole FAQ, its icons and text scale proportionally with the
+  image. The layout is pixel-perfect at 1116px *and* at 400px.
+
+Coordinates were measured from the renders themselves (canvas colour sampling of
+the yellow buttons and FAQ icon column), so buttons and hotspots line up to the
+pixel.
+
+## Interactive layers
+
+| Element | Behaviour |
+|---------|-----------|
+| Nav links / logo / login | Transparent hotspots with a soft hover highlight |
+| **Sign up / Browse / Contact / Footer** buttons | Real yellow pills over the render; hover inverts to black-on-yellow, lifts, arrow nudges |
+| Upload dropzone | Whole card is a file input; validates PNG/JPG ≤ 25 MB and confirms with a toast |
+| **FAQ** | Fully rebuilt accordion that covers the render's FAQ column seamlessly (matched background, pill fill, icon tiles). Single-open; `+` becomes `−` |
+| Footer | Real HTML footer with link columns + first-outfit CTA |
+| Cookie panel | Remembers the choice in `localStorage` |
+
+## Why this replaces the earlier hand-built version
+
+The first attempt rebuilt the characters as SVG placeholders — it looked
+nothing like the design. This version keeps the real 3D renders (impossible to
+reproduce in code) and only rebuilds the parts that genuinely need to be
+interactive, matched so precisely that the seam is invisible.
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Page markup + design-system CSS (tokens, layout, component styles) |
-| `components.js` | All custom elements + interactions (nav, reveal-on-scroll, accordion, upload) |
+| `index.html` | Section markup + interactive FAQ |
+| `styles.css` | Design tokens, `cqw`-scaled overlays, on-brand hovers |
+| `script.js` | Upload validation, FAQ accordion, cookie preferences |
+| `assets/section-*.png` | Approved page renders (1 = hero, 2 = FAQ/pricing, 3 = about, 4 = thumbnail) |
 
-Open `index.html` directly in a browser — no build step, no dependencies.
+## Swapping to a fully-fluid rebuild
 
-## Components (custom elements)
-
-| Element | Description |
-|---------|-------------|
-| `<skyn-header>` | Sticky nav, mobile drawer, scroll-shadow |
-| `<skyn-button variant icon href size block>` | Button with `primary` / `secondary` / `ghost` / `dark` hover states |
-| `<neon-figure variant>` | 3D-character placeholder (SVG mannequin + neon glow) |
-| `<skyn-upload>` | Drag-&-drop upload zone with hover / drag states |
-| `<brand-strip>` | Platform logo row (hover invert) |
-| `<testimonial-card theme quote author>` | Coloured testimonial card |
-| `<how-it-works>` | Upload / Generate / Sell steps |
-| `<faq-accordion>` | Single-open FAQ using native `<details>` |
-| `<price-card step name copy price note swatches>` | Pricing tier + colour swatches |
-| `<stat-card icon big desc>` | About-section metric tile |
-| `<skyn-footer>` | Footer with link columns |
-
-## Hover / interaction states
-
-- **Buttons** — lift + shadow; primary gets a yellow glow and the arrow icon slides up-right.
-- **Nav links** — invert to dark pill on hover.
-- **Cards** (testimonial / price / stat) — lift with a deeper shadow; icons rotate slightly.
-- **FAQ** — click to expand; opening one closes the others; the `+` rotates into a `–`.
-- **Upload** — border turns accent-yellow on hover, scales on drag-over, shows the file name on drop.
-- **Swatches** — scale up on hover.
-- **Reveal-on-scroll** — sections fade/slide in (respects `prefers-reduced-motion`).
-
-## Swapping in real 3D renders
-
-The characters are stylised SVG placeholders. To use real renders, replace the
-markup produced by `<neon-figure>` (and the figure inside `<testimonial-card>`)
-with an `<img>` — the component API and layout stay the same.
-
-## Design tokens
-
-All colours, radii, shadows, type and motion live in `:root` at the top of
-`index.html` (e.g. `--accent: #e3ff32`). Change them there to re-theme globally.
+When production-ready character assets with transparency are available, each
+section can graduate from “render + overlay” to native HTML/CSS. The overlay
+components (buttons, FAQ, footer) already are native and carry straight over.
