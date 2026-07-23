@@ -98,8 +98,8 @@ img{max-width:100%}
 .hs-ico svg{width:2.1cqw;height:2.1cqw;fill:none;stroke:#5f561d;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .hs-body{display:flex;flex-direction:column;gap:.35cqw;padding-top:.15cqw}
 .hs-no{font-size:.82cqw;font-weight:600;letter-spacing:.06em;color:#a7a2ad}
-.hs-name{font-size:1.4cqw;font-weight:700;color:#191721;line-height:1.05;letter-spacing:-.01em}
-.hs-desc{font-size:1cqw;font-weight:500;color:#6a6572;line-height:1.4;max-width:15cqw}
+.hs-name{font-size:1.72cqw;font-weight:700;color:#191721;line-height:1.05;letter-spacing:-.01em}
+.hs-desc{font-size:1.18cqw;font-weight:500;color:#6a6572;line-height:1.42;max-width:15.5cqw}
 
 /* Stat cards — fully redrawn cohesive cards over the render (section-3) */
 .st{width:19.6%;top:66%;height:30.6%;display:flex;flex-direction:column;
