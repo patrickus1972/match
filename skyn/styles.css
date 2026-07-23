@@ -77,7 +77,10 @@ img{max-width:100%}
 
 /* About (section-3) — gradient cover matches the soft vignette */
 .about-copy{left:8.6%;top:11.2%;width:38%;padding-bottom:.8cqw}
-.about-copy::before{background:linear-gradient(160deg,#efeaf1 0%,#eae7ed 55%,#ece9ef 100%)}
+.about-copy::before{inset:-.9cqw -7.5cqw -1cqw -1.3cqw;border-radius:0;
+  background:linear-gradient(160deg,#efeaf1 0%,#eae7ed 55%,#ece9ef 100%);
+  -webkit-mask-image:linear-gradient(to right,#000 90%,transparent 100%);
+  mask-image:linear-gradient(to right,#000 90%,transparent 100%)}
 .about-copy .eb{font-size:.95cqw;margin-bottom:1.5cqw}
 .about-copy h2{font-weight:700;font-size:3.62cqw;line-height:1.05;letter-spacing:-.03em;color:#141019}
 .about-copy p{font-weight:500;font-size:1.34cqw;line-height:1.45;color:#5f5a66;margin-top:1.2cqw;max-width:26cqw}
