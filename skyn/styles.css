@@ -184,7 +184,7 @@ img{max-width:100%}
    ============================================================ */
 .faq-panel{
   position:absolute;z-index:9;
-  left:7.7%;top:24.0%;width:46.4%;
+  left:7.7%;top:20.8%;width:46.4%;
   background:var(--panel);
   display:flex;flex-direction:column;gap:.55cqw;
   padding-bottom:.4cqw;
