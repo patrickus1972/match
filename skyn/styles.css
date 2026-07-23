@@ -43,6 +43,45 @@ img{max-width:100%}
    backgrounds meet seamlessly */
 .about-section>img{margin-top:-9px;clip-path:inset(9px 0 0 0)}
 
+/* ============================================================
+   Real-text overlays (General Sans) laid over the render text.
+   Positions in %, sizes in cqw so they scale with the image.
+   ============================================================ */
+.ov{position:absolute;z-index:4;font-family:"General Sans","Inter",sans-serif}
+.ov h1,.ov h2,.ov h3,.ov p,.ov span{margin:0}
+/* solid cover matched to the local background hides the baked text */
+.ov::before{content:"";position:absolute;z-index:-1;inset:-.9cqw -1.3cqw;
+  background:var(--cover,#e8e3ea);border-radius:1cqw}
+.ov .eb{display:block;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8b8590}
+.ov .eb-y{color:#b9bd00}
+.ov .y{color:#c6ca00}
+
+/* hero card (flat panel) */
+.hero-copy{left:70.4%;top:10.9%;width:27.4%;--cover:#f0eef4;padding:.2cqw 0 .6cqw;display:flex;flex-direction:column}
+.hero-copy .eb{font-size:1.02cqw;margin-bottom:1.15cqw;text-align:center}
+.hero-copy h1{font-weight:700;font-size:2.96cqw;line-height:1.08;letter-spacing:-.022em;color:#141019}
+.hero-copy p{font-weight:500;font-size:1.44cqw;line-height:1.44;color:#5f5a66;margin-top:1.2cqw}
+
+/* FAQ heading (section-2) — sits on near-flat lavender */
+.faq-copy{left:10.3%;top:4.4%;width:40%;min-height:16.6cqw;--cover:#e7e2e8}
+.faq-copy::before{background:linear-gradient(180deg,#e8e3e9,#e6e2e8)}
+.faq-copy .eb{font-size:.92cqw;margin-bottom:1.7cqw}
+.faq-copy h2{font-weight:700;font-size:3.55cqw;line-height:1.05;letter-spacing:-.03em;color:#141019}
+.faq-copy p{font-weight:500;font-size:1.3cqw;line-height:1.4;color:#6a6572;margin-top:1.5cqw;max-width:27cqw}
+
+/* Pricing intro (section-2) — on the light pricing panel */
+.pricing-copy{left:9.1%;top:78.1%;width:23%;min-height:18.4cqw;--cover:#f1f0f2}
+.pricing-copy .eb{font-size:.82cqw;margin-bottom:1.1cqw}
+.pricing-copy h2{font-weight:700;font-size:3.0cqw;line-height:1.03;letter-spacing:-.03em;color:#141019}
+.pricing-copy p{font-weight:500;font-size:1.06cqw;line-height:1.45;color:#6a6572;margin-top:1.1cqw}
+
+/* About (section-3) — gradient cover matches the soft vignette */
+.about-copy{left:8.6%;top:11.2%;width:38%;padding-bottom:.8cqw}
+.about-copy::before{background:linear-gradient(160deg,#efeaf1 0%,#eae7ed 55%,#ece9ef 100%)}
+.about-copy .eb{font-size:.95cqw;margin-bottom:1.5cqw}
+.about-copy h2{font-weight:700;font-size:3.62cqw;line-height:1.05;letter-spacing:-.03em;color:#141019}
+.about-copy p{font-weight:500;font-size:1.34cqw;line-height:1.45;color:#5f5a66;margin-top:1.2cqw;max-width:26cqw}
+
 :where(a,button):focus-visible{outline:3px solid #14121a;outline-offset:2px;border-radius:8px}
 
 /* ============================================================
