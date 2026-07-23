@@ -99,14 +99,19 @@ img{max-width:100%}
 .hs-name{font-size:1.2cqw;font-weight:700;color:#191721}
 .hs-desc{font-size:.85cqw;color:#7a7580;line-height:1.35;margin-top:.15cqw}
 
-/* Stat cards — text only, render icons kept (section-3) */
-.st{--cover:#f1ecf4;width:18%;min-height:13.6cqw}
-.st-big{display:block;font-weight:800;font-size:2.15cqw;line-height:1.04;letter-spacing:-.03em;color:#141019}
-.st-desc{display:block;font-size:.82cqw;color:#7a7580;line-height:1.35;margin-top:.9cqw;max-width:11cqw}
-.st1{left:11.8%;top:78.4%}
-.st2{left:32.9%;top:78.4%}
-.st3{left:54.7%;top:78.4%}
-.st4{left:75.5%;top:78.4%}
+/* Stat cards — fully redrawn cohesive cards over the render (section-3) */
+.st{width:19.6%;top:66%;height:30.6%;display:flex;flex-direction:column;padding:1.9cqw 1.7cqw}
+.st::before{inset:-.35cqw -.55cqw;border-radius:1.6cqw;background:#efeaf2;
+  border:1px solid rgba(255,255,255,.6);box-shadow:0 1.4cqw 3cqw rgba(70,50,86,.05)}
+.st-ico{width:3.5cqw;height:3.5cqw;border-radius:.95cqw;background:var(--yellow);
+  display:grid;place-items:center;margin-bottom:1.4cqw}
+.st-ico svg{width:2cqw;height:2cqw;fill:none;stroke:#14160a;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.st-big{display:block;font-weight:800;font-size:2.1cqw;line-height:1.04;letter-spacing:-.03em;color:#141019}
+.st-desc{display:block;font-size:.86cqw;color:#7a7580;line-height:1.35;margin-top:1cqw;max-width:12cqw}
+.st1{left:10.5%}
+.st2{left:31.7%}
+.st3{left:53.3%}
+.st4{left:74.6%}
 
 :where(a,button):focus-visible{outline:3px solid #14121a;outline-offset:2px;border-radius:8px}
 
