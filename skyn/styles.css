@@ -87,17 +87,19 @@ img{max-width:100%}
 .trusted-copy span{display:block;font-size:.82cqw;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8a8490}
 
 /* How it works — full panel redraw over the render panel (section-1) */
-.how-copy{left:67.4%;top:65.2%;width:29.4%;height:31.6%;--cover:#eceaf1;padding:1.6cqw 1.8cqw}
+.how-copy{left:67.4%;top:65.2%;width:29.4%;height:31.6%;--cover:#eceaf1;
+  padding:2.1cqw 2cqw;display:flex;flex-direction:column}
 .how-copy::before{inset:0;border-radius:1.7cqw}
-.how-copy h3{font-weight:700;font-size:1.85cqw;color:#191721;letter-spacing:-.02em;margin-bottom:1cqw}
-.how-copy ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.05cqw}
-.how-copy li{display:grid;grid-template-columns:3.1cqw 1fr;column-gap:1cqw;align-items:start}
-.hs-ico{grid-row:1/4;width:3.1cqw;height:3.1cqw;border-radius:.85cqw;display:grid;place-items:center;
+.how-copy h3{font-weight:700;font-size:1.95cqw;color:#191721;letter-spacing:-.02em;margin-bottom:1.8cqw}
+.how-copy ol{list-style:none;margin:0;padding:0;flex:1;display:flex;flex-direction:column;justify-content:center;gap:2.7cqw}
+.how-copy li{display:flex;gap:1.3cqw;align-items:flex-start}
+.hs-ico{flex:0 0 auto;width:3.9cqw;height:3.9cqw;border-radius:1.1cqw;display:grid;place-items:center;
   background:linear-gradient(150deg,#fdf7c6,#f3ea86);border:1px solid rgba(214,196,74,.4)}
-.hs-ico svg{width:1.7cqw;height:1.7cqw;fill:none;stroke:#63591d;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.hs-no{font-size:.82cqw;font-weight:600;color:#8a8490}
-.hs-name{font-size:1.2cqw;font-weight:700;color:#191721}
-.hs-desc{font-size:.85cqw;color:#7a7580;line-height:1.35;margin-top:.15cqw}
+.hs-ico svg{width:2.1cqw;height:2.1cqw;fill:none;stroke:#5f561d;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hs-body{display:flex;flex-direction:column;gap:.35cqw;padding-top:.15cqw}
+.hs-no{font-size:.82cqw;font-weight:600;letter-spacing:.06em;color:#a7a2ad}
+.hs-name{font-size:1.4cqw;font-weight:700;color:#191721;line-height:1.05;letter-spacing:-.01em}
+.hs-desc{font-size:1cqw;font-weight:500;color:#6a6572;line-height:1.4;max-width:15cqw}
 
 /* Stat cards — fully redrawn cohesive cards over the render (section-3) */
 .st{width:19.6%;top:66%;height:30.6%;display:flex;flex-direction:column;
