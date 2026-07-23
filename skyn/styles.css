@@ -108,7 +108,7 @@ img{max-width:100%}
   display:grid;place-items:center;margin-bottom:2.8cqw}
 .st .st-ico svg{width:2.4cqw;height:2.4cqw;fill:none;stroke:#14160a;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .st .st-big{display:block;font-weight:800;font-size:2.3cqw;line-height:1.08;letter-spacing:-.03em;color:#141019}
-.st .st-desc{display:block;font-size:1.18cqw;color:#7a7580;line-height:1.42;margin-top:1.7cqw;max-width:11.5cqw}
+.st .st-desc{display:block;font-weight:500;font-size:1.34cqw;color:#5f5a66;line-height:1.45;margin-top:1.7cqw;max-width:12.5cqw}
 .st-spark{position:absolute;right:1.8cqw;bottom:2.4cqw;color:#d9d3df;pointer-events:none}
 .st-spark svg{width:3.2cqw;height:3.2cqw;fill:currentColor}
 .st1{left:10.5%}
