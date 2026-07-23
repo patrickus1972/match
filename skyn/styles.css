@@ -207,7 +207,7 @@ img{max-width:100%}
   display:flex;align-items:center;gap:1.1cqw;
   padding:.9cqw 1.4cqw .9cqw 1.15cqw;
   background:transparent;border:0;cursor:pointer;text-align:left;
-  font-size:1.16cqw;font-weight:700;color:#211c28;line-height:1.2;
+  font-size:1.46cqw;font-weight:700;color:#211c28;line-height:1.2;
 }
 .faq-ico{
   flex:0 0 auto;width:2.5cqw;height:2.5cqw;border-radius:.72cqw;
@@ -233,9 +233,9 @@ img{max-width:100%}
 
 .faq-a{max-height:0;opacity:0;overflow:hidden;
   transition:max-height .26s var(--ease),opacity .2s var(--ease)}
-.faq-row[data-open] .faq-a{max-height:12cqw;opacity:1}
-.faq-a p{margin:0;padding:0 1.4cqw 1.1cqw 5.15cqw;color:var(--muted);
-  font-size:1.02cqw;line-height:1.45}
+.faq-row[data-open] .faq-a{max-height:18cqw;opacity:1}
+.faq-a p{margin:0;padding:0 1.4cqw 1.2cqw 5.15cqw;color:var(--muted);
+  font-size:1.28cqw;line-height:1.45}
 
 /* "Still have questions?" CTA */
 .faq-cta{
@@ -250,8 +250,8 @@ img{max-width:100%}
 .faq-cta-ico svg{width:1.9cqw;height:1.9cqw;fill:none;stroke:#63591d;stroke-width:1.8;
   stroke-linecap:round;stroke-linejoin:round}
 .faq-cta-txt{flex:1 1 auto;display:flex;flex-direction:column;gap:.15cqw;line-height:1.25}
-.faq-cta-txt strong{font-size:1.28cqw;color:#211c28}
-.faq-cta-txt span{font-size:1.0cqw;color:var(--muted)}
+.faq-cta-txt strong{font-size:1.5cqw;color:#211c28}
+.faq-cta-txt span{font-size:1.18cqw;color:var(--muted)}
 .support-btn{position:relative;left:auto;top:auto;
   padding:.85cqw 1.15cqw;font-size:1.05cqw;border-radius:.9cqw;
   box-shadow:0 .5cqw 1.4cqw rgba(198,214,0,.28)}
