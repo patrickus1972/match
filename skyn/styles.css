@@ -38,6 +38,10 @@ img{max-width:100%}
   background:var(--panel);
 }
 .visual-section>img{width:100%;height:auto;display:block}
+/* the About render has a ~5px lighter band at its very top which read as a
+   white stripe on the FAQ→About seam; clip it and pull up so the lavender
+   backgrounds meet seamlessly */
+.about-section>img{margin-top:-9px;clip-path:inset(9px 0 0 0)}
 
 :where(a,button):focus-visible{outline:3px solid #14121a;outline-offset:2px;border-radius:8px}
 
