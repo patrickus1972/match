@@ -94,6 +94,21 @@ img{max-width:100%}
 .pricing-copy h2{font-weight:700;font-size:3.0cqw;line-height:1.03;letter-spacing:-.03em;color:#141019}
 .pricing-copy p{font-weight:500;font-size:1.06cqw;line-height:1.45;color:#6a6572;margin-top:1.1cqw}
 
+/* real text over the STEP 1 / STEP 2 pricing panels */
+.step-copy{display:flex;flex-direction:column;align-items:flex-start}
+.step-copy::before{inset:-.7cqw -.8cqw;border-radius:.9cqw}
+.step-copy .eb{font-size:.74cqw;letter-spacing:.2em;color:#9c97a2;margin-bottom:1.35cqw}
+.step-copy h3{font-weight:700;font-size:1.72cqw;line-height:1;letter-spacing:-.02em;color:#191521}
+.step-copy .sc-body{font-weight:500;font-size:1.02cqw;line-height:1.4;color:#6f6a76;margin-top:1.15cqw;min-height:2.75cqw}
+.step-copy .sc-price{display:flex;align-items:center;gap:.85cqw;margin-top:2.9cqw}
+.step-copy .sc-big{font-weight:800;font-size:2.15cqw;line-height:1;letter-spacing:-.03em;color:#191521}
+.step-copy .sc-note{font-weight:500;font-size:.82cqw;line-height:1.32;color:#8a8590}
+.step1-copy{left:34%;top:78.4%;width:14%;--cover:#e8e7ed}
+.step1-copy .sc-price{margin-top:3.95cqw}
+/* extend only STEP 1's cover downward to swallow the baked note's tail */
+.step1-copy::before{inset:-.7cqw -.8cqw -1.7cqw -.8cqw}
+.step2-copy{left:72%;top:78.4%;width:16%;--cover:#f1f0f4}
+
 /* About (section-3) — gradient cover matches the soft vignette */
 .about-copy{left:8.6%;top:11.2%;width:38%;padding-bottom:.8cqw}
 .about-copy::before{inset:-.9cqw -7.5cqw -1cqw -1.3cqw;border-radius:0;
