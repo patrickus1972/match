@@ -43,12 +43,23 @@ img{max-width:100%}
    width instead of bleeding edge-to-edge. The stage is the positioning +
    container-query context for the About overlays, so render and overlays scale
    and align together. */
+/* the side margins must match the render's own edge tones or a hard vertical
+   seam shows: the render's left edge is flat neutral grey (#e7e7e7) its whole
+   height, the right edge is slightly lavender. Paint the section background as
+   a matching grey→lavender gradient so the margin is indistinguishable from
+   the render edge. */
+.about-section{background:#eee9f0}
 .about-stage{position:relative;container-type:inline-size;width:94%;margin:0 auto}
-.about-stage>img{width:100%;height:auto;display:block}
 /* the About render has a ~5px lighter band at its very top which read as a
    white stripe on the FAQ→About seam; clip it and pull up so the lavender
-   backgrounds meet seamlessly */
-.about-stage>img{margin-top:-9px;clip-path:inset(9px 0 0 0)}
+   backgrounds meet seamlessly. The left/right edges are feathered so the
+   render's rectangular edge blends into the section's margin instead of
+   showing a hard vertical seam (the render edge is a slightly different tone
+   than the section background). */
+.about-stage>img{width:100%;height:auto;display:block;margin-top:-9px;
+  clip-path:inset(9px 0 0 14px);
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 3%,#000 94%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0,#000 3%,#000 94%,transparent 100%)}
 
 /* ============================================================
    Real-text overlays (General Sans) laid over the render text.
