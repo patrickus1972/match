@@ -278,6 +278,7 @@ img{max-width:100%}
   left:16.5%;top:52%;width:66%;height:16%;
   font-size:1.45cqw;border-radius:999px;pointer-events:none;
 }
+.browse-btn svg{width:1.25em;height:1.25em;stroke-width:2.7}
 
 /* ============================================================
    SECTION 2 · interactive FAQ (rebuilt to match the render)
