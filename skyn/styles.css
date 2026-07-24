@@ -265,6 +265,7 @@ img{max-width:100%}
 
 /* signup (image 1102×1290) — measured box */
 .signup-btn{left:87.1%;top:1.55%;width:10.7%;height:3.3%;font-size:1.28cqw;border-radius:1.1cqw}
+.signup-btn svg{width:1.55em;height:1.55em;stroke-width:3}
 
 /* upload dropzone + browse button */
 .upload-zone{
