@@ -104,6 +104,7 @@ img{max-width:100%}
 @media (prefers-reduced-motion:reduce){.ticker-track{animation:none}}
 
 /* Demo video player, revealed after 4s */
+.video-demo::before{content:none}
 .video-demo{left:10.5%;top:28%;width:38%;z-index:12;
   opacity:0;transform:translateY(1.4cqw) scale(.96);pointer-events:none;
   transition:opacity .6s var(--ease),transform .6s var(--ease)}
