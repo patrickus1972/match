@@ -38,10 +38,17 @@ img{max-width:100%}
   background:var(--panel);
 }
 .visual-section>img{width:100%;height:auto;display:block}
+/* the About render + its overlays are wrapped in an inset "stage" so the whole
+   block sits within symmetric side margins, matching the FAQ section's framed
+   width instead of bleeding edge-to-edge. The stage is the positioning +
+   container-query context for the About overlays, so render and overlays scale
+   and align together. */
+.about-stage{position:relative;container-type:inline-size;width:90%;margin:0 auto}
+.about-stage>img{width:100%;height:auto;display:block}
 /* the About render has a ~5px lighter band at its very top which read as a
    white stripe on the FAQ→About seam; clip it and pull up so the lavender
    backgrounds meet seamlessly */
-.about-section>img{margin-top:-9px;clip-path:inset(9px 0 0 0)}
+.about-stage>img{margin-top:-9px;clip-path:inset(9px 0 0 0)}
 
 /* ============================================================
    Real-text overlays (General Sans) laid over the render text.
