@@ -280,6 +280,11 @@ img{max-width:100%}
   font-size:1.45cqw;border-radius:999px;pointer-events:none;
 }
 .browse-btn svg{width:2em;height:2em;stroke-width:3.4}
+/* the button itself has pointer-events:none (the whole card is the file
+   input), so drive its hover from the upload-zone — black/yellow like signup */
+.upload-zone:hover .browse-btn{background:var(--yellow-ink);color:var(--yellow);
+  box-shadow:0 1.4cqw 3cqw rgba(20,18,26,.28)}
+.upload-zone:hover .browse-btn svg{transform:translate(.12em,.12em)}
 
 /* ============================================================
    SECTION 2 · interactive FAQ (rebuilt to match the render)
