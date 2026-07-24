@@ -97,17 +97,17 @@ img{max-width:100%}
 /* real text over the STEP 1 / STEP 2 pricing panels */
 .step-copy{display:flex;flex-direction:column;align-items:flex-start}
 .step-copy::before{inset:-.7cqw -.8cqw;border-radius:.9cqw}
-.step-copy .eb{font-size:.74cqw;letter-spacing:.2em;color:#9c97a2;margin-bottom:1.35cqw}
-.step-copy h3{font-weight:700;font-size:1.72cqw;line-height:1;letter-spacing:-.02em;color:#191521}
-.step-copy .sc-body{font-weight:500;font-size:1.02cqw;line-height:1.4;color:#6f6a76;margin-top:1.15cqw;min-height:2.75cqw}
-.step-copy .sc-price{display:flex;align-items:center;gap:.85cqw;margin-top:2.9cqw}
-.step-copy .sc-big{font-weight:800;font-size:2.15cqw;line-height:1;letter-spacing:-.03em;color:#191521}
-.step-copy .sc-note{font-weight:500;font-size:.82cqw;line-height:1.32;color:#8a8590}
-.step1-copy{left:34%;top:78.4%;width:14%;--cover:#e8e7ed}
-.step1-copy .sc-price{margin-top:3.95cqw}
+.step-copy .eb{font-size:.86cqw;letter-spacing:.2em;color:#8f8a96;margin-bottom:1.3cqw}
+.step-copy h3{font-weight:700;font-size:2.05cqw;line-height:1;letter-spacing:-.02em;color:#141019}
+.step-copy .sc-body{font-weight:500;font-size:1.24cqw;line-height:1.4;color:#5f5a67;margin-top:1.1cqw;min-height:3.5cqw}
+.step-copy .sc-price{display:flex;align-items:center;gap:.85cqw;margin-top:2.6cqw}
+.step-copy .sc-big{font-weight:800;font-size:2.5cqw;line-height:1;letter-spacing:-.03em;color:#141019}
+.step-copy .sc-note{font-weight:500;font-size:.98cqw;line-height:1.32;color:#7c7782}
+.step1-copy{left:33.6%;top:78.2%;width:15%;--cover:#e8e7ed}
+.step1-copy .sc-price{margin-top:3.6cqw}
 /* extend only STEP 1's cover downward to swallow the baked note's tail */
-.step1-copy::before{inset:-.7cqw -.8cqw -1.7cqw -.8cqw}
-.step2-copy{left:72%;top:78.4%;width:16%;--cover:#f1f0f4}
+.step1-copy::before{inset:-.7cqw -.8cqw -1.9cqw -.8cqw}
+.step2-copy{left:71.6%;top:78.2%;width:17.5%;--cover:#f1f0f4}
 
 /* About (section-3) — gradient cover matches the soft vignette */
 .about-copy{left:8.6%;top:11.2%;width:38%;padding-bottom:.8cqw}
