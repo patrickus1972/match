@@ -90,7 +90,7 @@ img{max-width:100%}
 .trusted-copy span{display:block;font-size:.82cqw;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#8a8490}
 
 /* Logo ticker (marquee) covering the render's static logo row */
-.ticker{left:4.9%;top:59.85%;width:90.5%;height:4.75%;
+.ticker{left:4.9%;top:59.3%;width:90.5%;height:5.7%;
   background:#eae8ee;border-radius:1.5cqw;overflow:hidden;
   display:flex;align-items:center;box-shadow:inset 0 0 0 .09cqw rgba(20,18,26,.05)}
 .ticker::before,.ticker::after{content:"";position:absolute;top:0;bottom:0;width:9%;z-index:2;pointer-events:none}
@@ -98,7 +98,7 @@ img{max-width:100%}
 .ticker::after{right:0;background:linear-gradient(270deg,#eae8ee,rgba(234,232,238,0))}
 .ticker-track{display:flex;align-items:center;flex:0 0 auto;width:max-content;
   animation:ticker-scroll 26s linear infinite;will-change:transform}
-.ticker-track img{height:2.35cqw;width:auto;flex:0 0 auto;display:block}
+.ticker-track img{height:3.3cqw;width:auto;flex:0 0 auto;display:block}
 .ticker:hover .ticker-track{animation-play-state:paused}
 @keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.ticker-track{animation:none}}
@@ -110,7 +110,7 @@ img{max-width:100%}
 .video-demo.show{opacity:1;transform:none;pointer-events:auto}
 .vd-frame{position:relative;aspect-ratio:16/10;border-radius:1.7cqw;overflow:hidden;
   background:radial-gradient(130% 120% at 28% 18%,#37324e 0%,#201b2c 46%,#100c16 100%);
-  box-shadow:0 3cqw 6cqw rgba(16,12,22,.4),inset 0 0 0 .09cqw rgba(255,255,255,.08);
+  box-shadow:0 .5cqw 1.1cqw rgba(16,12,22,.16);
   display:grid;place-items:center;cursor:pointer}
 .vd-glow{position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(122deg,transparent 34%,rgba(255,60,60,.55) 46%,rgba(255,180,90,.35) 50%,transparent 60%);
