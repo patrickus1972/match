@@ -60,6 +60,13 @@
       e.stopPropagation();
       videoDemo.classList.remove('show');
     });
+    const expandBtn = videoDemo.querySelector('.vd-expand');
+    expandBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const big = videoDemo.classList.toggle('enlarged');
+      expandBtn.setAttribute('aria-pressed', String(big));
+      expandBtn.setAttribute('aria-label', big ? 'Reset video size' : 'Enlarge video 50%');
+    });
     videoDemo.querySelector('.vd-frame')?.addEventListener('click', () => showToast('Demo video coming soon.'));
   }
 

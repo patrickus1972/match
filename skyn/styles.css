@@ -140,6 +140,14 @@ img{max-width:100%}
   transition:background .2s var(--ease)}
 .vd-close:hover{background:rgba(20,18,26,.8)}
 .vd-close svg{width:1.3cqw;height:1.3cqw;fill:none;stroke:#fff;stroke-width:2.4;stroke-linecap:round}
+.vd-expand{position:absolute;top:.9cqw;left:.9cqw;z-index:3;width:2.6cqw;height:2.6cqw;border-radius:50%;
+  border:0;cursor:pointer;background:rgba(20,18,26,.5);display:grid;place-items:center;transition:background .2s var(--ease)}
+.vd-expand:hover{background:rgba(20,18,26,.8)}
+.vd-expand svg{width:1.4cqw;height:1.4cqw;fill:none;stroke:#fff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+/* enlarge the whole player by 50% (grows from its centre, stays on screen) */
+.video-demo.show.enlarged{transform:scale(1.5);z-index:30}
+.video-demo.enlarged .vd-expand{background:var(--yellow)}
+.video-demo.enlarged .vd-expand svg{stroke:#14160a}
 
 /* How it works — full panel redraw over the render panel (section-1) */
 .how-copy{left:67.4%;top:65.2%;width:29.4%;height:31.6%;--cover:#eceaf1;
