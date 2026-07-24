@@ -188,7 +188,7 @@ img{max-width:100%}
 .hs-desc{font-size:1.18cqw;font-weight:500;color:#6a6572;line-height:1.42;max-width:15.5cqw}
 
 /* Stat cards — fully redrawn cohesive cards over the render (section-3) */
-.st{width:19.6%;top:66%;height:30.6%;display:flex;flex-direction:column;
+.st{width:19.6%;top:65%;height:30.6%;display:flex;flex-direction:column;
   align-items:flex-start;text-align:left;padding:2.3cqw 2cqw}
 .st::before{inset:-.35cqw -.55cqw;border-radius:1.6cqw;background:#efeaf2;
   border:1px solid rgba(255,255,255,.6);box-shadow:0 1.4cqw 3cqw rgba(70,50,86,.05)}
@@ -199,10 +199,10 @@ img{max-width:100%}
 .st .st-desc{display:block;font-weight:500;font-size:1.34cqw;color:#5f5a66;line-height:1.45;margin-top:1.7cqw;max-width:12.5cqw}
 .st-spark{position:absolute;right:1.8cqw;bottom:2.4cqw;color:#d9d3df;pointer-events:none}
 .st-spark svg{width:3.2cqw;height:3.2cqw;fill:currentColor}
-.st1{left:10.5%}
-.st2{left:31.7%}
-.st3{left:53.3%}
-.st4{left:74.6%}
+.st1{left:8.75%}
+.st2{left:29.95%}
+.st3{left:51.55%}
+.st4{left:72.85%}
 
 :where(a,button):focus-visible{outline:3px solid #14121a;outline-offset:2px;border-radius:8px}
 
