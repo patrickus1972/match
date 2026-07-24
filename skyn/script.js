@@ -52,6 +52,17 @@
   });
   document.querySelector('.login-hit')?.addEventListener('click', () => showToast('Log in is coming soon.'));
 
+  /* ---------- Demo video player (reveals after 4s) ---------- */
+  const videoDemo = document.getElementById('video-demo');
+  if (videoDemo) {
+    setTimeout(() => videoDemo.classList.add('show'), 4000);
+    videoDemo.querySelector('.vd-close')?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      videoDemo.classList.remove('show');
+    });
+    videoDemo.querySelector('.vd-frame')?.addEventListener('click', () => showToast('Demo video coming soon.'));
+  }
+
   /* ---------- Cookie preferences ---------- */
   const cookie = document.getElementById('cookie-panel');
   const KEY = 'skyn-cookie-choice';
