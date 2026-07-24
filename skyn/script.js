@@ -55,9 +55,37 @@
   /* ---------- Demo video player (reveals after 4s) ---------- */
   const videoDemo = document.getElementById('video-demo');
   if (videoDemo) {
+    // Swap data-src for the real SKYN demo when it's ready.
+    const VIDEO_SRC = videoDemo.dataset.src || 'assets/demo.mp4';
+    const frame = videoDemo.querySelector('.vd-frame');
+
     setTimeout(() => videoDemo.classList.add('show'), 4000);
+
+    const stop = () => {
+      const v = frame.querySelector('.vd-video');
+      if (v) { v.pause(); v.remove(); }
+      frame.classList.remove('playing');
+    };
+    const play = () => {
+      if (frame.classList.contains('playing')) return;
+      const v = document.createElement('video');
+      v.className = 'vd-video';
+      v.src = VIDEO_SRC;
+      v.controls = true;
+      v.autoplay = true;
+      v.playsInline = true;
+      v.setAttribute('playsinline', '');
+      frame.appendChild(v);
+      frame.classList.add('playing');
+      v.play?.().catch(() => {});
+    };
+    frame?.addEventListener('click', (e) => {
+      if (!e.target.closest('.vd-close, .vd-expand')) play();
+    });
+
     videoDemo.querySelector('.vd-close')?.addEventListener('click', (e) => {
       e.stopPropagation();
+      stop();
       videoDemo.classList.remove('show');
     });
     const expandBtn = videoDemo.querySelector('.vd-expand');
@@ -67,7 +95,6 @@
       expandBtn.setAttribute('aria-pressed', String(big));
       expandBtn.setAttribute('aria-label', big ? 'Reset video size' : 'Enlarge video 50%');
     });
-    videoDemo.querySelector('.vd-frame')?.addEventListener('click', () => showToast('Demo video coming soon.'));
   }
 
   /* ---------- Cookie preferences ---------- */

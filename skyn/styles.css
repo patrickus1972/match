@@ -136,6 +136,9 @@ img{max-width:100%}
 .vd-caption{position:absolute;left:1.6cqw;right:1.6cqw;bottom:1.4cqw;z-index:2;text-align:center;
   color:#fff;font-weight:400;font-size:1.02cqw;letter-spacing:.02em;line-height:1.35;opacity:.9}
 .vd-caption b{font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:1}
+.vd-video{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:1;border-radius:inherit;object-fit:cover;background:#000}
+.vd-frame.playing{cursor:default}
+.vd-frame.playing .vd-glow,.vd-frame.playing .vd-play,.vd-frame.playing .vd-caption{opacity:0;visibility:hidden}
 .vd-close{position:absolute;top:.9cqw;right:.9cqw;z-index:3;width:2.6cqw;height:2.6cqw;border-radius:50%;
   border:0;cursor:pointer;background:rgba(20,18,26,.5);display:grid;place-items:center;
   transition:background .2s var(--ease)}
