@@ -156,7 +156,7 @@
     { name: 'Retro',      c: ['#e8552b','#f2b53d','#2a8a6e','#2b5aa8','#efe6d0'] },
     { name: 'Grape Soda', c: ['#2a0d4a','#6a2bb0','#a05cf0','#d6a8ff','#efe0ff'] },
   ];
-  const modal = $('#palette-modal');
+  const modal = $('#palette-panel');
   const pmList = $('#pm-list');
   const pmRender = $('#pm-render');
   let selPal = -1;

@@ -28,6 +28,7 @@
     <div class="ed-main">
       <!-- viewer -->
       <section class="ed-stage" id="stage">
+       <div class="ed-tools">
         <div class="ed-toolbar">
           <div class="seg" id="mode-seg">
             <button class="active" data-mode="shaded"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 3a9 9 0 0 1 0 18Z" fill="currentColor"/></svg>Shaded</button>
@@ -44,6 +45,7 @@
           <button class="chip-btn solid" id="rename-btn"><svg viewBox="0 0 24 24"><path d="M4 20h4L20 8l-4-4L4 16Z"/></svg><span id="proj-name">hoodie-pro</span></button>
           <button class="chip-btn ghost" id="addproj-btn"><svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M5 20h14"/></svg>Add to project <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg></button>
         </div>
+       </div>
 
         <div class="viewer">
           <!-- hoodie SVG (recolourable via CSS vars) -->
@@ -96,6 +98,22 @@
         </div>
       </section>
 
+      <!-- Add colours panel (inline, non-blocking — sits beside the variants) -->
+      <div class="palette-panel" id="palette-panel" hidden>
+        <div class="pm-head">
+          <div>
+            <h3>Add colours</h3>
+            <p class="pm-sub"><span id="pm-count">15</span> palettes · pick a full palette</p>
+          </div>
+          <button class="pm-close" data-close type="button" aria-label="Close">
+            <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
+          </button>
+        </div>
+        <div class="pm-list" id="pm-list"></div>
+        <button class="pm-render" id="pm-render" type="button" disabled>Select a palette to render</button>
+        <p class="pm-note">Tap a palette to add all its colours</p>
+      </div>
+
       <!-- sidebar -->
       <aside class="ed-side">
         <div class="colours-panel">
@@ -108,25 +126,6 @@
         </div>
         <button class="addcart" id="addcart"><svg viewBox="0 0 24 24"><path d="M8 8 16 16M16 9.5v6.5h-6.5"/></svg> Add to cart <span class="free">· free</span></button>
       </aside>
-    </div>
-  </div>
-
-  <!-- Add colours palette picker -->
-  <div class="palette-modal" id="palette-modal" hidden>
-    <div class="pm-backdrop" data-close></div>
-    <div class="pm-card" role="dialog" aria-modal="true" aria-label="Add colours">
-      <div class="pm-head">
-        <div>
-          <h3>Add colours</h3>
-          <p class="pm-sub"><span id="pm-count">15</span> palettes · pick a full palette</p>
-        </div>
-        <button class="pm-close" data-close type="button" aria-label="Close">
-          <svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg>
-        </button>
-      </div>
-      <div class="pm-list" id="pm-list"></div>
-      <button class="pm-render" id="pm-render" type="button" disabled>Select a palette to render</button>
-      <p class="pm-note">Tap a palette to add all its colours</p>
     </div>
   </div>
 
