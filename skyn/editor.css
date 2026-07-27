@@ -52,7 +52,7 @@
   box-shadow:inset 0 0 0 1px rgba(160,130,0,.35)}
 .avatar{width:42px;height:42px;border-radius:50%;background:#141019;color:#fff;
   display:grid;place-items:center;font-weight:700;border:0;cursor:pointer;font-size:.95rem;
-  box-shadow:var(--glass-sh)}
+  text-decoration:none;box-shadow:var(--glass-sh)}
 .cart-btn{position:relative;width:42px;height:42px;border-radius:50%;background:var(--glass-strong);
   -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
   border:1px solid var(--glass-brd);display:grid;place-items:center;cursor:pointer;

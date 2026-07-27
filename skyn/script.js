@@ -50,7 +50,10 @@
   document.querySelector('.footer-cta')?.addEventListener('click', () => {
     document.querySelector('.upload-zone')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
-  document.querySelector('.login-hit')?.addEventListener('click', () => showToast('Log in is coming soon.'));
+  document.querySelector('.login-hit')?.addEventListener('click', () => {
+    showToast('Welcome back — opening your dashboard…');
+    setTimeout(() => { window.location.href = 'page8.html'; }, 650);
+  });
 
   /* ---------- Demo video player (reveals after 4s) ---------- */
   const videoDemo = document.getElementById('video-demo');
