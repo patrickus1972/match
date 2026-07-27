@@ -104,8 +104,9 @@
   const choose = (v) => { localStorage.setItem(KEY, v); cookie.classList.remove('show'); };
   document.getElementById('accept-cookies').onclick = () => choose('all');
   document.getElementById('reject-cookies').onclick = () => choose('essential');
-  document.getElementById('cookie-settings').onclick = () => {
-    if (document.getElementById('pgsw')) return; // combined-build router handles data-nav
-    window.location.href = 'page7.html#settings';
-  };
+  const cs = document.getElementById('cookie-settings');
+  if (cs && !document.getElementById('legal-pop')) {
+    // no popup present (older standalone): fall back to the full legal page
+    cs.onclick = () => { window.location.href = 'page7.html#settings'; };
+  }
 })();
