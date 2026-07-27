@@ -148,15 +148,29 @@
 .colours-panel{background:var(--glass);border-radius:24px;display:flex;flex-direction:column;
   -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
   padding:1.1rem;min-height:0;flex:1;overflow:hidden;border:1px solid var(--glass-brd);box-shadow:var(--glass-sh)}
-.side-head{display:flex;align-items:center;justify-content:space-between;padding:.2rem .3rem 1rem}
-.side-head .ttl{font-size:.78rem;letter-spacing:.16em;font-weight:600;color:var(--muted)}
-.side-head .count{display:inline-flex;align-items:center;gap:.3rem;font-weight:700;font-size:.92rem;color:var(--ink);cursor:pointer}
-.side-head .count svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-
-.variants{flex:1;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;gap:.8rem;
-  padding:.3rem;margin:-.3rem;align-content:start}
-.variants::-webkit-scrollbar{width:6px}
-.variants::-webkit-scrollbar-thumb{background:#cfccd8;border-radius:999px}
+/* theme accordion folders — headers always visible, open folder scrolls internally */
+.themes{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:.55rem}
+.theme{display:flex;flex-direction:column;min-height:0}
+.theme:not(.open){flex:0 0 auto}
+.theme.open{flex:1 1 auto;min-height:0}
+.theme-head{width:100%;display:flex;align-items:center;gap:.6rem;cursor:pointer;font-family:inherit;flex:0 0 auto;
+  background:rgba(255,255,255,.6);border:1px solid var(--glass-brd);border-radius:14px;
+  padding:.72rem .85rem;font-weight:700;font-size:.98rem;color:var(--ink);
+  -webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);transition:background .2s var(--ease)}
+.theme-head:hover{background:rgba(255,255,255,.85)}
+.theme-head .folder{width:19px;height:19px;flex:0 0 auto;fill:none;stroke:#a89b3a;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.theme-head .theme-name{flex:1;text-align:left}
+.theme-head .theme-count{color:var(--muted);font-weight:600;font-size:.85rem}
+.theme-head .chev{width:15px;height:15px;flex:0 0 auto;fill:none;stroke:var(--muted);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s var(--ease)}
+.theme.open .theme-head .chev{transform:rotate(180deg)}
+.theme.open .theme-head{background:rgba(255,255,255,.9)}
+.theme-body{display:none}
+.theme.open .theme-body{display:block;flex:1 1 auto;min-height:0;overflow-y:auto}
+.theme.open .theme-body::-webkit-scrollbar{width:6px}
+.theme.open .theme-body::-webkit-scrollbar-thumb{background:#cfccd8;border-radius:999px}
+.theme-body .variants{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem;
+  padding:.6rem .15rem .2rem;align-content:start}
+.theme-body .variant{aspect-ratio:1/.92;padding:.4rem}
 .variant{border:2px solid transparent;border-radius:16px;background:rgba(255,255,255,.55);cursor:pointer;
   padding:.5rem;aspect-ratio:1/1;display:grid;place-items:center;transition:all .2s var(--ease);position:relative;
   box-shadow:inset 0 0 0 1px rgba(255,255,255,.5),0 2px 8px rgba(28,24,38,.05)}
