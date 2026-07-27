@@ -62,7 +62,7 @@
       const head = document.createElement('button');
       head.type = 'button';
       head.className = 'theme-head';
-      head.innerHTML = FOLDER + '<span class="theme-name">' + theme.name + '</span>' +
+      head.innerHTML = '<span class="theme-name">' + theme.name + '</span>' +
         '<span class="theme-count">' + theme.ways.length + '</span>' + CHEV;
       head.addEventListener('click', () => {
         const wasOpen = sec.classList.contains('open');
