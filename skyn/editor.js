@@ -159,7 +159,7 @@
   const modal = $('#palette-panel');
   const pmList = $('#pm-list');
   const pmRender = $('#pm-render');
-  let selPal = -1;
+  const selPals = new Set();   // multiple palettes can be picked at once
   $('#pm-count').textContent = PALETTES.length;
 
   const rot = (a, n) => a.slice(n).concat(a.slice(0, n));
@@ -184,17 +184,24 @@
       pmList.appendChild(it);
     });
   };
+  const updateRenderBtn = () => {
+    const n = selPals.size;
+    pmRender.disabled = n === 0;
+    if (n === 0) pmRender.textContent = 'Select a palette to render';
+    else if (n === 1) pmRender.textContent = 'Render ' + PALETTES[[...selPals][0]].name;
+    else pmRender.textContent = 'Render ' + n + ' palettes';
+  };
   const selectPalette = (pi) => {
-    selPal = pi;
-    [...pmList.children].forEach((el, i) => el.classList.toggle('selected', i === pi));
-    pmRender.disabled = false;
-    pmRender.textContent = 'Render ' + PALETTES[pi].name;
+    const el = pmList.children[pi];
+    const pill = el.querySelector('.pm-select');
+    if (selPals.has(pi)) { selPals.delete(pi); el.classList.remove('selected'); pill.textContent = '+ Select'; }
+    else { selPals.add(pi); el.classList.add('selected'); pill.textContent = '✓ Selected'; }
+    updateRenderBtn();
   };
   const openModal = () => {
-    selPal = -1;
-    pmRender.disabled = true;
-    pmRender.textContent = 'Select a palette to render';
-    [...pmList.children].forEach(el => el.classList.remove('selected'));
+    selPals.clear();
+    [...pmList.children].forEach(el => { el.classList.remove('selected'); el.querySelector('.pm-select').textContent = '+ Select'; });
+    updateRenderBtn();
     modal.hidden = false;
   };
   const closeModal = () => { modal.hidden = true; };
@@ -204,18 +211,20 @@
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
 
   pmRender.addEventListener('click', () => {
-    if (selPal < 0) return;
+    const ids = [...selPals];
+    if (!ids.length) return;
+    const cost = ids.length * 10;
     const t = readTokens();
-    if (t < 10) { showToast('Not enough tokens.'); return; }
-    writeTokens(t - 10);
-    const pal = PALETTES[selPal];
-    THEMES.push({ name: pal.name, ways: paletteToWays(pal) });
-    current = { t: THEMES.length - 1, i: 0 };
+    if (t < cost) { showToast('Not enough tokens.'); return; }
+    writeTokens(t - cost);
+    const firstNew = THEMES.length;
+    ids.forEach(pi => { const pal = PALETTES[pi]; THEMES.push({ name: pal.name, ways: paletteToWays(pal) }); });
+    current = { t: firstNew, i: 0 };
     buildThemes();
     selectWay(current.t, 0);
     themesBox.querySelectorAll('.theme')[current.t]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     closeModal();
-    showToast('Added ' + pal.name + ' palette (' + pal.c.length + ' colours) · −10 tokens');
+    showToast('Added ' + ids.length + ' palette' + (ids.length > 1 ? 's' : '') + ' · −' + cost + ' tokens');
   });
 
   buildPalettes();
