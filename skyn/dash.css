@@ -8,17 +8,15 @@
 .db{
   --violet:#6c4bff;
   min-height:100vh;display:flex;flex-direction:column;color:var(--ink,#141019);
-  background:
-    radial-gradient(120% 80% at 22% 30%,#f3f1f7 0%,rgba(243,241,247,0) 55%),
-    radial-gradient(120% 90% at 85% 20%,#efeef6 0%,rgba(239,238,246,0) 60%),
-    linear-gradient(180deg,#eceaf1 0%,#e8e4ec 100%);
+  /* same lavender-grey gradient as the quality-check page */
+  background:linear-gradient(180deg,#eee7ee 0%,#e9e2e9 55%,#e5dfe6 100%);
   -webkit-font-smoothing:antialiased;
 }
 .db a{text-decoration:none;color:inherit}
 
-/* ---------- Header (matches the homepage nav) ---------- */
-.db-header{display:flex;align-items:center;gap:2rem;width:min(1240px,100%);margin:0 auto;
-  padding:1.5rem clamp(20px,4vw,44px)}
+/* ---------- Header (same 1116px shell as the check page) ---------- */
+.db-header{display:flex;align-items:center;gap:2rem;width:min(1116px,100%);margin:0 auto;
+  padding:1.3rem 24px}
 .db-logo img{height:30px;width:auto;display:block}
 .db-nav{display:flex;gap:2rem;margin-left:1.6rem}
 .db-nav a{color:#141019;text-decoration:none;font-weight:500;font-size:1.02rem;opacity:.82;
@@ -27,10 +25,10 @@
 .db-actions{margin-left:auto;display:flex;align-items:center;gap:.8rem}
 .db .avatar{width:44px;height:44px;background:#141019}
 
-/* ---------- Main split ---------- */
-.db-main{flex:1;width:min(1240px,100%);margin:0 auto;
-  padding:.5rem clamp(20px,4vw,44px) 6rem;
-  display:grid;grid-template-columns:1.02fr .98fr;gap:clamp(1.5rem,4vw,3.6rem);align-items:center}
+/* ---------- Main split (same 1116px shell + grid as the check page) ---------- */
+.db-main{flex:1;width:min(1116px,100%);margin:0 auto;
+  padding:.5rem 24px 6rem;
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:2rem;align-items:center}
 
 /* ---------- Left · figure stage ---------- */
 .db-stage{position:relative;border-radius:30px;overflow:hidden;isolation:isolate;
@@ -45,10 +43,11 @@
   font-weight:600;font-size:.9rem;color:#3a3542;box-shadow:0 8px 24px rgba(28,24,38,.1)}
 .db-stage .db-badge i{width:8px;height:8px;border-radius:50%;background:#9fc21a;box-shadow:0 0 0 4px rgba(159,194,26,.2)}
 
-/* ---------- Right · glass welcome card ---------- */
-.db-card{background:rgba(255,255,255,.52);-webkit-backdrop-filter:blur(22px) saturate(1.5);
+/* ---------- Right · glass welcome card (same width as the check panel) ---------- */
+.db-card{justify-self:end;width:100%;max-width:560px;
+  background:rgba(255,255,255,.55);-webkit-backdrop-filter:blur(22px) saturate(1.5);
   backdrop-filter:blur(22px) saturate(1.5);border:1px solid rgba(255,255,255,.85);
-  border-radius:30px;padding:clamp(1.8rem,3vw,2.7rem);box-shadow:0 22px 60px rgba(28,24,38,.10)}
+  border-radius:30px;padding:2.3rem 2rem 2.4rem;box-shadow:0 24px 64px rgba(28,24,38,.10),0 3px 10px rgba(28,24,38,.05)}
 .db-eb{display:block;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8b8590;font-size:.9rem;margin-bottom:1rem}
 .db-title{margin:0 0 1rem;font-weight:700;font-size:clamp(2.3rem,4.2vw,3.2rem);line-height:1.05;
   letter-spacing:-.025em;color:#141019}
