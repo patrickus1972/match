@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKYN — top up tokens</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="editor.css">
+  <link rel="stylesheet" href="tokens.css">
+</head>
+<body>
+  <div class="tk" id="tokens">
+    <!-- ===== Header (reused main-menu elements) ===== -->
+    <header class="tk-header">
+      <a class="tk-logo" href="index.html" data-nav="home" aria-label="SKYN home"><img src="assets/skyn-logo.png" alt="SKYN"></a>
+      <div class="tk-actions">
+        <span class="token-pill"><span class="coin"></span><b>1,240</b></span>
+        <button class="dz-bell" type="button" aria-label="Notifications">
+          <svg viewBox="0 0 24 24"><path d="M6 16V10a6 6 0 0 1 12 0v6l1.5 2h-15Z"/><path d="M10 21h4"/></svg>
+          <span class="dz-bell-badge">3</span>
+        </button>
+        <button class="avatar" type="button" title="Account">K</button>
+      </div>
+    </header>
+
+    <!-- ===== Main ===== -->
+    <main class="tk-main">
+      <p class="tk-eyebrow">Tokens <i></i> SKYN credits</p>
+      <h1 class="tk-title">You’re out of tokens — top up to keep creating.</h1>
+      <p class="tk-sub">Tokens are the credits you spend to create. 1 token = 1 credit · a colour round costs 5. Buy a pack to keep creating.</p>
+
+      <!-- cost chips -->
+      <div class="tk-info">
+        <span class="tk-chip">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l1.9 5.6a2 2 0 0 0 1.3 1.3L20.8 11l-5.6 1.9a2 2 0 0 0-1.3 1.3L12 20l-1.9-5.6a2 2 0 0 0-1.3-1.3L3.2 11l5.6-1.9a2 2 0 0 0 1.3-1.3L12 2Z"/><path d="M19 3l.6 1.7.2.2 1.7.6-1.7.6-.2.2L19 9l-.6-1.7-.2-.2L16.5 6l1.7-.6.2-.2L19 3Z"/></svg>
+          <span class="tk-chip-label">Generate a skin</span>
+          <span class="tk-cost"><b>5</b><span class="coin sm"></span></span>
+        </span>
+        <span class="tk-chip">
+          <svg class="pal" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4C7 4 3.5 7.6 3.5 12S7 20 11 20c1.3 0 1.7-1.5 1-2.3-.6-.8-.2-1.7.7-1.7H17a3.5 3.5 0 0 0 3.5-3.5C20.5 7.4 16.7 4 12 4Z"/><circle cx="7.6" cy="12.3" r="1.1" fill="#141019" stroke="none"/><circle cx="10" cy="8.4" r="1.1" fill="#141019" stroke="none"/><circle cx="14.4" cy="8.4" r="1.1" fill="#141019" stroke="none"/><circle cx="16.8" cy="12" r="1.1" fill="#141019" stroke="none"/></svg>
+          <span class="tk-chip-label">Generate colours</span>
+          <span class="tk-cost"><b>5</b><span class="coin sm"></span></span>
+        </span>
+      </div>
+
+      <!-- plans -->
+      <div class="tk-plans">
+        <!-- Starter -->
+        <section class="tk-plan">
+          <div class="tk-plan-head"><h3>Starter</h3></div>
+          <p class="tk-tag">Just trying it out</p>
+          <div class="tk-amount"><b>1,000</b><span class="tk-coin"></span></div>
+          <div class="tk-detail"><p class="tk-meta">≈ 200 colours · no bonus</p></div>
+          <div class="tk-spacer"></div>
+          <p class="tk-price">$24.95</p>
+          <button class="tk-buy" type="button">Buy</button>
+        </section>
+
+        <!-- Popular (featured) -->
+        <section class="tk-plan featured">
+          <div class="tk-plan-head"><h3>Popular</h3><span class="tk-best">Best value</span></div>
+          <p class="tk-tag" aria-hidden="true">&nbsp;</p>
+          <div class="tk-amount"><b>12,000</b><span class="tk-coin"></span></div>
+          <div class="tk-detail">
+            <p class="tk-desc">For regular creators shipping drops</p>
+            <p class="tk-meta">≈ 2,400 colours · +10% bonus</p>
+          </div>
+          <div class="tk-spacer"></div>
+          <p class="tk-price">$49.95</p>
+          <button class="tk-buy primary" type="button">Buy</button>
+        </section>
+
+        <!-- Pro -->
+        <section class="tk-plan">
+          <div class="tk-plan-head"><h3>Pro</h3></div>
+          <p class="tk-tag">Selling skins seriously</p>
+          <div class="tk-amount"><b>25,000</b><span class="tk-coin"></span></div>
+          <div class="tk-detail"><p class="tk-meta">≈ 5,000 colours · +20% bonus</p></div>
+          <div class="tk-spacer"></div>
+          <p class="tk-price">$99.95</p>
+          <button class="tk-buy" type="button">Buy</button>
+        </section>
+      </div>
+
+      <!-- coupon -->
+      <div class="tk-coupon">
+        <span class="tk-gift">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M4 13h16M12 9v11M9 9a2.5 2.5 0 1 1 3-4c1 1 0 4 0 4M15 9a2.5 2.5 0 1 0-3-4"/></svg>
+        </span>
+        <div class="tk-coupon-txt">
+          <b>Got a coupon or gift-card code?</b>
+          <span>Apply it now for bonus or discounted tokens.</span>
+        </div>
+        <div class="tk-coupon-form">
+          <input type="text" id="tk-code" placeholder="SKYN-XXXX">
+          <button class="tk-apply" id="tk-apply" type="button">Apply</button>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <div class="ed-toast" id="tk-toast"></div>
+  <script src="tokens.js"></script>
+</body>
+</html>
