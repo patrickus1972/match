@@ -1,0 +1,85 @@
+/* ============================================================
+   SKYN — legal center (terms, privacy, cookies, cookie settings)
+   grey background, existing General Sans type scale
+   ============================================================ */
+.lg,.lg *{font-family:"General Sans","Inter",system-ui,sans-serif;box-sizing:border-box}
+.lg{min-height:100vh;display:flex;flex-direction:column;color:var(--ink,#17141c);
+  background:#e8e7ec;-webkit-font-smoothing:antialiased}
+
+/* ---------- Top bar ---------- */
+.lg-top{display:flex;align-items:center;width:min(1080px,100%);margin:0 auto;padding:1.5rem 24px .5rem}
+.lg-logo img{height:30px;width:auto;display:block;filter:brightness(0)}
+.lg-back{margin-left:auto;display:inline-flex;align-items:center;gap:.4rem;color:#6f6a78;text-decoration:none;
+  font-weight:600;font-size:.98rem;transition:color .2s}
+.lg-back:hover{color:#141019}
+.lg-back svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Head ---------- */
+.lg-main{flex:1;width:min(1080px,100%);margin:0 auto;padding:1.6rem 24px 4rem}
+.lg-head{margin-bottom:2.2rem}
+.lg-eyebrow{margin:0 0 .7rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:#9a94a2;font-size:.8rem}
+.lg-h1{margin:0 0 .7rem;font-weight:800;font-size:2.7rem;letter-spacing:-.03em;color:#141019}
+.lg-sub{margin:0;max-width:60ch;color:#6f6a78;font-weight:500;font-size:1.08rem;line-height:1.55}
+.lg-sub a{color:#141019;font-weight:600;text-decoration:underline;text-underline-offset:2px}
+
+/* ---------- Body split ---------- */
+.lg-body{display:grid;grid-template-columns:250px minmax(0,1fr);gap:1.6rem;align-items:start}
+
+/* ---------- Side nav ---------- */
+.lg-nav{position:sticky;top:1.4rem;display:flex;flex-direction:column;gap:.35rem}
+.lg-navitem{display:flex;align-items:center;gap:.75rem;width:100%;text-align:left;cursor:pointer;
+  border:1px solid transparent;background:transparent;border-radius:14px;padding:.8rem .9rem;
+  font-family:inherit;font-weight:600;font-size:1rem;color:#5f5a67;transition:background .18s var(--ease,ease),color .18s,border-color .18s}
+.lg-navitem:hover{background:rgba(255,255,255,.55);color:#141019}
+.lg-navico{flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:#fff;display:grid;place-items:center;box-shadow:0 2px 8px rgba(28,24,38,.06)}
+.lg-navico svg{width:19px;height:19px;fill:none;stroke:#6f6a78;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.lg-navitem.active{background:#fff;color:#141019;border-color:rgba(28,24,38,.06);box-shadow:0 8px 24px rgba(28,24,38,.08)}
+.lg-navitem.active .lg-navico{background:var(--yellow,#e6ea0f)}
+.lg-navitem.active .lg-navico svg{stroke:var(--yellow-ink,#14160a)}
+
+/* ---------- Content card ---------- */
+.lg-content{background:#fff;border:1px solid rgba(28,24,38,.06);border-radius:22px;
+  padding:2.6rem 2.8rem;box-shadow:0 14px 44px rgba(28,24,38,.07);min-height:60vh}
+.lg-doc{display:none}
+.lg-doc.active{display:block;animation:lgIn .3s var(--ease,ease)}
+@keyframes lgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.lg-updated{margin:0 0 1rem;font-weight:600;font-size:.85rem;letter-spacing:.02em;color:#a29da9;text-transform:uppercase}
+.lg-doc h2{margin:0 0 1rem;font-weight:800;font-size:2rem;letter-spacing:-.02em;color:#141019}
+.lg-lead{margin:0 0 2rem;color:#4f4a58;font-weight:500;font-size:1.14rem;line-height:1.6;max-width:66ch}
+.lg-doc h3{margin:2rem 0 .6rem;font-weight:700;font-size:1.16rem;color:#141019}
+.lg-doc p{margin:0;color:#615c6b;font-weight:450;font-size:1.02rem;line-height:1.68;max-width:68ch}
+.lg-doc a{color:#141019;font-weight:600;text-decoration:underline;text-underline-offset:2px}
+.lg-inline{border:0;background:transparent;font:inherit;color:#141019;font-weight:600;text-decoration:underline;
+  text-underline-offset:2px;cursor:pointer;padding:0}
+
+/* ---------- Cookie settings ---------- */
+.lg-opt{display:flex;align-items:center;gap:1.4rem;padding:1.2rem 0;border-bottom:1px solid rgba(28,24,38,.08)}
+.lg-opt:first-of-type{border-top:1px solid rgba(28,24,38,.08)}
+.lg-opt-txt{flex:1}
+.lg-opt-txt b{display:block;font-weight:700;font-size:1.06rem;color:#141019}
+.lg-opt-txt span{display:block;margin-top:.2rem;color:#8a8590;font-weight:500;font-size:.98rem;line-height:1.5}
+.lg-switch{flex:0 0 auto;position:relative;cursor:pointer}
+.lg-switch input{position:absolute;opacity:0;pointer-events:none}
+.lg-track{display:block;width:46px;height:27px;border-radius:999px;background:#cfccd8;position:relative;transition:background .2s var(--ease,ease)}
+.lg-track::after{content:"";position:absolute;top:3px;left:3px;width:21px;height:21px;border-radius:50%;background:#fff;
+  transition:transform .2s var(--ease,ease);box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.lg-switch input:checked + .lg-track{background:var(--yellow,#e6ea0f)}
+.lg-switch input:checked + .lg-track::after{transform:translateX(19px)}
+.lg-switch.is-locked{cursor:not-allowed;opacity:.9}
+.lg-switch.is-locked input:checked + .lg-track{background:#bdbac6}
+
+.lg-actions{display:flex;gap:.8rem;margin-top:1.8rem;flex-wrap:wrap}
+.lg-btn{border:0;cursor:pointer;font-family:inherit;font-weight:700;font-size:1.02rem;border-radius:14px;padding:.9rem 1.6rem;
+  background:var(--ink,#17141c);color:#fff;box-shadow:0 12px 30px rgba(20,18,26,.22);transition:background .2s var(--ease,ease),transform .14s}
+.lg-btn:hover{background:#2c2740;transform:translateY(-1px)}
+.lg-btn.ghost{background:#fff;color:#141019;border:1px solid #dcdae4;box-shadow:0 4px 14px rgba(28,24,38,.06)}
+.lg-btn.ghost:hover{background:#f4f3f6}
+
+@media (max-width:860px){
+  .lg-body{grid-template-columns:1fr}
+  .lg-nav{position:static;flex-direction:row;flex-wrap:wrap}
+  .lg-navitem{width:auto}
+  .lg-content{padding:1.8rem 1.5rem}
+  .lg-h1{font-size:2.1rem}
+}
