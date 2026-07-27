@@ -102,7 +102,7 @@ img{max-width:100%}
 .step-copy .sc-body{font-weight:500;font-size:1.24cqw;line-height:1.4;color:#5f5a67;margin-top:1.1cqw;min-height:3.5cqw}
 .step-copy .sc-price{display:flex;align-items:center;gap:.85cqw;margin-top:2.6cqw}
 .step-copy .sc-big{font-weight:800;font-size:2.5cqw;line-height:1;letter-spacing:-.03em;color:#141019}
-.step-copy .sc-note{font-weight:500;font-size:.98cqw;line-height:1.32;color:#7c7782}
+.step-copy .sc-note{font-weight:500;font-size:1.16cqw;line-height:1.36;color:#7c7782}
 .step1-copy{left:33.6%;top:78.2%;width:15%;--cover:#e8e7ed}
 .step1-copy .sc-price{margin-top:3.6cqw}
 /* extend only STEP 1's cover downward to swallow the baked note's tail */
