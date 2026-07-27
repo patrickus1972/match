@@ -3,7 +3,9 @@
    ============================================================ */
 .qc,.qc *{font-family:"General Sans","Inter",system-ui,sans-serif;box-sizing:border-box}
 .qc{min-height:100vh;display:flex;flex-direction:column;color:var(--ink,#17141c);
-  background:linear-gradient(180deg,#f5f4f7 0%,#ecebf1 55%,#e7e6ed 100%);-webkit-font-smoothing:antialiased}
+  /* same lavender-grey as the homepage hero (sampled from section-1) so the
+     cropped figure blends and the page reads as the same template */
+  background:linear-gradient(180deg,#eee7ee 0%,#e9e2e9 55%,#e5dfe6 100%);-webkit-font-smoothing:antialiased}
 
 /* ---------- Header (aligned to the homepage 1116px content shell) ---------- */
 .qc-header{display:flex;align-items:center;gap:2rem;width:min(1116px,100%);margin:0 auto;padding:1.3rem 24px}
