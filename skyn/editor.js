@@ -138,20 +138,87 @@
   const readTokens = () => parseInt(tokenEl.textContent.replace(/,/g, ''), 10) || 0;
   const writeTokens = (n) => tokenEl.textContent = n.toLocaleString('en-US');
 
-  $('#gen-btn').addEventListener('click', () => {
+  // ---- "Add colours" palette modal (opens from Generate more variants) ----
+  const PALETTES = [
+    { name: 'Monochrome', c: ['#141414','#3b3b3b','#6e6e6e','#a9a9a9','#f0f0f0'] },
+    { name: 'Pastel',     c: ['#c7d4f2','#d9c2f0','#f4c2d7','#d6d6db','#f2dd7a'] },
+    { name: 'Vibrant',    c: ['#e5352b','#f2942b','#f2e13d','#4caf50','#3f7ff0'] },
+    { name: 'Earth',      c: ['#4a3323','#6e4a2a','#4a5330','#3f4a2a','#c2a678'] },
+    { name: 'Neon',       c: ['#d6f23d','#f2a02b','#f2611f','#f22ba8','#a02bf2'] },
+    { name: 'Ocean',      c: ['#0a3d62','#1f7a8c','#2ec4b6','#8ecae6','#cdeeff'] },
+    { name: 'Sunset',     c: ['#2a1a4a','#7a2b8a','#e0457b','#f2792b','#f2c94c'] },
+    { name: 'Berry',      c: ['#3a0d2e','#7a1b56','#b83280','#e06fae','#f4b8dd'] },
+    { name: 'Forest',     c: ['#14261a','#26492f','#3f7d4f','#7db584','#cfe6d0'] },
+    { name: 'Candy',      c: ['#ff5da2','#ff8fb1','#ffd23f','#5ad1e6','#8a5cf0'] },
+    { name: 'Mono Warm',  c: ['#2a201a','#4a3a2e','#7a6450','#b09a82','#efe4d4'] },
+    { name: 'Jewel',      c: ['#0d3b3b','#8a1c4a','#3a2b8a','#1f8a5a','#c9a227'] },
+    { name: 'Ice',        c: ['#2a3d5a','#5a7aa8','#9ec4e6','#cfe4f5','#eef7ff'] },
+    { name: 'Retro',      c: ['#e8552b','#f2b53d','#2a8a6e','#2b5aa8','#efe6d0'] },
+    { name: 'Grape Soda', c: ['#2a0d4a','#6a2bb0','#a05cf0','#d6a8ff','#efe0ff'] },
+  ];
+  const modal = $('#palette-modal');
+  const pmList = $('#pm-list');
+  const pmRender = $('#pm-render');
+  let selPal = -1;
+  $('#pm-count').textContent = PALETTES.length;
+
+  const rot = (a, n) => a.slice(n).concat(a.slice(0, n));
+  // turn a 5-colour palette into 5 hoodie colourways
+  const paletteToWays = (pal) => pal.c.map((_, i) => {
+    const r = rot(pal.c, i);
+    return W(pal.name + ' ' + (i + 1), [r[0], r[4], r[1], r[2], r[3], r[1], r[3]]);
+  });
+
+  const buildPalettes = () => {
+    pmList.innerHTML = '';
+    PALETTES.forEach((pal, pi) => {
+      const it = document.createElement('button');
+      it.type = 'button';
+      it.className = 'pm-item';
+      const sw = pal.c.map(c => '<span style="background:' + c + '"></span>').join('');
+      it.innerHTML = '<div class="pm-item-head"><span class="pm-name">' + pal.name +
+        '</span><span class="pm-meta">' + pal.c.length + ' colours</span>' +
+        '<span class="pm-select">+ Select</span></div>' +
+        '<div class="pm-swatches">' + sw + '</div>';
+      it.addEventListener('click', () => selectPalette(pi));
+      pmList.appendChild(it);
+    });
+  };
+  const selectPalette = (pi) => {
+    selPal = pi;
+    [...pmList.children].forEach((el, i) => el.classList.toggle('selected', i === pi));
+    pmRender.disabled = false;
+    pmRender.textContent = 'Render ' + PALETTES[pi].name;
+  };
+  const openModal = () => {
+    selPal = -1;
+    pmRender.disabled = true;
+    pmRender.textContent = 'Select a palette to render';
+    [...pmList.children].forEach(el => el.classList.remove('selected'));
+    modal.hidden = false;
+  };
+  const closeModal = () => { modal.hidden = true; };
+
+  $('#gen-btn').addEventListener('click', openModal);
+  modal.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !modal.hidden) closeModal(); });
+
+  pmRender.addEventListener('click', () => {
+    if (selPal < 0) return;
     const t = readTokens();
     if (t < 10) { showToast('Not enough tokens.'); return; }
     writeTokens(t - 10);
-    const theme = THEMES[current.t];
-    const src = theme.ways[current.i];
-    theme.ways.push(W('Variant ' + (theme.ways.length + 1), src.c.slice().reverse()));
-    const newIdx = theme.ways.length - 1;
+    const pal = PALETTES[selPal];
+    THEMES.push({ name: pal.name, ways: paletteToWays(pal) });
+    current = { t: THEMES.length - 1, i: 0 };
     buildThemes();
-    selectWay(current.t, newIdx);
-    themesBox.querySelectorAll('.theme')[current.t]
-      ?.querySelectorAll('.variant')[newIdx]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    showToast('New variant added to ' + theme.name + ' · −10 tokens');
+    selectWay(current.t, 0);
+    themesBox.querySelectorAll('.theme')[current.t]?.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    closeModal();
+    showToast('Added ' + pal.name + ' palette (' + pal.c.length + ' colours) · −10 tokens');
   });
+
+  buildPalettes();
 
   // ---- cart ----
   const badge = $('#cart-badge');
