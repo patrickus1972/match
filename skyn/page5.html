@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKYN — quality check</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="editor.css">
+  <link rel="stylesheet" href="check.css">
+</head>
+<body>
+  <div class="qc" id="check">
+    <!-- ===== Header (reused main-menu elements) ===== -->
+    <header class="qc-header">
+      <a class="qc-logo" href="index.html" data-nav="home" aria-label="SKYN home"><img src="assets/skyn-logo.png" alt="SKYN"></a>
+      <nav class="qc-nav">
+        <a href="index.html#how" data-nav="home">How it works</a>
+        <a href="index.html#faq" data-nav="home">FAQ</a>
+        <a href="index.html#about" data-nav="home">About</a>
+      </nav>
+      <div class="qc-actions">
+        <button class="qc-login" type="button">Log in</button>
+        <button class="qc-signup" type="button">
+          <span>Sign up</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- ===== Main ===== -->
+    <main class="qc-main">
+      <!-- left: 3D figure -->
+      <section class="qc-figure">
+        <img src="assets/qc-figure.webp" alt="SKYN 3D avatar preview">
+      </section>
+
+      <!-- right: quality-check panel -->
+      <section class="qc-panel">
+        <span class="qc-badge"><i></i>Quality check</span>
+        <h2 class="qc-title">Is your design good to go?</h2>
+        <p class="qc-sub">A great skin starts with a clean file. Give <b>ranger-tee.png</b> a quick once-over — the closer it matches these, the sharper the result.</p>
+
+        <div class="qc-file">
+          <span class="qc-file-ico">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4 6 6H4v4l2 1v9h12v-9l2-1V6h-2l-2-2a3 3 0 0 1-6 0Z"/></svg>
+          </span>
+          <div class="qc-file-meta">
+            <b>ranger-tee.png</b>
+            <span>3.2 MB · PNG · your design</span>
+          </div>
+        </div>
+
+        <ul class="qc-checks">
+          <li class="qc-check">
+            <span class="qc-tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4 10-11"/></svg></span>
+            <b>PNG or JPG</b>
+            <span class="qc-hint">transparent PNG best</span>
+          </li>
+          <li class="qc-check">
+            <span class="qc-tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4 10-11"/></svg></span>
+            <b>Under 25 MB</b>
+            <span class="qc-hint">smaller uploads faster</span>
+          </li>
+          <li class="qc-check">
+            <span class="qc-tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4 10-11"/></svg></span>
+            <b>2048 × 2048 px or larger</b>
+            <span class="qc-hint">square 1:1</span>
+          </li>
+          <li class="qc-check">
+            <span class="qc-tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4 10-11"/></svg></span>
+            <b>One garment, flat &amp; front-on</b>
+            <span class="qc-hint">no folds or models</span>
+          </li>
+        </ul>
+
+        <label class="qc-confirm">
+          <input type="checkbox" id="qc-agree">
+          <span class="qc-box"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 13l4 4 10-11"/></svg></span>
+          <span class="qc-confirm-txt">My design checks out — this is the file I want to render.</span>
+        </label>
+
+        <button class="qc-btn" id="qc-continue" type="button" data-nav="render" disabled>Confirm to continue</button>
+      </section>
+    </main>
+  </div>
+
+  <div class="ed-toast" id="qc-toast"></div>
+  <script src="check.js"></script>
+</body>
+</html>

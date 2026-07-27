@@ -1,0 +1,93 @@
+/* ============================================================
+   SKYN — quality-check step (reuses tokens, glass, pills)
+   ============================================================ */
+.qc,.qc *{font-family:"General Sans","Inter",system-ui,sans-serif;box-sizing:border-box}
+.qc{min-height:100vh;display:flex;flex-direction:column;color:var(--ink,#17141c);
+  background:linear-gradient(180deg,#f5f4f7 0%,#ecebf1 55%,#e7e6ed 100%);-webkit-font-smoothing:antialiased}
+
+/* ---------- Header ---------- */
+.qc-header{display:flex;align-items:center;gap:2rem;padding:1.4rem 2.6rem}
+.qc-logo img{height:26px;width:auto;display:block;filter:brightness(0)}
+.qc-nav{display:flex;gap:2.2rem;margin-left:1.6rem}
+.qc-nav a{color:var(--ink,#17141c);text-decoration:none;font-weight:600;font-size:1.02rem;opacity:.9;transition:opacity .2s}
+.qc-nav a:hover{opacity:1}
+.qc-actions{margin-left:auto;display:flex;align-items:center;gap:.8rem}
+.qc-login{border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:1rem;color:var(--ink,#17141c);
+  background:#fff;border-radius:13px;padding:.72rem 1.5rem;box-shadow:0 2px 10px rgba(28,24,38,.08);transition:transform .15s var(--ease,ease),box-shadow .2s}
+.qc-login:hover{box-shadow:0 6px 18px rgba(28,24,38,.12);transform:translateY(-1px)}
+.qc-signup{display:inline-flex;align-items:center;gap:.5rem;border:0;cursor:pointer;font-family:inherit;font-weight:700;font-size:1rem;
+  color:var(--yellow-ink,#14160a);background:var(--yellow,#e6ea0f);border-radius:13px;padding:.72rem 1.5rem;
+  box-shadow:0 8px 22px rgba(198,203,0,.35);transition:transform .15s var(--ease,ease),box-shadow .2s}
+.qc-signup:hover{box-shadow:0 12px 30px rgba(198,203,0,.45);transform:translateY(-1px)}
+.qc-signup svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Main split ---------- */
+.qc-main{flex:1;width:min(1420px,100%);margin:0 auto;padding:.5rem 2.6rem 2.4rem;
+  display:grid;grid-template-columns:minmax(0,1.06fr) minmax(0,1fr);gap:2rem;align-items:center}
+
+/* ---------- Figure ---------- */
+.qc-figure{display:flex;align-items:center;justify-content:center;height:100%}
+.qc-figure img{display:block;width:100%;max-width:640px;height:auto;max-height:calc(100vh - 120px);object-fit:contain;
+  /* feather all four edges so the render blends into the page instead of showing a box */
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 5%,#000 95%,transparent 100%);
+  -webkit-mask-composite:source-in;mask-composite:intersect;
+  mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 5%,#000 95%,transparent 100%)}
+
+/* ---------- Panel ---------- */
+.qc-panel{justify-self:center;width:100%;max-width:600px;
+  background:rgba(255,255,255,.55);-webkit-backdrop-filter:var(--glass-blur,blur(20px));backdrop-filter:var(--glass-blur,blur(20px));
+  border:1px solid var(--glass-brd,rgba(255,255,255,.85));border-radius:30px;
+  padding:2.6rem 3rem 2.8rem;box-shadow:0 24px 64px rgba(28,24,38,.10),0 3px 10px rgba(28,24,38,.05);
+  text-align:center}
+.qc-badge{display:inline-flex;align-items:center;gap:.55rem;background:var(--yellow,#e6ea0f);color:var(--yellow-ink,#14160a);
+  font-weight:800;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:.5rem 1.1rem;border-radius:999px}
+.qc-badge i{width:8px;height:8px;border-radius:50%;background:var(--yellow-ink,#14160a)}
+.qc-title{margin:1.2rem 0 .9rem;font-weight:800;font-size:2rem;letter-spacing:-.02em;color:#141019}
+.qc-sub{margin:0 auto 1.8rem;max-width:44ch;color:#6f6a78;font-weight:500;font-size:1.04rem;line-height:1.62}
+.qc-sub b{color:#141019;font-weight:700}
+
+/* ---------- File card ---------- */
+.qc-file{display:flex;align-items:center;gap:1rem;text-align:left;background:#fff;
+  border:1px solid rgba(28,24,38,.06);border-radius:18px;padding:1.05rem 1.2rem;margin-bottom:1.1rem;
+  box-shadow:0 6px 18px rgba(28,24,38,.05)}
+.qc-file-ico{flex:0 0 auto;width:58px;height:58px;border-radius:16px;background:var(--ink,#17141c);display:grid;place-items:center}
+.qc-file-ico svg{width:30px;height:30px;fill:var(--yellow,#e6ea0f)}
+.qc-file-meta b{display:block;font-size:1.18rem;font-weight:700;color:#141019;line-height:1.2}
+.qc-file-meta span{display:block;margin-top:.25rem;color:#8a8590;font-weight:500;font-size:.94rem}
+
+/* ---------- Checklist ---------- */
+.qc-checks{list-style:none;margin:0 0 1.6rem;padding:.35rem 1.2rem;text-align:left;
+  background:#fbfbfd;border:1px solid rgba(28,24,38,.06);border-radius:18px}
+.qc-check{display:flex;align-items:center;gap:.85rem;padding:.9rem 0;border-bottom:1px solid rgba(28,24,38,.07)}
+.qc-check:last-child{border-bottom:0}
+.qc-check b{font-weight:700;font-size:1.04rem;color:#141019}
+.qc-tick{flex:0 0 auto;width:26px;height:26px;border-radius:50%;background:var(--yellow,#e6ea0f);display:grid;place-items:center}
+.qc-tick svg{width:15px;height:15px;fill:none;stroke:var(--yellow-ink,#14160a);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+.qc-hint{margin-left:auto;color:#9a95a2;font-weight:500;font-size:.94rem;white-space:nowrap}
+
+/* ---------- Confirm ---------- */
+.qc-confirm{display:flex;align-items:center;gap:.8rem;text-align:left;cursor:pointer;margin:0 0 1.4rem;padding:0 .2rem}
+.qc-confirm input{position:absolute;opacity:0;pointer-events:none}
+.qc-box{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:#fff;border:2px solid #cfccd8;
+  display:grid;place-items:center;transition:background .18s var(--ease,ease),border-color .18s var(--ease,ease)}
+.qc-box svg{width:15px;height:15px;fill:none;stroke:var(--yellow-ink,#14160a);stroke-width:3;stroke-linecap:round;stroke-linejoin:round;
+  opacity:0;transform:scale(.6);transition:opacity .18s var(--ease,ease),transform .18s var(--ease,ease)}
+.qc-confirm input:checked + .qc-box{background:var(--yellow,#e6ea0f);border-color:var(--yellow,#e6ea0f)}
+.qc-confirm input:checked + .qc-box svg{opacity:1;transform:scale(1)}
+.qc-confirm-txt{font-weight:600;font-size:1rem;color:#141019}
+
+/* ---------- Continue button ---------- */
+.qc-btn{width:100%;border:0;font-family:inherit;font-weight:700;font-size:1.12rem;
+  border-radius:16px;padding:1.15rem;cursor:not-allowed;
+  background:#e4e3ea;color:#a5a1ad;transition:background .22s var(--ease,ease),color .22s var(--ease,ease),box-shadow .22s,transform .12s}
+.qc-btn.on{background:var(--ink,#17141c);color:#fff;cursor:pointer;box-shadow:0 14px 34px rgba(20,18,26,.24)}
+.qc-btn.on:hover{background:#2c2740;transform:translateY(-1px)}
+.qc-btn.on:active{transform:translateY(0)}
+
+@media (max-width:940px){
+  .qc-main{grid-template-columns:1fr;padding-top:0}
+  .qc-figure{order:2}
+  .qc-figure img{max-height:none}
+  .qc-nav{display:none}
+}
