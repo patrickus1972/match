@@ -210,6 +210,19 @@
   background:rgba(244,243,248,.94);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
   border-radius:26px;border:1px solid var(--glass-brd);box-shadow:0 24px 60px rgba(24,20,34,.18);padding:1.4rem}
 .palette-panel[hidden]{display:none}
+/* subtle entrance when the panel appears (display flips none→flex → animation plays) */
+@keyframes pmIn{from{opacity:0;transform:translateX(16px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes pmItemIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.palette-panel{animation:pmIn .32s var(--ease) both}
+.palette-panel .pm-item{animation:pmItemIn .34s var(--ease) both}
+.palette-panel .pm-item:nth-child(1){animation-delay:.04s}
+.palette-panel .pm-item:nth-child(2){animation-delay:.08s}
+.palette-panel .pm-item:nth-child(3){animation-delay:.12s}
+.palette-panel .pm-item:nth-child(4){animation-delay:.16s}
+.palette-panel .pm-item:nth-child(n+5){animation-delay:.2s}
+@media (prefers-reduced-motion:reduce){
+  .palette-panel,.palette-panel .pm-item{animation:none}
+}
 .pm-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.1rem}
 .pm-head h3{margin:0;font-size:1.55rem;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
 .pm-sub{margin:.3rem 0 0;color:#8b86a8;font-weight:500;font-size:.96rem}
