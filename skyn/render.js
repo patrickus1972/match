@@ -15,6 +15,7 @@
 
   /* ---- progress simulation ---- */
   const fill = $('#rp-fill'), pct = $('#rp-pct'), state = $('#rp-state'), step = $('#rp-step'), file = $('#rp-file');
+  const scrim = $('#rp-scrim'), scan = $('#rp-scan'), view = document.querySelector('.rp-fact-view');
   const stepFor = (p) => {
     if (p < 20) return { n: 1, l: 'Generating mesh',  f: 'ranger-tee.png' };
     if (p < 40) return { n: 2, l: 'UV unwrap',        f: 'ranger-tee.uv' };
@@ -30,6 +31,10 @@
     step.textContent = 'Step ' + s.n + ' of 5 · ' + s.l;
     file.textContent = s.f;
     state.textContent = p >= 100 ? 'done' : 'working…';
+    /* reveal the left render preview from the top down to the frontier */
+    if (scrim) scrim.style.top = p + '%';
+    if (scan) scan.style.top = p + '%';
+    if (view) view.classList.toggle('done', p >= 100);
   };
   render();
   const iv = setInterval(() => {

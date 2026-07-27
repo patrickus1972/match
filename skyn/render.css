@@ -27,7 +27,31 @@
   display:flex;align-items:flex-start;justify-content:center;padding:1.4rem;
   background:rgba(255,255,255,.5);-webkit-backdrop-filter:var(--glass-blur,blur(20px));backdrop-filter:var(--glass-blur,blur(20px));
   border:1px solid var(--glass-brd,rgba(255,255,255,.85));box-shadow:0 18px 50px rgba(28,24,38,.08)}
-.rp-fact-img{display:block;width:100%;height:auto;border-radius:18px}
+.rp-fact-view{position:relative;width:100%;border-radius:18px;overflow:hidden;align-self:flex-start;isolation:isolate}
+.rp-fact-img{display:block;width:100%;height:auto}
+
+/* "not yet rendered" region — desaturated / blurred, recedes from the top
+   as progress climbs, with a faint wireframe grid over the un-rendered part */
+.rp-fact-scrim{position:absolute;left:0;right:0;bottom:0;top:0;pointer-events:none;
+  -webkit-backdrop-filter:grayscale(1) blur(4px) brightness(1.05) contrast(.96);
+  backdrop-filter:grayscale(1) blur(4px) brightness(1.05) contrast(.96);
+  background:
+    repeating-linear-gradient(0deg,rgba(120,120,140,.10) 0 1px,transparent 1px 22px),
+    repeating-linear-gradient(90deg,rgba(120,120,140,.10) 0 1px,transparent 1px 22px),
+    rgba(232,231,238,.30);
+  transition:top .6s var(--ease,ease),opacity .5s var(--ease,ease)}
+
+/* scan line that sits on the render frontier */
+.rp-fact-scan{position:absolute;left:0;right:0;top:0;height:0;pointer-events:none;
+  transition:top .6s var(--ease,ease),opacity .4s var(--ease,ease)}
+.rp-fact-scan span{position:absolute;left:0;right:0;top:-1px;height:3px;
+  background:linear-gradient(90deg,transparent,var(--yellow,#e6ea0f) 20%,#fff 50%,var(--yellow,#e6ea0f) 80%,transparent);
+  box-shadow:0 0 16px 4px rgba(230,234,15,.55);animation:rpScan 1.4s var(--ease,ease) infinite}
+.rp-fact-scan::before{content:"";position:absolute;left:0;right:0;top:-40px;height:40px;
+  background:linear-gradient(to bottom,transparent,rgba(230,234,15,.16))}
+@keyframes rpScan{0%,100%{opacity:.55}50%{opacity:1}}
+.rp-fact-view.done .rp-fact-scrim{opacity:0}
+.rp-fact-view.done .rp-fact-scan{opacity:0}
 
 /* ---------- Render status panel ---------- */
 .rp-status{background:rgba(255,255,255,.5);-webkit-backdrop-filter:var(--glass-blur,blur(20px));backdrop-filter:var(--glass-blur,blur(20px));
