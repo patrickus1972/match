@@ -17,13 +17,15 @@
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;background:var(--panel)}
+html{scroll-behavior:smooth;background:#e9e2e9}
 body{
   margin:0;
-  /* lavender page background (sampled section tone) so the side gutters beside
-     the 1116px shell carry the render's background through instead of showing
-     white — matching the quality-check page and the section edges */
-  background:var(--panel);
+  /* lavender page background so the side gutters beside the 1116px shell carry
+     a background through instead of showing white — now the same lavender-grey
+     gradient as the quality-check page (viewport-anchored so every screenful
+     reads like the check page) */
+  background:linear-gradient(180deg,#eee7ee 0%,#e9e2e9 55%,#e5dfe6 100%);
+  background-attachment:fixed;
   color:var(--ink);
   font-family:"Inter","Segoe UI","Helvetica Neue",Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
