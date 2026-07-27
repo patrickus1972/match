@@ -1,0 +1,94 @@
+/* ============================================================
+   SKYN — My Designs page (reuses editor.css tokens/glass/hoodie)
+   ============================================================ */
+.dz,.dz *{font-family:"General Sans","Inter",system-ui,sans-serif;box-sizing:border-box}
+.dz{height:100vh;overflow:hidden;display:flex;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+
+/* ---------- Sidebar nav ---------- */
+.dz-nav{flex:0 0 266px;display:flex;flex-direction:column;gap:1.4rem;padding:1.6rem 1.2rem;
+  background:rgba(255,255,255,.7);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border-right:1px solid var(--glass-brd)}
+.dz-logo img{height:26px;width:auto;display:block;filter:brightness(0);margin:.3rem .6rem 1rem}
+.dz-group{display:flex;flex-direction:column;gap:.25rem}
+.dz-bottom{margin-top:auto}
+.dz-cap{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:.2rem .7rem .55rem}
+.dz-item{display:flex;align-items:center;gap:.8rem;padding:.72rem .8rem;border-radius:13px;cursor:pointer;
+  text-decoration:none;color:var(--ink);font-weight:600;font-size:1rem;transition:background .2s var(--ease)}
+.dz-item svg{width:20px;height:20px;flex:0 0 auto;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.dz-item:hover{background:rgba(20,18,26,.05)}
+.dz-item.active{background:var(--yellow);color:var(--yellow-ink);box-shadow:0 8px 20px rgba(198,214,0,.32)}
+
+/* ---------- Main ---------- */
+.dz-main{flex:1;min-width:0;overflow-y:auto;padding:1.8rem 2rem 2rem}
+.dz-main::-webkit-scrollbar{width:8px}
+.dz-main::-webkit-scrollbar-thumb{background:#cfccd8;border-radius:999px}
+
+.dz-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1.5rem;margin-bottom:1.5rem}
+.dz-top h1{margin:0;font-size:2.15rem;font-weight:800;letter-spacing:-.02em;display:flex;align-items:center;gap:.75rem}
+.dz-badge{background:var(--yellow);color:var(--yellow-ink);font-size:.82rem;font-weight:700;padding:.35rem .8rem;border-radius:999px}
+.dz-sub{margin:.55rem 0 0;color:var(--muted);font-weight:500;font-size:1.02rem}
+.dz-headactions{display:flex;align-items:center;gap:.7rem;flex:0 0 auto}
+.dz-bell{position:relative;width:44px;height:44px;border-radius:50%;background:var(--ink);border:0;cursor:pointer;display:grid;place-items:center}
+.dz-bell svg{width:20px;height:20px;fill:none;stroke:#fff;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.dz-bell-badge{position:absolute;top:-3px;right:-3px;min-width:19px;height:19px;padding:0 4px;border-radius:999px;
+  background:var(--yellow);color:var(--yellow-ink);font-size:.7rem;font-weight:800;display:grid;place-items:center;border:2px solid var(--bg)}
+
+/* ---------- Controls ---------- */
+.dz-controls{display:flex;align-items:center;gap:1rem;margin-bottom:1.3rem}
+.dz-search{flex:1;min-width:0;display:flex;align-items:center;gap:.7rem;background:rgba(255,255,255,.72);
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);border:1px solid var(--glass-brd);
+  border-radius:16px;padding:.85rem 1.1rem;box-shadow:var(--glass-sh)}
+.dz-search svg{width:20px;height:20px;flex:0 0 auto;fill:none;stroke:var(--muted);stroke-width:1.8;stroke-linecap:round}
+.dz-search input{border:0;background:transparent;outline:0;font-family:inherit;font-size:1rem;color:var(--ink);width:100%}
+.dz-search input::placeholder{color:var(--muted)}
+.dz-filter{display:inline-flex;background:rgba(255,255,255,.72);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border:1px solid var(--glass-brd);border-radius:999px;padding:.3rem;box-shadow:var(--glass-sh);flex:0 0 auto}
+.dz-filter button{border:0;background:transparent;cursor:pointer;font-family:inherit;font-weight:600;font-size:.95rem;
+  color:var(--muted);padding:.55rem 1.15rem;border-radius:999px;transition:all .2s var(--ease)}
+.dz-filter button.active{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(20,18,26,.08)}
+.dz-sort{display:inline-flex;align-items:center;gap:.45rem;background:rgba(255,255,255,.72);border:1px solid var(--glass-brd);
+  -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);border-radius:14px;padding:.72rem 1.1rem;cursor:pointer;
+  font-family:inherit;font-weight:600;font-size:.95rem;color:var(--muted);box-shadow:var(--glass-sh);flex:0 0 auto}
+.dz-sort b{color:var(--ink);font-weight:700}
+.dz-sort svg{width:16px;height:16px;fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dz-new{display:inline-flex;align-items:center;gap:.5rem;background:var(--yellow);color:var(--yellow-ink);border:0;
+  border-radius:14px;padding:.8rem 1.4rem;cursor:pointer;font-family:inherit;font-weight:700;font-size:1rem;
+  box-shadow:0 10px 26px rgba(198,214,0,.35);transition:all .2s var(--ease);flex:0 0 auto}
+.dz-new:hover{background:var(--yellow-ink);color:var(--yellow)}
+.dz-new .plus{font-size:1.2rem;line-height:1}
+
+/* ---------- Bulk bar ---------- */
+.dz-bulk{display:flex;align-items:center;gap:1.4rem;margin-bottom:1.4rem;padding:0 .2rem}
+.dz-selcount{font-weight:700;color:var(--ink);font-size:.98rem}
+.dz-sep{width:1px;height:20px;background:var(--line)}
+.dz-bulkbtn{display:inline-flex;align-items:center;gap:.5rem;border:0;background:transparent;cursor:pointer;
+  font-family:inherit;font-weight:600;font-size:.98rem;color:var(--muted);transition:color .2s var(--ease)}
+.dz-bulkbtn svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.dz-bulkbtn:hover{color:var(--ink)}
+.dz-bulkbtn.danger{color:#e0453b}
+.dz-bulkbtn.danger:hover{color:#c02a20}
+.dz-bulkbtn:disabled,.dz-clear:disabled{opacity:.4;cursor:default}
+.dz-clear{margin-left:auto;border:0;background:transparent;cursor:pointer;font-family:inherit;font-weight:600;font-size:.98rem;color:var(--muted)}
+.dz-clear:hover:not(:disabled){color:var(--ink)}
+
+/* ---------- Grid + cards ---------- */
+.dz-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem;padding-bottom:1rem}
+.dz-card{position:relative;background:rgba(255,255,255,.66);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border:2px solid transparent;border-radius:22px;padding:1.15rem;transition:all .2s var(--ease);box-shadow:var(--glass-sh)}
+.dz-card:hover{background:#fff;box-shadow:var(--glass-sh-lg)}
+.dz-card.sel{border-color:var(--yellow);background:#fcfce8}
+.dz-check{position:absolute;top:1.1rem;left:1.1rem;z-index:2;width:26px;height:26px;border-radius:8px;
+  border:2px solid #c9c6d2;background:rgba(255,255,255,.85);cursor:pointer;display:grid;place-items:center;transition:all .2s var(--ease)}
+.dz-check svg{width:16px;height:16px;fill:none;stroke:var(--yellow-ink);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;opacity:0}
+.dz-card.sel .dz-check{background:var(--yellow);border-color:var(--yellow)}
+.dz-card.sel .dz-check svg{opacity:1}
+.dz-thumb{border-radius:16px;aspect-ratio:1/.86;display:grid;place-items:center;margin-bottom:1rem;overflow:hidden;
+  background:linear-gradient(180deg,#f6f5f9,#eeedf3)}
+.dz-thumb .hoodie{width:82%;height:82%;display:block;filter:drop-shadow(0 14px 22px rgba(20,18,26,.1))}
+.dz-cardhead{display:flex;align-items:center;justify-content:space-between;gap:.8rem}
+.dz-name{font-weight:700;font-size:1.12rem;color:var(--ink)}
+.dz-count{flex:0 0 auto;background:rgba(20,18,26,.06);color:var(--muted);font-size:.8rem;font-weight:600;padding:.28rem .7rem;border-radius:999px}
+.dz-meta{margin:.5rem 0 0;color:var(--muted);font-size:.92rem;font-weight:500}
+.dz-card[hidden]{display:none}
+
+@media (max-width:1100px){.dz-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}

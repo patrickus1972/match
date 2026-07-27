@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKYN — my designs</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="editor.css">
+  <link rel="stylesheet" href="designs.css">
+</head>
+<body>
+  <div class="dz" id="designs">
+    <!-- ===== Sidebar nav ===== -->
+    <aside class="dz-nav">
+      <a class="dz-logo" href="index.html" data-nav="home" aria-label="SKYN home"><img src="assets/skyn-logo.png" alt="SKYN"></a>
+      <div class="dz-group">
+        <span class="dz-cap">Create</span>
+        <a class="dz-item" data-nav="editor" href="page2.html">
+          <svg viewBox="0 0 24 24"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2h9A1.5 1.5 0 0 1 21 9.5v8A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5Z"/></svg>
+          <span>Projects</span>
+        </a>
+        <a class="dz-item active" href="#">
+          <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>
+          <span>Designs</span>
+        </a>
+      </div>
+      <div class="dz-group dz-bottom">
+        <span class="dz-cap">Account</span>
+        <a class="dz-item" href="#">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+          <span>Account &amp; billing</span>
+        </a>
+        <a class="dz-item" href="#">
+          <svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15l-2.2-1.4L13.5 21l-2.2-1.4L9 21l-2.2-1.4L4.5 21V6Z"/><path d="M8 8h7M8 12h7M8 16h4"/></svg>
+          <span>Receipts</span>
+        </a>
+        <a class="dz-item" href="#">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.5 5.5l1.8 1.8M16.7 16.7l1.8 1.8M18.5 5.5l-1.8 1.8M7.3 16.7l-1.8 1.8"/></svg>
+          <span>Settings</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ===== Main ===== -->
+    <main class="dz-main">
+      <header class="dz-top">
+        <div>
+          <h1>Designs <span class="dz-badge" id="dz-count">13 designs</span></h1>
+          <p class="dz-sub">Group related skyns together — a drop, a collab, a character set.</p>
+        </div>
+        <div class="dz-headactions">
+          <span class="token-pill"><span class="coin">S</span><b>1,240</b></span>
+          <button class="dz-bell" type="button" aria-label="Notifications">
+            <svg viewBox="0 0 24 24"><path d="M6 16V10a6 6 0 0 1 12 0v6l1.5 2h-15Z"/><path d="M10 21h4"/></svg>
+            <span class="dz-bell-badge">3</span>
+          </button>
+          <button class="avatar" type="button" title="Account">K</button>
+        </div>
+      </header>
+
+      <div class="dz-controls">
+        <label class="dz-search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="text" id="dz-searchinput" placeholder="Search designs">
+        </label>
+        <div class="dz-filter" id="dz-filter">
+          <button class="active" data-filter="all">All</button>
+          <button data-filter="notpaid">Not paid</button>
+          <button data-filter="paid">Paid</button>
+        </div>
+        <button class="dz-sort" type="button">Sort: <b>Latest</b>
+          <svg viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <button class="dz-new" type="button" id="dz-new">
+          <span class="plus">+</span> New design
+        </button>
+      </div>
+
+      <div class="dz-bulk">
+        <span class="dz-selcount" id="dz-selcount">0 selected</span>
+        <span class="dz-sep"></span>
+        <button class="dz-bulkbtn" data-act="move"><svg viewBox="0 0 24 24"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2h9A1.5 1.5 0 0 1 21 9.5v8A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5Z"/></svg>Move to project</button>
+        <button class="dz-bulkbtn" data-act="export"><svg viewBox="0 0 24 24"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M5 21h14"/></svg>Export</button>
+        <button class="dz-bulkbtn" data-act="duplicate"><svg viewBox="0 0 24 24"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M4 16V4h12"/></svg>Duplicate</button>
+        <button class="dz-bulkbtn danger" data-act="delete"><svg viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>Delete</button>
+        <button class="dz-clear" id="dz-clear" type="button">Clear</button>
+      </div>
+
+      <div class="dz-grid" id="dz-grid"></div>
+    </main>
+  </div>
+
+  <!-- reusable hoodie template (cloned + recoloured per card) -->
+  <svg class="hoodie" id="hoodie-tpl" viewBox="0 0 420 430" style="display:none" aria-hidden="true">
+    <defs>
+      <linearGradient id="shadeGradD" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="rgba(255,255,255,.28)"/>
+        <stop offset=".45" stop-color="rgba(255,255,255,0)"/>
+        <stop offset="1" stop-color="rgba(20,18,26,.20)"/>
+      </linearGradient>
+    </defs>
+    <path class="p-sl"  d="M154,152 C124,158 110,184 100,230 L80,318 C77,332 86,342 100,338 L136,328 C128,300 128,240 142,192 C146,176 150,162 154,152 Z"/>
+    <path class="p-sr"  d="M266,152 C296,158 310,184 320,230 L340,318 C343,332 334,342 320,338 L284,328 C292,300 292,240 278,192 C274,176 270,162 266,152 Z"/>
+    <path class="p-body" d="M150,150 C134,158 128,182 126,214 L120,356 C120,364 126,370 134,370 L286,370 C294,370 300,364 300,356 L294,214 C292,182 286,158 270,150 C248,168 210,172 210,172 C210,172 172,168 150,150 Z"/>
+    <path class="p-rib" d="M80,320 L136,308 L142,338 L92,344 Z"/>
+    <path class="p-rib" d="M340,320 L284,308 L278,338 L328,344 Z"/>
+    <path class="p-rib" d="M122,348 L298,348 L300,356 C300,364 294,370 286,370 L134,370 C126,370 120,364 120,356 Z"/>
+    <path class="p-hood" d="M150,162 C140,90 174,50 210,50 C246,50 280,90 270,162 C250,152 232,148 210,148 C188,148 168,152 150,162 Z"/>
+    <path class="p-hoodin" d="M180,156 C180,124 192,110 210,110 C228,110 240,124 240,156 C228,150 222,148 210,148 C198,148 192,150 180,156 Z"/>
+    <path class="p-pocket" d="M156,266 C156,258 162,254 170,256 C184,300 236,300 250,256 C258,254 264,258 264,266 L264,332 C264,340 258,346 250,346 L170,346 C162,346 156,340 156,332 Z"/>
+    <path class="p-string" d="M197,150 C196,180 195,206 195,230" fill="none" stroke-width="3" stroke-linecap="round"/>
+    <path class="p-string" d="M223,150 C224,180 225,206 225,230" fill="none" stroke-width="3" stroke-linecap="round"/>
+    <circle class="p-toggle" cx="195" cy="234" r="4.5"/>
+    <circle class="p-toggle" cx="225" cy="234" r="4.5"/>
+    <text class="logo" x="210" y="210" text-anchor="middle" font-size="20" font-weight="800" letter-spacing="1">SKYN</text>
+    <path class="shade" d="M150,150 C134,158 128,182 126,214 L120,356 C120,364 126,370 134,370 L286,370 C294,370 300,364 300,356 L294,214 C292,182 286,158 270,150 C248,168 210,172 210,172 C210,172 172,168 150,150 Z" fill="url(#shadeGradD)" style="mix-blend-mode:multiply"/>
+    <path class="shade" d="M154,152 C124,158 110,184 100,230 L80,318 C77,332 86,342 100,338 L136,328 C128,300 128,240 142,192 C146,176 150,162 154,152 Z" fill="url(#shadeGradD)" style="mix-blend-mode:multiply"/>
+    <path class="shade" d="M266,152 C296,158 310,184 320,230 L340,318 C343,332 334,342 320,338 L284,328 C292,300 292,240 278,192 C274,176 270,162 266,152 Z" fill="url(#shadeGradD)" style="mix-blend-mode:multiply"/>
+    <path class="shade" d="M150,162 C140,90 174,50 210,50 C246,50 280,90 270,162 C250,152 232,148 210,148 C188,148 168,152 150,162 Z" fill="url(#shadeGradD)" style="mix-blend-mode:multiply"/>
+  </svg>
+
+  <div class="ed-toast" id="dz-toast"></div>
+  <script src="designs.js"></script>
+</body>
+</html>
