@@ -1,0 +1,162 @@
+/* ============================================================
+   SKYN — "pick up where you left off" dashboard (page 8)
+   Reuses the SKYN tokens: yellow-green brand, glass, pills, avatar.
+   Two-column welcome view — a what's-new video player on the left,
+   a resume/upload panel on the right. (No "jump back in" grid.)
+   ============================================================ */
+.db,.db *{font-family:"General Sans","Inter",system-ui,sans-serif;box-sizing:border-box}
+.db{
+  --violet:#6c4bff;
+  min-height:100vh;display:flex;flex-direction:column;background:#fff;color:var(--ink,#17141c);
+  -webkit-font-smoothing:antialiased;
+}
+.db a{text-decoration:none;color:inherit}
+
+/* ---------- Header ---------- */
+.db-header{display:flex;align-items:center;gap:2rem;width:min(1440px,100%);margin:0 auto;
+  padding:1.3rem clamp(20px,4vw,48px)}
+.db-logo img{height:26px;width:auto;display:block;filter:brightness(0)}
+.db-nav{display:flex;gap:1.9rem;margin-left:1.4rem}
+.db-nav a{color:var(--ink,#17141c);text-decoration:none;font-weight:500;font-size:1rem;opacity:.8;
+  transition:opacity .2s var(--ease,ease)}
+.db-nav a:hover{opacity:1}
+.db-actions{margin-left:auto;display:flex;align-items:center;gap:.9rem}
+.db .token-pill{background:#e7f08c;border:1px solid #d7e46a;box-shadow:0 6px 18px rgba(170,190,0,.18);
+  font-size:1rem;padding:.5rem 1.05rem;color:#2b3200}
+.db .token-pill .coin{width:15px;height:15px;background:radial-gradient(circle at 40% 35%,#b6e03a,#7fae1a 72%);
+  box-shadow:inset 0 0 0 1px rgba(90,120,0,.35)}
+.db .avatar{width:44px;height:44px;background:var(--violet);box-shadow:0 8px 20px rgba(108,75,255,.32)}
+
+/* ---------- Main split ---------- */
+.db-main{flex:1;width:min(1440px,100%);margin:0 auto;padding:.5rem clamp(20px,4vw,48px) 3rem;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,3.5vw,3.4rem);align-items:stretch}
+
+/* ============================================================
+   LEFT · What's-new video player
+   ============================================================ */
+.db-player{position:relative;border-radius:26px;overflow:hidden;isolation:isolate;
+  background:radial-gradient(120% 90% at 50% 42%,#141425 0%,#0c0b16 60%,#08070f 100%);
+  min-height:520px;display:flex;flex-direction:column;color:#fff;
+  box-shadow:0 24px 60px rgba(12,10,26,.28)}
+.db-player video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;
+  transition:opacity .4s var(--ease,ease);z-index:0}
+.db-player.playing video{opacity:1}
+
+/* faint brand watermark behind the tee */
+.db-wm{position:absolute;inset:0;display:grid;place-items:center;z-index:1;pointer-events:none}
+.db-wm span{font-weight:800;font-size:15rem;letter-spacing:-.04em;line-height:1;color:#fff;opacity:.05}
+
+/* segmented "story" progress at the top */
+.db-segs{position:absolute;top:1.15rem;left:1.4rem;right:1.4rem;display:flex;gap:.5rem;z-index:4}
+.db-seg{flex:1;height:3px;border-radius:999px;background:rgba(255,255,255,.22);overflow:hidden}
+.db-seg i{display:block;height:100%;width:0;border-radius:999px;background:var(--yellow,#e6ea0f)}
+.db-seg.done i{width:100%}
+
+/* hero: green tee + play button */
+.db-hero{position:relative;z-index:2;flex:1;display:grid;place-items:center;padding:2rem}
+.db-tee{position:relative;width:min(52%,260px);filter:drop-shadow(0 26px 48px rgba(150,200,0,.35))}
+.db-tee svg{width:100%;height:auto;display:block}
+.db-bigplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:88px;height:88px;border-radius:50%;border:0;cursor:pointer;
+  background:var(--yellow,#e6ea0f);display:grid;place-items:center;
+  box-shadow:0 14px 40px rgba(198,214,0,.5),0 0 0 10px rgba(230,234,15,.14);
+  transition:transform .2s var(--ease,ease),box-shadow .2s var(--ease,ease)}
+.db-bigplay:hover{transform:translate(-50%,-50%) scale(1.06)}
+.db-bigplay svg{width:34px;height:34px;margin-left:4px;fill:#14160a}
+.db-player.playing .db-hero{opacity:0;pointer-events:none;transition:opacity .3s var(--ease,ease)}
+
+/* what's-new caption */
+.db-whatsnew{position:relative;z-index:3;padding:0 1.6rem;margin-bottom:.4rem}
+.db-eb{display:block;font-family:"SFMono-Regular",ui-monospace,Menlo,monospace;font-weight:700;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--yellow,#e6ea0f);font-size:.72rem;margin-bottom:.55rem}
+.db-whatsnew h2{margin:0 0 .3rem;font-size:1.32rem;font-weight:700;letter-spacing:-.01em}
+.db-whatsnew p{margin:0;color:rgba(255,255,255,.62);font-size:.95rem;font-family:"SFMono-Regular",ui-monospace,Menlo,monospace}
+
+/* controls bar */
+.db-controls{position:relative;z-index:3;display:flex;align-items:center;gap:1rem;
+  padding:1.1rem 1.6rem 1.5rem}
+.db-ctrl{flex:0 0 auto;width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;
+  transition:transform .15s var(--ease,ease)}
+.db-ctrl:hover{transform:scale(1.08)}
+.db-ctrl svg{width:18px;height:18px}
+.db-ctrl.play{background:var(--yellow,#e6ea0f)}
+.db-ctrl.play svg{fill:#14160a;margin-left:2px}
+.db-ctrl.stop{background:rgba(255,255,255,.12)}
+.db-ctrl.stop svg{fill:#fff}
+.db-time{flex:0 0 auto;font-variant-numeric:tabular-nums;font-size:.9rem;color:rgba(255,255,255,.75);
+  font-family:"SFMono-Regular",ui-monospace,Menlo,monospace}
+.db-seek{flex:1;min-width:0;-webkit-appearance:none;appearance:none;height:5px;border-radius:999px;cursor:pointer;
+  background:linear-gradient(to right,rgba(255,255,255,.9) var(--p,0%),rgba(255,255,255,.2) var(--p,0%))}
+.db-vol-ico{flex:0 0 auto;width:22px;height:22px;fill:none;stroke:rgba(255,255,255,.8);stroke-width:1.7;
+  stroke-linecap:round;stroke-linejoin:round}
+.db-vol{flex:0 0 96px;-webkit-appearance:none;appearance:none;height:5px;border-radius:999px;cursor:pointer;
+  background:linear-gradient(to right,var(--yellow,#e6ea0f) var(--v,70%),rgba(255,255,255,.2) var(--v,70%))}
+.db-seek::-webkit-slider-thumb,.db-vol::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;
+  border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.4);cursor:pointer}
+.db-seek::-moz-range-thumb,.db-vol::-moz-range-thumb{width:14px;height:14px;border:0;border-radius:50%;
+  background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.4);cursor:pointer}
+
+/* ============================================================
+   RIGHT · Welcome / resume panel
+   ============================================================ */
+.db-side{display:flex;flex-direction:column;justify-content:center;gap:1.15rem;padding:.5rem 0}
+.db-welcome{font-family:"SFMono-Regular",ui-monospace,Menlo,monospace;font-weight:700;letter-spacing:.2em;
+  text-transform:uppercase;color:#8fae13;font-size:.9rem;margin:0}
+.db-title{margin:.2rem 0 1.3rem;font-size:clamp(2.4rem,4.6vw,3.55rem);font-weight:800;letter-spacing:-.03em;
+  line-height:1.02;color:#141019}
+
+/* upload card (dark) */
+.db-upload{background:#0f0e17;border-radius:22px;padding:1.6rem;box-shadow:0 20px 46px rgba(15,14,23,.24)}
+.db-upload-top{display:flex;align-items:center;gap:1.05rem;margin-bottom:1.3rem}
+.db-upico{flex:0 0 auto;width:52px;height:52px;border-radius:50%;background:var(--yellow,#e6ea0f);display:grid;place-items:center}
+.db-upico svg{width:24px;height:24px;fill:none;stroke:#14160a;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.db-upload-top b{display:block;color:#fff;font-size:1.24rem;font-weight:700;letter-spacing:-.01em}
+.db-upload-top span{display:block;color:rgba(255,255,255,.55);font-size:.95rem;margin-top:.15rem}
+.db-start{display:flex;align-items:center;justify-content:center;gap:.55rem;width:100%;border:0;cursor:pointer;
+  font-family:inherit;background:var(--yellow,#e6ea0f);color:#14160a;font-weight:700;font-size:1.08rem;
+  border-radius:14px;padding:1.05rem 1.4rem;transition:transform .18s var(--ease,ease),box-shadow .2s var(--ease,ease)}
+.db-start:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(198,214,0,.4)}
+.db-start svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* continue card (light glass) */
+.db-continue{display:flex;align-items:center;gap:1.05rem;text-align:left;width:100%;cursor:pointer;
+  background:#f4f2f7;border:1px solid #ebe8f0;border-radius:20px;padding:1.15rem 1.35rem;
+  transition:transform .18s var(--ease,ease),box-shadow .2s var(--ease,ease),border-color .2s var(--ease,ease)}
+.db-continue:hover{transform:translateY(-2px);border-color:#d9d4e6;box-shadow:0 14px 34px rgba(28,24,38,.1)}
+.db-stack{flex:0 0 auto;width:52px;height:40px;position:relative}
+.db-stack span{position:absolute;top:2px;width:30px;height:34px}
+.db-stack span:nth-child(1){left:0;z-index:1}
+.db-stack span:nth-child(2){left:8px;z-index:2}
+.db-stack span:nth-child(3){left:16px;z-index:3}
+.db-stack svg{width:100%;height:100%;display:block;filter:drop-shadow(0 2px 3px rgba(0,0,0,.12))}
+.db-continue-txt{flex:1;min-width:0}
+.db-continue-txt b{display:block;font-size:1.16rem;font-weight:700;color:#141019;letter-spacing:-.01em}
+.db-continue-txt span{display:block;color:var(--muted,#6f6a78);font-size:.96rem;margin-top:.15rem}
+.db-continue .db-arw{flex:0 0 auto;width:22px;height:22px;fill:none;stroke:#141019;stroke-width:2;
+  stroke-linecap:round;stroke-linejoin:round;transition:transform .2s var(--ease,ease)}
+.db-continue:hover .db-arw{transform:translateX(4px)}
+
+/* switch account line */
+.db-switch{margin:.4rem 0 0;color:var(--muted,#6f6a78);font-size:1rem}
+.db-switch a{color:var(--violet);text-decoration:none;font-weight:600}
+.db-switch a:hover{text-decoration:underline}
+
+/* ---------- Toast ---------- */
+.db-toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,calc(100% + 40px));
+  background:#14121a;color:#fff;padding:.85rem 1.3rem;border-radius:13px;font-weight:600;font-size:.96rem;
+  box-shadow:0 16px 40px rgba(0,0,0,.3);z-index:60;opacity:0;pointer-events:none;
+  transition:transform .32s var(--ease,ease),opacity .32s var(--ease,ease);max-width:90vw}
+.db-toast.show{transform:translate(-50%,0);opacity:1}
+
+/* ---------- Responsive ---------- */
+@media (max-width:940px){
+  .db-main{grid-template-columns:1fr;gap:1.8rem}
+  .db-nav{display:none}
+  .db-player{min-height:60vw}
+  .db-wm span{font-size:26vw}
+  .db-side{padding:0}
+}
+@media (max-width:520px){
+  .db-controls{flex-wrap:wrap;gap:.7rem}
+  .db-vol,.db-vol-ico{display:none}
+}
