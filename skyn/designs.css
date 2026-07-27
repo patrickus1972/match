@@ -73,9 +73,9 @@
 
 /* ---------- Grid + cards ---------- */
 .dz-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.4rem;padding-bottom:1rem}
-.dz-card{position:relative;background:rgba(255,255,255,.66);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
-  border:2px solid transparent;border-radius:22px;padding:1.15rem;transition:all .2s var(--ease);box-shadow:var(--glass-sh)}
-.dz-card:hover{background:#fff;box-shadow:var(--glass-sh-lg)}
+.dz-card{position:relative;background:rgba(236,235,242,.7);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
+  border:2px solid transparent;border-radius:22px;padding:1.15rem;transition:all .2s var(--ease);box-shadow:0 4px 16px rgba(28,24,38,.05)}
+.dz-card:hover{background:rgba(244,243,248,.9);box-shadow:var(--glass-sh)}
 .dz-card.sel{border-color:var(--yellow);background:#fcfce8}
 .dz-check{position:absolute;top:1.1rem;left:1.1rem;z-index:2;width:26px;height:26px;border-radius:8px;
   border:2px solid #c9c6d2;background:rgba(255,255,255,.85);cursor:pointer;display:grid;place-items:center;transition:all .2s var(--ease)}
@@ -83,7 +83,7 @@
 .dz-card.sel .dz-check{background:var(--yellow);border-color:var(--yellow)}
 .dz-card.sel .dz-check svg{opacity:1}
 .dz-thumb{border-radius:16px;aspect-ratio:1/.86;display:grid;place-items:center;margin-bottom:1rem;overflow:hidden;
-  background:linear-gradient(180deg,#f6f5f9,#eeedf3)}
+  background:linear-gradient(180deg,#e6e5ec,#e0dfe8)}
 .dz-thumb .hoodie{width:82%;height:82%;display:block;filter:drop-shadow(0 14px 22px rgba(20,18,26,.1))}
 .dz-cardhead{display:flex;align-items:center;justify-content:space-between;gap:.8rem}
 .dz-name{font-weight:700;font-size:1.12rem;color:var(--ink)}
