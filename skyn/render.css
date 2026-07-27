@@ -18,23 +18,11 @@
 
 /* ---------- Main split ---------- */
 .rp-main{flex:1;width:min(1240px,100%);margin:0 auto;padding:.5rem 2rem 3rem;
-  display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;align-items:stretch}
+  display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;align-items:start}
 
-/* ---------- Fun-fact panel ---------- */
-.rp-fact{position:relative;overflow:hidden;background:linear-gradient(160deg,#eeedf2,#e6e5ec);
-  border-radius:28px;padding:2.6rem 2.4rem}
-.rp-fact .eb{display:block;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#b9bd00;font-size:.9rem;margin-bottom:1.2rem}
-.rp-fact-title{margin:0;font-weight:800;text-transform:uppercase;letter-spacing:-.03em;line-height:.92;
-  font-size:5.4rem;color:#141019}
-.rp-bignum{margin:1.6rem 0 .4rem;font-weight:800;font-size:2rem;letter-spacing:-.02em;color:#a49fae}
-.rp-fact-sub{margin:0;font-weight:700;text-transform:uppercase;letter-spacing:.01em;line-height:1.2;color:#141019;font-size:1.2rem}
-.rp-fact-inner{position:relative;z-index:2;margin-top:2.4rem;max-width:16rem;
-  background:rgba(255,255,255,.5);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
-  border:1px solid rgba(255,255,255,.6);border-radius:20px;padding:1.4rem 1.5rem;box-shadow:0 10px 30px rgba(28,24,38,.06)}
-.rp-fact-inner span{display:block;font-weight:600;text-transform:uppercase;letter-spacing:.02em;color:#5f5a66;font-size:1.02rem;line-height:1.15}
-.rp-fact-inner strong{display:block;font-weight:800;font-size:3.6rem;letter-spacing:-.03em;color:#141019;line-height:1;margin:.2rem 0}
-.rp-fact-hoodie{position:absolute;right:-3%;bottom:-6%;width:56%;height:auto;
-  filter:drop-shadow(0 30px 40px rgba(28,24,38,.16));opacity:.96;pointer-events:none}
+/* ---------- Fun-fact panel (supplied render image) ---------- */
+.rp-fact{position:relative;overflow:hidden;border-radius:28px;background:#e6e5ec}
+.rp-fact-img{display:block;width:100%;height:auto}
 
 /* ---------- Render status panel ---------- */
 .rp-status{background:rgba(255,255,255,.5);-webkit-backdrop-filter:var(--glass-blur,blur(20px));backdrop-filter:var(--glass-blur,blur(20px));
