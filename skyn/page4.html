@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKYN — rendering</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="editor.css">
+  <link rel="stylesheet" href="render.css">
+</head>
+<body>
+  <div class="rp" id="render">
+    <!-- ===== Header (reused main-menu elements) ===== -->
+    <header class="rp-header">
+      <a class="rp-logo" href="index.html" data-nav="home" aria-label="SKYN home"><img src="assets/skyn-logo.png" alt="SKYN"></a>
+      <nav class="rp-nav">
+        <a href="index.html#how" data-nav="home">How it works</a>
+        <a href="index.html#faq" data-nav="home">FAQ</a>
+        <a href="index.html#about" data-nav="home">About</a>
+      </nav>
+      <div class="rp-actions">
+        <span class="token-pill"><span class="coin">S</span><b>1,240</b></span>
+        <button class="dz-bell" type="button" aria-label="Notifications">
+          <svg viewBox="0 0 24 24"><path d="M6 16V10a6 6 0 0 1 12 0v6l1.5 2h-15Z"/><path d="M10 21h4"/></svg>
+          <span class="dz-bell-badge">3</span>
+        </button>
+        <button class="avatar" type="button" title="Account">K</button>
+      </div>
+    </header>
+
+    <!-- ===== Main ===== -->
+    <main class="rp-main">
+      <!-- left: fun-fact panel -->
+      <section class="rp-fact">
+        <span class="eb eb-y">Fun fact</span>
+        <h1 class="rp-fact-title">Outfit<br>change</h1>
+        <div class="rp-bignum">274,640,005</div>
+        <p class="rp-fact-sub">Outfit changes<br>every single day.</p>
+        <div class="rp-fact-inner">
+          <span>That's roughly</span>
+          <strong>3,000</strong>
+          <span>restyles<br>every second.</span>
+        </div>
+        <svg class="hoodie rp-fact-hoodie" viewBox="0 0 420 430" aria-hidden="true"
+             style="--c-hood:#c6d900;--c-body:#efe9f4;--c-sl:#7a3fe0;--c-sr:#c6d900;--c-pocket:#7a3fe0;--c-rib:#c6d900;--c-logo:#141019">
+          <path class="p-sl"  d="M154,152 C124,158 110,184 100,230 L80,318 C77,332 86,342 100,338 L136,328 C128,300 128,240 142,192 C146,176 150,162 154,152 Z"/>
+          <path class="p-sr"  d="M266,152 C296,158 310,184 320,230 L340,318 C343,332 334,342 320,338 L284,328 C292,300 292,240 278,192 C274,176 270,162 266,152 Z"/>
+          <path class="p-body" d="M150,150 C134,158 128,182 126,214 L120,356 C120,364 126,370 134,370 L286,370 C294,370 300,364 300,356 L294,214 C292,182 286,158 270,150 C248,168 210,172 210,172 C210,172 172,168 150,150 Z"/>
+          <path class="p-rib" d="M80,320 L136,308 L142,338 L92,344 Z"/>
+          <path class="p-rib" d="M340,320 L284,308 L278,338 L328,344 Z"/>
+          <path class="p-rib" d="M122,348 L298,348 L300,356 C300,364 294,370 286,370 L134,370 C126,370 120,364 120,356 Z"/>
+          <path class="p-hood" d="M150,162 C140,90 174,50 210,50 C246,50 280,90 270,162 C250,152 232,148 210,148 C188,148 168,152 150,162 Z"/>
+          <path class="p-hoodin" d="M180,156 C180,124 192,110 210,110 C228,110 240,124 240,156 C228,150 222,148 210,148 C198,148 192,150 180,156 Z"/>
+          <path class="p-pocket" d="M156,266 C156,258 162,254 170,256 C184,300 236,300 250,256 C258,254 264,258 264,266 L264,332 C264,340 258,346 250,346 L170,346 C162,346 156,340 156,332 Z"/>
+          <text class="logo" x="210" y="210" text-anchor="middle" font-size="20" font-weight="800" letter-spacing="1">SKYN</text>
+        </svg>
+      </section>
+
+      <!-- right: render status -->
+      <section class="rp-status">
+        <span class="eb eb-y">Rendering your skyn</span>
+        <h2 class="rp-status-title">Building your<br>3D skyn…</h2>
+
+        <div class="rp-eta">
+          <span class="rp-eta-ico">
+            <svg viewBox="0 0 24 24"><path d="M9 3 5 5 3 9l3 2v10h12V11l3-2-2-4-4-2a3 3 0 0 1-6 0Z"/></svg>
+          </span>
+          <div>
+            <b>~2 min left</b>
+            <p>Hang tight — good meshes take a moment.</p>
+          </div>
+        </div>
+
+        <div class="rp-bar"><span id="rp-fill" style="width:58%"></span></div>
+        <div class="rp-barmeta">
+          <span><i class="rp-dot"></i><b id="rp-pct">58%</b> · <span id="rp-state">working…</span></span>
+          <span class="rp-file" id="rp-file">ranger-tee.png</span>
+        </div>
+
+        <label class="rp-toggle"><input type="checkbox" checked><span class="tg"></span> Show technical progress</label>
+        <label class="rp-toggle"><input type="checkbox" checked><span class="tg"></span> <span id="rp-step">Step 1 of 5 · Generating mesh</span> <span class="rp-muted">in progress</span></label>
+
+        <div class="rp-card">
+          <h3>No need to watch — we'll email you</h3>
+          <p>Drop your email and close the tab. We'll send a quick confirmation link, then ping you the moment your skyn is ready.</p>
+          <div class="rp-emailrow">
+            <input type="email" id="rp-email" placeholder="you@email.com">
+            <button class="rp-emailbtn" id="rp-emailbtn" type="button">Email me</button>
+          </div>
+          <p class="rp-fine"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg> We'll send a confirmation link to verify it's you.</p>
+        </div>
+
+        <div class="rp-card">
+          <h3>Skip the email — create a free account</h3>
+          <p>Members keep every design in one place, skip the confirmation step, and start new renders faster.</p>
+          <div class="rp-promo">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="16" height="11" rx="2"/><path d="M4 13h16M12 9v11M9 9a2.5 2.5 0 1 1 3-4c1 1 0 4 0 4M15 9a2.5 2.5 0 1 0-3-4"/></svg>
+            <span>Sign up now and get <b>3 new colours</b> for your design — free.</span>
+          </div>
+          <button class="rp-signup" id="rp-signup" type="button">
+            <span>Sign up free</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== Footer (reused from the homepage) ===== -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <a href="index.html" data-nav="home" class="logo"><img src="assets/skyn-logo.png" alt="SKYN"></a>
+          <p>Turn the 2D art you already draw into a game-ready 3D wearable — you own the file.</p>
+          <button class="pill-btn footer-cta" type="button">
+            <span>Get your first outfit free</span>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+          </button>
+        </div>
+        <nav class="footer-column" aria-label="Product">
+          <h3>Product</h3>
+          <a href="index.html#how" data-nav="home">How it works</a>
+          <a href="index.html#faq" data-nav="home">Pricing</a>
+          <a href="index.html#faq" data-nav="home">FAQ</a>
+          <a href="index.html#about" data-nav="home">Platforms</a>
+        </nav>
+        <nav class="footer-column" aria-label="Company">
+          <h3>Company</h3>
+          <a href="mailto:hello@skyn.example">Contact</a>
+          <a href="#">Creators</a>
+          <a href="#">Careers</a>
+          <a href="#">Press</a>
+        </nav>
+        <nav class="footer-column" aria-label="Legal">
+          <h3>Legal</h3>
+          <a href="#">Terms of service</a>
+          <a href="#">Privacy policy</a>
+          <a href="#">Cookie policy</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 SKYN. All rights reserved.</span>
+        <div class="footer-social">
+          <a href="#">Instagram</a><a href="#">Discord</a><a href="#">X</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div class="ed-toast" id="rp-toast"></div>
+  <script src="render.js"></script>
+</body>
+</html>
