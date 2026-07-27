@@ -118,7 +118,7 @@
 
   // ---- count badge ----
   const countBadge = $('#dz-count');
-  const updateCount = () => { countBadge.textContent = cards.length + ' designs'; };
+  const updateCount = () => { if (countBadge) countBadge.textContent = cards.length + ' designs'; };
 
   // ---- new design ----
   $('#dz-new').addEventListener('click', () => showToast('New design — opening the editor…'));
