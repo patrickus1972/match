@@ -92,7 +92,7 @@ img{max-width:100%}
 .pricing-copy{left:9.1%;top:78.1%;width:23%;min-height:18.4cqw;--cover:#f1f0f2}
 .pricing-copy .eb{font-size:.82cqw;margin-bottom:1.1cqw}
 .pricing-copy h2{font-weight:700;font-size:3.0cqw;line-height:1.03;letter-spacing:-.03em;color:#141019}
-.pricing-copy p{font-weight:500;font-size:1.06cqw;line-height:1.45;color:#6a6572;margin-top:1.1cqw}
+.pricing-copy p{font-weight:500;font-size:1.28cqw;line-height:1.5;color:#6a6572;margin-top:1.1cqw}
 
 /* real text over the STEP 1 / STEP 2 pricing panels */
 .step-copy{display:flex;flex-direction:column;align-items:flex-start}
