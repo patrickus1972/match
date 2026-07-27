@@ -48,9 +48,14 @@
 .tk-plan{display:flex;flex-direction:column;text-align:left;background:var(--glass,rgba(255,255,255,.60));
   -webkit-backdrop-filter:var(--glass-blur,blur(20px));backdrop-filter:var(--glass-blur,blur(20px));
   border:1px solid var(--glass-brd,rgba(255,255,255,.85));border-radius:24px;padding:2rem 1.9rem 1.9rem;
-  box-shadow:var(--glass-sh,0 10px 34px rgba(28,24,38,.10))}
+  box-shadow:var(--glass-sh,0 10px 34px rgba(28,24,38,.10));
+  transition:transform .2s var(--ease,ease),box-shadow .24s var(--ease,ease),border-color .24s var(--ease,ease),background .24s}
+/* same yellow highlight the Popular card carries — now on hover for every card */
+.tk-plan:hover{transform:translateY(-6px);border-color:var(--yellow,#e6ea0f);background:rgba(255,255,255,.72);
+  box-shadow:0 24px 62px rgba(198,203,0,.22),0 6px 16px rgba(28,24,38,.09)}
 .tk-plan.featured{border:2px solid var(--yellow,#e6ea0f);box-shadow:0 22px 60px rgba(198,203,0,.20),0 4px 14px rgba(28,24,38,.08);
   background:rgba(255,255,255,.72)}
+.tk-plan.featured:hover{transform:translateY(-6px);box-shadow:0 28px 70px rgba(198,203,0,.28),0 6px 16px rgba(28,24,38,.10)}
 .tk-plan-head{display:flex;align-items:center;gap:.8rem;margin-bottom:.35rem}
 .tk-plan-head h3{margin:0;font-weight:800;font-size:1.4rem;color:#141019}
 .tk-best{margin-left:auto;background:var(--yellow,#e6ea0f);color:var(--yellow-ink,#14160a);font-weight:800;font-size:.72rem;
