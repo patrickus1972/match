@@ -153,6 +153,8 @@
 .db-switchbar a:hover{background:#f1f0f5;color:#141019}
 .db-switchbar a.active{background:var(--yellow,#e6ea0f);color:#14160a}
 .db-main{padding-bottom:5.5rem}
+/* inside the combined preview the global #pgsw toggle already handles paging */
+body:has(#pgsw) .db-switchbar{display:none}
 
 /* ---------- Toast ---------- */
 .db-toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,calc(100% + 40px));
