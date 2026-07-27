@@ -18,10 +18,12 @@
 
 /* ---------- Main split ---------- */
 .rp-main{flex:1;width:min(1240px,100%);margin:0 auto;padding:.5rem 2rem 3rem;
-  display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;align-items:start}
+  display:grid;grid-template-columns:1fr 1fr;gap:1.6rem;align-items:stretch}
 
 /* ---------- Fun-fact panel (supplied render image) ---------- */
-.rp-fact{position:relative;overflow:hidden;border-radius:28px;background:#e6e5ec}
+/* panel stretches to match the right column; the grey fill below the image
+   matches the image's bottom edge (#eaeaec) so it reads as one surface */
+.rp-fact{position:relative;overflow:hidden;border-radius:28px;background:#eaeaec}
 .rp-fact-img{display:block;width:100%;height:auto}
 
 /* ---------- Render status panel ---------- */
