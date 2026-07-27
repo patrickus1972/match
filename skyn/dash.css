@@ -14,7 +14,7 @@
     linear-gradient(180deg,#eceaf1 0%,#e8e4ec 100%);
   -webkit-font-smoothing:antialiased;
 }
-.db a{text-decoration:none}
+.db a{text-decoration:none;color:inherit}
 
 /* ---------- Header (matches the homepage nav) ---------- */
 .db-header{display:flex;align-items:center;gap:2rem;width:min(1240px,100%);margin:0 auto;
