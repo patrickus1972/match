@@ -148,6 +148,10 @@
 .colours-panel{background:var(--glass);border-radius:24px;display:flex;flex-direction:column;
   -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
   padding:1.1rem;min-height:0;flex:1;overflow:hidden;border:1px solid var(--glass-brd);box-shadow:var(--glass-sh)}
+.colours-total{flex:0 0 auto;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:600;color:var(--muted);padding:.1rem .3rem .85rem}
+.colours-total b{font-weight:700;color:var(--muted)}
+
 /* theme accordion folders — headers always visible, open folder scrolls internally */
 .themes{flex:1;min-height:0;overflow:hidden;display:flex;flex-direction:column;gap:.55rem}
 .theme{display:flex;flex-direction:column;min-height:0}

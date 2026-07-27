@@ -52,8 +52,14 @@
     clearTimeout(tTimer); tTimer = setTimeout(() => toast.classList.remove('show'), 2600);
   };
 
+  const updateTotal = () => {
+    const el = $('#col-total');
+    if (el) el.textContent = THEMES.reduce((n, t) => n + t.ways.length, 0);
+  };
+
   // ---- build accordion ----
   const buildThemes = () => {
+    updateTotal();
     themesBox.innerHTML = '';
     THEMES.forEach((theme, ti) => {
       const sec = document.createElement('div');
