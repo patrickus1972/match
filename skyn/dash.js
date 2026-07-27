@@ -86,6 +86,8 @@
 
   /* ---- resume / upload actions ---- */
   document.getElementById('db-start')?.addEventListener('click', () => {
+    /* in the combined build the router intercepts [data-nav]; standalone falls back */
+    if (document.querySelector('#pgsw')) return;
     showToast('Opening a new design…');
     setTimeout(() => { window.location.href = 'page2.html'; }, 650);
   });

@@ -141,6 +141,19 @@
 .db-switch a{color:var(--violet);text-decoration:none;font-weight:600}
 .db-switch a:hover{text-decoration:underline}
 
+/* ---------- Page-switch bar (links to the other pages) ---------- */
+.db-switchbar{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:50;
+  display:flex;gap:.2rem;background:#fff;border-radius:999px;padding:.4rem;
+  box-shadow:0 14px 40px rgba(20,18,26,.18),0 2px 8px rgba(20,18,26,.08);max-width:calc(100vw - 24px);overflow:auto}
+.db-switchbar a{display:inline-flex;align-items:center;gap:.5rem;white-space:nowrap;
+  padding:.6rem 1.05rem;border-radius:999px;font-weight:700;font-size:.98rem;color:#6f6a78;
+  text-decoration:none;transition:background .18s var(--ease,ease),color .18s var(--ease,ease)}
+.db-switchbar a svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;
+  stroke-linecap:round;stroke-linejoin:round}
+.db-switchbar a:hover{background:#f1f0f5;color:#141019}
+.db-switchbar a.active{background:var(--yellow,#e6ea0f);color:#14160a}
+.db-main{padding-bottom:5.5rem}
+
 /* ---------- Toast ---------- */
 .db-toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,calc(100% + 40px));
   background:#14121a;color:#fff;padding:.85rem 1.3rem;border-radius:13px;font-weight:600;font-size:.96rem;

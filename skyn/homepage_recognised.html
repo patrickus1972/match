@@ -16,12 +16,12 @@
     <header class="db-header">
       <a class="db-logo" href="index.html" data-nav="home" aria-label="SKYN home"><img src="assets/skyn-logo.png" alt="SKYN"></a>
       <nav class="db-nav" aria-label="Primary">
-        <a href="page3.html">My designs</a>
+        <a href="page3.html" data-nav="designs">My designs</a>
         <a href="#">Gallery</a>
         <a href="index.html#how" data-nav="home">How it works</a>
       </nav>
       <div class="db-actions">
-        <a class="token-pill" href="page6.html" aria-label="1,240 tokens — top up"><span class="coin"></span><b>1,240</b></a>
+        <a class="token-pill" href="page6.html" data-nav="tokens" aria-label="1,240 tokens — top up"><span class="coin"></span><b>1,240</b></a>
         <button class="avatar" type="button" title="Account">K</button>
       </div>
     </header>
@@ -99,7 +99,7 @@
           </button>
         </div>
 
-        <a class="db-continue" href="page3.html" aria-label="Continue your designs — 12 designs, 2 drafts in progress">
+        <a class="db-continue" href="page3.html" data-nav="designs" aria-label="Continue your designs — 12 designs, 2 drafts in progress">
           <span class="db-stack" aria-hidden="true">
             <span><svg viewBox="0 0 40 44"><path fill="#e0a24a" d="M15 2 11 4 2 9l3.5 7.5L10 14v28h20V14l4.5 2.5L38 9l-9-5-4-2a7 7 0 0 1-10 0Z"/></svg></span>
             <span><svg viewBox="0 0 40 44"><path fill="#6c4bff" d="M15 2 11 4 2 9l3.5 7.5L10 14v28h20V14l4.5 2.5L38 9l-9-5-4-2a7 7 0 0 1-10 0Z"/></svg></span>
@@ -116,6 +116,17 @@
       </aside>
 
     </main>
+
+    <!-- ===== Page-switch bar — jump to the other pages ===== -->
+    <nav class="db-switchbar" aria-label="Pages">
+      <a href="index.html" data-nav="home"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg>Home</a>
+      <a href="homepage_recognised.html" class="active" aria-current="page"><svg viewBox="0 0 24 24"><path d="M12 3l2.2 5.6L20 9l-4.5 3.6L17 19l-5-3-5 3 1.5-6.4L4 9l5.8-.4Z"/></svg>Welcome</a>
+      <a href="page2.html" data-nav="editor"><svg viewBox="0 0 24 24"><path d="M4 20l4-1L20 7l-3-3L5 16Z"/><path d="M14 6l3 3"/></svg>Editor</a>
+      <a href="page3.html" data-nav="designs"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg>Designs</a>
+      <a href="page5.html" data-nav="check"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m8.5 12 2.3 2.3L16 9"/></svg>Check</a>
+      <a href="page4.html" data-nav="render"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-.6 4"/><path d="M20 4v5h-5"/></svg>Render</a>
+      <a href="page6.html" data-nav="tokens"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3.5"/></svg>Tokens</a>
+    </nav>
   </div>
 
   <div class="db-toast" id="db-toast" role="status" aria-live="polite"></div>
