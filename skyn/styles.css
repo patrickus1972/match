@@ -17,10 +17,13 @@
 }
 
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;background:#fff}
+html{scroll-behavior:smooth;background:var(--panel)}
 body{
   margin:0;
-  background:#fff;
+  /* lavender page background (sampled section tone) so the side gutters beside
+     the 1116px shell carry the render's background through instead of showing
+     white — matching the quality-check page and the section edges */
+  background:var(--panel);
   color:var(--ink);
   font-family:"Inter","Segoe UI","Helvetica Neue",Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
