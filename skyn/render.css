@@ -24,7 +24,7 @@
 /* panel stretches to match the right column and uses the same glass surface
    as the render-status panel, so both columns read as one material */
 .rp-fact{position:relative;overflow:hidden;border-radius:28px;
-  display:flex;align-items:center;justify-content:center;padding:1.4rem;
+  display:flex;align-items:flex-start;justify-content:center;padding:1.4rem;
   background:rgba(255,255,255,.5);-webkit-backdrop-filter:var(--glass-blur,blur(20px));backdrop-filter:var(--glass-blur,blur(20px));
   border:1px solid var(--glass-brd,rgba(255,255,255,.85));box-shadow:0 18px 50px rgba(28,24,38,.08)}
 .rp-fact-img{display:block;width:100%;height:auto;border-radius:18px}
