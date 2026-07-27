@@ -77,7 +77,7 @@ img{max-width:100%}
 /* hero card (flat panel) */
 .hero-copy{left:70.6%;top:10.9%;width:25.6%;min-height:19.4cqw;--cover:#efeef4;padding:.2cqw 0 .6cqw;display:flex;flex-direction:column}
 .hero-copy::before{inset:-.8cqw -.4cqw}
-.hero-copy .eb{font-size:1.02cqw;margin-bottom:1.15cqw;text-align:center}
+.hero-copy .eb{font-size:1.02cqw;margin-bottom:1.15cqw;text-align:left}
 .hero-copy h1{font-weight:700;font-size:2.96cqw;line-height:1.08;letter-spacing:-.022em;color:#141019}
 .hero-copy p{font-weight:500;font-size:1.44cqw;line-height:1.44;color:#5f5a66;margin-top:1.2cqw}
 
