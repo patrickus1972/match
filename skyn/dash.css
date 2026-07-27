@@ -63,10 +63,10 @@
 .db-upload-top b{display:block;color:#141019;font-size:1.22rem;font-weight:700;letter-spacing:-.01em}
 .db-upload-top span{display:block;color:#6f6a78;font-size:.98rem;margin-top:.15rem}
 
-/* yellow pill CTA — same look as the homepage Sign up / Browse pills */
-.db-pill{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;width:100%;
+/* yellow pill CTA — same centred, content-width look as the homepage Browse pill */
+.db-pill{display:flex;align-items:center;justify-content:center;gap:.6rem;width:max-content;max-width:100%;margin:0 auto;
   border:0;cursor:pointer;font-family:inherit;background:var(--yellow,#e6ea0f);color:var(--yellow-ink,#14160a);
-  font-weight:700;font-size:1.1rem;letter-spacing:-.01em;border-radius:14px;padding:1.05rem 1.4rem;
+  font-weight:700;font-size:1.1rem;letter-spacing:-.01em;border-radius:14px;padding:1.05rem 2.6rem;
   box-shadow:0 10px 26px rgba(198,214,0,.32);
   transition:background .2s var(--ease,ease),color .2s var(--ease,ease),transform .2s var(--ease,ease),box-shadow .2s var(--ease,ease)}
 .db-pill svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;
