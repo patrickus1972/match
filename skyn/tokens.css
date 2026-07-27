@@ -68,10 +68,12 @@
 .tk-meta{margin:0;color:#9a95a2;font-weight:500;font-size:.98rem}
 .tk-spacer{flex:1;min-height:1.2rem}
 .tk-price{margin:0 0 1.2rem;font-weight:800;font-size:1.7rem;color:#141019}
-.tk-buy{border:1px solid var(--ink,#17141c);background:var(--ink,#17141c);color:#fff;font-family:inherit;font-weight:700;font-size:1.05rem;
-  border-radius:999px;padding:.95rem;cursor:pointer;box-shadow:0 12px 30px rgba(20,18,26,.24);
-  transition:transform .14s var(--ease,ease),box-shadow .2s,background .2s,color .2s}
-.tk-buy:hover{transform:translateY(-1px);background:#2c2740;box-shadow:0 16px 36px rgba(20,18,26,.28)}
+.tk-buy{border:1px solid #dcdae4;background:#fff;color:#141019;font-family:inherit;font-weight:700;font-size:1.05rem;
+  border-radius:999px;padding:.95rem;cursor:pointer;box-shadow:0 4px 14px rgba(28,24,38,.06);
+  transition:transform .14s var(--ease,ease),box-shadow .2s var(--ease,ease),background .2s var(--ease,ease),color .2s var(--ease,ease),border-color .2s}
+/* white by default, black on hover — hovering anywhere on the card counts */
+.tk-plan:hover .tk-buy,.tk-buy:hover{background:var(--ink,#17141c);color:#fff;border-color:var(--ink,#17141c);
+  box-shadow:0 14px 32px rgba(20,18,26,.26)}
 
 /* ---------- Coupon bar ---------- */
 .tk-coupon{display:flex;align-items:center;gap:1.1rem;width:100%;background:var(--glass,rgba(255,255,255,.6));
