@@ -89,7 +89,7 @@
 .tool-btn:hover{background:var(--glass-strong)}
 .tool-btn.on{background:var(--yellow-ink);color:#fff}
 .tool-btn.on svg{stroke:#fff}
-.ed-toolbar .spacer{flex:1}
+.ed-toolbar .spacer{display:none}
 
 .ed-subtools{position:absolute;top:4.6rem;left:1.1rem;display:flex;gap:.7rem;z-index:5}
 .chip-btn{display:inline-flex;align-items:center;gap:.5rem;border-radius:999px;padding:.55rem 1.05rem;
