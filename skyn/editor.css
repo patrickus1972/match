@@ -120,6 +120,12 @@
   background:radial-gradient(ellipse at center,rgba(20,18,26,.18),transparent 70%);filter:blur(2px)}
 .hoodie{width:100%;height:auto;overflow:visible;filter:drop-shadow(0 24px 40px rgba(20,18,26,.12));
   transition:filter .25s var(--ease)}
+/* photoreal render — shown for the default colourway in Shaded view; the SVG takes
+   over for other colourways and technical modes (UV / wireframe / normal / etc.) */
+.hoodie-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;display:none}
+.viewer.photo-active .hoodie{display:none}
+.viewer.photo-active::after{opacity:0}
+.viewer.photo-active .hoodie-photo{display:block}
 .hoodie path,.hoodie text{transition:fill .35s var(--ease),stroke .25s var(--ease)}
 /* part → colour-variable mapping (JS sets the vars per colourway) */
 .hoodie .p-body{fill:var(--c-body)}

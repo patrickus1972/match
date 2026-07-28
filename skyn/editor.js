@@ -37,9 +37,23 @@
   const $ = (s, r = document) => r.querySelector(s);
   const hoodie = $('#hoodie');
   const themesBox = $('#themes');
+  const viewer = $('.viewer');
   let current = { t: 0, i: 0 };
 
   const applyWay = (svgEl, way) => KEYS.forEach((k, i) => svgEl.style.setProperty(k, way.c[i]));
+
+  // The photoreal render matches the default colourway (Theme 1 · Sunrise). Show it
+  // for that selection in the plain Shaded view; fall back to the recolourable SVG for
+  // any other colourway or technical mode (Normal/Diffuse/Roughness/UV/Wireframe).
+  const stageEl = () => document.getElementById('stage');
+  const syncStage = () => {
+    if (!viewer) return;
+    const st = stageEl();
+    const plainShaded = st.classList.contains('mode-shaded') &&
+      !st.classList.contains('uv-on') && !st.classList.contains('wire');
+    const isDefault = current.t === 0 && current.i === 0;
+    viewer.classList.toggle('photo-active', isDefault && plainShaded);
+  };
 
   const FOLDER = '<svg class="folder" viewBox="0 0 24 24"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2h9A1.5 1.5 0 0 1 21 9.5v8A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5Z"/></svg>';
   const CHEV = '<svg class="chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></svg>';
@@ -113,6 +127,7 @@
       const vs = secs[ti].querySelectorAll('.variant');
       if (vs[wi]) vs[wi].classList.add('sel');
     }
+    syncStage();
     showToast(`${THEMES[ti].name} · ${way.name}`);
   };
 
@@ -125,12 +140,15 @@
     b.classList.add('active');
     stage.classList.remove('mode-shaded','mode-normal','mode-diffuse','mode-roughness');
     stage.classList.add('mode-' + b.dataset.mode);
+    syncStage();
   });
   $('#uv-btn').addEventListener('click', function () {
     this.classList.toggle('on'); stage.classList.toggle('uv-on', this.classList.contains('on'));
+    syncStage();
   });
   $('#wire-btn').addEventListener('click', function () {
     this.classList.toggle('on'); stage.classList.toggle('wire', this.classList.contains('on'));
+    syncStage();
   });
 
   // ---- tokens / generate ----
@@ -244,4 +262,5 @@
   applyWay(hoodie, THEMES[0].ways[0]);
   stage.classList.add('mode-shaded');
   buildThemes();
+  syncStage();
 })();
