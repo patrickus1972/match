@@ -254,7 +254,18 @@ img{max-width:100%}
   transition:background .18s var(--ease),color .18s var(--ease);
 }
 .nav-link:hover span{background:rgba(20,18,26,.07);color:#000}
-.login-hit:hover{background:rgba(20,18,26,.05)}
+/* real, sharp "Log in" pill drawn over the render's baked white pill */
+.login-hit{
+  display:flex;align-items:center;justify-content:center;
+  background:#fff;border-radius:1.7cqw;
+  box-shadow:0 .35cqw 1.1cqw rgba(20,18,26,.10);
+  transition:transform .18s var(--ease),box-shadow .18s var(--ease);
+}
+.login-hit span{
+  font-family:"General Sans","Inter",sans-serif;font-weight:600;
+  font-size:1.16cqw;letter-spacing:-.005em;color:#141019;line-height:1;
+}
+.login-hit:hover{transform:translateY(-1px);box-shadow:0 .6cqw 1.5cqw rgba(20,18,26,.16)}
 .logo-hit:hover{background:rgba(20,18,26,.05)}
 
 /* section-1 nav coordinates (image 1102×1290) */
