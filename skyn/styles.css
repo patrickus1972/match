@@ -51,8 +51,8 @@ img{max-width:100%}
   -webkit-mask-image:linear-gradient(to bottom,#000 93%,transparent 100%);
   mask-image:linear-gradient(to bottom,#000 93%,transparent 100%)}
 /* FAQ avatar (transparent cut-out) + eraser hiding the render's baked figure */
-.faq-erase{position:absolute;z-index:1;pointer-events:none;left:43%;top:0;width:55%;height:66%;
-  background:radial-gradient(62% 62% at 56% 32%,#e8e5ec 0%,#e8e5ec 58%,rgba(232,229,236,0) 100%)}
+.faq-erase{position:absolute;z-index:1;pointer-events:none;left:43%;top:0;width:56%;height:61%;
+  background:radial-gradient(74% 100% at 62% 44%,#e8e5ec 0%,#e8e5ec 72%,rgba(232,229,236,0) 100%)}
 .faq-section>img.faq-avatar{position:absolute;z-index:2;pointer-events:none;left:51%;top:0;width:41%;height:auto;
   -webkit-mask-image:linear-gradient(to bottom,#000 94%,transparent 100%);
   mask-image:linear-gradient(to bottom,#000 94%,transparent 100%)}
