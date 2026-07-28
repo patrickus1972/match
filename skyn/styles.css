@@ -43,14 +43,6 @@ img{max-width:100%}
   background:var(--panel);
 }
 .visual-section>img{width:100%;height:auto;display:block}
-/* new avatar figures overlaid on the section renders, feathered into the studio bg */
-.sec-avatar{position:absolute;z-index:2;height:auto;pointer-events:none;
-  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 17%,#000 83%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 5%,#000 80%,transparent 100%);
-  -webkit-mask-composite:source-in;mask-composite:intersect;
-  mask-image:linear-gradient(to right,transparent 0,#000 17%,#000 83%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 5%,#000 80%,transparent 100%)}
-.hero-section>img.hero-avatar{left:30%;top:2%;width:38%}
-.about-stage>img.about-avatar{left:50%;top:-2%;width:40%}
-.faq-section>img.faq-avatar{left:48%;top:0;width:52%}
 /* the About render + its overlays are wrapped in an inset "stage" so the whole
    block sits within symmetric side margins, matching the FAQ section's framed
    width instead of bleeding edge-to-edge. The stage is the positioning +
