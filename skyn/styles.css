@@ -203,7 +203,9 @@ img{max-width:100%}
   background:linear-gradient(150deg,#fdf7c6,#f3ea86);border:1px solid rgba(214,196,74,.4)}
 .hs-ico svg{width:2.1cqw;height:2.1cqw;fill:none;stroke:#5f561d;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .hs-body{display:flex;flex-direction:column;gap:.35cqw;padding-top:.15cqw}
-.hs-no{font-size:1.15cqw;font-weight:700;letter-spacing:.04em;color:#8a8590;margin-bottom:.5cqw}
+.hs-no{font-size:1.15cqw;font-weight:700;letter-spacing:.04em;color:#8a8590}
+/* higher specificity than the `.ov span{margin:0}` reset so the gap actually applies */
+.how-copy .hs-no{margin-bottom:.85cqw}
 .hs-name{font-size:1.72cqw;font-weight:700;color:#191721;line-height:1.05;letter-spacing:-.01em}
 .hs-desc{font-size:1.18cqw;font-weight:500;color:#6a6572;line-height:1.42;max-width:15.5cqw}
 
