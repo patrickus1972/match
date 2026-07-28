@@ -8,9 +8,10 @@
   background:linear-gradient(180deg,#eee7ee 0%,#e9e2e9 55%,#e5dfe6 100%);-webkit-font-smoothing:antialiased}
 
 /* ---------- Header (aligned to the homepage 1116px content shell) ---------- */
-.qc-header{display:flex;align-items:center;gap:2rem;width:min(1116px,100%);margin:0 auto;padding:1.3rem 24px}
+.qc-header{display:flex;align-items:center;gap:2rem;width:min(1116px,100%);margin:0 auto;padding:1.3rem 24px;position:relative}
 .qc-logo img{height:30px;width:auto;display:block;filter:brightness(0)}
-.qc-nav{display:flex;gap:2.2rem;margin-left:1.6rem}
+/* nav anchored to the same spot as the homepage (28.4% of the 1116 shell) */
+.qc-nav{display:flex;gap:2.2rem;position:absolute;left:28.4%;top:50%;transform:translateY(-50%)}
 .qc-nav a{color:var(--ink,#17141c);text-decoration:none;font-weight:600;font-size:1.02rem;opacity:.9;transition:opacity .2s}
 .qc-nav a:hover{opacity:1}
 .qc-actions{margin-left:auto;display:flex;align-items:center;gap:.8rem}
