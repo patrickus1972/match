@@ -25,15 +25,17 @@
 .ed{
   height:100vh;overflow:hidden;background:var(--bg);color:var(--ink);
   display:flex;flex-direction:column;-webkit-font-smoothing:antialiased;
-  /* refined glass — scoped to the editor so it matches the Designs design system:
-     softer, subtler shadows + a lighter blur (no heavy saturation) so panels read
-     as clean cards rather than heavy floating glass */
-  --glass:rgba(255,255,255,.7);
+  /* glass scoped to the editor so it reads as one system with the Designs page:
+     same frosted-white opacity, blur and lift the reference uses for its floating
+     controls. Large structural panels & cards opt into a calmer shadow below
+     (mirroring how the Designs page keeps its nav/cards flat and only lets the
+     small pill controls float). */
+  --glass:rgba(255,255,255,.72);
   --glass-strong:rgba(255,255,255,.82);
-  --glass-brd:rgba(255,255,255,.9);
-  --glass-blur:blur(16px) saturate(1.08);
-  --glass-sh:0 4px 16px rgba(28,24,38,.05),0 1px 3px rgba(28,24,38,.04);
-  --glass-sh-lg:0 10px 30px rgba(28,24,38,.07),0 2px 6px rgba(28,24,38,.04);
+  --glass-brd:rgba(255,255,255,.85);
+  --glass-blur:blur(20px) saturate(1.5);
+  --glass-sh:0 10px 34px rgba(28,24,38,.10),0 2px 6px rgba(28,24,38,.05);
+  --glass-sh-lg:0 18px 50px rgba(28,24,38,.13),0 3px 10px rgba(28,24,38,.06);
 }
 
 /* ---------- Header ---------- */
@@ -88,7 +90,7 @@
   display:inline-flex;align-items:center;gap:.45rem;padding:.6rem 1.25rem;border-radius:999px;
   font-weight:600;font-size:.95rem;color:var(--muted);transition:all .2s var(--ease)}
 .seg button svg{width:16px;height:16px}
-.seg button.active{background:var(--yellow);color:var(--yellow-ink);box-shadow:0 4px 12px rgba(198,214,0,.4)}
+.seg button.active{background:var(--yellow);color:var(--yellow-ink);box-shadow:0 4px 14px rgba(198,214,0,.32)}
 .seg button:not(.active):hover{color:var(--ink)}
 .tool-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--glass);
   -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
@@ -106,7 +108,7 @@
   cursor:pointer;font-family:inherit;font-weight:700;font-size:.95rem;border:1px solid transparent;
   box-shadow:0 2px 12px rgba(20,18,26,.06);transition:all .2s var(--ease)}
 .chip-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.chip-btn.solid{background:var(--yellow);color:var(--yellow-ink);box-shadow:0 8px 22px rgba(198,214,0,.32)}
+.chip-btn.solid{background:var(--yellow);color:var(--yellow-ink);box-shadow:0 8px 20px rgba(198,214,0,.32)}
 .chip-btn.solid:hover{background:var(--yellow-ink);color:var(--yellow)}
 .chip-btn.ghost{background:var(--glass);color:var(--ink);border-color:var(--glass-brd);
   -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);box-shadow:var(--glass-sh)}
@@ -146,7 +148,7 @@
 /* stats card */
 .stats{position:absolute;left:1.1rem;bottom:1.1rem;background:var(--glass-strong);border-radius:16px;
   -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
-  padding:1rem 1.2rem;box-shadow:var(--glass-sh);border:1px solid var(--glass-brd);min-width:172px;z-index:5}
+  padding:1rem 1.2rem;box-shadow:0 4px 16px rgba(28,24,38,.05);border:1px solid var(--glass-brd);min-width:172px;z-index:5}
 .stats h4{margin:0 0 .55rem;font-size:.72rem;letter-spacing:.16em;color:var(--muted);font-weight:600}
 .stats .row{display:flex;justify-content:space-between;gap:1.5rem;font-size:.9rem;padding:.16rem 0}
 .stats .row span:first-child{color:var(--muted);font-weight:500}
@@ -155,9 +157,12 @@
 /* ---------- Sidebar ---------- */
 .ed-side{background:transparent;display:flex;flex-direction:column;gap:.9rem;
   padding:0;min-height:0;flex:0 0 372px}
+/* the big structural side panel stays calm like the Designs nav/cards — only the
+   small pill controls get the floating --glass-sh lift */
 .colours-panel{background:var(--glass);border-radius:22px;display:flex;flex-direction:column;
   -webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
-  padding:1.1rem;min-height:0;flex:1;overflow:hidden;border:1px solid var(--glass-brd);box-shadow:var(--glass-sh)}
+  padding:1.1rem;min-height:0;flex:1;overflow:hidden;border:1px solid var(--glass-brd);
+  box-shadow:0 4px 16px rgba(28,24,38,.05)}
 .colours-total{flex:0 0 auto;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;
   font-weight:600;color:var(--muted);padding:.1rem .3rem .85rem}
 .colours-total b{font-weight:700;color:var(--muted)}
@@ -188,7 +193,7 @@
   background:linear-gradient(180deg,#e6e5ec,#e0dfe8);cursor:pointer;
   padding:.5rem;aspect-ratio:1/1;display:grid;place-items:center;transition:all .2s var(--ease);position:relative;
   box-shadow:0 4px 16px rgba(28,24,38,.05)}
-.variant:hover{background:linear-gradient(180deg,#ecebf1,#e6e5ee)}
+.variant:hover{background:linear-gradient(180deg,#ecebf1,#e6e5ee);box-shadow:var(--glass-sh)}
 .variant.sel{border-color:var(--yellow);background:#fcfce8;box-shadow:0 4px 14px rgba(198,214,0,.22)}
 .variant svg{width:100%;height:100%;overflow:visible}
 
@@ -217,7 +222,7 @@
 .palette-panel{position:absolute;top:0;bottom:0;right:calc(372px + 1rem);width:424px;z-index:20;
   display:flex;flex-direction:column;min-height:0;
   background:rgba(244,243,248,.94);-webkit-backdrop-filter:var(--glass-blur);backdrop-filter:var(--glass-blur);
-  border-radius:24px;border:1px solid var(--glass-brd);box-shadow:0 20px 50px rgba(24,20,34,.14);padding:1.4rem}
+  border-radius:24px;border:1px solid var(--glass-brd);box-shadow:var(--glass-sh-lg);padding:1.4rem}
 .palette-panel[hidden]{display:none}
 /* subtle entrance when the panel appears (display flips none→flex → animation plays) */
 @keyframes pmIn{from{opacity:0;transform:translateX(16px) scale(.98)}to{opacity:1;transform:none}}
@@ -244,7 +249,7 @@
 .pm-item{text-align:left;border:2px solid transparent;background:rgba(236,235,242,.72);border-radius:22px;
   padding:1.05rem 1.1rem;cursor:pointer;font-family:inherit;display:flex;flex-direction:column;gap:.85rem;
   transition:all .2s var(--ease);box-shadow:0 4px 16px rgba(28,24,38,.05)}
-.pm-item:hover{background:rgba(244,243,248,.96)}
+.pm-item:hover{background:rgba(244,243,248,.9);box-shadow:var(--glass-sh)}
 .pm-item.selected{border-color:var(--yellow);background:#fcfce8}
 .pm-item-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:30px}
 .pm-name{font-weight:700;color:var(--ink);font-size:1.08rem}
@@ -257,7 +262,7 @@
 .pm-swatches span{height:44px;flex:1 1 0;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(24,20,34,.07)}
 .pm-render{margin-top:1.1rem;flex:0 0 auto;border:0;border-radius:16px;padding:1.1rem;font-family:inherit;
   font-weight:700;font-size:1.02rem;cursor:pointer;background:#e0dee8;color:#9a95a8;transition:all .2s var(--ease)}
-.pm-render:not(:disabled){background:var(--yellow);color:var(--yellow-ink);box-shadow:0 12px 28px rgba(198,214,0,.4)}
+.pm-render:not(:disabled){background:var(--yellow);color:var(--yellow-ink);box-shadow:0 10px 26px rgba(198,214,0,.35)}
 .pm-render:not(:disabled):hover{background:var(--yellow-ink);color:var(--yellow)}
 .pm-render:disabled{cursor:default}
 .pm-note{text-align:center;color:var(--muted);font-size:.9rem;margin:.75rem 0 0}
