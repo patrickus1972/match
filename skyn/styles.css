@@ -235,15 +235,33 @@ img{max-width:100%}
   position:absolute;z-index:6;border:0;background:transparent;cursor:pointer;
   border-radius:2cqw;transition:background .18s var(--ease);
 }
-.nav-link:hover{background:rgba(20,18,26,.06)}
+/* real, sharp nav labels drawn over the render's baked (soft) nav text */
+.nav-link{display:inline-flex;align-items:center;padding:0;text-decoration:none;background:transparent}
+/* feathered lavender swatch that hides the baked label underneath
+   (same technique as .hdr-logo::before) */
+.nav-link::before{
+  content:"";position:absolute;z-index:-1;inset:-.85cqw -1.15cqw;
+  background:#e8e2e9;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent),linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent),linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);
+  mask-composite:intersect;
+}
+.nav-link span{
+  font-family:"General Sans","Inter",sans-serif;font-weight:500;
+  font-size:1.42cqw;letter-spacing:-.005em;line-height:1;color:#141019;white-space:nowrap;
+  padding:.5cqw .55cqw;border-radius:.7cqw;
+  transition:background .18s var(--ease),color .18s var(--ease);
+}
+.nav-link:hover span{background:rgba(20,18,26,.07);color:#000}
 .login-hit:hover{background:rgba(20,18,26,.05)}
 .logo-hit:hover{background:rgba(20,18,26,.05)}
 
 /* section-1 nav coordinates (image 1102×1290) */
 .logo-hit  {left:3.4%;  top:2.0%; width:9.6%;  height:2.7%}
-.nav-work  {left:28.8%; top:2.3%; width:8.6%;  height:2.4%}
-.nav-faq   {left:40.6%; top:2.3%; width:3.2%;  height:2.4%}
-.nav-about {left:46.8%; top:2.3%; width:4.2%;  height:2.4%}
+.nav-work  {left:28.4%; top:2.6%}
+.nav-faq   {left:40.2%; top:2.6%}
+.nav-about {left:46.4%; top:2.6%}
 .login-hit {left:78.9%; top:1.9%; width:6.8%;  height:2.9%}
 
 /* ============================================================
