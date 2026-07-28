@@ -48,14 +48,6 @@ img{max-width:100%}
   -webkit-mask-image:linear-gradient(to right,transparent 0,#000 17%,#000 83%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 5%,#000 80%,transparent 100%);
   -webkit-mask-composite:source-in;mask-composite:intersect;
   mask-image:linear-gradient(to right,transparent 0,#000 17%,#000 83%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 5%,#000 80%,transparent 100%)}
-/* soft "eraser" that hides the render's baked figure under the new avatar */
-.sec-erase{position:absolute;z-index:1;pointer-events:none}
-.hero-erase{left:22%;top:1%;width:56%;height:52%;
-  background:radial-gradient(54% 58% at 50% 42%,#e9e5ec 0%,#e9e5ec 50%,rgba(233,229,236,0) 100%)}
-.about-erase{left:44%;top:0;width:56%;height:100%;
-  background:radial-gradient(50% 56% at 64% 44%,#ece5ec 0%,#ece5ec 52%,rgba(236,229,236,0) 100%)}
-.faq-erase{left:46%;top:0;width:54%;height:80%;
-  background:radial-gradient(54% 56% at 70% 38%,#e9e4eb 0%,#e9e4eb 52%,rgba(233,228,235,0) 100%)}
 .hero-section>img.hero-avatar{left:30%;top:2%;width:38%}
 .about-stage>img.about-avatar{left:50%;top:-2%;width:40%}
 .faq-section>img.faq-avatar{left:48%;top:0;width:52%}
