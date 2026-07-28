@@ -45,8 +45,8 @@ img{max-width:100%}
 .visual-section>img{width:100%;height:auto;display:block}
 /* new hero avatar (transparent cut-out) over the render, with a soft eraser
    behind it that hides the render's baked figure */
-.hero-erase{position:absolute;z-index:1;pointer-events:none;left:22%;top:1%;width:56%;height:52%;
-  background:radial-gradient(54% 58% at 50% 42%,#e9e5ec 0%,#e9e5ec 50%,rgba(233,229,236,0) 100%)}
+.hero-erase{position:absolute;z-index:1;pointer-events:none;left:24%;top:1%;width:43%;height:52%;
+  background:radial-gradient(56% 58% at 50% 42%,#e9e5ec 0%,#e9e5ec 52%,rgba(233,229,236,0) 100%)}
 .hero-section>img.hero-avatar{position:absolute;z-index:2;pointer-events:none;left:30%;top:1%;width:40%;height:auto;
   -webkit-mask-image:linear-gradient(to bottom,#000 93%,transparent 100%);
   mask-image:linear-gradient(to bottom,#000 93%,transparent 100%)}
