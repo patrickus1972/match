@@ -113,6 +113,12 @@
 /* inside the combined preview the global #pgsw toggle already handles paging */
 body:has(#pgsw) .db-switchbar{display:none}
 
+/* the switch-bar pill floats fixed at the bottom — keep the footer's
+   bottom row clear of it so nothing gets covered */
+.db .site-footer .footer-bottom{margin-bottom:72px}
+/* combined preview hides the pill, so no extra clearance is needed there */
+body:has(#pgsw) .db .site-footer .footer-bottom{margin-bottom:0}
+
 /* ---------- Toast ---------- */
 .db-toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,calc(100% + 40px));
   background:#14121a;color:#fff;padding:.85rem 1.3rem;border-radius:13px;font-weight:600;font-size:.96rem;
