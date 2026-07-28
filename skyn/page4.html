@@ -28,10 +28,17 @@
     <main class="rp-main">
       <!-- left: fun-fact panel (supplied render image) -->
       <section class="rp-fact">
-        <div class="rp-fact-view">
-          <img class="rp-fact-img" src="assets/funfact.webp" alt="Fun fact — 274,640,005 outfit changes every single day, roughly 3,000 restyles every second">
+        <div class="rp-fact-view" id="rp-fact-view">
+          <img class="rp-fact-img is-active" src="assets/funfact-armor.webp" alt="Fun fact — from armor to avatars: a medieval knight could wait months for a custom suit of armor; today a gaming skin can be created in minutes, roughly 1,000× faster than history.">
+          <img class="rp-fact-img" src="assets/funfact-outfits.webp" alt="Fun fact — 274,640,005 outfit changes every single day, roughly 3,000 outfit changes every second." loading="lazy">
+          <img class="rp-fact-img" src="assets/funfact-pixels.webp" alt="Fun fact — pixels go a long way: stack the pixels from every digital image ever created and they would reach the moon over 10,000 times, roughly 238 quadrillion pixels." loading="lazy">
           <div class="rp-fact-scrim" id="rp-scrim"></div>
           <div class="rp-fact-scan" id="rp-scan"><span></span></div>
+          <div class="rp-fact-dots" id="rp-dots" role="tablist" aria-label="Fun facts">
+            <button class="is-active" type="button" aria-label="Fun fact 1"></button>
+            <button type="button" aria-label="Fun fact 2"></button>
+            <button type="button" aria-label="Fun fact 3"></button>
+          </div>
         </div>
       </section>
 

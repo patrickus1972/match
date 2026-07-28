@@ -28,8 +28,16 @@
   display:flex;align-items:flex-start;justify-content:center;padding:1.4rem;
   background:rgba(255,255,255,.5);-webkit-backdrop-filter:var(--glass-blur,blur(20px));backdrop-filter:var(--glass-blur,blur(20px));
   border:1px solid var(--glass-brd,rgba(255,255,255,.85));box-shadow:0 18px 50px rgba(28,24,38,.08)}
-.rp-fact-view{position:relative;width:100%;border-radius:18px;overflow:hidden;align-self:flex-start;isolation:isolate}
-.rp-fact-img{display:block;width:100%;height:auto}
+.rp-fact-view{position:relative;width:100%;aspect-ratio:1131/1391;border-radius:18px;overflow:hidden;align-self:flex-start;isolation:isolate}
+/* carousel: fun-fact slides stacked and cross-faded every 15s */
+.rp-fact-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  opacity:0;transition:opacity 1s var(--ease,ease);pointer-events:none}
+.rp-fact-img.is-active{opacity:1}
+.rp-fact-dots{position:absolute;left:0;right:0;bottom:.9rem;z-index:4;display:flex;justify-content:center;gap:.5rem}
+.rp-fact-dots button{width:8px;height:8px;padding:0;border:0;border-radius:50%;cursor:pointer;
+  background:rgba(20,18,26,.30);box-shadow:0 1px 4px rgba(0,0,0,.18);
+  transition:background .25s var(--ease,ease),width .25s var(--ease,ease)}
+.rp-fact-dots button.is-active{background:var(--yellow,#e6ea0f);width:22px;border-radius:5px}
 
 /* "not yet rendered" region — desaturated / blurred, recedes from the top
    as progress climbs, with a faint wireframe grid over the un-rendered part */

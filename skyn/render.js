@@ -52,3 +52,22 @@
   $('#rp-signup')?.addEventListener('click', () => showToast('Creating your free account…'));
   document.querySelector('.rp .footer-cta')?.addEventListener('click', () => showToast('Your first outfit is free — let’s go.'));
 })();
+
+/* ---- fun-fact carousel: cross-fade a new fact every 15s ---- */
+(() => {
+  'use strict';
+  const slides = [...document.querySelectorAll('.rp-fact-img')];
+  const dots = [...document.querySelectorAll('#rp-dots button')];
+  if (slides.length < 2) return;
+  let idx = 0, timer = null;
+  const show = (n) => {
+    slides[idx].classList.remove('is-active');
+    dots[idx] && dots[idx].classList.remove('is-active');
+    idx = (n + slides.length) % slides.length;
+    slides[idx].classList.add('is-active');
+    dots[idx] && dots[idx].classList.add('is-active');
+  };
+  const start = () => { timer = setInterval(() => show(idx + 1), 15000); };
+  dots.forEach((d, i) => d.addEventListener('click', () => { show(i); clearInterval(timer); start(); }));
+  start();
+})();
