@@ -53,6 +53,9 @@ img{max-width:100%}
 /* FAQ avatar (transparent cut-out) + eraser hiding the render's baked figure */
 .faq-erase{position:absolute;z-index:1;pointer-events:none;left:43%;top:0;width:56%;height:61%;
   background:radial-gradient(74% 100% at 62% 44%,#e8e5ec 0%,#e8e5ec 72%,rgba(232,229,236,0) 100%)}
+/* targeted patch over the render figure's stray foot at the section↔pricing seam */
+.faq-erase2{position:absolute;z-index:1;pointer-events:none;left:71%;top:55%;width:26%;height:15%;
+  background:radial-gradient(58% 60% at 48% 46%,#edeaf0 0%,#edeaf0 46%,rgba(237,234,240,0) 100%)}
 .faq-section>img.faq-avatar{position:absolute;z-index:2;pointer-events:none;left:51%;top:0;width:41%;height:auto;
   -webkit-mask-image:linear-gradient(to bottom,#000 94%,transparent 100%);
   mask-image:linear-gradient(to bottom,#000 94%,transparent 100%)}
