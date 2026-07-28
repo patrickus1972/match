@@ -322,6 +322,29 @@ img{max-width:100%}
   box-shadow:0 1.4cqw 3cqw rgba(20,18,26,.28)}
 .upload-zone:hover .browse-btn svg{transform:translate(.12em,.12em)}
 
+/* real, sharp text over the render's baked upload-card labels */
+.upload-copy{left:69%;top:36.2%;width:25.6%;text-align:center;--cover:#eeedf4;
+  display:flex;flex-direction:column;align-items:center;gap:.6cqw;pointer-events:none}
+.upload-copy::before{inset:-.9cqw -1cqw -1.5cqw -1cqw;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent),linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent);
+  mask-composite:intersect}
+.upload-copy .uc-title{font-weight:600;font-size:1.5cqw;letter-spacing:-.01em;color:#141019;line-height:1}
+.upload-copy .uc-sub{font-weight:500;font-size:1.06cqw;color:#8a8490;line-height:1}
+/* "No install · first outfit free" hint under the card */
+.free-hint{left:69%;top:50.1%;width:25.6%;--cover:#e8e6ec;
+  display:flex;justify-content:center;align-items:center;gap:.6cqw;
+  font-size:1.06cqw;font-weight:600;line-height:1;pointer-events:none}
+.free-hint::before{inset:-.85cqw -1.1cqw;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent),linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);
+  -webkit-mask-composite:source-in;
+  mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent),linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);
+  mask-composite:intersect}
+.free-hint span{color:#6f6a78}
+.free-hint em{color:#b3aeb9;font-style:normal}
+.free-hint b{color:#9ea200;font-weight:600}
+
 /* ============================================================
    SECTION 2 · interactive FAQ (rebuilt to match the render)
    image 1116×1206
