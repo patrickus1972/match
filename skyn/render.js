@@ -31,10 +31,7 @@
     step.textContent = 'Step ' + s.n + ' of 5 · ' + s.l;
     file.textContent = s.f;
     state.textContent = p >= 100 ? 'done' : 'working…';
-    /* reveal the left render preview from the top down to the frontier */
-    if (scrim) scrim.style.top = p + '%';
-    if (scan) scan.style.top = p + '%';
-    if (view) view.classList.toggle('done', p >= 100);
+    /* the fun-fact reveal is driven by the carousel below, not by render progress */
   };
   render();
   const iv = setInterval(() => {
@@ -53,21 +50,39 @@
   document.querySelector('.rp .footer-cta')?.addEventListener('click', () => showToast('Your first outfit is free — let’s go.'));
 })();
 
-/* ---- fun-fact carousel: cross-fade a new fact every 15s ---- */
+/* ---- fun-fact carousel: cross-fade a new fact every 15s, quick reveal per slide ---- */
 (() => {
   'use strict';
   const slides = [...document.querySelectorAll('.rp-fact-img')];
   const dots = [...document.querySelectorAll('#rp-dots button')];
+  const scrim = document.getElementById('rp-scrim');
+  const scan = document.getElementById('rp-scan');
+  const view = document.querySelector('.rp-fact-view');
   if (slides.length < 2) return;
+  const REVEAL = 3200;   // ms — top-to-bottom reveal, well within the 15s hold
+  const HOLD = 15000;    // ms each fun fact stays on screen
   let idx = 0, timer = null;
+  const reveal = () => {
+    if (!scrim || !scan) return;
+    view && view.classList.remove('done');
+    scrim.style.transition = scan.style.transition = 'none';
+    scrim.style.top = scan.style.top = '0%';
+    void scrim.offsetHeight;                       // reflow so the reset applies
+    const t = 'top ' + (REVEAL / 1000) + 's var(--ease,ease)';
+    scrim.style.transition = scan.style.transition = t;
+    scrim.style.top = scan.style.top = '100%';
+    setTimeout(() => view && view.classList.add('done'), REVEAL);
+  };
   const show = (n) => {
     slides[idx].classList.remove('is-active');
     dots[idx] && dots[idx].classList.remove('is-active');
     idx = (n + slides.length) % slides.length;
     slides[idx].classList.add('is-active');
     dots[idx] && dots[idx].classList.add('is-active');
+    reveal();
   };
-  const start = () => { timer = setInterval(() => show(idx + 1), 15000); };
+  const start = () => { timer = setInterval(() => show(idx + 1), HOLD); };
   dots.forEach((d, i) => d.addEventListener('click', () => { show(i); clearInterval(timer); start(); }));
+  reveal();   // reveal the first slide on load
   start();
 })();
