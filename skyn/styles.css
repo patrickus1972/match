@@ -307,7 +307,7 @@ img{max-width:100%}
 .faq-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.55cqw}
 
 .faq-row{
-  background:var(--pill);
+  background:transparent;
   border:.09cqw solid rgba(210,203,216,.7);
   border-radius:1.1cqw;
   box-shadow:0 .35cqw 1cqw rgba(60,42,74,.05);
