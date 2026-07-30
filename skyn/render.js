@@ -35,7 +35,11 @@
   };
   render();
   const iv = setInterval(() => {
-    if (p >= 100) { clearInterval(iv); state.textContent = 'done'; return; }
+    if (p >= 100) { clearInterval(iv); state.textContent = 'done';
+      document.querySelector('.rp-eta-ico')?.classList.add('is-done');
+      fill.classList.add('is-done');
+      document.querySelector('.rp-dot')?.classList.add('is-done');
+      return; }
     p = Math.min(100, p + 1 + Math.floor(Math.random() * 3));
     render();
   }, 1600);

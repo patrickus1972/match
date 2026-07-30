@@ -70,17 +70,40 @@
 .rp-status-title{margin:0 0 1.8rem;font-weight:800;font-size:2.7rem;letter-spacing:-.025em;line-height:1.04;color:#141019}
 
 .rp-eta{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem}
-.rp-eta-ico{flex:0 0 auto;width:125px;height:125px;border-radius:36px;background:var(--ink,#17141c);display:grid;place-items:center}
+.rp-eta-ico{flex:0 0 auto;width:125px;height:125px;border-radius:36px;background:var(--ink,#17141c);display:grid;place-items:center;position:relative;animation:rpGlow 1.9s ease-in-out infinite}
 .rp-eta-ico svg{width:62px;height:62px;fill:none;stroke:var(--yellow,#e6ea0f);stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
 .rp-eta b{font-size:1.2rem;font-weight:700;color:#141019}
 .rp-eta p{margin:.15rem 0 0;color:#6f6a78;font-weight:500;font-size:.98rem}
 
 .rp-bar{height:12px;border-radius:999px;background:#d9d7e0;overflow:hidden;margin-bottom:.7rem}
-.rp-bar span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#c6d900,#e6ea0f);transition:width .6s var(--ease,ease)}
+.rp-bar span{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,#c6d900,#e6ea0f);transition:width .6s var(--ease,ease);position:relative;overflow:hidden}
 .rp-barmeta{display:flex;align-items:center;justify-content:space-between;font-size:.92rem;color:#6f6a78;font-weight:500;margin-bottom:1.6rem}
 .rp-barmeta b{color:#141019;font-weight:700}
-.rp-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#b9bd00;margin-right:.5rem;vertical-align:middle}
+.rp-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#b9bd00;margin-right:.5rem;vertical-align:middle;animation:rpDotPulse 1s ease-in-out infinite}
 .rp-file{font-family:"SFMono-Regular",ui-monospace,Menlo,monospace;color:#8a8590}
+
+/* ---- "system is working" download animation ---- */
+.rp-eta-ico::before{content:"";position:absolute;inset:-5px;border-radius:41px;padding:5px;pointer-events:none;
+  background:conic-gradient(from 0deg,rgba(230,234,15,0) 0deg,rgba(230,234,15,0) 200deg,#e6ea0f 312deg,rgba(230,234,15,0) 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+  animation:rpSpin 1.05s linear infinite}
+.rp-bar span::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:repeating-linear-gradient(45deg,rgba(255,255,255,.30) 0 10px,rgba(255,255,255,0) 10px 20px);
+  background-size:28.28px 100%;animation:rpStripe .7s linear infinite}
+/* freeze the animation once the render completes */
+.rp-eta-ico.is-done{animation:none}
+.rp-eta-ico.is-done::before{animation:none;opacity:0}
+.rp-bar span.is-done::after{animation:none;opacity:0}
+.rp-dot.is-done{animation:none;opacity:1;transform:none}
+@keyframes rpSpin{to{transform:rotate(360deg)}}
+@keyframes rpStripe{to{background-position:28.28px 0}}
+@keyframes rpGlow{0%,100%{box-shadow:0 0 0 0 rgba(230,234,15,0)}50%{box-shadow:0 0 30px 2px rgba(230,234,15,.28)}}
+@keyframes rpDotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.68)}}
+@media (prefers-reduced-motion:reduce){
+  .rp-eta-ico,.rp-eta-ico::before,.rp-bar span::after,.rp-dot{animation:none!important}
+  .rp-eta-ico::before{opacity:.9}
+}
 
 .rp-toggle{display:flex;align-items:center;gap:.7rem;font-weight:600;font-size:1rem;color:#141019;margin:.55rem 0;cursor:pointer}
 .rp-toggle input{position:absolute;opacity:0;pointer-events:none}
