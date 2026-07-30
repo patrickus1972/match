@@ -81,6 +81,18 @@ img{max-width:100%}
   clip-path:inset(9px 0 0 14px);
   -webkit-mask-image:linear-gradient(to right,transparent 0,#000 3%,#000 94%,transparent 100%);
   mask-image:linear-gradient(to right,transparent 0,#000 3%,#000 94%,transparent 100%)}
+/* About avatar (orange-hoodie cut-out) + erasers that paint out the baked figure & its magenta neon */
+.about-stage>.about-erase{position:absolute;z-index:1;pointer-events:none;left:34%;top:-3%;width:68%;height:92%;
+  background:radial-gradient(66% 74% at 57% 40%,#eee9f0 0%,#eee9f0 64%,rgba(238,233,240,0) 100%)}
+/* second patch: the baked figure's magenta neon tail that pokes out lower-left */
+.about-stage>.about-erase2{position:absolute;z-index:1;pointer-events:none;left:28%;top:50%;width:34%;height:34%;
+  background:radial-gradient(58% 60% at 52% 50%,#eee9f0 0%,#eee9f0 60%,rgba(238,233,240,0) 100%)}
+/* soft dark halo so the white legs/boots separate from the light lavender */
+.about-stage>.about-glow{position:absolute;z-index:1;pointer-events:none;top:1%;right:1%;width:50%;height:104%;
+  background:radial-gradient(42% 54% at 60% 50%,rgba(96,84,116,.30),rgba(96,84,116,.13) 52%,rgba(96,84,116,0) 76%)}
+.about-stage>img.about-avatar{position:absolute;z-index:2;pointer-events:none;right:8%;top:3%;width:31cqw;height:auto;
+  margin-top:0;clip-path:none;-webkit-mask-image:none;mask-image:none;
+  filter:drop-shadow(0 30px 44px rgba(28,20,40,.28))}
 
 /* ============================================================
    Real-text overlays (General Sans) laid over the render text.
