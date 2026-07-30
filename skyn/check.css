@@ -26,8 +26,8 @@
 .qc-signup svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 
 /* ---------- Main split (same 1116px content shell as the homepage) ---------- */
-.qc-main{flex:1;width:min(1320px,100%);margin:0 auto;padding:.5rem 24px 2.4rem;
-  display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:2rem;align-items:center}
+.qc-main{flex:1;width:min(1500px,100%);margin:0 auto;padding:.5rem 24px 2.4rem;
+  display:grid;grid-template-columns:minmax(0,900px) minmax(0,560px);gap:2rem;align-items:center;justify-content:center}
 
 /* ---------- Figure ---------- */
 .qc-figure{display:flex;align-items:center;justify-content:center;height:100%}
