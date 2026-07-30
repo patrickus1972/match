@@ -26,12 +26,12 @@
 .qc-signup svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 
 /* ---------- Main split (same 1116px content shell as the homepage) ---------- */
-.qc-main{flex:1;width:min(1500px,100%);margin:0 auto;padding:.5rem 24px 2.4rem;
-  display:grid;grid-template-columns:minmax(0,900px) minmax(0,560px);gap:2rem;align-items:center;justify-content:center}
+.qc-main{flex:1;width:min(1760px,100%);margin:0 auto;padding:.5rem 24px 2.4rem;
+  display:grid;grid-template-columns:minmax(0,1100px) minmax(0,560px);gap:2rem;align-items:center;justify-content:center}
 
 /* ---------- Figure ---------- */
 .qc-figure{display:flex;align-items:center;justify-content:center;height:100%}
-.qc-figure img{display:block;width:100%;max-width:900px;height:auto;max-height:calc(100vh - 120px);object-fit:contain;
+.qc-figure img{display:block;width:100%;max-width:1100px;height:auto;max-height:calc(100vh - 80px);object-fit:contain;
   /* feather all four edges so the render blends into the page instead of showing a box */
   -webkit-mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 5%,#000 95%,transparent 100%);
   -webkit-mask-composite:source-in;mask-composite:intersect;
