@@ -26,12 +26,12 @@
 .qc-signup svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
 
 /* ---------- Main split (same 1116px content shell as the homepage) ---------- */
-.qc-main{flex:1;width:min(1760px,100%);margin:0 auto;padding:.5rem 24px 2.4rem;
-  display:grid;grid-template-columns:minmax(0,1100px) minmax(0,560px);gap:2rem;align-items:center;justify-content:center}
+.qc-main{flex:1;width:min(1116px,100%);margin:0 auto;padding:.5rem 24px 2.4rem;
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:2rem;align-items:center}
 
 /* ---------- Figure ---------- */
 .qc-figure{display:flex;align-items:center;justify-content:center;height:100%}
-.qc-figure img{display:block;width:100%;max-width:1100px;height:auto;max-height:calc(100vh - 80px);object-fit:contain;
+.qc-figure img{display:block;width:100%;max-width:600px;height:auto;max-height:calc(100vh - 120px);object-fit:contain;
   /* feather all four edges so the render blends into the page instead of showing a box */
   -webkit-mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 5%,#000 95%,transparent 100%);
   -webkit-mask-composite:source-in;mask-composite:intersect;
@@ -55,8 +55,8 @@
 .qc-file{display:flex;align-items:center;gap:1rem;text-align:left;background:#fff;
   border:1px solid rgba(28,24,38,.06);border-radius:18px;padding:1.05rem 1.2rem;margin-bottom:1.1rem;
   box-shadow:0 6px 18px rgba(28,24,38,.05)}
-.qc-file-ico{flex:0 0 auto;width:58px;height:58px;border-radius:16px;background:var(--ink,#17141c);display:grid;place-items:center}
-.qc-file-ico svg{width:30px;height:30px;fill:var(--yellow,#e6ea0f)}
+.qc-file-ico{flex:0 0 auto;width:88px;height:88px;border-radius:20px;background:var(--ink,#17141c);display:grid;place-items:center}
+.qc-file-ico svg{width:46px;height:46px;fill:var(--yellow,#e6ea0f)}
 .qc-file-meta b{display:block;font-size:1.18rem;font-weight:700;color:#141019;line-height:1.2}
 .qc-file-meta span{display:block;margin-top:.25rem;color:#8a8590;font-weight:500;font-size:.94rem}
 
@@ -89,16 +89,9 @@
 .qc-btn.on:hover{background:#2c2740;transform:translateY(-1px)}
 .qc-btn.on:active{transform:translateY(0)}
 
-/* Stack to a single column well before things get tight: the render is nearly
-   square, so a two-column split squeezes it small at narrow/preview widths.
-   Single column keeps the figure big and centred until there's real room. */
-@media (max-width:1540px){
-  .qc-main{grid-template-columns:1fr;justify-items:center;max-width:860px}
-  .qc-figure{order:1}
-  .qc-figure img{max-width:min(820px,94%);max-height:none}
-  .qc-panel{justify-self:center}
-}
 @media (max-width:940px){
-  .qc-main{padding-top:0}
+  .qc-main{grid-template-columns:1fr;padding-top:0}
+  .qc-figure{order:2}
+  .qc-figure img{max-height:none}
   .qc-nav{display:none}
 }
