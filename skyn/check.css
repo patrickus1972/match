@@ -89,9 +89,16 @@
 .qc-btn.on:hover{background:#2c2740;transform:translateY(-1px)}
 .qc-btn.on:active{transform:translateY(0)}
 
+/* Stack to a single column well before things get tight: the render is nearly
+   square, so a two-column split squeezes it small at narrow/preview widths.
+   Single column keeps the figure big and centred until there's real room. */
+@media (max-width:1540px){
+  .qc-main{grid-template-columns:1fr;justify-items:center;max-width:860px}
+  .qc-figure{order:1}
+  .qc-figure img{max-width:min(820px,94%);max-height:none}
+  .qc-panel{justify-self:center}
+}
 @media (max-width:940px){
-  .qc-main{grid-template-columns:1fr;padding-top:0}
-  .qc-figure{order:2}
-  .qc-figure img{max-height:none}
+  .qc-main{padding-top:0}
   .qc-nav{display:none}
 }
