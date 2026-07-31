@@ -85,20 +85,22 @@ a{color:inherit}
 /* ============================================================
    Hero
    ============================================================ */
-.hero{position:relative;padding:120px 0 40px;overflow:hidden}
+.hero{position:relative;padding:120px 0 40px;overflow:hidden;
+  /* matched to the header render's own background so the image blends in
+     (top near-white -> pink mid -> back to the page lavender at the seam) */
+  background:linear-gradient(180deg,#f4f1f2 0%,#ecdde7 42%,#e3d4de 68%,#e9e2e9 100%)}
 .hero-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:2rem;align-items:center;
   min-height:560px}
 
 /* figure + neon backdrop (was baked into the render) */
 .hero-figure{position:relative;align-self:stretch;display:flex;align-items:flex-end;justify-content:center;min-height:560px}
-.hero-figure::before{content:"";position:absolute;inset:6% 4% 0;z-index:0;
-  background:
-    radial-gradient(60% 60% at 50% 42%,rgba(255,255,255,.6),rgba(255,255,255,0) 70%),
-    conic-gradient(from 210deg at 62% 46%,rgba(230,234,15,0) 0deg,rgba(230,234,15,.0) 60deg,#f4f36a 92deg,rgba(255,120,90,.5) 120deg,rgba(230,234,15,0) 160deg);
-  filter:blur(6px);opacity:.55;border-radius:40px}
-.hero-figure img{position:relative;z-index:1;width:auto;max-width:100%;max-height:620px;height:auto;
-  -webkit-mask-image:linear-gradient(to bottom,#000 92%,transparent 100%);
-  mask-image:linear-gradient(to bottom,#000 92%,transparent 100%)}
+/* the header render carries its own neon, so no CSS backdrop is needed */
+.hero-figure::before{content:none}
+.hero-figure img{position:relative;z-index:1;width:auto;max-width:100%;max-height:700px;height:auto;
+  /* feather all edges so the render's background melts into the section */
+  -webkit-mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 3%,#000 95%,transparent 100%);
+  -webkit-mask-composite:source-in;mask-composite:intersect;
+  mask-image:linear-gradient(to right,transparent 0,#000 7%,#000 93%,transparent 100%),linear-gradient(to bottom,transparent 0,#000 3%,#000 95%,transparent 100%)}
 
 /* copy card */
 .hero-card{background:rgba(255,255,255,.55);
