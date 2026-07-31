@@ -68,7 +68,7 @@ a{color:inherit}
 .site-header{position:absolute;top:0;left:0;right:0;z-index:20}
 .header-inner{display:flex;align-items:center;gap:2rem;height:84px}
 .hdr-logo{display:block;flex:0 0 auto}
-.hdr-logo img{height:30px;width:auto}
+.hdr-logo img{height:30px;width:auto;filter:brightness(0)}
 .main-nav{display:flex;gap:2rem;margin-left:1.5rem}
 .main-nav a{text-decoration:none;font-weight:500;color:#191721;opacity:.9;
   padding:.35rem .1rem;transition:opacity .18s var(--ease)}
