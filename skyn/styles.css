@@ -141,9 +141,9 @@ a{color:inherit}
 
 /* ---------- Social proof: testimonials + how it works ---------- */
 .proof{padding:0 0 72px}
-.proof-grid{display:grid;grid-template-columns:2fr 1fr;gap:1.4rem;align-items:stretch}
-.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
-.tcard{position:relative;border-radius:20px;overflow:hidden;min-height:300px;
+.proof-grid{display:grid;grid-template-columns:1fr;gap:1.4rem;align-items:stretch}
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem}
+.tcard{position:relative;border-radius:20px;overflow:hidden;min-height:260px;
   display:flex;color:#fff;box-shadow:var(--card)}
 .tcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .tcard::after{content:"";position:absolute;inset:0;z-index:1;
@@ -155,10 +155,9 @@ a{color:inherit}
   font-weight:600;font-size:1.02rem;line-height:1.4;text-shadow:0 1px 10px rgba(0,0,0,.25)}
 .tcard p::before{content:"“";display:block;font-size:2.4rem;line-height:.6;opacity:.7;margin-bottom:.4rem}
 
-.how-panel{background:#eceaf1;border-radius:20px;padding:2rem 1.9rem;box-shadow:var(--card);
-  display:flex;flex-direction:column}
+.how-panel{background:#eceaf1;border-radius:20px;padding:1.9rem 2rem;box-shadow:var(--card)}
 .how-panel h3{font-weight:700;font-size:1.5rem;letter-spacing:-.02em;color:#191721;margin-bottom:1.6rem}
-.how-panel ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.9rem;flex:1;justify-content:center}
+.how-panel ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
 .how-panel li{display:flex;gap:1rem;align-items:flex-start}
 .hs-ico{flex:0 0 auto;width:52px;height:52px;border-radius:15px;display:grid;place-items:center;
   background:linear-gradient(150deg,#fdf7c6,#f3ea86);border:1px solid rgba(214,196,74,.4)}
@@ -361,6 +360,7 @@ a{color:inherit}
   .hero-figure{order:2}
   .hero-figure img{max-height:520px}
   .proof-grid{gap:1.6rem}
+  .how-panel ol{grid-template-columns:1fr;gap:1.6rem}
   .price-card{grid-template-columns:1fr}
   .price-hoodie{order:-1}
   .faq-figure{display:none}
