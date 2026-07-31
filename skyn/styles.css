@@ -303,8 +303,6 @@ a{color:inherit}
 .st-ico svg{width:26px;height:26px;fill:none;stroke:#63591d;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .st-big{display:block;font-weight:800;font-size:1.5rem;line-height:1.08;letter-spacing:-.03em;color:#141019}
 .st-desc{display:block;font-weight:500;font-size:.98rem;color:#5f5a66;line-height:1.45;margin-top:1rem}
-.st-spark{position:absolute;right:1.4rem;bottom:1.4rem;color:#d9d3df;pointer-events:none}
-.st-spark svg{width:34px;height:34px;fill:currentColor}
 
 /* ============================================================
    Footer
