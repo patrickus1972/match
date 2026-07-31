@@ -69,10 +69,12 @@ a{color:inherit}
 .header-inner{display:flex;align-items:center;gap:2rem;height:84px}
 .hdr-logo{display:block;flex:0 0 auto}
 .hdr-logo img{height:30px;width:auto;filter:brightness(0)}
-.main-nav{display:flex;gap:2rem;margin-left:1.5rem}
-.main-nav a{text-decoration:none;font-weight:500;color:#191721;opacity:.9;
-  padding:.35rem .1rem;transition:opacity .18s var(--ease)}
-.main-nav a:hover{opacity:1}
+.main-nav{display:flex;gap:.6rem;margin-left:1.5rem}
+.main-nav a{text-decoration:none;font-weight:500;color:#191721;opacity:.85;
+  padding:.45rem .8rem;border-radius:10px;
+  transition:background .18s var(--ease),color .18s var(--ease),opacity .18s var(--ease)}
+.main-nav a:hover,.main-nav a:focus-visible{opacity:1;color:#000;background:rgba(20,18,26,.07)}
+.main-nav a:active{background:rgba(20,18,26,.12)}
 .hdr-actions{margin-left:auto;display:flex;align-items:center;gap:.7rem}
 .login-hit{background:#fff;border:0;cursor:pointer;color:#141019;font-weight:600;
   border-radius:13px;padding:.75rem 1.4rem;box-shadow:0 4px 14px rgba(20,18,26,.10);
