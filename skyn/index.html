@@ -11,309 +11,326 @@
   <link rel="stylesheet" href="legalpop.css">
 </head>
 <body>
-  <main class="page-shell" id="top">
-
-    <!-- ================= SECTION 1 · HERO ================= -->
-    <section class="visual-section hero-section">
-      <img src="assets/section-1.png" alt="SKYN — turn your 2D design into a game-ready 3D SKYN" fetchpriority="high">
-      <div class="hero-erase" aria-hidden="true"></div>
-      <img class="hero-avatar" src="assets/hero-avatar.webp" alt="" aria-hidden="true">
-
-      <!-- nav -->
-      <a class="ov hdr-logo" href="#top" aria-label="SKYN — home"><img src="assets/skyn-logo.png" alt="SKYN"></a>
-      <a class="hit nav-link nav-work"  href="#how"><span>How it works</span></a>
-      <a class="hit nav-link nav-faq"   href="#faq"><span>FAQ</span></a>
-      <a class="hit nav-link nav-about" href="#about"><span>About</span></a>
-      <button class="hit login-hit" type="button"><span>Log in</span></button>
-
-      <!-- primary CTA (matches the render's yellow pill) -->
-      <button class="pill-btn signup-btn" type="button">
-        <span>Sign up</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-      </button>
-
-      <!-- upload dropzone -->
-      <label class="upload-zone" id="how" aria-label="Upload your 2D design (PNG or JPG, up to 25 MB)">
-        <input type="file" accept="image/png,image/jpeg" hidden>
-        <span class="pill-btn browse-btn">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8 16 16M16 9.5v6.5h-6.5"/></svg>
-          <span>Browse files</span>
-        </span>
-      </label>
-
-      <!-- real text over the render's baked upload-card labels -->
-      <div class="ov upload-copy">
-        <span class="uc-title">Drop your 2D design here</span>
-        <span class="uc-sub">PNG or JPG · up to 25 MB</span>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="hdr-logo" href="#top" aria-label="SKYN — home"><img src="assets/skyn-logo.png" alt="SKYN"></a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="#how">How it works</a>
+        <a href="#faq">FAQ</a>
+        <a href="#about">About</a>
+      </nav>
+      <div class="hdr-actions">
+        <button class="login-hit" type="button">Log in</button>
+        <button class="pill-btn signup-btn" type="button">
+          <span>Sign up</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </button>
       </div>
+    </div>
+  </header>
 
-      <!-- real text over the baked "No install · first outfit free" line -->
-      <div class="ov free-hint">
-        <span>No install</span><em>·</em><b>first outfit free</b>
-      </div>
+  <main id="top">
 
-      <!-- real text overlaid on the render's hero card -->
-      <div class="ov hero-copy">
-        <span class="eb">SKYN in the game</span>
-        <h1>Turn your 2D design into a SKYN<span class="y">.</span></h1>
-        <p>Upload the art you've already drawn. SKYN wraps it onto a game-ready 3D wearable — in minutes.</p>
-      </div>
+    <!-- ================= HERO ================= -->
+    <section class="hero">
+      <div class="shell hero-inner">
+        <div class="hero-figure">
+          <img src="assets/hero-avatar.webp" alt="A 3D SKYN avatar wearing a custom outfit" fetchpriority="high">
 
-      <!-- trusted-by label -->
-      <div class="ov trusted-copy"><span>Trusted by creators making SKYNs for</span></div>
-
-      <!-- animated logo ticker over the render's static logo row -->
-      <div class="ov ticker" aria-label="Trusted by creators making SKYNs for Roblox, The Sims, Fortnite, Minecraft, VRChat and Zepeto">
-        <div class="ticker-track">
-          <img src="assets/brands-logos.png" alt="Roblox, The Sims, Fortnite, Minecraft, VRChat, Zepeto">
-          <img src="assets/brands-logos.png" alt="" aria-hidden="true">
-        </div>
-      </div>
-
-      <!-- demo video player, revealed after 4s -->
-      <div class="ov video-demo" id="video-demo" data-src="assets/demo.mp4">
-        <div class="vd-frame">
-          <span class="vd-glow" aria-hidden="true"></span>
-          <button class="vd-play" type="button" aria-label="Watch the demo">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>
-          </button>
-          <span class="vd-caption"><b>Watch demo</b> and discover how SKYN works</span>
-          <button class="vd-expand" type="button" aria-label="Enlarge video 50%" aria-pressed="false">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h5v5M9 20H4v-5M20 4l-7 7M4 20l7-7"/></svg>
-          </button>
-          <button class="vd-close" type="button" aria-label="Close demo">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
-          </button>
-        </div>
-      </div>
-
-      <!-- how it works panel (redrawn over the render panel) -->
-      <div class="ov how-copy">
-        <h3>How it works</h3>
-        <ol>
-          <li>
-            <span class="hs-ico"><svg viewBox="0 0 24 24"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 21h14"/></svg></span>
-            <span class="hs-body">
-              <span class="hs-no">01</span>
-              <span class="hs-name">Upload</span>
-              <span class="hs-desc">Drop in the 2D garment art you've already drawn.</span>
-            </span>
-          </li>
-          <li>
-            <span class="hs-ico"><svg viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="m3 8 9 5 9-5M12 21v-8"/></svg></span>
-            <span class="hs-body">
-              <span class="hs-no">02</span>
-              <span class="hs-name">Generate</span>
-              <span class="hs-desc">SKYN builds a high-res, game-ready 3D SKYN.</span>
-            </span>
-          </li>
-          <li>
-            <span class="hs-ico"><svg viewBox="0 0 24 24"><path d="M20 13 13 20a1.6 1.6 0 0 1-2.3 0L3 12V3h9l8 8a1.6 1.6 0 0 1 0 2Z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg></span>
-            <span class="hs-body">
-              <span class="hs-no">03</span>
-              <span class="hs-name">Sell</span>
-              <span class="hs-desc">Export the file and list it on Roblox — it's yours to sell.</span>
-            </span>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <!-- ================= SECTION 2 · FAQ + PRICING ================= -->
-    <section class="visual-section faq-section" id="faq">
-      <img src="assets/section-2.png" alt="SKYN frequently asked questions and pricing" loading="lazy">
-      <div class="faq-erase" aria-hidden="true"></div>
-      <div class="faq-erase2" aria-hidden="true"></div>
-      <img class="faq-avatar" src="assets/faq-avatar.webp" alt="" aria-hidden="true">
-
-      <!-- interactive accordion, rebuilt to sit seamlessly over the render -->
-      <div class="faq-panel">
-        <ul class="faq-list" role="list">
-          <li class="faq-row" data-open>
-            <button class="faq-q" type="button" aria-expanded="true">
-              <span class="faq-ico">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v4l2.5 2"/></svg>
-              </span>
-              <span class="faq-txt">What is SKYN?</span>
-              <span class="faq-plus" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a"><p>SKYN turns the 2D garment art you already draw into a production-ready, game-ready 3D wearable — no pipeline, no waiting.</p></div>
-          </li>
-          <li class="faq-row">
-            <button class="faq-q" type="button" aria-expanded="false">
-              <span class="faq-ico">
-                <svg viewBox="0 0 24 24"><path d="M9 4 5 6 4 9l3 1v10h10V10l3-1-1-3-4-2a3 3 0 0 1-6 0Z"/></svg>
-              </span>
-              <span class="faq-txt">What kind of files can I upload?</span>
-              <span class="faq-plus" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a"><p>PNG or JPG artwork up to 25&nbsp;MB. Clean, high-contrast designs give the sharpest results.</p></div>
-          </li>
-          <li class="faq-row">
-            <button class="faq-q" type="button" aria-expanded="false">
-              <span class="faq-ico">
-                <svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="10" rx="4"/><path d="M6.5 11v2M5.5 12h2M15 12h.01M17.5 13.5h.01"/></svg>
-              </span>
-              <span class="faq-txt">How does the 3D generation work?</span>
-              <span class="faq-plus" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a"><p>We map your artwork onto a game-ready garment base, then refine geometry and materials for real-time engines.</p></div>
-          </li>
-          <li class="faq-row">
-            <button class="faq-q" type="button" aria-expanded="false">
-              <span class="faq-ico">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
-              </span>
-              <span class="faq-txt">Can I use SKYN for free?</span>
-              <span class="faq-plus" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a"><p>Your first outfit is free — no install required. After that a full outfit is a flat $10.</p></div>
-          </li>
-          <li class="faq-row">
-            <button class="faq-q" type="button" aria-expanded="false">
-              <span class="faq-ico">
-                <svg viewBox="0 0 24 24"><path d="M20 13 13 20a1.6 1.6 0 0 1-2.3 0L3 12V3h9l8 8a1.6 1.6 0 0 1 0 2Z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg>
-              </span>
-              <span class="faq-txt">Can I sell what I create with SKYN?</span>
-              <span class="faq-plus" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a"><p>Yes. You own the exported file and can list it on platforms like Roblox and keep the revenue.</p></div>
-          </li>
-          <li class="faq-row">
-            <button class="faq-q" type="button" aria-expanded="false">
-              <span class="faq-ico">
-                <svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.4 3 7.8 7 9 4-1.2 7-4.6 7-9V6Z"/><path d="m9 12 2 2 4-4"/></svg>
-              </span>
-              <span class="faq-txt">Is my design data safe?</span>
-              <span class="faq-plus" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a"><p>Your uploads stay private and are used only to generate your SKYN. You keep full ownership.</p></div>
-          </li>
-          <li class="faq-row">
-            <button class="faq-q" type="button" aria-expanded="false">
-              <span class="faq-ico">
-                <svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg>
-              </span>
-              <span class="faq-txt">What platforms are supported?</span>
-              <span class="faq-plus" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a"><p>Roblox, The Sims, Fortnite, Minecraft, VRChat, Zepeto and any engine that accepts standard 3D formats.</p></div>
-          </li>
-          <li class="faq-row">
-            <button class="faq-q" type="button" aria-expanded="false">
-              <span class="faq-ico">
-                <svg viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="m3 8 9 5 9-5M12 21v-8"/></svg>
-              </span>
-              <span class="faq-txt">Do I need 3D modeling skills?</span>
-              <span class="faq-plus" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a"><p>None at all. If you can draw or design in 2D, SKYN handles the entire 3D pipeline for you.</p></div>
-          </li>
-          <li class="faq-row">
-            <button class="faq-q" type="button" aria-expanded="false">
-              <span class="faq-ico">
-                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></svg>
-              </span>
-              <span class="faq-txt">What if I run into an issue?</span>
-              <span class="faq-plus" aria-hidden="true"></span>
-            </button>
-            <div class="faq-a"><p>Our support team is one click away and happy to help you get your SKYN game-ready.</p></div>
-          </li>
-        </ul>
-
-        <div class="faq-cta">
-          <span class="faq-cta-ico">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M9.5 9.5a2.6 2.6 0 0 1 5 .8c0 1.7-2.5 2.2-2.5 3.7"/><path d="M12 17h.01"/></svg>
-          </span>
-          <div class="faq-cta-txt">
-            <strong>Still have questions?</strong>
-            <span>We're here to help.</span>
+          <!-- demo video player, revealed after 4s -->
+          <div class="video-demo" id="video-demo" data-src="assets/demo.mp4">
+            <div class="vd-frame">
+              <span class="vd-glow" aria-hidden="true"></span>
+              <button class="vd-play" type="button" aria-label="Watch the demo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5-11-6.5Z"/></svg>
+              </button>
+              <span class="vd-caption"><b>Watch demo</b> and discover how SKYN works</span>
+              <button class="vd-expand" type="button" aria-label="Enlarge video 50%" aria-pressed="false">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 4h5v5M9 20H4v-5M20 4l-7 7M4 20l7-7"/></svg>
+              </button>
+              <button class="vd-close" type="button" aria-label="Close demo">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>
+              </button>
+            </div>
           </div>
-          <a class="pill-btn support-btn" href="mailto:support@skyn.example">
-            <span>Contact support</span>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
-          </a>
+        </div>
+
+        <div class="hero-card">
+          <span class="eb">SKYN in the game</span>
+          <h1>Turn your 2D design into a SKYN<span class="y">.</span></h1>
+          <p>Upload the art you've already drawn. SKYN wraps it onto a game-ready 3D wearable — in minutes.</p>
+
+          <label class="upload-zone" aria-label="Upload your 2D design (PNG or JPG, up to 25 MB)">
+            <input type="file" accept="image/png,image/jpeg" hidden>
+            <span class="uc-title">Drop your 2D design here</span>
+            <span class="uc-sub">PNG or JPG · up to 25 MB</span>
+            <span class="pill-btn browse-btn">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 8 16 16M16 9.5v6.5h-6.5"/></svg>
+              <span>Browse files</span>
+            </span>
+          </label>
+
+          <p class="free-hint"><span>No install</span><em>·</em><b>first outfit free</b></p>
         </div>
       </div>
-
-      <!-- real text over the FAQ heading -->
-      <div class="ov faq-copy">
-        <span class="eb">FAQ</span>
-        <h2>Questions?<br>We've got answers<span class="y">.</span></h2>
-        <p>Everything you need to know about SKYN, from creating to selling.</p>
-      </div>
-
-      <!-- real text over the pricing intro -->
-      <div class="ov pricing-copy">
-        <span class="eb">Pricing</span>
-        <h2>A full outfit for <span class="y">$10</span></h2>
-        <p>Upload your design once and we build it into a complete, game-ready outfit — then add new colours for a couple of dollars each.</p>
-      </div>
-
-      <!-- real text over the STEP 1 pricing panel -->
-      <div class="ov step-copy step1-copy">
-        <span class="eb">Step 1</span>
-        <h3>Build it</h3>
-        <p class="sc-body">We turn your vision into a SKYN you can actually wear.</p>
-        <div class="sc-price">
-          <span class="sc-big">$10</span>
-          <span class="sc-note">full outfit,<br>together with 8<br>colour variations</span>
-        </div>
-      </div>
-
-      <!-- real text over the STEP 2 pricing panel -->
-      <div class="ov step-copy step2-copy">
-        <span class="eb">Step 2</span>
-        <h3>Recolour it</h3>
-        <p class="sc-body">Then flip it to any colour.</p>
-        <div class="sc-price">
-          <span class="sc-big">$2</span>
-          <span class="sc-note">per extra colour</span>
-        </div>
-      </div>
-
     </section>
 
-    <!-- ================= SECTION 3 · ABOUT ================= -->
-    <section class="visual-section about-section" id="about">
-     <div class="about-stage">
-      <img src="assets/section-3.png" alt="About SKYN — real 3D craft for the people who play" loading="lazy">
-      <div class="about-erase" aria-hidden="true"></div>
-      <div class="about-erase2" aria-hidden="true"></div>
-      <div class="about-glow" aria-hidden="true"></div>
-      <img class="about-avatar" src="assets/about-avatar.webp" alt="" aria-hidden="true">
+    <!-- ================= TRUSTED BY ================= -->
+    <section class="trusted">
+      <div class="shell">
+        <p class="trusted-label">Trusted by creators making SKYNs for</p>
+        <div class="ticker" aria-label="Trusted by creators making SKYNs for Roblox, The Sims, Fortnite, Minecraft, VRChat and Zepeto">
+          <div class="ticker-track">
+            <img src="assets/brands-logos.png" alt="Roblox, The Sims, Fortnite, Minecraft, VRChat, Zepeto">
+            <img src="assets/brands-logos.png" alt="" aria-hidden="true">
+          </div>
+        </div>
+      </div>
+    </section>
 
-      <!-- real text over the About copy -->
-      <div class="ov about-copy">
-        <span class="eb eb-y">About SKYN</span>
-        <h2>Real 3D craft,<br>made for the people<br>who play<span class="y">.</span></h2>
-        <p>SKYN turns the 2D art creators already draw into production-precise, game-ready 3D wearables — no pipeline, no waiting. We hand the file back so you own what you make and take it wherever you play.</p>
-        <p>Behind it is a team with decades of combined experience across 3D production, game development and fashion — the same craft that's shipped assets for AAA games and global apparel brands, now put in creators' hands.</p>
-      </div>
+    <!-- ================= SOCIAL PROOF + HOW IT WORKS ================= -->
+    <section class="proof" id="how">
+      <div class="shell proof-grid">
+        <div class="testimonials">
+          <figure class="tcard t-a">
+            <img src="assets/tchar1.jpg" alt="" aria-hidden="true">
+            <p>SKYN turned my 2D concept into something unreal — wore it in VR the same day.</p>
+          </figure>
+          <figure class="tcard t-b">
+            <img src="assets/tchar2.jpg" alt="" aria-hidden="true">
+            <p>Super fast, super clean, and the quality is next level. My go-to for all my drops.</p>
+          </figure>
+          <figure class="tcard t-c">
+            <img src="assets/tchar3.jpg" alt="" aria-hidden="true">
+            <p>Finally, a tool that gets creators. Easy, powerful, and actually fun to use!</p>
+          </figure>
+        </div>
 
-      <!-- stat cards fully redrawn over the render cards -->
-      <div class="ov st st1">
-        <span class="st-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.5"/><path d="m8.5 13.5-2 7.5 5.5-3 5.5 3-2-7.5"/></svg></span>
-        <span class="st-big">60<br>years</span>
-        <span class="st-desc">experience with 3D and development.</span>
+        <div class="how-panel">
+          <h3>How it works</h3>
+          <ol>
+            <li>
+              <span class="hs-ico"><svg viewBox="0 0 24 24"><path d="M12 3v13M7 11l5 5 5-5"/><path d="M5 21h14"/></svg></span>
+              <span class="hs-body">
+                <span class="hs-no">01</span>
+                <span class="hs-name">Upload</span>
+                <span class="hs-desc">Drop in the 2D garment art you've already drawn.</span>
+              </span>
+            </li>
+            <li>
+              <span class="hs-ico"><svg viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="m3 8 9 5 9-5M12 21v-8"/></svg></span>
+              <span class="hs-body">
+                <span class="hs-no">02</span>
+                <span class="hs-name">Generate</span>
+                <span class="hs-desc">SKYN builds a high-res, game-ready 3D SKYN.</span>
+              </span>
+            </li>
+            <li>
+              <span class="hs-ico"><svg viewBox="0 0 24 24"><path d="M20 13 13 20a1.6 1.6 0 0 1-2.3 0L3 12V3h9l8 8a1.6 1.6 0 0 1 0 2Z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg></span>
+              <span class="hs-body">
+                <span class="hs-no">03</span>
+                <span class="hs-name">Sell</span>
+                <span class="hs-desc">Export the file and list it on Roblox — it's yours to sell.</span>
+              </span>
+            </li>
+          </ol>
+        </div>
       </div>
-      <div class="ov st st2">
-        <span class="st-ico"><svg viewBox="0 0 24 24"><path d="M9 3 5 5 3 9l3 2v10h12V11l3-2-2-4-4-2a3 3 0 0 1-6 0Z"/></svg></span>
-        <span class="st-big">3D +<br>fashion</span>
-        <span class="st-desc">apparel craft meets real-time engines.</span>
+    </section>
+
+    <!-- ================= FAQ ================= -->
+    <section class="faq" id="faq">
+      <div class="shell faq-grid">
+        <div class="faq-main">
+          <div class="faq-head">
+            <span class="eb">FAQ</span>
+            <h2>Questions?<br>We've got answers<span class="y">.</span></h2>
+            <p>Everything you need to know about SKYN, from creating to selling.</p>
+          </div>
+
+          <ul class="faq-list" role="list">
+            <li class="faq-row" data-open>
+              <button class="faq-q" type="button" aria-expanded="true">
+                <span class="faq-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 8v4l2.5 2"/></svg></span>
+                <span class="faq-txt">What is SKYN?</span>
+                <span class="faq-plus" aria-hidden="true"></span>
+              </button>
+              <div class="faq-a"><p>SKYN turns the 2D garment art you already draw into a production-ready, game-ready 3D wearable — no pipeline, no waiting.</p></div>
+            </li>
+            <li class="faq-row">
+              <button class="faq-q" type="button" aria-expanded="false">
+                <span class="faq-ico"><svg viewBox="0 0 24 24"><path d="M9 4 5 6 4 9l3 1v10h10V10l3-1-1-3-4-2a3 3 0 0 1-6 0Z"/></svg></span>
+                <span class="faq-txt">What kind of files can I upload?</span>
+                <span class="faq-plus" aria-hidden="true"></span>
+              </button>
+              <div class="faq-a"><p>PNG or JPG artwork up to 25&nbsp;MB. Clean, high-contrast designs give the sharpest results.</p></div>
+            </li>
+            <li class="faq-row">
+              <button class="faq-q" type="button" aria-expanded="false">
+                <span class="faq-ico"><svg viewBox="0 0 24 24"><rect x="2.5" y="7" width="19" height="10" rx="4"/><path d="M6.5 11v2M5.5 12h2M15 12h.01M17.5 13.5h.01"/></svg></span>
+                <span class="faq-txt">How does the 3D generation work?</span>
+                <span class="faq-plus" aria-hidden="true"></span>
+              </button>
+              <div class="faq-a"><p>We map your artwork onto a game-ready garment base, then refine geometry and materials for real-time engines.</p></div>
+            </li>
+            <li class="faq-row">
+              <button class="faq-q" type="button" aria-expanded="false">
+                <span class="faq-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg></span>
+                <span class="faq-txt">Can I use SKYN for free?</span>
+                <span class="faq-plus" aria-hidden="true"></span>
+              </button>
+              <div class="faq-a"><p>Your first outfit is free — no install required. After that a full outfit is a flat $10.</p></div>
+            </li>
+            <li class="faq-row">
+              <button class="faq-q" type="button" aria-expanded="false">
+                <span class="faq-ico"><svg viewBox="0 0 24 24"><path d="M20 13 13 20a1.6 1.6 0 0 1-2.3 0L3 12V3h9l8 8a1.6 1.6 0 0 1 0 2Z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg></span>
+                <span class="faq-txt">Can I sell what I create with SKYN?</span>
+                <span class="faq-plus" aria-hidden="true"></span>
+              </button>
+              <div class="faq-a"><p>Yes. You own the exported file and can list it on platforms like Roblox and keep the revenue.</p></div>
+            </li>
+            <li class="faq-row">
+              <button class="faq-q" type="button" aria-expanded="false">
+                <span class="faq-ico"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.4 3 7.8 7 9 4-1.2 7-4.6 7-9V6Z"/><path d="m9 12 2 2 4-4"/></svg></span>
+                <span class="faq-txt">Is my design data safe?</span>
+                <span class="faq-plus" aria-hidden="true"></span>
+              </button>
+              <div class="faq-a"><p>Your uploads stay private and are used only to generate your SKYN. You keep full ownership.</p></div>
+            </li>
+            <li class="faq-row">
+              <button class="faq-q" type="button" aria-expanded="false">
+                <span class="faq-ico"><svg viewBox="0 0 24 24"><path d="m12 3 9 5-9 5-9-5Z"/><path d="m3 13 9 5 9-5"/></svg></span>
+                <span class="faq-txt">What platforms are supported?</span>
+                <span class="faq-plus" aria-hidden="true"></span>
+              </button>
+              <div class="faq-a"><p>Roblox, The Sims, Fortnite, Minecraft, VRChat, Zepeto and any engine that accepts standard 3D formats.</p></div>
+            </li>
+            <li class="faq-row">
+              <button class="faq-q" type="button" aria-expanded="false">
+                <span class="faq-ico"><svg viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="m3 8 9 5 9-5M12 21v-8"/></svg></span>
+                <span class="faq-txt">Do I need 3D modeling skills?</span>
+                <span class="faq-plus" aria-hidden="true"></span>
+              </button>
+              <div class="faq-a"><p>None at all. If you can draw or design in 2D, SKYN handles the entire 3D pipeline for you.</p></div>
+            </li>
+            <li class="faq-row">
+              <button class="faq-q" type="button" aria-expanded="false">
+                <span class="faq-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 11v5M12 8h.01"/></svg></span>
+                <span class="faq-txt">What if I run into an issue?</span>
+                <span class="faq-plus" aria-hidden="true"></span>
+              </button>
+              <div class="faq-a"><p>Our support team is one click away and happy to help you get your SKYN game-ready.</p></div>
+            </li>
+          </ul>
+
+          <div class="faq-cta">
+            <span class="faq-cta-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M9.5 9.5a2.6 2.6 0 0 1 5 .8c0 1.7-2.5 2.2-2.5 3.7"/><path d="M12 17h.01"/></svg></span>
+            <div class="faq-cta-txt">
+              <strong>Still have questions?</strong>
+              <span>We're here to help.</span>
+            </div>
+            <a class="pill-btn support-btn" href="mailto:support@skyn.example">
+              <span>Contact support</span>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="faq-figure">
+          <img src="assets/faq-avatar.webp" alt="A 3D SKYN avatar" loading="lazy">
+        </div>
       </div>
-      <div class="ov st st3">
-        <span class="st-ico"><svg viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="m3 8 9 5 9-5M12 21v-8"/></svg></span>
-        <span class="st-big">2D&nbsp;→<br>3D</span>
-        <span class="st-desc">in minutes, not weeks.</span>
+    </section>
+
+    <!-- ================= PRICING ================= -->
+    <section class="pricing">
+      <div class="shell">
+        <div class="pricing-panel">
+          <div class="pricing-grid">
+            <div class="pricing-intro">
+              <span class="eb">Pricing</span>
+              <h2>A full outfit for <span class="y">$10</span></h2>
+              <p>Upload your design once and we build it into a complete, game-ready outfit — then add new colours for a couple of dollars each.</p>
+            </div>
+
+            <div class="price-card">
+              <div class="price-step">
+                <span class="eb">Step 1</span>
+                <h3>Build it</h3>
+                <p class="sc-body">We turn your vision into a SKYN you can actually wear.</p>
+                <div class="sc-price">
+                  <span class="sc-big">$10</span>
+                  <span class="sc-note">full outfit,<br>together with 8<br>colour variations</span>
+                </div>
+              </div>
+
+              <div class="price-hoodie">
+                <img src="assets/hoodie-render.webp" alt="A finished SKYN hoodie rendered in 3D" loading="lazy">
+              </div>
+
+              <div class="price-step">
+                <span class="eb">Step 2</span>
+                <h3>Recolour it</h3>
+                <p class="sc-body">Then flip it to any colour.</p>
+                <div class="sc-price">
+                  <span class="sc-big">$2</span>
+                  <span class="sc-note">per extra colour</span>
+                </div>
+                <div class="swatches" aria-hidden="true">
+                  <span style="background:#e6ea0f"></span>
+                  <span style="background:#4b73ff"></span>
+                  <span style="background:#7b3ff2"></span>
+                  <span style="background:#ff7a1a"></span>
+                  <span style="background:#ff5aa8"></span>
+                  <span style="background:#2fd4c4"></span>
+                  <span style="background:#222028"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="ov st st4">
-        <span class="st-ico"><svg viewBox="0 0 24 24"><path d="M20 13 13 20a1.6 1.6 0 0 1-2.3 0L3 12V3h9l8 8a1.6 1.6 0 0 1 0 2Z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg></span>
-        <span class="st-big">You<br>own it</span>
-        <span class="st-desc">export the file, take it anywhere.</span>
-        <span class="st-spark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2c.6 5.6 3.8 8.8 9.4 9.4-5.6.6-8.8 3.8-9.4 9.4-.6-5.6-3.8-8.8-9.4-9.4C8.2 10.8 11.4 7.6 12 2Z"/></svg></span>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="about" id="about">
+      <div class="shell">
+        <div class="about-grid">
+          <div class="about-copy">
+            <span class="eb eb-y">About SKYN</span>
+            <h2>Real 3D craft,<br>made for the people<br>who play<span class="y">.</span></h2>
+            <p>SKYN turns the 2D art creators already draw into production-precise, game-ready 3D wearables — no pipeline, no waiting. We hand the file back so you own what you make and take it wherever you play.</p>
+            <p>Behind it is a team with decades of combined experience across 3D production, game development and fashion — the same craft that's shipped assets for AAA games and global apparel brands, now put in creators' hands.</p>
+          </div>
+          <div class="about-figure">
+            <img src="assets/about-avatar.webp" alt="A 3D SKYN avatar in an orange hoodie" loading="lazy">
+          </div>
+        </div>
+
+        <div class="stats">
+          <div class="st">
+            <span class="st-ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="5.5"/><path d="m8.5 13.5-2 7.5 5.5-3 5.5 3-2-7.5"/></svg></span>
+            <span class="st-big">60<br>years</span>
+            <span class="st-desc">experience with 3D and development.</span>
+          </div>
+          <div class="st">
+            <span class="st-ico"><svg viewBox="0 0 24 24"><path d="M9 3 5 5 3 9l3 2v10h12V11l3-2-2-4-4-2a3 3 0 0 1-6 0Z"/></svg></span>
+            <span class="st-big">3D +<br>fashion</span>
+            <span class="st-desc">apparel craft meets real-time engines.</span>
+          </div>
+          <div class="st">
+            <span class="st-ico"><svg viewBox="0 0 24 24"><path d="M21 8 12 3 3 8v8l9 5 9-5Z"/><path d="m3 8 9 5 9-5M12 21v-8"/></svg></span>
+            <span class="st-big">2D&nbsp;→<br>3D</span>
+            <span class="st-desc">in minutes, not weeks.</span>
+          </div>
+          <div class="st">
+            <span class="st-ico"><svg viewBox="0 0 24 24"><path d="M20 13 13 20a1.6 1.6 0 0 1-2.3 0L3 12V3h9l8 8a1.6 1.6 0 0 1 0 2Z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg></span>
+            <span class="st-big">You<br>own it</span>
+            <span class="st-desc">export the file, take it anywhere.</span>
+            <span class="st-spark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2c.6 5.6 3.8 8.8 9.4 9.4-5.6.6-8.8 3.8-9.4 9.4-.6-5.6-3.8-8.8-9.4-9.4C8.2 10.8 11.4 7.6 12 2Z"/></svg></span>
+          </div>
+        </div>
       </div>
-     </div>
     </section>
   </main>
 
