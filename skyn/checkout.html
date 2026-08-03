@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SKYN — checkout</title>
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="editor.css">
+  <link rel="stylesheet" href="designs.css">
+  <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+  <div class="dz" id="checkout">
+    <!-- ===== Sidebar nav ===== -->
+    <aside class="dz-nav">
+      <a class="dz-logo" href="index.html" aria-label="SKYN home"><img src="assets/skyn-logo.png" alt="SKYN"></a>
+      <div class="dz-group">
+        <span class="dz-cap">Create</span>
+        <a class="dz-item" href="page2.html">
+          <svg viewBox="0 0 24 24"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4l2 2h9A1.5 1.5 0 0 1 21 9.5v8A1.5 1.5 0 0 1 19.5 19h-15A1.5 1.5 0 0 1 3 17.5Z"/></svg>
+          <span>Projects</span>
+        </a>
+        <a class="dz-item" href="page3.html">
+          <svg viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="3.5" width="7" height="7" rx="1.5"/><rect x="3.5" y="13.5" width="7" height="7" rx="1.5"/><rect x="13.5" y="13.5" width="7" height="7" rx="1.5"/></svg>
+          <span>Designs</span>
+        </a>
+      </div>
+      <div class="dz-group dz-bottom">
+        <span class="dz-cap">Account</span>
+        <a class="dz-item active" href="#">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+          <span>Account &amp; billing</span>
+        </a>
+        <a class="dz-item" href="#">
+          <svg viewBox="0 0 24 24"><path d="M6 3h9l3 3v15l-2.2-1.4L13.5 21l-2.2-1.4L9 21l-2.2-1.4L4.5 21V6Z"/><path d="M8 8h7M8 12h7M8 16h4"/></svg>
+          <span>Receipts</span>
+        </a>
+        <a class="dz-item" href="#">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v2.5M12 18.5V21M3 12h2.5M18.5 12H21M5.5 5.5l1.8 1.8M16.7 16.7l1.8 1.8M18.5 5.5l-1.8 1.8M7.3 16.7l-1.8 1.8"/></svg>
+          <span>Settings</span>
+        </a>
+      </div>
+    </aside>
+
+    <!-- ===== Main ===== -->
+    <main class="dz-main">
+      <header class="dz-top">
+        <div>
+          <h1>Checkout <span class="dz-badge">Secure</span></h1>
+          <p class="dz-sub">Top up your tokens — pay once, no subscription.</p>
+        </div>
+        <div class="dz-headactions">
+          <span class="token-pill"><span class="coin">S</span><b>1,240</b></span>
+          <button class="dz-bell" type="button" aria-label="Notifications">
+            <svg viewBox="0 0 24 24"><path d="M6 16V10a6 6 0 0 1 12 0v6l1.5 2h-15Z"/><path d="M10 21h4"/></svg>
+            <span class="dz-bell-badge">3</span>
+          </button>
+          <button class="avatar" type="button" title="Account">K</button>
+        </div>
+      </header>
+
+      <form class="co-grid" id="co-form" novalidate>
+        <!-- ===== Left: details ===== -->
+        <section class="co-left">
+          <div class="co-card">
+            <h2 class="co-h">Contact</h2>
+            <label class="co-field">
+              <span>Email</span>
+              <input type="email" name="email" value="kade@email.com" autocomplete="email" required>
+            </label>
+            <p class="co-hint">Your receipt and token top-up are sent here.</p>
+          </div>
+
+          <div class="co-card">
+            <div class="co-h-row">
+              <h2 class="co-h">Payment details</h2>
+              <div class="co-brands" aria-hidden="true">
+                <span class="co-brand visa">VISA</span>
+                <span class="co-brand mc"><i></i><i></i></span>
+                <span class="co-brand amex">AMEX</span>
+              </div>
+            </div>
+            <label class="co-field">
+              <span>Card number</span>
+              <span class="co-inp">
+                <input inputmode="numeric" name="card" placeholder="1234 1234 1234 1234" autocomplete="cc-number">
+                <svg class="co-lock" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+              </span>
+            </label>
+            <div class="co-two">
+              <label class="co-field">
+                <span>Expiry</span>
+                <input inputmode="numeric" name="exp" placeholder="MM / YY" autocomplete="cc-exp">
+              </label>
+              <label class="co-field">
+                <span>CVC</span>
+                <input inputmode="numeric" name="cvc" placeholder="123" autocomplete="cc-csc">
+              </label>
+            </div>
+            <label class="co-field">
+              <span>Name on card</span>
+              <input name="name" placeholder="Kade Jansen" autocomplete="cc-name">
+            </label>
+          </div>
+
+          <div class="co-card">
+            <h2 class="co-h">Billing address</h2>
+            <div class="co-two">
+              <label class="co-field">
+                <span>Country</span>
+                <span class="co-inp">
+                  <select name="country" autocomplete="country">
+                    <option>Netherlands</option>
+                    <option>Belgium</option>
+                    <option>Germany</option>
+                    <option>United Kingdom</option>
+                    <option>United States</option>
+                  </select>
+                  <svg class="co-chev" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                </span>
+              </label>
+              <label class="co-field">
+                <span>Postal code</span>
+                <input name="zip" placeholder="1011 AB" autocomplete="postal-code">
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===== Right: order summary ===== -->
+        <aside class="co-right">
+          <div class="co-card co-summary">
+            <h2 class="co-h">Choose your pack</h2>
+            <div class="co-packs" id="co-packs">
+              <label class="co-pack">
+                <input type="radio" name="pack" value="starter" data-price="4.99" data-tokens="560">
+                <span class="co-pack-body">
+                  <span class="co-pack-top"><b>Starter</b><span class="co-pack-tok">+560</span></span>
+                  <span class="co-pack-price">$4.99</span>
+                </span>
+              </label>
+              <label class="co-pack is-sel">
+                <input type="radio" name="pack" value="popular" data-price="9.99" data-tokens="1280" checked>
+                <span class="co-pack-body">
+                  <span class="co-pack-top"><b>Popular</b><span class="co-pack-tok">+1,280</span><span class="co-pack-tag">Best value</span></span>
+                  <span class="co-pack-price">$9.99</span>
+                </span>
+              </label>
+              <label class="co-pack">
+                <input type="radio" name="pack" value="pro" data-price="19.99" data-tokens="3000">
+                <span class="co-pack-body">
+                  <span class="co-pack-top"><b>Pro</b><span class="co-pack-tok">+3,000</span></span>
+                  <span class="co-pack-price">$19.99</span>
+                </span>
+              </label>
+            </div>
+
+            <div class="co-promo">
+              <input type="text" placeholder="Promo code" aria-label="Promo code">
+              <button type="button" id="co-apply">Apply</button>
+            </div>
+
+            <div class="co-lines">
+              <div class="co-line"><span>Tokens</span><b id="co-tokens">+1,280</b></div>
+              <div class="co-line"><span>Subtotal</span><b id="co-sub">$9.99</b></div>
+              <div class="co-line"><span>VAT (21%)</span><b id="co-vat">$2.10</b></div>
+              <div class="co-line co-total"><span>Total</span><b id="co-total">$12.09</b></div>
+            </div>
+
+            <button class="co-pay" type="submit" id="co-pay">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+              Pay <span id="co-payamt">$12.09</span>
+            </button>
+
+            <p class="co-secure">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.4-3 7.6-7 9-4-1.4-7-4.6-7-9V6z"/><path d="m9 12 2 2 4-4"/></svg>
+              Secured &amp; encrypted · powered by Stripe
+            </p>
+          </div>
+
+          <p class="co-terms">By paying you agree to our <a href="page7.html#terms">Terms</a> and <a href="page7.html#privacy">Privacy policy</a>. Tokens are added instantly and are non-refundable once spent.</p>
+        </aside>
+      </form>
+    </main>
+  </div>
+
+  <div class="ed-toast" id="co-toast"></div>
+
+  <script>
+    (function(){
+      'use strict';
+      const $ = (s,r=document)=>r.querySelector(s);
+      const money = n => '$'+n.toFixed(2);
+      const VAT = 0.21;
+      const packs = $('#co-packs');
+      const els = {tok:$('#co-tokens'), sub:$('#co-sub'), vat:$('#co-vat'), total:$('#co-total'), pay:$('#co-payamt')};
+      function selected(){ return packs.querySelector('input:checked'); }
+      function render(){
+        const inp = selected();
+        const price = parseFloat(inp.dataset.price);
+        const tokens = parseInt(inp.dataset.tokens,10);
+        const vat = price*VAT, total = price+vat;
+        els.tok.textContent = '+'+tokens.toLocaleString('en-US');
+        els.sub.textContent = money(price);
+        els.vat.textContent = money(vat);
+        els.total.textContent = money(total);
+        els.pay.textContent = money(total);
+        packs.querySelectorAll('.co-pack').forEach(p=>p.classList.toggle('is-sel', p.contains(inp)));
+      }
+      packs.addEventListener('change', render);
+      render();
+
+      const toast = $('#co-toast'); let t;
+      function showToast(msg){ toast.textContent=msg; toast.classList.add('show'); clearTimeout(t); t=setTimeout(()=>toast.classList.remove('show'),2800); }
+      $('#co-apply').addEventListener('click', ()=>showToast('Promo code applied where valid.'));
+      $('#co-form').addEventListener('submit', (e)=>{ e.preventDefault(); showToast('Payment demo — no card was charged.'); });
+    })();
+  </script>
+</body>
+</html>
