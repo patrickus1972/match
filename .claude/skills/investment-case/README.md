@@ -12,11 +12,11 @@ depths: `npi_rough` for G1, `npi_full` for Gate 3.
 
 ```bash
 pip install -r requirements.txt
-python skills/investment-case/scripts/run_case.py \
+python .claude/skills/investment-case/scripts/run_case.py \
   --request tests/fixtures/at1_belgium_display.json
 ```
 
-Three files land in `skills/investment-case/out/`: the deck, the calculation
+Three files land in `.claude/skills/investment-case/out/`: the deck, the calculation
 file, and the comparables CSV.
 
 Other cases to try:
@@ -42,7 +42,7 @@ python -m pytest
 ## How it is put together
 
 ```
-skills/investment-case/
+.claude/skills/investment-case/
   SKILL.md                  intake, advisory rules, guardrails       INT, ADV, GRD-5
   scripts/
     generate_data.py        seeded dataset generation                DAT

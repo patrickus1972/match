@@ -77,7 +77,7 @@ STEMS = [
 
 # Brands deliberately left without a sibling, so the "cannibalisation not
 # deducted" advisory (ADV-2) has a case to fire on.
-NEED_STATE_OVERRIDES = {"RS-006": 1}
+NEED_STATE_OVERRIDES = {"RS-006": 1}  # index into the category's need states
 
 # Fixture anchors. Named here so tests and the SKILL can refer to them.
 FIXTURE_AT1_BRAND = "BE-001"        # Belgian cold_flu brand, rich display history
@@ -136,8 +136,10 @@ def build_brands(rng: random.Random) -> list[dict]:
             need_states, _, _, base_price, base_cm, ros_index = CATEGORIES[category]
             # Two brands per market share each category and need state, so
             # sibling structure exists (glossary: same market + need_state).
+            market_index = [m[0] for m in MARKETS].index(market_id)
+            default_index = (market_index + slot) % len(need_states)
             need_state = need_states[NEED_STATE_OVERRIDES.get(
-                f"{market_id}-{slot + 1:03d}", 0)]
+                f"{market_id}-{slot + 1:03d}", default_index)]
             stem = STEMS[stem_idx]
             stem_idx += 1
             brand_id = f"{market_id}-{slot + 1:03d}"

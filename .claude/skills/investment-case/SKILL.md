@@ -1,6 +1,6 @@
 ---
 name: investment-case
-description: Turns a brand manager's plain-language request for budget into a reviewable business case deck — activation and campaign cases, and new-product cases at G1 (rough) or Gate 3 (full). Use when someone asks for a business case, an investment case, an ROI case, a budget request, a forecast for an activation or campaign, or gate materials for a new product. Runs on synthetic demo data.
+description: Builds a PowerPoint business case from a plain-language brief. Covers activation and campaign cases, NPI and NPD cases, the rough case for an NPD pipeline or ideation committee (G1), and the full launch case for Gate 3 / Stage Gate 3. Use whenever someone asks for a business case, investment case, BC, ROI case, budget request, gate materials, an NPI or NPD case, or a forecast behind a spend. Produces a .pptx deck plus the calculation behind every figure. Runs on synthetic demo data.
 ---
 
 # Investment case
@@ -27,13 +27,16 @@ this is an activation/campaign or a new product.
 
 Choose the depth:
 
-| The request says | Depth |
-|---|---|
-| an activation, a campaign, a display, a promotion, a burst | `activation` |
-| a new product, an idea for G1, an early read, a rough case | `npi_rough` |
-| a new product at Gate 3, a full case, the launch business case | `npi_full` |
+| The brief says | Depth | Deck |
+|---|---|---|
+| an activation, a campaign, a display, a promotion, a POS action, a burst, an HCP cycle action | `activation` | 6 slides |
+| NPD pipeline, ideation committee, opportunity area, idea screening, an early read, a rough BC, G1 | `npi_rough` | 5 slides |
+| NPI, NPD, a launch business case, Gate 3, Stage Gate 3, SG3, the full case | `npi_full` | 9 slides |
 
-If it is genuinely ambiguous, ask — that is one of the things worth a question.
+Read the words people actually use. "Rough BC for the ideation committee" is
+`npi_rough`. "Prepare the BC for SG3" is `npi_full`. "POS action for the cycle
+meeting" is `activation`. Ask only when the brief genuinely could be either —
+usually that is a new product where the gate is not named.
 
 ### 2. Resolve everything you can from the data
 
@@ -75,13 +78,42 @@ the user, not from the data.
 
 ### 5. Run the script
 
+For an activation or campaign case:
+
 ```
-python scripts/run_case.py --request <request.json>
+python scripts/run_case.py --brand "Kalvora" --mechanic "in-pharmacy display" \
+  --month 10 --weeks 6 --spend 80000 \
+  --case-id BC-BE-DISPLAY --title "Kalvora — six-week display" \
+  --text "<the brief, as it was written>"
 ```
+
+For an NPI, NPD or pipeline case:
+
+```
+python scripts/run_case.py --depth npi_full \
+  --market Germany --category vitamins --need-state immunity \
+  --concept "Daily immunity line" --spend 1200000 \
+  --case-id NPI-DE-G3 --title "Daily immunity line — Germany, Gate 3" \
+  --text "<the brief, as it was written>"
+```
+
+Loose wording is fine: `Deutschland`, `hay fever`, `display`, `tv`, `SG3` all
+resolve. Anything that cannot be resolved is refused rather than guessed at, and
+the message lists the options. `--json '<inline json>'` and
+`--request <file.json>` do the same job when a request is easier to write out.
+
+Run `python scripts/run_case.py --list` when you need to see the brands,
+markets, mechanics, categories and need states that are on file.
 
 It writes three files: the deck, the calculation file, and the comparables CSV.
 
-### 6. Report back
+### 6. Hand over the deck
+
+**Always give the user the .pptx itself**, not just a description of it. Send the
+file. Say the headline figure, whatever was flagged, and where the file is.
+The calculation file goes with it whenever anyone needs to check a number.
+
+### 7. Report back
 
 Lead with the figure and what stands behind it. Then whatever the run flagged.
 Then the two artefacts.

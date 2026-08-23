@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 ROOT = Path(__file__).resolve().parent.parent
-SKILL = ROOT / "skills" / "investment-case"
+SKILL = ROOT / ".claude" / "skills" / "investment-case"
 SCRIPTS = SKILL / "scripts"
 DATA = SKILL / "reference" / "data"
 FIXTURES = Path(__file__).resolve().parent / "fixtures"

@@ -19,11 +19,11 @@ REQUIRED_FIELDS = {
                    "period_start_month", "period_weeks", "ap_request_eur",
                    "net_price_eur", "contribution_margin_pct",
                    "base_rate_of_sale_units_week", "seasonality"),
-    "npi_rough": ("market", "category", "need_state", "period_start_month",
-                  "ap_request_eur", "net_price_eur", "contribution_margin_pct",
+    "npi_rough": ("market", "category", "need_state", "ap_request_eur",
+                  "net_price_eur", "contribution_margin_pct",
                   "market_population_m"),
-    "npi_full": ("market", "category", "need_state", "period_start_month",
-                 "ap_request_eur", "net_price_eur", "contribution_margin_pct",
+    "npi_full": ("market", "category", "need_state", "ap_request_eur",
+                 "net_price_eur", "contribution_margin_pct",
                  "market_population_m"),
 }
 
