@@ -112,3 +112,22 @@ answered by people, not by code.
 Until Q1 and Q2 are answered the deck renders on a neutral stand-in template.
 Matching the real one is most of the difference between a demo and something a
 gate will accept.
+
+## The front end
+
+A demo front end for people who would rather type into a box than run a command:
+
+```bash
+python .claude/skills/investment-case/app/server.py
+# then open http://localhost:8000
+```
+
+Standard library only — nothing to install beyond `python-pptx`. It runs the
+same scripts the Skill runs: the figures on screen come from `calculate.py` and
+the download is the same `.pptx`. Nothing in `app/` computes anything.
+
+Three steps on one page: type the brief, check what it read, build. The brief
+parser is the front end's stand-in for the reading Claude does in the Skill
+proper — it fills the form in, and you correct it before anything is calculated.
+Missing inputs are asked for rather than turned into an empty deck; unknown
+brands and out-of-scope requests are refused with the options listed.

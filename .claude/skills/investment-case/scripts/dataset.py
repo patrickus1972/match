@@ -8,6 +8,7 @@ record that `render_deck.py` later turns into a deck (OUT-2).
 from __future__ import annotations
 
 import csv
+import re
 from dataclasses import asdict
 from pathlib import Path
 
@@ -165,9 +166,11 @@ def _lookup(text: str, words: dict, known: set) -> str | None:
         return key.upper()
     if key in words:
         return words[key]
-    # longest phrase that appears in the text wins, so "in-pharmacy display in
-    # Belgium" resolves before "display" does.
-    hits = [(len(phrase), code) for phrase, code in words.items() if phrase in key]
+    # Longest phrase wins, so "in-pharmacy display" beats "display". Matching is
+    # on whole words: without it, "display" contains "pl" and silently resolves
+    # to Poland.
+    hits = [(len(phrase), code) for phrase, code in words.items()
+            if re.search(rf"\b{re.escape(phrase)}\b", key)]
     return max(hits)[1] if hits else None
 
 
@@ -175,8 +178,95 @@ def depth_from_text(text: str) -> str | None:
     """INT-6: route the request to a depth from how it is phrased."""
     key = _norm(text)
     hits = [(len(phrase), depth) for phrase, depth in DEPTH_WORDS.items()
-            if phrase in key]
+            if re.search(rf"\b{re.escape(phrase)}\b", key)]
     return max(hits)[1] if hits else None
+
+
+# --------------------------------------------------------------------------
+# Brief parsing
+#
+# In the Skill proper, Claude reads the brief. This mirrors that step for the
+# demo front end, using the same word maps: it fills the form in, and the user
+# corrects it before anything is calculated (INT-4). It never feeds a value
+# straight into a calculation.
+# --------------------------------------------------------------------------
+
+WORD_NUMBERS = {
+    "one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6,
+    "seven": 7, "eight": 8, "nine": 9, "ten": 10, "eleven": 11, "twelve": 12,
+}
+
+MONTH_NAMES = ["january", "february", "march", "april", "may", "june", "july",
+               "august", "september", "october", "november", "december"]
+
+QUARTER_START = {"q1": 1, "q2": 4, "q3": 7, "q4": 10}
+
+
+def parse_money(text: str) -> float | None:
+    """€80,000 · 80k · 1.4m · EUR 900.000 · 80 000 euro."""
+    key = _norm(text).replace("€", " eur ")
+    match = re.search(r"(\d+(?:[.,]\d+)?)\s*(k|m|mio|million)\b", key)
+    if match:
+        value = float(match.group(1).replace(",", "."))
+        return value * (1_000_000 if match.group(2)[0] == "m" else 1_000)
+    for raw in re.findall(r"\d[\d.,\s]{2,}", key):
+        digits = re.sub(r"[.,\s]", "", raw)
+        if digits.isdigit() and int(digits) >= 1000:
+            return float(digits)
+    return None
+
+
+def parse_weeks(text: str) -> int | None:
+    key = _norm(text)
+    match = re.search(r"(\d+)[\s-]*week", key)
+    if match:
+        return int(match.group(1))
+    for word, value in WORD_NUMBERS.items():
+        if re.search(rf"\b{word}[\s-]*week", key):
+            return value
+    return None
+
+
+def parse_month(text: str) -> int | None:
+    key = _norm(text)
+    for quarter, month in QUARTER_START.items():
+        if re.search(rf"\b{quarter}\b", key):
+            return month
+    for index, name in enumerate(MONTH_NAMES, start=1):
+        if name in key or (len(name) > 4 and name[:3] in key.split()):
+            return index
+    return None
+
+
+def parse_brief(text: str, brand_names: list[str] | None = None,
+                need_states: list[str] | None = None) -> dict:
+    """Best reading of a free-text brief. Every field is a suggestion only."""
+    key = _norm(text)
+    known_brand = None
+    for name in sorted(brand_names or [], key=len, reverse=True):
+        if _norm(name) in key:
+            known_brand = name
+            break
+
+    known_need_state = None
+    for state in sorted(need_states or [], key=len, reverse=True):
+        if re.search(rf"\b{re.escape(_norm(state))}\b", key):
+            known_need_state = state
+            break
+
+    depth = depth_from_text(text) or ("activation" if known_brand else None)
+    guess = {
+        "depth": depth,
+        "brand": known_brand,
+        "market": _lookup(text, MARKET_WORDS, set()),
+        "category": _lookup(text, CATEGORY_WORDS, set()),
+        "need_state": known_need_state,
+        "mechanic": _lookup(text, MECHANIC_WORDS, set()),
+        "period_weeks": parse_weeks(text),
+        "period_start_month": parse_month(text),
+        "ap_request_eur": parse_money(text),
+    }
+    return {k: v for k, v in guess.items() if v is not None}
 
 
 def _read(path: Path) -> list[dict]:
