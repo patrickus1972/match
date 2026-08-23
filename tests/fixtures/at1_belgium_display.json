@@ -1,0 +1,13 @@
+{
+  "case_id": "AT1-BE-DISPLAY",
+  "case_title": "Kalvora — six-week in-pharmacy display, Q4",
+  "requested_by": "Brand manager, Belgium",
+  "request_text": "Six-week in-pharmacy display for Kalvora in Q4, €80,000.",
+  "depth": "activation",
+  "brand": "BE-001",
+  "mechanic": "in_pharmacy_display",
+  "period_start_month": 10,
+  "period_weeks": 6,
+  "ap_request_eur": 80000,
+  "check_back_date": "eight weeks after the activation ends"
+}

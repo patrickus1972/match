@@ -1,0 +1,12 @@
+{
+  "case_id": "DAT7-RS-CANNIBAL",
+  "case_title": "Sibling-heavy allergy activation, Serbia",
+  "requested_by": "Brand manager, Serbia",
+  "request_text": "Six-week in-pharmacy display in Serbia, €16,000.",
+  "depth": "activation",
+  "brand": "RS-002",
+  "mechanic": "in_pharmacy_display",
+  "period_start_month": 5,
+  "period_weeks": 6,
+  "ap_request_eur": 16000
+}

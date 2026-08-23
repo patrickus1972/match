@@ -1,0 +1,9 @@
+mechanic_id,mechanic_name,channel,typical_duration_weeks,reference_uplift_pct,uplift_spread_pct
+in_pharmacy_display,In-pharmacy display,pharmacy,6,14.0,5.0
+pharmacist_incentive,Pharmacist incentive,pharmacy,8,11.0,4.0
+sampling,Sampling,pharmacy,4,8.0,3.5
+digital_awareness,Digital awareness,digital,8,9.0,6.5
+retail_media,Retail media,ecommerce,6,12.0,4.5
+tv_burst,TV burst,atl,4,17.0,6.0
+hcp_detailing,HCP detailing,hcp,12,7.0,3.0
+price_promo,Price promotion,trade,4,21.0,7.0

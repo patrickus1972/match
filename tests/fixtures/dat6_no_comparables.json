@@ -1,0 +1,12 @@
+{
+  "case_id": "DAT6-PL-TVBURST",
+  "case_title": "Ferrovita — TV burst, Poland",
+  "requested_by": "Brand manager, Poland",
+  "request_text": "Four-week TV burst for Ferrovita in Poland, €90,000.",
+  "depth": "activation",
+  "brand": "PL-004",
+  "mechanic": "tv_burst",
+  "period_start_month": 11,
+  "period_weeks": 4,
+  "ap_request_eur": 90000
+}

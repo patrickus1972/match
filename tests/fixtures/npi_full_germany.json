@@ -1,0 +1,13 @@
+{
+  "case_id": "NPI-FULL-DE-GATE3",
+  "case_title": "New allergy concept — Germany, Gate 3",
+  "requested_by": "Brand manager, Germany",
+  "request_text": "Full business case for Gate 3 on the new allergy line.",
+  "depth": "npi_full",
+  "market": "DE",
+  "category": "allergy",
+  "need_state": "seasonal_allergy",
+  "concept_name": "Seasonal allergy relief concept",
+  "ap_request_eur": 1200000,
+  "period_start_month": 3
+}

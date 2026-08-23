@@ -1,0 +1,33 @@
+# Real STADA / STADA CHC brand names. No generated name may contain any of
+# these (DAT-11). Extend this list before shipping anything to a client.
+stada
+grippostad
+snup
+silomat
+mobilat
+hirudoid
+ladival
+multilind
+eunova
+nasic
+aspecton
+lacteol
+covonia
+flexiseq
+zoflora
+nizoral
+vitaprost
+aqualor
+apo-go
+hedelix
+kytta
+elotrans
+zinkorotat
+fluimucil
+buscopan
+canesten
+bepanthen
+voltaren
+nurofen
+strepsils
+otrivin
