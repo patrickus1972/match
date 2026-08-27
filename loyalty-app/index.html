@@ -1,0 +1,993 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#00a651">
+<title>Aramco Rewards — MVP prototype</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%2300a651'/><text x='16' y='23' font-size='19' text-anchor='middle' fill='white' font-family='sans-serif'>A</text></svg>">
+</head>
+<body dir="ltr">
+
+<!-- ===================== icon sprite ===================== -->
+<svg style="display:none" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M9.5 20v-5h5v5"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="11" rx="2"/><path d="M3 13h18M12 9v11"/><path d="M12 9S10.5 4 8 4a2.2 2.2 0 0 0 0 5zM12 9s1.5-5 4-5a2.2 2.2 0 0 1 0 5z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.6"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+  <symbol id="i-qr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.4"/><rect x="14" y="3" width="7" height="7" rx="1.4"/><rect x="3" y="14" width="7" height="7" rx="1.4"/><path d="M14 14h3v3h-3zM20 14v3M14 20h7" stroke-linecap="round"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5m0 0 6-6m-6 6 6 6"/></symbol>
+  <symbol id="i-fuel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V5a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v15"/><path d="M3 20h11"/><path d="M13 9h3.5a1.5 1.5 0 0 1 1.5 1.5v6a1.7 1.7 0 0 0 3 0V8l-2.4-2.4"/><path d="M6.5 7h4"/></symbol>
+  <symbol id="i-coffee" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 10h1.8a2.6 2.6 0 0 1 0 5.2H17"/><path d="M8 3v2.5M12 3v2.5"/></symbol>
+  <symbol id="i-wash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 16h18M5 16l1.6-4.6A2.6 2.6 0 0 1 9 9.6h6a2.6 2.6 0 0 1 2.4 1.8L19 16"/><circle cx="7.5" cy="18.5" r="1.6"/><circle cx="16.5" cy="18.5" r="1.6"/><path d="M8 6.5V5M12 5.5V4M16 6.5V5"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m4.5 12.5 5 5 10-11"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v5.5c0 4.4 2.9 8.2 7 9.5 4.1-1.3 7-5.1 7-9.5V6z"/><path d="m9 12 2 2 4-4.5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 4 1.4 5.6 2 6.4H4c.6-.8 2-2.4 2-6.4z"/><path d="M10 19a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5.4l3.4 2"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.6v.8"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10" width="15" height="10.5" rx="2.4"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10"/></symbol>
+  <symbol id="i-face" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8.5V6a2 2 0 0 1 2-2h2.5M15.5 4H18a2 2 0 0 1 2 2v2.5M20 15.5V18a2 2 0 0 1-2 2h-2.5M8.5 20H6a2 2 0 0 1-2-2v-2.5"/><path d="M9 10v1.5M15 10v1.5M12 10v3.2h-1"/><path d="M9.4 15.6a3.6 3.6 0 0 0 5.2 0"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3.5 2.7 5.6 6.1.8-4.5 4.3 1.2 6.1L12 17.4 6.5 20.3l1.2-6.1L3.2 9.9l6.1-.8z"/></symbol>
+  <symbol id="i-filter" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M7 12h10M10 17h4"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.4"/><path d="m3.8 7 8.2 6 8.2-6"/></symbol>
+  <symbol id="i-sms" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12.5c0 3.9-3.6 7-8 7-1 0-2-.2-2.9-.5L4 20.5l1.4-3.6A6.6 6.6 0 0 1 4 12.5c0-3.9 3.6-7 8-7s8 3.1 8 7z"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 7h15M9 7V5.2A1.2 1.2 0 0 1 10.2 4h3.6A1.2 1.2 0 0 1 15 5.2V7"/><path d="M6.5 7 7.4 19a1.6 1.6 0 0 0 1.6 1.5h6a1.6 1.6 0 0 0 1.6-1.5L17.5 7"/></symbol>
+  <symbol id="i-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.6a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.7-.9 1.3v.5M12 16.6v.6"/></symbol>
+  <symbol id="i-receipt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18l-2.4-1.6L13.2 21 12 19.6 10.8 21l-2.4-1.6L6 21z"/><path d="M9 8h6M9 12h6"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 13.7 9l5.5 1.7-5.5 1.7L12 18l-1.7-5.6L4.8 10.7 10.3 9z"/><path d="M18.5 3.5v3M20 5h-3"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="m6 6 12 12M18 6 6 18"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><rect x="3" y="5.5" width="18" height="13" rx="2.4"/><path d="M3 10h18" stroke-linecap="round"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-bottle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5h4v3l1.7 2.2c.5.7.8 1.5.8 2.4v9.4a2 2 0 0 1-2 2H9.5a2 2 0 0 1-2-2v-9.4c0-.9.3-1.7.8-2.4L10 5.5z"/><path d="M7.5 12.5h9"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4.5 9.5a11 11 0 0 1 15 0M7.5 13a7 7 0 0 1 9 0M10.5 16.4a2.7 2.7 0 0 1 3 0"/><circle cx="12" cy="19.4" r=".9" fill="currentColor" stroke="none"/></symbol>
+</svg>
+
+<div class="stage" id="stage">
+
+  <!-- ===================== review rail ===================== -->
+  <aside class="rail">
+    <div class="brandbar"><b>aramco</b><span>rewards</span></div>
+    <h1>MVP screen index</h1>
+    <p class="sub">Twenty-four screens in the order a member meets them. Click any row to jump straight to it.</p>
+    <div class="toolbar">
+      <button id="btnLang" type="button">العربية</button>
+      <button id="btnNotes" type="button" class="is-on">Notes</button>
+      <button id="btnReset" type="button">Reset</button>
+    </div>
+    <div id="railList"></div>
+  </aside>
+
+  <!-- ===================== device ===================== -->
+  <div class="deviceWrap">
+    <div class="device" id="device">
+      <div class="device__screen">
+        <div class="notch"></div>
+        <div class="statusbar" id="statusbar">
+          <span class="nums">9:41</span>
+          <span class="glyphs">
+            <svg width="17" height="11" viewBox="0 0 17 11" fill="currentColor"><rect x="0" y="7" width="3" height="4" rx="1"/><rect x="4.5" y="5" width="3" height="6" rx="1"/><rect x="9" y="2.5" width="3" height="8.5" rx="1"/><rect x="13.5" y="0" width="3" height="11" rx="1"/></svg>
+            <svg width="15" height="11" viewBox="0 0 24 24" style="width:15px;height:15px"><use href="#i-wifi" style="stroke:currentColor"/></svg>
+            <svg width="24" height="12" viewBox="0 0 26 13" fill="none"><rect x=".7" y=".7" width="21" height="11.6" rx="3.2" stroke="currentColor" stroke-opacity=".5"/><rect x="2.4" y="2.4" width="17.6" height="8.2" rx="2" fill="currentColor"/><path d="M23.4 4.6v3.8a2 2 0 0 0 0-3.8z" fill="currentColor" fill-opacity=".5"/></svg>
+          </span>
+        </div>
+
+        <div class="viewport" id="viewport">
+
+<!-- ============ 01 · WELCOME ============ -->
+<section class="screen" data-screen="welcome" data-chrome="none" style="background:var(--bg)">
+  <div style="flex:0 0 auto;height:322px;position:relative;overflow:hidden;background:linear-gradient(160deg,#0b3b34,#0d6b57 55%,#0086c8)">
+    <div style="position:absolute;inset:0;background:
+        radial-gradient(120px 120px at 22% 74%, rgba(215,237,60,.30), transparent 70%),
+        repeating-linear-gradient(105deg, rgba(255,255,255,.06) 0 2px, transparent 2px 26px)"></div>
+    <div style="position:absolute;left:22px;bottom:22px;color:#fff">
+      <div class="chip chip--green" data-i18n="w.slot" style="background:rgba(255,255,255,.18);color:#fff">Photography slot — real forecourt</div>
+    </div>
+    <div style="position:absolute;right:-30px;top:-30px;width:190px;height:190px;border-radius:50%;background:rgba(255,255,255,.08)"></div>
+  </div>
+  <div class="pad" style="padding-top:26px;padding-bottom:20px;display:flex;flex-direction:column;flex:1 1 auto">
+    <h2 class="title" data-i18n="w.h">Three times the points<br>on every café stop</h2>
+    <p class="lede" data-i18n="w.p">Fuel earns as you go. Café, wash and store earn faster — that is where the weighting sits. Join in about a minute with your mobile number.</p>
+    <div style="margin-top:auto;display:flex;flex-direction:column;gap:10px">
+      <button class="btn btn--primary" data-go="mobile" data-i18n="w.cta">Join Aramco Rewards</button>
+      <button class="btn btn--quiet" data-go="mobile" data-i18n="w.signin">I already have an account</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 · MOBILE NUMBER ============ -->
+<section class="screen" data-screen="mobile" data-chrome="none" style="background:var(--bg)">
+  <div class="appbar"><button class="iconbtn" data-back><svg width="20" height="20"><use href="#i-back"/></svg></button></div>
+  <div class="pad">
+    <h2 class="title" data-i18n="m.h">What is your mobile number?</h2>
+    <p class="lede" data-i18n="m.p">We send a six-digit code. The number becomes your member ID at the till.</p>
+    <div class="phonefield">
+      <span class="cc nums" data-i18n="m.cc">+966</span>
+      <span class="grow nums" id="phoneDigits" style="letter-spacing:1px"></span>
+      <span class="caret"></span>
+    </div>
+    <p class="tiny muted" style="margin:10px 2px 0" data-i18n="m.note">Saudi numbers only in Wave 1. The country code is fixed.</p>
+  </div>
+  <div style="margin-top:auto;padding-bottom:6px">
+    <div class="pad" style="margin-bottom:10px">
+      <button class="btn btn--primary" id="phoneContinue" disabled data-i18n="cta.continue">Continue</button>
+    </div>
+    <div class="keypad" id="keypad">
+      <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button>
+      <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button>
+      <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button>
+      <button class="alt" data-k="fill" data-i18n="m.demo">demo</button><button data-k="0">0</button><button class="alt" data-k="del">⌫</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 · OTP ============ -->
+<section class="screen" data-screen="otp" data-chrome="none" style="background:var(--bg)">
+  <div class="appbar"><button class="iconbtn" data-back><svg width="20" height="20"><use href="#i-back"/></svg></button></div>
+  <div class="pad">
+    <h2 class="title" data-i18n="o.h">Enter your code</h2>
+    <p class="lede"><span data-i18n="o.p">Sent to</span> <b class="nums" id="otpTarget">+966 55 000 0000</b></p>
+    <div class="otpboxes" id="otpBoxes">
+      <div class="otpbox is-focus"></div><div class="otpbox"></div><div class="otpbox"></div>
+      <div class="otpbox"></div><div class="otpbox"></div><div class="otpbox"></div>
+    </div>
+    <p class="center small muted" data-i18n="o.auto">No submit tap — the sixth digit signs you in.</p>
+    <div class="center" style="margin-top:14px">
+      <button class="btn--sm chip" id="otpResend"><svg width="14" height="14"><use href="#i-clock"/></svg> <span data-i18n="o.resend">Resend in 0:24</span></button>
+    </div>
+  </div>
+  <div style="margin-top:auto">
+    <div class="keypad" id="keypadOtp">
+      <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button>
+      <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button>
+      <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button>
+      <button class="alt" data-k="fill" data-i18n="m.demo">demo</button><button data-k="0">0</button><button class="alt" data-k="del">⌫</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 · PDPL CONSENT ============ -->
+<section class="screen" data-screen="consent" data-chrome="none" style="background:var(--bg)">
+  <div class="appbar"><button class="iconbtn" data-back><svg width="20" height="20"><use href="#i-back"/></svg></button></div>
+  <div class="pad">
+    <h2 class="title" data-i18n="c.h">How we use your data</h2>
+    <p class="lede" data-i18n="c.p">Three uses, in plain language. Two are needed to run the programme. The third is yours to choose and it is off until you turn it on.</p>
+  </div>
+  <div class="listgroup">
+    <div class="listrow">
+      <span class="lead"><svg width="19" height="19"><use href="#i-card"/></svg></span>
+      <span class="grow">
+        <b style="font-size:14px" data-i18n="c.1t">Run your membership</b>
+        <div class="tiny muted" data-i18n="c.1p">Points, tier, receipts and the digital card. Required.</div>
+      </span>
+      <span class="switch is-on is-locked" data-consent="service"></span>
+    </div>
+    <div class="listrow">
+      <span class="lead"><svg width="19" height="19"><use href="#i-spark"/></svg></span>
+      <span class="grow">
+        <b style="font-size:14px" data-i18n="c.2t">Rank offers for you</b>
+        <div class="tiny muted" data-i18n="c.2p">Your stops and purchases order the feed. Required for the ranked feed.</div>
+      </span>
+      <span class="switch is-on is-locked" data-consent="personalization"></span>
+    </div>
+    <div class="listrow">
+      <span class="lead"><svg width="19" height="19"><use href="#i-bell"/></svg></span>
+      <span class="grow">
+        <b style="font-size:14px" data-i18n="c.3t">Send you offers</b>
+        <div class="tiny muted" data-i18n="c.3p">Push, email or SMS on one channel you pick. Optional — off by default.</div>
+      </span>
+      <span class="switch" data-consent="marketing"></span>
+    </div>
+  </div>
+  <div class="pad">
+    <div class="notice"><svg width="16" height="16"><use href="#i-shield"/></svg><span data-i18n="c.pdpl">Under the PDPL you can withdraw the optional consent at any time in Account, and delete the account in full from the same place.</span></div>
+  </div>
+  <div class="pad" style="margin-top:auto;padding-bottom:16px;padding-top:16px">
+    <button class="btn btn--primary" data-go="biometric" data-i18n="c.cta">Agree and continue</button>
+    <button class="btn btn--quiet" data-sheet="privacy" data-i18n="c.read">Read the full notice</button>
+  </div>
+</section>
+
+<!-- ============ 05 · BIOMETRIC ENROLMENT ============ -->
+<section class="screen" data-screen="biometric" data-chrome="none" style="background:var(--bg)">
+  <div class="pad center" style="padding-top:56px;display:flex;flex-direction:column;align-items:center;flex:1 1 auto">
+    <div style="width:112px;height:112px;border-radius:32px;display:grid;place-items:center;background:linear-gradient(140deg,var(--brand-green),var(--brand-blue));color:#fff;margin-bottom:24px">
+      <svg width="58" height="58"><use href="#i-face"/></svg>
+    </div>
+    <h2 class="title center" data-i18n="b.h">Sign in with Face ID</h2>
+    <p class="lede center" data-i18n="b.p">At the pump you want the card on screen in under a second. Face ID does that. You are asked once — you can turn it on later in Account.</p>
+    <div class="card" style="width:100%;text-align:start">
+      <div class="kv"><span data-i18n="b.k1">Opening the app</span><b data-i18n="b.v1">Face check</b></div>
+      <div class="kv"><span data-i18n="b.k2">Showing your QR</span><b data-i18n="b.v2">Face check</b></div>
+      <div class="kv"><span data-i18n="b.k3">Wallet pass at the till</span><b data-i18n="b.v3">No check needed</b></div>
+    </div>
+    <div style="margin-top:auto;width:100%;display:flex;flex-direction:column;gap:8px;padding-bottom:16px">
+      <button class="btn btn--primary" id="bioOn" data-i18n="b.cta">Turn on Face ID</button>
+      <button class="btn btn--quiet" data-go="locked" data-i18n="b.skip">Not now</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 · LOCKED STATE ============ -->
+<section class="screen" data-screen="locked" data-chrome="none">
+  <div class="lockwrap">
+    <div style="width:100%;max-width:280px;margin-bottom:6px">
+      <div class="blur" style="text-align:start">
+        <div style="font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;opacity:.85">Points balance</div>
+        <div style="font-size:42px;font-weight:800;letter-spacing:-1.5px">5,500</div>
+        <div class="track" style="max-width:230px"><span style="width:66%"></span></div>
+      </div>
+    </div>
+    <div class="faceid" id="faceTarget"><svg width="54" height="54"><use href="#i-face"/></svg></div>
+    <div>
+      <div style="font-size:19px;font-weight:700" data-i18n="l.h">Locked</div>
+      <p style="font-size:13px;opacity:.85;max-width:250px;margin:6px auto 0;line-height:1.5" data-i18n="l.p">Balance and rewards stay hidden until the face check passes.</p>
+    </div>
+    <button class="btn btn--primary" style="max-width:260px" id="faceUnlock" data-i18n="l.cta">Unlock with Face ID</button>
+    <div class="notice" style="max-width:290px;background:rgba(255,255,255,.14);color:#fff">
+      <svg width="16" height="16"><use href="#i-qr"/></svg><span data-i18n="l.wallet">Your wallet pass still scans at the till while the phone is locked — no face check, no app.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 · HOME ============ -->
+<section class="screen" data-screen="home" data-tab="home" data-dark-status="1">
+  <div class="hero">
+    <div class="spread" style="padding-top:6px">
+      <div>
+        <div class="hero__greet" data-i18n="h.greet">Good morning</div>
+        <div class="hero__name" data-i18n="h.name">Faisal Al-Harbi</div>
+      </div>
+      <div class="row" style="gap:8px">
+        <div style="text-align:end;line-height:1.15">
+          <div style="font-size:15px;font-weight:700" class="nums" data-points>5,500</div>
+          <div style="font-size:11px;opacity:.9" data-tier>Bronze</div>
+        </div>
+        <span class="avatar">F</span>
+      </div>
+    </div>
+
+    <button class="balance" data-go="account">
+      <div class="spread">
+        <span class="balance__label" data-i18n="h.balance">Points balance</span>
+        <span class="chip chip--tier"><svg width="13" height="13"><use href="#i-shield"/></svg> <span data-tier>Bronze</span></span>
+      </div>
+      <div class="balance__value"><span class="nums" data-points>5,500</span><small data-i18n="pts">PTS</small></div>
+      <div class="spread balance__prog">
+        <span>
+          <span data-i18n="h.prog"><b class="nums" data-visits>4</b> of <b class="nums" data-visits-target>6</b> qualifying visits toward <span data-next-tier>Silver</span></span>
+          <em data-i18n="h.progsub">— counted in visits, not spend</em>
+        </span>
+        <svg width="18" height="18" style="opacity:.9;flex:0 0 auto"><use href="#i-chev"/></svg>
+      </div>
+      <div class="track"><span data-progress style="width:66%"></span></div>
+    </button>
+  </div>
+
+  <div class="sheetbody">
+    <div class="quick">
+      <button data-go="stations"><span class="qicon"><svg width="26" height="26"><use href="#i-fuel"/></svg></span><span data-i18n="q.pump">Pay at pump</span></button>
+      <button data-go="cafe"><span class="qicon"><svg width="26" height="26"><use href="#i-coffee"/></svg></span><span data-i18n="q.cafe">Order café</span></button>
+      <button data-go="rewards"><span class="qicon"><svg width="26" height="26"><use href="#i-gift"/></svg></span><span data-i18n="q.rewards">Rewards</span></button>
+      <button data-go="stations"><span class="qicon"><svg width="26" height="26"><use href="#i-pin"/></svg></span><span data-i18n="q.stations">Stations</span></button>
+    </div>
+
+    <div class="sectionhead">
+      <h3 data-i18n="h.nearest">Time for a break?</h3>
+      <button data-go="stations" data-i18n="cta.seeall">See all</button>
+    </div>
+    <button class="stationcard" data-station="0">
+      <span class="thumb" style="background:linear-gradient(150deg,#0d6b57,#0086c8)"></span>
+      <span class="grow">
+        <h4 data-i18n="st.0">Al Kharji Road</h4>
+        <div class="tiny muted" style="margin-bottom:4px"><span class="nums">2.4 km</span> · <span data-i18n="st.open">Open</span> · <span class="nums">6</span>/<span class="nums">8</span> <span data-i18n="st.free">pumps free</span></div>
+        <span class="chip chip--green"><svg width="12" height="12"><use href="#i-fuel"/></svg> <span data-i18n="q.pump">Pay at pump</span></span>
+      </span>
+      <svg width="18" height="18" class="muted"><use href="#i-chev"/></svg>
+    </button>
+    <button class="stationcard" data-station="1">
+      <span class="thumb" style="background:linear-gradient(150deg,#c98b3a,#7a4f1e)"></span>
+      <span class="grow">
+        <h4 data-i18n="st.1">Riyadh Station</h4>
+        <div class="tiny muted" style="margin-bottom:4px"><span class="nums">1.7 km</span> · <span data-i18n="st.open">Open</span> · <span class="nums">4</span>/<span class="nums">6</span> <span data-i18n="st.free">pumps free</span></div>
+        <span class="chip chip--blue"><svg width="12" height="12"><use href="#i-coffee"/></svg> <span data-i18n="st.cafeopen">Café open</span></span>
+      </span>
+      <svg width="18" height="18" class="muted"><use href="#i-chev"/></svg>
+    </button>
+
+    <div class="sectionhead">
+      <h3 data-i18n="h.picked">Just for you</h3>
+      <button data-sheet="ranking" data-i18n="h.why">Why these?</button>
+    </div>
+    <div class="hscroll" id="offerFeed"></div>
+
+    <div style="margin-top:18px">
+      <button class="banner" data-offer="f1">
+        <span class="chip" style="background:rgba(255,255,255,.2);color:#fff;margin-bottom:9px" data-i18n="h.f1tag">Race weekend</span>
+        <h4 data-i18n="h.f1h">Score big with Aramco Rewards</h4>
+        <p data-i18n="h.f1p">Double points on every café stop across race weekend, Thursday to Sunday.</p>
+        <span class="chip" style="background:#fff;color:#0b3b34" data-i18n="h.f1cta">Explore offers</span>
+      </button>
+    </div>
+
+    <p class="arabic-note" data-i18n="h.foot">Earn rates and tier thresholds are placeholders for Stage 1 proposition economics.</p>
+    <div style="height:80px"></div>
+  </div>
+</section>
+
+<!-- ============ 08 · NEXT-BEST-OFFER PUSH ============ -->
+<section class="screen" data-screen="push" data-chrome="none">
+  <div class="lockscreen">
+    <div class="center" style="margin-bottom:6px">
+      <div style="font-size:15px;opacity:.85" data-i18n="p.day">Thursday 27 August</div>
+      <div style="font-size:74px;font-weight:300;letter-spacing:-3px;line-height:1" class="nums">9:41</div>
+    </div>
+    <button class="pushcard" id="pushOpen">
+      <div class="meta"><span class="badge"></span><b style="color:var(--ink-2)">ARAMCO REWARDS</b><span style="margin-inline-start:auto" data-i18n="p.now">now</span></div>
+      <h4 data-i18n="p.h">You are 400 m from Al Kharji Road</h4>
+      <p data-i18n="p.p">Coffee is 3× points until 11:00 this morning. Tap to see it before you pull in.</p>
+      <div class="row" style="gap:6px;margin-top:10px;flex-wrap:wrap">
+        <span class="chip chip--blue"><svg width="12" height="12"><use href="#i-bell"/></svg> <span data-i18n="p.ch">Push — your chosen channel</span></span>
+        <span class="chip"><svg width="12" height="12"><use href="#i-clock"/></svg> <span data-i18n="p.cap">2 of 3 this week</span></span>
+      </div>
+    </button>
+    <div class="pad" style="margin-top:auto;padding-bottom:18px">
+      <div class="notice" style="background:rgba(255,255,255,.14);color:#fff">
+        <svg width="16" height="16"><use href="#i-info"/></svg>
+        <span data-i18n="p.note">Location and time triggered, capped at three a week, silent inside your quiet hours. Channel and cap are set in Account.</span>
+      </div>
+      <button class="btn btn--quiet" style="color:rgba(255,255,255,.85)" data-go="prefs" data-i18n="p.manage">Change channel or cap</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 · OFFER DETAIL ============ -->
+<section class="screen" data-screen="offer" data-tab="home">
+  <div style="position:relative;height:210px;flex:0 0 auto;overflow:hidden;display:grid;place-items:center" id="offerArt">
+    <span id="offerArtIcon" style="color:rgba(255,255,255,.9);margin-bottom:18px"></span>
+    <div class="appbar" style="position:absolute;top:0;left:0;right:0;z-index:3">
+      <button class="iconbtn" data-back><svg width="20" height="20"><use href="#i-back"/></svg></button>
+    </div>
+  </div>
+  <div class="sheetbody" style="margin-top:-26px">
+    <div class="pad">
+      <div class="row" style="gap:6px;margin-bottom:10px;flex-wrap:wrap">
+        <span class="chip chip--green" id="offerRank">#1 for you</span>
+        <span class="chip" id="offerExpiry"><svg width="12" height="12"><use href="#i-clock"/></svg> Until 23:00</span>
+      </div>
+      <h2 class="title" id="offerTitle">Double points on café</h2>
+      <p class="lede" id="offerBody">Every hot drink earns twice the points. Applies to the café counter and to order-ahead in the app.</p>
+
+      <div class="why" style="margin-bottom:12px">
+        <h5 data-i18n="of.why">Why you are seeing this</h5>
+        <p id="offerWhy">You bought coffee on 4 of your last 5 weekday stops, and you are near a café site this morning.</p>
+      </div>
+      <div class="why" style="margin-bottom:16px">
+        <h5 data-i18n="of.who">Who released it</h5>
+        <p id="offerWho">Aramco Retail — national café campaign. Valid at all café sites in Riyadh.</p>
+      </div>
+
+      <div class="card" style="margin-bottom:16px">
+        <div class="kv"><span data-i18n="of.earn">Earn</span><b id="offerEarn">2 pts per SAR, doubled</b></div>
+        <div class="kv"><span data-i18n="of.valid">Valid</span><b id="offerValid">Today, until 23:00</b></div>
+        <div class="kv"><span data-i18n="of.where">Where</span><b id="offerWhere">Café counter or order ahead</b></div>
+      </div>
+      <button class="btn btn--primary" data-go="cafe" data-i18n="of.cta">Order ahead now</button>
+      <button class="btn btn--quiet" data-go="stations" data-i18n="of.find">Find a café site</button>
+      <div style="height:80px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 · STATION LOCATOR ============ -->
+<section class="screen" data-screen="stations" data-tab="stations">
+  <div class="appbar">
+    <button class="iconbtn" data-back><svg width="20" height="20"><use href="#i-back"/></svg></button>
+    <h4 data-i18n="sl.h">Stations near you</h4>
+    <button class="iconbtn" style="margin-inline-start:auto" data-sheet="filters"><svg width="19" height="19"><use href="#i-filter"/></svg></button>
+  </div>
+  <div class="map">
+    <div class="road" style="left:0;right:0;top:96px;height:16px"></div>
+    <div class="road" style="left:0;right:0;top:170px;height:10px"></div>
+    <div class="road" style="top:0;bottom:0;left:118px;width:14px"></div>
+    <div class="road" style="top:0;bottom:0;left:266px;width:10px"></div>
+    <div class="me" style="left:150px;top:132px"></div>
+    <div class="pin is-sel" style="left:124px;top:104px" data-station="0"><span>1</span></div>
+    <div class="pin" style="left:272px;top:92px" data-station="1"><span>2</span></div>
+    <div class="pin" style="left:196px;top:186px" data-station="2"><span>3</span></div>
+    <div class="map__slot" data-i18n="sl.slot">Map tiles — supplier slot</div>
+  </div>
+  <div class="filters">
+    <button class="chip is-on" data-filter="all" data-i18n="sl.f1">All</button>
+    <button class="chip" data-filter="offer" data-i18n="sl.f2">Live offer</button>
+    <button class="chip" data-filter="cafe" data-i18n="sl.f3">Café</button>
+    <button class="chip" data-filter="wash" data-i18n="sl.f4">Car wash</button>
+    <button class="chip" data-filter="open" data-i18n="sl.f5">Open now</button>
+  </div>
+  <div style="padding:0 20px 20px" id="stationList"></div>
+  <div style="height:70px;flex:0 0 auto"></div>
+</section>
+
+<!-- ============ 11 · STATION DETAIL ============ -->
+<section class="screen" data-screen="station" data-tab="stations">
+  <div style="position:relative;height:176px;flex:0 0 auto;background:linear-gradient(150deg,#0d6b57,#0086c8);overflow:hidden;display:grid;place-items:center">
+    <span style="color:rgba(255,255,255,.85);margin-bottom:18px"><svg width="60" height="60"><use href="#i-fuel"/></svg></span>
+    <div class="appbar" style="position:absolute;top:0;left:0;right:0;z-index:3">
+      <button class="iconbtn" data-back><svg width="20" height="20"><use href="#i-back"/></svg></button>
+    </div>
+  </div>
+  <div class="sheetbody" style="margin-top:-26px">
+    <div class="pad">
+      <div class="spread" style="align-items:flex-start">
+        <div>
+          <h2 style="margin:0;font-size:22px" id="stationName">Al Kharji Road</h2>
+          <div class="small muted" style="margin-top:3px"><span class="nums" id="stationDist">2.4 km</span> · <span data-i18n="st.open">Open</span> · <span data-i18n="st.24">24 hours</span></div>
+        </div>
+        <span class="chip chip--green" id="stationFree"><span class="nums">6</span>/<span class="nums">8</span> <span data-i18n="st.free">pumps free</span></span>
+      </div>
+
+      <h3 class="sect" data-i18n="sd.pick">Pick your pump</h3>
+      <div class="pumpgrid" id="pumpGrid"></div>
+      <p class="tiny muted" style="margin:10px 2px 0" data-i18n="sd.busy">Pumps in use are blocked — you cannot authorise one someone else is on.</p>
+
+      <h3 class="sect" data-i18n="sd.also">Also here</h3>
+      <div class="row" style="gap:10px">
+        <button class="card grow" style="display:flex;flex-direction:column;gap:6px;align-items:flex-start" data-go="cafe">
+          <span style="color:var(--brand-green)"><svg width="24" height="24"><use href="#i-coffee"/></svg></span>
+          <b style="font-size:14px" data-i18n="sd.cafe">Café</b>
+          <span class="tiny muted" data-i18n="sd.cafep">Order ahead · 3× points</span>
+        </button>
+        <button class="card grow" style="display:flex;flex-direction:column;gap:6px;align-items:flex-start" data-toast="toast.soon">
+          <span style="color:var(--brand-blue)"><svg width="24" height="24"><use href="#i-wash"/></svg></span>
+          <b style="font-size:14px" data-i18n="sd.wash">Car wash</b>
+          <span class="tiny muted" data-i18n="sd.washp">From 25 SAR · earns 1×</span>
+        </button>
+      </div>
+      <div style="height:120px"></div>
+    </div>
+  </div>
+  <div style="position:absolute;z-index:5;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:13px 20px 16px;box-shadow:0 -6px 22px rgba(11,31,28,.08)">
+    <button class="btn btn--primary" id="pumpContinue" disabled data-i18n="sd.cta">Continue to pump</button>
+  </div>
+</section>
+
+<!-- ============ 12 · AUTHORISE THE PUMP ============ -->
+<section class="screen" data-screen="authorise" data-tab="stations">
+  <div class="appbar">
+    <button class="iconbtn" data-back><svg width="20" height="20"><use href="#i-back"/></svg></button>
+    <h4 data-i18n="au.h">Authorise pump <span class="nums" data-pump>3</span></h4>
+  </div>
+  <div class="pad" style="flex:1 1 auto;display:flex;flex-direction:column">
+    <p class="lede" data-i18n="au.p">Choose a grade, confirm the card, then hold. Nothing is taken until you finish fuelling.</p>
+
+    <h3 class="sect" style="margin-top:0" data-i18n="au.grade">Grade</h3>
+    <div class="listgroup" style="margin:0 0 16px" id="gradeList">
+      <button class="listrow" data-grade="91"><span class="lead"><svg width="18" height="18"><use href="#i-fuel"/></svg></span><span class="grow"><b style="font-size:14px">Petrol 91</b><div class="tiny muted"><span class="nums">2.18</span> SAR/L</div></span><span class="radio"></span></button>
+      <button class="listrow" data-grade="95"><span class="lead"><svg width="18" height="18"><use href="#i-fuel"/></svg></span><span class="grow"><b style="font-size:14px">Petrol 95</b><div class="tiny muted"><span class="nums">2.33</span> SAR/L</div></span><span class="radio is-on"></span></button>
+      <button class="listrow" data-grade="diesel"><span class="lead"><svg width="18" height="18"><use href="#i-fuel"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="au.diesel">Diesel</b><div class="tiny muted"><span class="nums">1.15</span> SAR/L</div></span><span class="radio"></span></button>
+    </div>
+
+    <h3 class="sect" style="margin-top:0" data-i18n="au.card">Card</h3>
+    <div class="card" style="padding:14px">
+      <div class="row">
+        <span class="lead" style="width:40px;height:28px;border-radius:6px;background:linear-gradient(120deg,#1a1f71,#3b4bb8);display:grid;place-items:center;color:#fff;font-size:9.5px;font-weight:700">VISA</span>
+        <span class="grow"><b style="font-size:14px" class="nums">•••• 4417</b><div class="tiny muted" data-i18n="au.default">Default card</div></span>
+        <button class="tiny" style="color:var(--brand-blue);font-weight:600" data-toast="toast.soon" data-i18n="au.change">Change</button>
+      </div>
+    </div>
+
+    <div class="notice notice--amber" style="margin-top:16px">
+      <svg width="16" height="16"><use href="#i-info"/></svg>
+      <span data-i18n="au.hold">We hold <b class="nums">300 SAR</b> on the card while the pump runs. When you finish, the hold is released and only the fuel you took is charged — usually within an hour.</span>
+    </div>
+
+    <div class="notice notice--green" style="margin-top:10px">
+      <svg width="16" height="16"><use href="#i-spark"/></svg>
+      <span data-i18n="au.earn">This stop counts as visit <b class="nums" data-visits-next>5</b> of <b class="nums" data-visits-target>6</b> toward <span data-next-tier>Silver</span>.</span>
+    </div>
+
+    <div style="margin-top:auto;padding-bottom:16px">
+      <button class="btn btn--primary" data-go="fuelling" data-i18n="au.cta">Authorise and start</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 13 · FUELLING ============ -->
+<section class="screen" data-screen="fuelling" data-chrome="none" data-dark-status="1">
+  <div class="fuelscreen pad" style="display:flex;flex-direction:column;padding-top:10px;padding-bottom:18px">
+    <div class="spread">
+      <span class="chip" style="background:rgba(255,255,255,.18);color:#fff"><span data-i18n="fu.pump">Pump</span> <b class="nums" data-pump>3</b> · <span class="nums" data-grade-label>95</span></span>
+      <span class="chip" style="background:rgba(255,255,255,.18);color:#fff" id="fuelState" data-i18n="fu.running">Fuelling</span>
+    </div>
+
+    <div class="dial" id="fuelDial" style="--p:0%">
+      <div>
+        <div class="amt"><span class="nums" id="fuelAmount">0.00</span> <small>SAR</small></div>
+        <div class="lit"><span class="nums" id="fuelLitres">0.00</span> <span data-i18n="fu.litres">litres</span></div>
+      </div>
+    </div>
+
+    <div class="center" style="margin-top:20px">
+      <span class="livepts"><svg width="17" height="17"><use href="#i-spark"/></svg> <span class="nums" id="fuelPoints">0</span> <span data-i18n="fu.earning">points earning</span></span>
+    </div>
+
+    <p class="center" style="font-size:12.5px;opacity:.8;line-height:1.5;margin:16px 24px 0" data-i18n="fu.p">Readable from the pump at arm's length. The screen stays awake until the nozzle is back.</p>
+
+    <div style="margin-top:auto;display:flex;flex-direction:column;gap:8px">
+      <button class="btn" style="background:rgba(255,255,255,.16);color:#fff" id="fuelStop" data-i18n="fu.stop">Stop and see receipt</button>
+      <p class="center tiny" style="opacity:.65;margin:0" data-i18n="fu.auto">Or just hang up the nozzle — the receipt appears on its own.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 14 · RECEIPT ============ -->
+<section class="screen" data-screen="receipt" data-tab="home">
+  <div class="appbar">
+    <button class="iconbtn" data-go="home"><svg width="19" height="19"><use href="#i-x"/></svg></button>
+    <h4 data-i18n="re.h">Receipt</h4>
+  </div>
+  <div class="pad">
+    <div class="receipt">
+      <div class="stamp"><svg width="30" height="30"><use href="#i-check"/></svg></div>
+      <div class="center" style="margin-bottom:14px">
+        <div style="font-size:26px;font-weight:800" class="nums"><span id="recAmount">184.60</span> SAR</div>
+        <div class="small muted" data-i18n="re.paid">Paid with Visa •••• 4417</div>
+      </div>
+      <div class="kv"><span data-i18n="re.where">Al Kharji Road · pump <b class="nums" data-pump>3</b></span><b class="nums" data-i18n="re.time">27 Aug, 09:44</b></div>
+      <div class="kv"><span data-grade-name>Petrol 95</span><b><span class="nums" id="recLitres">79.20</span> L</b></div>
+      <div class="kv"><span data-i18n="re.pts">Points earned</span><b style="color:var(--ok)">+<span class="nums" id="recPoints">185</span></b></div>
+      <div class="kv"><span data-i18n="re.visit">Qualifying visit</span><b><span class="nums" data-visits-next>5</span> <span data-i18n="re.of6">of <span class="nums" data-visits-target>6</span> toward <span data-next-tier>Silver</span></span></b></div>
+      <div class="kv"><span data-i18n="re.posting">Balance posted</span><b style="color:var(--ok)" data-i18n="re.posted">In 38 seconds</b></div>
+    </div>
+
+    <div class="notice notice--green" style="margin-top:14px">
+      <svg width="16" height="16"><use href="#i-check"/></svg>
+      <span data-i18n="re.postnote">Points land in under a minute, so the balance you see at the till is the balance you can burn.</span>
+    </div>
+
+    <button class="banner" style="margin:16px 0 0;width:100%" data-offer="cafe3x">
+      <span class="chip" style="background:rgba(255,255,255,.2);color:#fff;margin-bottom:9px" data-i18n="re.nudge">While you are here</span>
+      <h4 data-i18n="re.nudgeh">Coffee earns 3× until 11:00</h4>
+      <p data-i18n="re.nudgep">You have <b class="nums" data-points>5,500</b> points. A flat white takes about two minutes to make and puts you 45 points closer to a free one.</p>
+      <span class="chip" style="background:#fff;color:#0b3b34" data-i18n="re.nudgecta">Order ahead</span>
+    </button>
+
+    <div class="row" style="gap:10px;margin-top:14px">
+      <button class="btn btn--ghost" data-toast="toast.email" data-i18n="re.email">Email it</button>
+      <button class="btn btn--ghost" data-go="rewards" data-i18n="re.spend">Spend points</button>
+    </div>
+    <div style="height:80px"></div>
+  </div>
+</section>
+
+<!-- ============ 15 · CAFÉ ORDER AHEAD ============ -->
+<section class="screen" data-screen="cafe" data-tab="home">
+  <div class="appbar">
+    <button class="iconbtn" data-back><svg width="20" height="20"><use href="#i-back"/></svg></button>
+    <div>
+      <h4 data-i18n="ca.h">Café — order ahead</h4>
+      <div class="tiny muted" data-i18n="ca.sub">Al Kharji Road · ready in about 4 min</div>
+    </div>
+  </div>
+  <div class="pad">
+    <div class="notice notice--green" style="margin-bottom:14px">
+      <svg width="16" height="16"><use href="#i-spark"/></svg><span data-i18n="ca.promo">Race weekend: every hot drink earns 3× points until 11:00.</span>
+    </div>
+    <div id="cafeMenu"></div>
+    <div style="height:130px"></div>
+  </div>
+  <div style="position:absolute;z-index:5;left:0;right:0;bottom:0;background:var(--surface);border-top:1px solid var(--line);padding:13px 20px 16px;box-shadow:0 -6px 22px rgba(11,31,28,.08)">
+    <div class="spread" style="margin-bottom:10px">
+      <span class="small muted"><span class="nums" id="cafeCount">0</span> <span data-i18n="ca.items">items</span></span>
+      <span class="chip chip--green"><svg width="12" height="12"><use href="#i-spark"/></svg> <span data-i18n="ca.earns">Earns</span> <b class="nums" id="cafePts">0</b> <span data-i18n="pts">PTS</span></span>
+    </div>
+    <button class="btn btn--primary" id="cafePay" disabled>
+      <span data-i18n="ca.pay">Pay</span> <b class="nums" id="cafeTotal">0.00</b> SAR
+    </button>
+  </div>
+</section>
+
+<!-- ============ 16 · PICKUP ============ -->
+<section class="screen" data-screen="pickup" data-tab="home">
+  <div class="appbar">
+    <button class="iconbtn" data-go="home"><svg width="19" height="19"><use href="#i-x"/></svg></button>
+    <h4 data-i18n="pk.h">Order placed</h4>
+  </div>
+  <div class="pad center">
+    <div class="card" style="padding:22px 18px">
+      <div class="small muted" data-i18n="pk.code">Show this at</div>
+      <div style="font-size:17px;font-weight:700;margin-bottom:12px" data-i18n="pk.counter">Café counter 2</div>
+      <div class="codeblock nums" style="font-size:44px;letter-spacing:8px">B41</div>
+      <div class="small muted" style="margin-top:12px" data-i18n="pk.ready">Ready in about 4 minutes · we will buzz you</div>
+    </div>
+
+    <div class="card" style="margin-top:12px;text-align:start">
+      <div class="kv"><span><span class="nums" id="pkLines">2</span>× <span data-i18n="pk.lines">items</span></span><b class="nums"><span id="pkTotal">33.00</span> SAR</b></div>
+      <div class="kv"><span data-i18n="pk.earned">Points earned</span><b style="color:var(--ok)">+<span class="nums" id="pkPoints">99</span></b></div>
+      <div class="kv"><span data-i18n="pk.newbal">New balance</span><b class="nums" data-points>5,500</b></div>
+    </div>
+
+    <div class="notice" style="margin-top:12px;text-align:start">
+      <svg width="16" height="16"><use href="#i-qr"/></svg>
+      <span data-i18n="pk.qr">Prefer not to read out a code? Your member QR works at the counter too — the barista scans it and the order comes up.</span>
+    </div>
+
+    <button class="btn btn--ghost" style="margin-top:12px" data-sheet="qr" data-i18n="pk.showqr">Show member QR</button>
+    <button class="btn btn--quiet" data-go="home" data-i18n="pk.done">Back to home</button>
+    <div style="height:70px"></div>
+  </div>
+</section>
+
+<!-- ============ 18 · DIGITAL CARD & WALLET PASS ============ -->
+<section class="screen" data-screen="card" data-tab="account">
+  <div class="appbar">
+    <button class="iconbtn" data-back><svg width="20" height="20"><use href="#i-back"/></svg></button>
+    <h4 data-i18n="dc.h">Digital card &amp; wallet pass</h4>
+  </div>
+  <div class="pad">
+    <p class="lede" data-i18n="dc.p">Scan at the till when the phone is locked. Add it to your wallet and it works without opening the app.</p>
+
+    <div class="memcard">
+      <div class="spread">
+        <span class="brand">aramco<span data-i18n="dc.brand">rewards</span></span>
+        <span class="chip chip--tier"><svg width="13" height="13"><use href="#i-shield"/></svg> <span data-tier>Bronze</span></span>
+      </div>
+      <div style="font-size:19px;font-weight:700;margin-top:14px" data-i18n="h.name">Faisal Al-Harbi</div>
+      <div class="barcode" id="cardBars"></div>
+      <div class="spread">
+        <b class="nums" style="letter-spacing:1.6px;font-size:14.5px">DSC 4821 7730</b>
+        <b class="nums" style="font-size:14.5px"><span data-points>5,500</span> <span data-i18n="pts" style="font-size:11px">PTS</span></b>
+      </div>
+    </div>
+
+    <button class="walletbtn apple" style="margin-top:14px" data-toast="toast.wallet">
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M16.3 12.7c0-2.3 1.9-3.4 2-3.5-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.15-2.8.85-3.5.85s-1.8-.83-3-.81c-1.5.02-2.9.9-3.7 2.27-1.6 2.76-.4 6.85 1.1 9.09.75 1.1 1.63 2.33 2.8 2.29 1.13-.05 1.55-.73 2.92-.73s1.75.73 2.94.71c1.22-.02 1.98-1.11 2.72-2.22.86-1.27 1.21-2.5 1.23-2.57-.03-.01-2.36-.9-2.38-3.58zM14.06 5.2c.62-.75 1.04-1.8.93-2.85-.9.04-1.98.6-2.62 1.35-.57.66-1.07 1.73-.94 2.75 1 .08 2.01-.51 2.63-1.25z"/></svg>
+      <span data-i18n="dc.apple">Add to Apple Wallet</span>
+    </button>
+    <button class="walletbtn google" style="margin-top:9px" data-toast="toast.wallet">
+      <span style="width:20px;height:20px;border-radius:5px;background:linear-gradient(120deg,#4285f4,#34a853 45%,#fbbc05 75%,#ea4335)"></span>
+      <span data-i18n="dc.google">Add to Google Wallet</span>
+    </button>
+
+    <div class="card" style="margin-top:14px">
+      <div class="row" style="align-items:flex-start;gap:12px">
+        <span style="width:44px;height:44px;border-radius:13px;background:#e6f4ec;color:var(--ok);display:grid;place-items:center;flex:0 0 auto"><svg width="24" height="24"><use href="#i-check"/></svg></span>
+        <span class="grow">
+          <b style="font-size:14.5px" data-i18n="dc.in">In Apple Wallet</b>
+          <p class="tiny muted" style="margin:3px 0 0;line-height:1.5" data-i18n="dc.inp">The pass updates the balance automatically after each stop — no app, no refresh.</p>
+        </span>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <div class="featgrid">
+        <div><svg width="22" height="22" style="color:var(--brand-green)"><use href="#i-qr"/></svg><b data-i18n="dc.f1">Instant</b><span data-i18n="dc.f1p">scan to earn</span></div>
+        <div><svg width="22" height="22" style="color:var(--brand-green)"><use href="#i-spark"/></svg><b data-i18n="dc.f2">Auto</b><span data-i18n="dc.f2p">balance update</span></div>
+        <div><svg width="22" height="22" style="color:var(--brand-green)"><use href="#i-wifi"/></svg><b data-i18n="dc.f3">Offline</b><span data-i18n="dc.f3p">works at the till</span></div>
+        <div><svg width="22" height="22" style="color:var(--brand-green)"><use href="#i-shield"/></svg><b data-i18n="dc.f4">Secure</b><span data-i18n="dc.f4p">and private</span></div>
+      </div>
+    </div>
+    <div style="height:80px"></div>
+  </div>
+</section>
+
+<!-- ============ 19 · REWARD CATALOGUE ============ -->
+<section class="screen" data-screen="rewards" data-tab="rewards">
+  <div class="hero" style="padding-bottom:22px">
+    <div class="spread" style="padding-top:6px">
+      <h4 style="margin:0;font-size:19px;font-weight:700" data-i18n="rw.h">Rewards</h4>
+      <span class="chip" style="background:rgba(255,255,255,.2);color:#fff"><svg width="13" height="13"><use href="#i-shield"/></svg> <span data-tier>Bronze</span></span>
+    </div>
+    <div style="margin-top:14px">
+      <div class="balance__label" data-i18n="rw.spend">Points to spend</div>
+      <div class="balance__value"><span class="nums" data-points>5,500</span><small data-i18n="pts">PTS</small></div>
+      <div class="small" style="opacity:.9;margin-top:4px" data-i18n="rw.reach">Six rewards are within reach today.</div>
+    </div>
+  </div>
+  <div class="sheetbody">
+    <div class="filters">
+      <button class="chip is-on" data-rfilter="all" data-i18n="rw.f1">All</button>
+      <button class="chip" data-rfilter="now" data-i18n="rw.f2">Reachable now</button>
+      <button class="chip" data-rfilter="cafe" data-i18n="rw.f3">Café</button>
+      <button class="chip" data-rfilter="fuel" data-i18n="rw.f4">Fuel</button>
+      <button class="chip" data-rfilter="wash" data-i18n="rw.f5">Wash</button>
+    </div>
+    <div class="pad" id="rewardList"></div>
+    <p class="arabic-note" data-i18n="rw.foot">Low denominations first, so a typical member reaches something every month. Prices are Stage 1 placeholders.</p>
+    <div style="height:80px"></div>
+  </div>
+</section>
+
+<!-- ============ 20 · REWARD DETAIL ============ -->
+<section class="screen" data-screen="reward" data-tab="rewards">
+  <div style="position:relative;height:200px;flex:0 0 auto;overflow:hidden;display:grid;place-items:center" id="rewardArt">
+    <span id="rewardArtIcon" style="color:rgba(255,255,255,.9);margin-bottom:18px"></span>
+    <div class="appbar" style="position:absolute;top:0;left:0;right:0;z-index:3">
+      <button class="iconbtn" data-back><svg width="20" height="20"><use href="#i-back"/></svg></button>
+    </div>
+  </div>
+  <div class="sheetbody" style="margin-top:-26px">
+    <div class="pad">
+      <h2 class="title" id="rewardTitle">Flat white</h2>
+      <p class="lede" id="rewardBody">Any size, any café site. Made to order at the counter.</p>
+
+      <div class="card" style="margin-bottom:14px">
+        <div class="kv"><span data-i18n="rd.cost">Reward costs</span><b class="nums"><span id="rdCost">450</span> <span data-i18n="pts">PTS</span></b></div>
+        <div class="kv"><span data-i18n="rd.bal">Your balance</span><b class="nums" data-points>5,500</b></div>
+        <div class="kv" style="border-top:2px solid var(--line)"><span data-i18n="rd.after"><b>Balance after burning</b></span><b class="nums" style="color:var(--ok)" id="rdAfter">5,050</b></div>
+      </div>
+
+      <div class="track track--light" style="margin-bottom:6px"><span id="rdTrack" style="width:100%"></span></div>
+      <p class="tiny muted" id="rdTrackNote" data-i18n="rd.enough">You have enough — this burns on your next visit.</p>
+
+      <div class="notice" style="margin:14px 0">
+        <svg width="16" height="16"><use href="#i-info"/></svg>
+        <span data-i18n="rd.note">Redeeming produces a code that is valid for 30 minutes. The burn happens on this visit, at the till — nothing is set aside for later.</span>
+      </div>
+
+      <button class="btn btn--primary" id="rewardRedeem" data-i18n="rd.cta">Redeem now</button>
+      <button class="btn btn--quiet" data-back data-i18n="rd.back">Keep browsing</button>
+      <div style="height:80px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 21 · REDEMPTION CODE ============ -->
+<section class="screen" data-screen="redemption" data-tab="rewards">
+  <div class="appbar">
+    <button class="iconbtn" data-go="rewards"><svg width="19" height="19"><use href="#i-x"/></svg></button>
+    <h4 data-i18n="rc.h">Show this at the till</h4>
+  </div>
+  <div class="pad center">
+    <div class="chip chip--amber" style="margin-bottom:12px"><svg width="13" height="13"><use href="#i-clock"/></svg> <span data-i18n="rc.exp">Expires in</span> <b class="nums" id="rcTimer">29:58</b></div>
+    <div class="qrframe"><canvas data-qr="redeem" width="29" height="29"></canvas></div>
+    <div class="codeblock nums" style="margin-top:14px" id="rcCode">7K4 P92</div>
+    <div style="margin-top:14px">
+      <div style="font-size:17px;font-weight:700" id="rcTitle">Flat white</div>
+      <div class="small muted"><span class="nums" id="rcCost">450</span> <span data-i18n="pts">PTS</span> · <span data-i18n="rc.left">balance after</span> <b class="nums" id="rcAfter">5,050</b></div>
+    </div>
+    <div class="notice notice--amber" style="margin-top:16px;text-align:start">
+      <svg width="16" height="16"><use href="#i-info"/></svg>
+      <span data-i18n="rc.note">The cashier scans the code and the points come off there and then. If it expires, nothing is deducted and you can redeem again.</span>
+    </div>
+    <button class="btn btn--ghost" style="margin-top:14px" data-toast="toast.brightness" data-i18n="rc.bright">Brighten screen for the scanner</button>
+    <div style="height:80px"></div>
+  </div>
+</section>
+
+<!-- ============ 22 · ACCOUNT ============ -->
+<section class="screen" data-screen="account" data-tab="account">
+  <div class="hero" style="padding-bottom:22px">
+    <div class="row" style="padding-top:6px">
+      <span class="avatar" style="width:52px;height:52px;font-size:20px">F</span>
+      <span class="grow">
+        <div style="font-size:19px;font-weight:700" data-i18n="h.name">Faisal Al-Harbi</div>
+        <div class="small nums" style="opacity:.9">+966 55 214 8830</div>
+      </span>
+    </div>
+    <div class="balance" style="pointer-events:none">
+      <div class="spread">
+        <span class="balance__label" data-i18n="ac.tier">Tier progress</span>
+        <span class="chip chip--tier"><svg width="13" height="13"><use href="#i-shield"/></svg> <span data-tier>Bronze</span></span>
+      </div>
+      <div class="balance__prog" style="margin-top:8px">
+        <span data-i18n="h.prog"><b class="nums" data-visits>4</b> of <b class="nums" data-visits-target>6</b> qualifying visits toward <span data-next-tier>Silver</span></span>
+        <em data-i18n="ac.tiersub"><span class="nums" data-visits-left>2</span> more stops of any size. Visits, not spend.</em>
+      </div>
+      <div class="track"><span data-progress style="width:66%"></span></div>
+    </div>
+  </div>
+  <div class="sheetbody">
+    <div class="listgroup">
+      <button class="listrow" data-go="card"><span class="lead"><svg width="19" height="19"><use href="#i-card"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="ac.card">Digital card &amp; wallet pass</b></span><svg width="17" height="17" class="muted"><use href="#i-chev"/></svg></button>
+      <button class="listrow" data-go="prefs"><span class="lead"><svg width="19" height="19"><use href="#i-bell"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="ac.msg">Message preferences</b><div class="tiny muted" data-i18n="ac.msgsub">Push · 3 a week · quiet 22:00–07:00</div></span><svg width="17" height="17" class="muted"><use href="#i-chev"/></svg></button>
+      <button class="listrow" id="langRow"><span class="lead"><svg width="19" height="19"><use href="#i-globe"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="ac.lang">Language</b><div class="tiny muted" id="langValue">English · switch to العربية</div></span><svg width="17" height="17" class="muted"><use href="#i-chev"/></svg></button>
+    </div>
+    <div class="listgroup">
+      <button class="listrow" data-toast="toast.soon"><span class="lead"><svg width="19" height="19"><use href="#i-user"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="ac.profile">Profile details</b></span><svg width="17" height="17" class="muted"><use href="#i-chev"/></svg></button>
+      <button class="listrow" data-sheet="history"><span class="lead"><svg width="19" height="19"><use href="#i-receipt"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="ac.history">History &amp; receipts</b></span><svg width="17" height="17" class="muted"><use href="#i-chev"/></svg></button>
+      <button class="listrow" data-sheet="faq"><span class="lead"><svg width="19" height="19"><use href="#i-help"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="ac.faq">FAQ &amp; support</b></span><svg width="17" height="17" class="muted"><use href="#i-chev"/></svg></button>
+      <button class="listrow" data-sheet="privacy"><span class="lead"><svg width="19" height="19"><use href="#i-shield"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="ac.privacy">Privacy &amp; consent</b><div class="tiny muted" data-i18n="ac.privacysub">PDPL — what we hold and why</div></span><svg width="17" height="17" class="muted"><use href="#i-chev"/></svg></button>
+    </div>
+    <div class="listgroup">
+      <button class="listrow" data-sheet="delete"><span class="lead" style="background:#fdecea;color:var(--danger)"><svg width="19" height="19"><use href="#i-trash"/></svg></span><span class="grow"><b style="font-size:14px;color:var(--danger)" data-i18n="ac.delete">Delete my account</b><div class="tiny muted" data-i18n="ac.deletesub">Removes the profile and all history</div></span></button>
+    </div>
+    <p class="arabic-note" data-i18n="ac.ver">Aramco Rewards · prototype build 0.9 · Wave 1 MVP</p>
+    <div style="height:80px"></div>
+  </div>
+</section>
+
+<!-- ============ 23 · MESSAGE PREFERENCES ============ -->
+<section class="screen" data-screen="prefs" data-tab="account">
+  <div class="appbar">
+    <button class="iconbtn" data-back><svg width="20" height="20"><use href="#i-back"/></svg></button>
+    <h4 data-i18n="pr.h">Message preferences</h4>
+  </div>
+  <div class="pad">
+    <p class="lede" data-i18n="pr.p">One channel, one cap, and hours when we stay quiet. Everything here is tied to the consent you gave at sign-up.</p>
+  </div>
+
+  <h3 class="sect pad" style="margin-top:0" data-i18n="pr.ch">Preferred channel</h3>
+  <div class="listgroup" id="channelList">
+    <button class="listrow" data-channel="push"><span class="lead"><svg width="19" height="19"><use href="#i-bell"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="pr.push">Push</b><div class="tiny muted" data-i18n="pr.pushsub">Fastest, and the only one that can be location triggered</div></span><span class="radio is-on"></span></button>
+    <button class="listrow" data-channel="email"><span class="lead"><svg width="19" height="19"><use href="#i-mail"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="pr.email">Email</b><div class="tiny muted nums">f.alharbi@example.com</div></span><span class="radio"></span></button>
+    <button class="listrow" data-channel="sms"><span class="lead"><svg width="19" height="19"><use href="#i-sms"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="pr.sms">SMS</b><div class="tiny muted nums">+966 55 214 8830</div></span><span class="radio"></span></button>
+  </div>
+
+  <h3 class="sect pad" style="margin-top:0" data-i18n="pr.cap">Frequency cap</h3>
+  <div class="pad">
+    <div class="card">
+      <div class="spread">
+        <span><b style="font-size:14.5px" data-i18n="pr.capl">Marketing messages a week</b><div class="tiny muted" data-i18n="pr.capsub">Service messages — receipts, redemptions — are never capped</div></span>
+        <span class="stepper">
+          <button data-cap="-">−</button><span class="nums" id="capValue">3</span><button data-cap="+" class="is-primary">+</button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="sect pad" style="margin-top:0" data-i18n="pr.quiet">Quiet hours</h3>
+  <div class="listgroup">
+    <div class="listrow"><span class="lead"><svg width="19" height="19"><use href="#i-clock"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="pr.quieton">Stay quiet overnight</b><div class="tiny muted nums">22:00 – 07:00</div></span><span class="switch is-on" data-toggle="quiet"></span></div>
+    <div class="listrow"><span class="lead"><svg width="19" height="19"><use href="#i-spark"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="pr.nbo">Offers near a station</b><div class="tiny muted" data-i18n="pr.nbosub">Location triggered, inside the cap above</div></span><span class="switch is-on" data-toggle="nbo"></span></div>
+    <div class="listrow"><span class="lead"><svg width="19" height="19"><use href="#i-bell"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="pr.mkt">Marketing consent</b><div class="tiny muted" data-i18n="pr.mktsub">Withdraw it here and all three channels stop</div></span><span class="switch" data-consent="marketing"></span></div>
+  </div>
+
+  <div class="pad">
+    <div class="notice"><svg width="16" height="16"><use href="#i-shield"/></svg><span data-i18n="pr.note">Turning marketing consent off stops every promotional message on every channel within the hour. Receipts and redemption codes keep coming.</span></div>
+    <div style="height:80px"></div>
+  </div>
+</section>
+
+        </div><!-- /viewport -->
+
+        <!-- ============ 17 · MEMBER QR SHEET (reachable from every screen) ============ -->
+        <div class="sheet-backdrop" data-sheetid="qr">
+          <div class="sheet center">
+            <div class="sheet__grab"></div>
+            <div style="width:56px;height:56px;border-radius:50%;background:#e6f4ec;color:var(--brand-green);display:grid;place-items:center;margin:0 auto 10px">
+              <svg width="30" height="30"><use href="#i-qr"/></svg>
+            </div>
+            <h3 style="margin:0 0 14px;font-size:21px" data-i18n="qr.h">Member QR</h3>
+            <div class="qrframe"><canvas data-qr="member" width="29" height="29"></canvas></div>
+            <div class="codeblock nums" style="margin-top:14px;font-size:22px;letter-spacing:3px">DSC 4821 7730</div>
+            <div class="row" style="justify-content:center;gap:7px;margin-top:12px;color:var(--ok)">
+              <svg width="17" height="17"><use href="#i-shield"/></svg>
+              <span class="small" style="color:var(--ink-2)" data-i18n="qr.p">One scan earns and burns at the till.</span>
+            </div>
+            <button class="btn btn--primary" style="margin-top:16px" data-go="card" data-i18n="qr.cta">View digital card &amp; wallet pass</button>
+            <button class="btn btn--quiet" data-close data-i18n="cta.close">Close</button>
+          </div>
+        </div>
+
+        <!-- filters -->
+        <div class="sheet-backdrop" data-sheetid="filters">
+          <div class="sheet">
+            <div class="sheet__grab"></div>
+            <h3 style="margin:0 0 4px;font-size:20px" data-i18n="fl.h">Filter stations</h3>
+            <p class="small muted" style="margin:0 0 14px" data-i18n="fl.p">Live pump counts refresh every 30 seconds.</p>
+            <div class="listgroup" style="margin:0 0 14px">
+              <div class="listrow"><span class="grow"><b style="font-size:14px" data-i18n="fl.1">Open now</b></span><span class="switch is-on"></span></div>
+              <div class="listrow"><span class="grow"><b style="font-size:14px" data-i18n="fl.2">Pumps free</b></span><span class="switch is-on"></span></div>
+              <div class="listrow"><span class="grow"><b style="font-size:14px" data-i18n="fl.3">Café on site</b></span><span class="switch"></span></div>
+              <div class="listrow"><span class="grow"><b style="font-size:14px" data-i18n="fl.4">Car wash</b></span><span class="switch"></span></div>
+              <div class="listrow"><span class="grow"><b style="font-size:14px" data-i18n="fl.5">Live offer today</b></span><span class="switch"></span></div>
+            </div>
+            <button class="btn btn--primary" data-close data-i18n="fl.cta">Show results</button>
+          </div>
+        </div>
+
+        <!-- why this ranking -->
+        <div class="sheet-backdrop" data-sheetid="ranking">
+          <div class="sheet">
+            <div class="sheet__grab"></div>
+            <h3 style="margin:0 0 4px;font-size:20px" data-i18n="rk.h">How your feed is ordered</h3>
+            <p class="small muted" style="margin:0 0 14px" data-i18n="rk.p">Every card can tell you why it is there. Transparency is a PDPL asset, not a nice-to-have.</p>
+            <div class="card" style="margin-bottom:10px"><b style="font-size:14px" data-i18n="rk.1">What you buy</b><p class="tiny muted" style="margin:4px 0 0;line-height:1.5" data-i18n="rk.1p">Category mix across your last twenty stops. Café dominates yours.</p></div>
+            <div class="card" style="margin-bottom:10px"><b style="font-size:14px" data-i18n="rk.2">When and where you stop</b><p class="tiny muted" style="margin:4px 0 0;line-height:1.5" data-i18n="rk.2p">Weekday mornings, mostly on the Al Kharji corridor.</p></div>
+            <div class="card" style="margin-bottom:14px"><b style="font-size:14px" data-i18n="rk.3">What is live right now</b><p class="tiny muted" style="margin:4px 0 0;line-height:1.5" data-i18n="rk.3p">Campaigns running at sites you can actually reach today.</p></div>
+            <button class="btn btn--ghost" data-go="prefs" data-i18n="rk.cta">Manage what we use</button>
+            <button class="btn btn--quiet" data-close data-i18n="cta.close">Close</button>
+          </div>
+        </div>
+
+        <!-- privacy -->
+        <div class="sheet-backdrop" data-sheetid="privacy">
+          <div class="sheet">
+            <div class="sheet__grab"></div>
+            <h3 style="margin:0 0 4px;font-size:20px" data-i18n="pv.h">Privacy &amp; consent</h3>
+            <p class="small muted" style="margin:0 0 14px" data-i18n="pv.p">Personal Data Protection Law, Kingdom of Saudi Arabia.</p>
+            <div class="card" style="margin-bottom:10px"><b style="font-size:14px" data-i18n="pv.1">What we hold</b><p class="tiny muted" style="margin:4px 0 0;line-height:1.5" data-i18n="pv.1p">Mobile number, name, transactions at Aramco sites, points ledger, and app location while the app is open.</p></div>
+            <div class="card" style="margin-bottom:10px"><b style="font-size:14px" data-i18n="pv.2">How long</b><p class="tiny muted" style="margin:4px 0 0;line-height:1.5" data-i18n="pv.2p">Ledger and receipts for seven years as tax law requires. Everything else goes with the account.</p></div>
+            <div class="card" style="margin-bottom:14px"><b style="font-size:14px" data-i18n="pv.3">Your rights</b><p class="tiny muted" style="margin:4px 0 0;line-height:1.5" data-i18n="pv.3p">Access, correct, withdraw consent and delete — all from Account, no call centre.</p></div>
+            <button class="btn btn--primary" data-close data-i18n="cta.gotit">Got it</button>
+          </div>
+        </div>
+
+        <!-- history -->
+        <div class="sheet-backdrop" data-sheetid="history">
+          <div class="sheet">
+            <div class="sheet__grab"></div>
+            <h3 style="margin:0 0 14px;font-size:20px" data-i18n="hi.h">History &amp; receipts</h3>
+            <div id="historyList"></div>
+            <button class="btn btn--quiet" data-close data-i18n="cta.close">Close</button>
+          </div>
+        </div>
+
+        <!-- faq -->
+        <div class="sheet-backdrop" data-sheetid="faq">
+          <div class="sheet">
+            <div class="sheet__grab"></div>
+            <h3 style="margin:0 0 14px;font-size:20px" data-i18n="fq.h">FAQ &amp; support</h3>
+            <div class="listgroup" style="margin:0 0 14px">
+              <button class="listrow"><span class="grow"><b style="font-size:13.5px" data-i18n="fq.1">When do points appear?</b><div class="tiny muted" data-i18n="fq.1p">Under a minute after you pay. If not, tap Missing points on the receipt.</div></span></button>
+              <button class="listrow"><span class="grow"><b style="font-size:13.5px" data-i18n="fq.2">What counts as a qualifying visit?</b><div class="tiny muted" data-i18n="fq.2p">Any paid stop, whatever the size. Tiers move on visits, not spend.</div></span></button>
+              <button class="listrow"><span class="grow"><b style="font-size:13.5px" data-i18n="fq.3">Can I redeem at the cashier?</b><div class="tiny muted" data-i18n="fq.3p">Yes. In-app or at the till — the same member QR does both.</div></span></button>
+              <button class="listrow"><span class="grow"><b style="font-size:13.5px" data-i18n="fq.4">Why was I charged a hold?</b><div class="tiny muted" data-i18n="fq.4p">A 300 SAR pre-auth while the pump runs. Released when you finish.</div></span></button>
+            </div>
+            <button class="btn btn--ghost" data-toast="toast.soon" data-i18n="fq.cta">Message support</button>
+            <button class="btn btn--quiet" data-close data-i18n="cta.close">Close</button>
+          </div>
+        </div>
+
+        <!-- delete account -->
+        <div class="sheet-backdrop" data-sheetid="delete">
+          <div class="sheet">
+            <div class="sheet__grab"></div>
+            <h3 style="margin:0 0 4px;font-size:20px;color:var(--danger)" data-i18n="dl.h">Delete my account</h3>
+            <p class="small muted" style="margin:0 0 14px;line-height:1.55" data-i18n="dl.p">Your profile, preferences and points are removed within 30 days. Receipts are kept for seven years because tax law requires it, with your name detached from them.</p>
+            <div class="notice notice--amber" style="margin-bottom:14px"><svg width="16" height="16"><use href="#i-info"/></svg><span data-i18n="dl.warn">You have <b class="nums" data-points>5,500</b> points. They are cancelled and cannot be restored.</span></div>
+            <button class="btn btn--danger" data-toast="toast.delete" data-i18n="dl.cta">Delete permanently</button>
+            <button class="btn btn--quiet" data-close data-i18n="cta.cancel">Keep my account</button>
+          </div>
+        </div>
+
+        <div class="toast" id="toast"></div>
+
+        <button class="fab-qr" id="fabQr" title="Member QR"><svg width="26" height="26"><use href="#i-qr"/></svg></button>
+
+        <nav class="tabbar" id="tabbar">
+          <button class="tab" data-go="home"><svg><use href="#i-home"/></svg><span data-i18n="tab.home">Home</span></button>
+          <button class="tab" data-go="rewards"><svg><use href="#i-gift"/></svg><span data-i18n="tab.rewards">Rewards</span></button>
+          <button class="tab" data-go="stations"><svg><use href="#i-pin"/></svg><span data-i18n="tab.stations">Stations</span></button>
+          <button class="tab" data-go="account"><svg><use href="#i-user"/></svg><span data-i18n="tab.account">Account</span></button>
+          <button class="tab" data-sheet="menu"><svg><use href="#i-menu"/></svg><span data-i18n="tab.menu">Menu</span></button>
+        </nav>
+
+        <div class="sheet-backdrop" data-sheetid="menu">
+          <div class="sheet">
+            <div class="sheet__grab"></div>
+            <h3 style="margin:0 0 14px;font-size:20px" data-i18n="mn.h">Menu</h3>
+            <div class="listgroup" style="margin:0 0 14px">
+              <button class="listrow" data-go="card"><span class="lead"><svg width="19" height="19"><use href="#i-card"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="ac.card">Digital card &amp; wallet pass</b></span></button>
+              <button class="listrow" data-go="cafe"><span class="lead"><svg width="19" height="19"><use href="#i-coffee"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="q.cafe">Order café</span></b></button>
+              <button class="listrow" data-go="push"><span class="lead"><svg width="19" height="19"><use href="#i-bell"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="mn.push">Preview a next-best-offer push</b></span></button>
+              <button class="listrow" data-go="locked"><span class="lead"><svg width="19" height="19"><use href="#i-lock"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="mn.lock">Lock the app</b></span></button>
+              <button class="listrow" id="langRow2"><span class="lead"><svg width="19" height="19"><use href="#i-globe"/></svg></span><span class="grow"><b style="font-size:14px" data-i18n="ac.lang">Language</b></span></button>
+            </div>
+            <button class="btn btn--quiet" data-close data-i18n="cta.close">Close</button>
+          </div>
+        </div>
+
+        <div class="homebar"><span></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== design notes ===================== -->
+  <aside class="notes" id="notes">
+    <h2 id="noteStep">Screen 1 of 24</h2>
+    <h3 id="noteTitle">Welcome</h3>
+    <div class="epic" id="noteEpic">E1 · OTP, PDPL consent, biometrics</div>
+    <p id="noteBody">Leads with the earn weighting, not the brand.</p>
+    <p class="hint" id="noteHint"></p>
+  </aside>
+
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
