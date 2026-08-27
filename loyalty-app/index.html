@@ -12,6 +12,28 @@
 
 <!-- ===================== icon + artwork sprite ===================== -->
 <svg style="display:none" aria-hidden="true">
+  <defs>
+<linearGradient id="markG" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#78be20"/><stop offset=".55" stop-color="#00a3e0"/><stop offset="1" stop-color="#0033a1"/>
+      </linearGradient>
+<linearGradient id="avSky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1c4f7c"/><stop offset="1" stop-color="#0d2b47"/></linearGradient>
+      <linearGradient id="avSkin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c98d64"/><stop offset="1" stop-color="#a96f4c"/></linearGradient>
+<linearGradient id="sk1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3ea9e0"/><stop offset="1" stop-color="#c9e6f4"/></linearGradient>
+      <linearGradient id="cnp1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#e2e9ed"/></linearGradient>
+<linearGradient id="sk2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7b168"/><stop offset=".5" stop-color="#e0765f"/><stop offset="1" stop-color="#6b4468"/></linearGradient>
+<linearGradient id="sk3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#14314f"/><stop offset="1" stop-color="#436f92"/></linearGradient>
+<linearGradient id="carTop" x1=".1" y1="0" x2=".8" y2="1">
+        <stop offset="0" stop-color="#7fe3cb"/><stop offset=".3" stop-color="#2fae95"/><stop offset=".72" stop-color="#12705f"/><stop offset="1" stop-color="#06392f"/>
+      </linearGradient>
+      <linearGradient id="carLower" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#0d5c4c"/><stop offset="1" stop-color="#04231d"/>
+      </linearGradient>
+      <linearGradient id="carGlass" x1=".1" y1="0" x2=".9" y2="1">
+        <stop offset="0" stop-color="#9fe9ff" stop-opacity=".55"/><stop offset=".45" stop-color="#1c4756"/><stop offset="1" stop-color="#0a2530"/>
+      </linearGradient>
+      <radialGradient id="carShadow"><stop offset="0" stop-color="#032a20" stop-opacity=".55"/><stop offset="1" stop-color="#032a20" stop-opacity="0"/></radialGradient>
+</defs>
+
   <!-- interface icons -->
   <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M9.5 20v-5h5v5"/></symbol>
   <symbol id="i-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="11" rx="2"/><path d="M3 13h18M12 9v11"/><path d="M12 9S10.5 4 8 4a2.2 2.2 0 0 0 0 5zM12 9s1.5-5 4-5a2.2 2.2 0 0 1 0 5z"/></symbol>
@@ -48,19 +70,14 @@
   <symbol id="i-bottle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2.5h4v3l1.7 2.2c.5.7.8 1.5.8 2.4v9.4a2 2 0 0 1-2 2H9.5a2 2 0 0 1-2-2v-9.4c0-.9.3-1.7.8-2.4L10 5.5z"/><path d="M7.5 12.5h9"/></symbol>
   <symbol id="i-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4.5 9.5a11 11 0 0 1 15 0M7.5 13a7 7 0 0 1 9 0M10.5 16.4a2.7 2.7 0 0 1 3 0"/><circle cx="12" cy="19.4" r=".9" fill="currentColor" stroke="none"/></symbol>
 
-  <!-- Aramco emblem: the brand square, reproduced as a simplified mark -->
+  <!-- Aramco mark: the four-pointed star, reproduced as a simplified emblem -->
   <symbol id="logo-mark" viewBox="0 0 32 32">
-    <rect width="32" height="32" rx="7" fill="#0033a1"/>
-    <path d="M32 7v18a7 7 0 0 1-7 7H9z" fill="#78be20"/>
-    <path d="M6.5 25.5c6-1.2 10.4-4 13.2-8.4 2.8-4.4 4-9 3.6-13.6" fill="none" stroke="#fff" stroke-width="3.1" stroke-linecap="round"/>
+    <rect width="32" height="32" rx="3" fill="url(#markG)"/>
+    <path d="M16 3c1.1 6.4 5.6 10.9 12 12-6.4 1.1-10.9 5.6-12 12-1.1-6.4-5.6-10.9-12-12C10.4 13.9 14.9 9.4 16 3z" fill="#fff"/>
   </symbol>
 
   <!-- member portrait -->
   <symbol id="art-avatar" viewBox="0 0 64 64">
-    <defs>
-      <linearGradient id="avSky" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1c4f7c"/><stop offset="1" stop-color="#0d2b47"/></linearGradient>
-      <linearGradient id="avSkin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c98d64"/><stop offset="1" stop-color="#a96f4c"/></linearGradient>
-    </defs>
     <rect width="64" height="64" fill="url(#avSky)"/>
     <path d="M12 64c1.5-10 9-15 20-15s18.5 5 20 15z" fill="#f2f4f6"/>
     <path d="M24 40h16v10c0 4-3.6 6.5-8 6.5S24 54 24 50z" fill="#b57b57"/>
@@ -74,108 +91,112 @@
 
   <!-- forecourt photography, three sites; landscape so it crops well in both slots -->
   <symbol id="art-station-1" viewBox="0 0 240 180" preserveAspectRatio="xMidYMid slice">
-    <defs><linearGradient id="sk1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4bb8ea"/><stop offset="1" stop-color="#cfeaf7"/></linearGradient></defs>
     <rect width="240" height="180" fill="url(#sk1)"/>
-    <circle cx="196" cy="34" r="15" fill="#fff" opacity=".5"/>
-    <ellipse cx="52" cy="40" rx="34" ry="11" fill="#fff" opacity=".45"/>
-    <ellipse cx="86" cy="36" rx="22" ry="9" fill="#fff" opacity=".4"/>
-    <rect y="126" width="240" height="54" fill="#9ba6ac"/><rect y="126" width="240" height="4" fill="#7f8a90"/>
-    <path d="M0 152h240M0 170h240" stroke="#b3bcc1" stroke-width="3" stroke-dasharray="12 10"/>
-    <rect x="14" y="56" width="212" height="17" rx="4" fill="#fff"/>
-    <rect x="14" y="73" width="212" height="7" fill="#78be20"/>
-    <rect x="14" y="80" width="212" height="5" fill="#0033a1"/>
-    <rect x="30" y="85" width="9" height="41" fill="#e7ecee"/><rect x="201" y="85" width="9" height="41" fill="#e7ecee"/>
-    <rect x="86" y="92" width="19" height="34" rx="4" fill="#f1f4f6"/><rect x="89" y="96" width="13" height="10" rx="2" fill="#2f3d47"/>
-    <rect x="135" y="92" width="19" height="34" rx="4" fill="#f1f4f6"/><rect x="138" y="96" width="13" height="10" rx="2" fill="#2f3d47"/>
-    <path d="M42 126c0-8 6-12 14-12h16c8 0 14 4 14 12z" fill="#c6d0d6"/>
-    <rect x="52" y="106" width="22" height="10" rx="4" fill="#dbe3e8"/>
-    <rect x="168" y="98" width="34" height="28" rx="4" fill="#eef2f4"/><rect x="172" y="104" width="26" height="12" rx="2" fill="#b9c4ca"/>
+    <ellipse cx="46" cy="34" rx="36" ry="10" fill="#fff" opacity=".5"/>
+    <ellipse cx="84" cy="30" rx="22" ry="8" fill="#fff" opacity=".4"/>
+    <rect y="122" width="240" height="58" fill="#a8b0b4"/>
+    <rect y="122" width="240" height="3" fill="#8b9498"/>
+    <path d="M0 148h240M0 168h240" stroke="#bcc4c8" stroke-width="3" stroke-dasharray="14 11"/>
+    <rect x="6" y="52" width="228" height="6" fill="#0033a1"/>
+    <rect x="6" y="58" width="228" height="7" fill="#78be20"/>
+    <rect x="6" y="65" width="228" height="16" rx="2" fill="url(#cnp1)"/>
+    <rect x="22" y="81" width="11" height="41" fill="#dfe6ea"/><rect x="22" y="81" width="4" height="41" fill="#c3ccd1"/>
+    <rect x="207" y="81" width="11" height="41" fill="#dfe6ea"/><rect x="207" y="81" width="4" height="41" fill="#c3ccd1"/>
+    <rect x="118" y="81" width="9" height="41" fill="#e6ecef"/>
+    <rect x="72" y="88" width="21" height="34" rx="3" fill="#f2f5f7"/><rect x="75" y="92" width="15" height="11" rx="2" fill="#28353d"/><rect x="75" y="106" width="15" height="3" fill="#c7d0d5"/>
+    <rect x="146" y="88" width="21" height="34" rx="3" fill="#f2f5f7"/><rect x="149" y="92" width="15" height="11" rx="2" fill="#28353d"/><rect x="149" y="106" width="15" height="3" fill="#c7d0d5"/>
+    <rect x="176" y="94" width="42" height="28" rx="3" fill="#eff3f5"/>
+    <rect x="180" y="99" width="34" height="12" rx="2" fill="#0033a1" opacity=".18"/>
+    <path d="M36 122c0-9 7-14 16-14h18c9 0 16 5 16 14z" fill="#cdd6db"/>
+    <rect x="48" y="100" width="24" height="10" rx="4" fill="#e2e9ed"/>
   </symbol>
   <symbol id="art-station-2" viewBox="0 0 240 180" preserveAspectRatio="xMidYMid slice">
-    <defs><linearGradient id="sk2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f6ab5e"/><stop offset=".5" stop-color="#e2765c"/><stop offset="1" stop-color="#6f4468"/></linearGradient></defs>
     <rect width="240" height="180" fill="url(#sk2)"/>
-    <circle cx="60" cy="72" r="20" fill="#ffdca8" opacity=".85"/>
-    <path d="M0 112h240v14H0z" fill="#54395a"/>
-    <rect y="126" width="240" height="54" fill="#432f4c"/>
-    <path d="M0 154h240" stroke="#63496d" stroke-width="3" stroke-dasharray="12 10"/>
-    <rect x="10" y="50" width="220" height="16" rx="4" fill="#f7f2ec"/>
-    <rect x="10" y="66" width="220" height="7" fill="#78be20"/>
-    <rect x="26" y="73" width="9" height="39" fill="#cbbcc6"/><rect x="205" y="73" width="9" height="39" fill="#cbbcc6"/>
-    <rect x="100" y="82" width="20" height="30" rx="4" fill="#e7dee5"/><rect x="103" y="86" width="14" height="10" rx="2" fill="#3a2a41"/>
-    <path d="M140 112c0-7 5-11 13-11h16c8 0 13 4 13 11z" fill="#2e2037"/>
-    <circle cx="150" cy="112" r="4" fill="#1d1425"/><circle cx="176" cy="112" r="4" fill="#1d1425"/>
+    <circle cx="58" cy="70" r="19" fill="#ffdfae" opacity=".85"/>
+    <rect y="112" width="240" height="68" fill="#4b3653"/>
+    <path d="M0 142h240" stroke="#65496f" stroke-width="3" stroke-dasharray="14 11"/>
+    <rect x="4" y="46" width="232" height="6" fill="#0033a1"/>
+    <rect x="4" y="52" width="232" height="7" fill="#78be20"/>
+    <rect x="4" y="59" width="232" height="15" rx="2" fill="#f6f2ec"/>
+    <rect x="20" y="74" width="11" height="38" fill="#cdbfc8"/><rect x="209" y="74" width="11" height="38" fill="#cdbfc8"/>
+    <rect x="92" y="80" width="21" height="32" rx="3" fill="#e9e0e7"/><rect x="95" y="84" width="15" height="11" rx="2" fill="#3a2a41"/>
+    <rect x="150" y="80" width="21" height="32" rx="3" fill="#e9e0e7"/><rect x="153" y="84" width="15" height="11" rx="2" fill="#3a2a41"/>
+    <path d="M128 112c0-8 6-12 14-12h18c8 0 14 4 14 12z" fill="#2e2037"/>
   </symbol>
   <symbol id="art-station-3" viewBox="0 0 240 180" preserveAspectRatio="xMidYMid slice">
-    <defs><linearGradient id="sk3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1d3c66"/><stop offset="1" stop-color="#4e82ab"/></linearGradient></defs>
     <rect width="240" height="180" fill="url(#sk3)"/>
-    <circle cx="40" cy="28" r="2" fill="#fff" opacity=".85"/><circle cx="108" cy="20" r="1.6" fill="#fff" opacity=".7"/><circle cx="188" cy="36" r="2" fill="#fff" opacity=".6"/>
-    <rect y="122" width="240" height="58" fill="#293747"/>
-    <path d="M0 150h240" stroke="#41576b" stroke-width="3" stroke-dasharray="12 10"/>
-    <ellipse cx="120" cy="96" rx="104" ry="26" fill="#ffe9a8" opacity=".20"/>
-    <rect x="14" y="54" width="212" height="17" rx="4" fill="#f3f7f9"/>
-    <rect x="14" y="71" width="212" height="7" fill="#78be20"/>
-    <rect x="32" y="78" width="9" height="44" fill="#c0c9d0"/><rect x="199" y="78" width="9" height="44" fill="#c0c9d0"/>
-    <rect x="84" y="88" width="19" height="34" rx="4" fill="#e9eef1"/><rect x="87" y="92" width="13" height="10" rx="2" fill="#293747"/>
-    <rect x="137" y="88" width="19" height="34" rx="4" fill="#e9eef1"/><rect x="140" y="92" width="13" height="10" rx="2" fill="#293747"/>
-    <rect x="168" y="96" width="36" height="26" rx="4" fill="#dfe6eb"/>
+    <circle cx="38" cy="26" r="1.8" fill="#fff" opacity=".85"/><circle cx="106" cy="18" r="1.5" fill="#fff" opacity=".7"/><circle cx="190" cy="34" r="1.8" fill="#fff" opacity=".6"/>
+    <rect y="120" width="240" height="60" fill="#243343"/>
+    <path d="M0 148h240" stroke="#3d5265" stroke-width="3" stroke-dasharray="14 11"/>
+    <ellipse cx="120" cy="94" rx="108" ry="26" fill="#ffeeb8" opacity=".22"/>
+    <rect x="6" y="50" width="228" height="6" fill="#0033a1"/>
+    <rect x="6" y="56" width="228" height="7" fill="#78be20"/>
+    <rect x="6" y="63" width="228" height="16" rx="2" fill="#f4f8fa"/>
+    <rect x="24" y="79" width="11" height="41" fill="#c2cbd2"/><rect x="205" y="79" width="11" height="41" fill="#c2cbd2"/>
+    <rect x="74" y="86" width="21" height="34" rx="3" fill="#eaeff2"/><rect x="77" y="90" width="15" height="11" rx="2" fill="#243343"/>
+    <rect x="146" y="86" width="21" height="34" rx="3" fill="#eaeff2"/><rect x="149" y="90" width="15" height="11" rx="2" fill="#243343"/>
+    <rect x="176" y="92" width="40" height="28" rx="3" fill="#dfe6eb"/>
   </symbol>
 
-  <!-- the member's car, shown on the pump-complete screen -->
-  <symbol id="art-car" viewBox="0 0 460 176">
-    <defs>
-      <linearGradient id="carBody" x1="0" y1="0" x2="0" y2="1">
-        <stop offset="0" stop-color="#3f9e83"/><stop offset=".34" stop-color="#0f6b56"/><stop offset="1" stop-color="#04271f"/>
-      </linearGradient>
-      <linearGradient id="carGlass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a4a58"/><stop offset="1" stop-color="#0a1c26"/></linearGradient>
-      <radialGradient id="carShadow"><stop offset="0" stop-color="#022b1f" stop-opacity=".55"/><stop offset="1" stop-color="#053024" stop-opacity="0"/></radialGradient>
-      <mask id="carArches">
-        <rect width="460" height="176" fill="#fff"/>
-        <circle cx="120" cy="128" r="36" fill="#000"/>
-        <circle cx="344" cy="128" r="36" fill="#000"/>
-      </mask>
-    </defs>
-    <ellipse cx="232" cy="156" rx="206" ry="14" fill="url(#carShadow)"/>
-    <g mask="url(#carArches)">
-      <path d="M20 116c0-15 17-24 44-29l52-9c26-25 63-38 106-38 44 0 82 13 111 39l56 10c28 5 44 14 44 27 0 9-8 14-20 14H38c-12 0-18-5-18-14z" fill="url(#carBody)"/>
-      <path d="M143 79c22-20 51-30 84-30 34 0 62 10 84 30-24 5-53 7-84 7s-60-2-84-7z" fill="url(#carGlass)"/>
-      <path d="M148 77c20-17 45-25 74-25 5 0 10 .2 15 .6-27 3-52 11-72 24z" fill="#7fdcff" opacity=".3"/>
-      <path d="M22 112c34 8 84 12 148 12h74c62 0 110-4 142-12-10 12-70 20-150 20h-70c-80 0-134-8-144-20z" fill="#021a14" opacity=".5"/>
-      <path d="M320 88c30 4 54 9 68 15-18 3-42 4-68 4z" fill="#7fe0b6" opacity=".28"/>
-      <path d="M60 96c22-6 52-10 90-11-30 5-58 12-80 20z" fill="#8ee9c4" opacity=".26"/>
-      <rect x="16" y="100" width="24" height="10" rx="5" fill="#f0fff9"/>
-      <rect x="422" y="98" width="24" height="10" rx="5" fill="#ff6f5c"/>
-    </g>
-    <g fill="#12191f"><circle cx="120" cy="128" r="31"/><circle cx="344" cy="128" r="31"/></g>
-    <g fill="#cbd4da"><circle cx="120" cy="128" r="17"/><circle cx="344" cy="128" r="17"/></g>
-    <g fill="none" stroke="#8f9aa2" stroke-width="2"><circle cx="120" cy="128" r="12"/><circle cx="344" cy="128" r="12"/></g>
-    <g fill="#78be20"><circle cx="120" cy="128" r="5"/><circle cx="344" cy="128" r="5"/></g>
+  <!-- the member's car on the pump-complete screen: a low mid-engined coupe -->
+  <symbol id="art-car" viewBox="0 0 520 300">
+    <ellipse cx="272" cy="276" rx="220" ry="18" fill="url(#carShadow)"/>
+
+    <path d="M48 216c2-14 14-22 34-27l92-16c22-34 60-52 104-51 42 1 76 18 100 46l72 12c32 6 50 20 54 36 3 13-5 21-22 22l-392 12c-16 1-25-9-22-34z" fill="url(#carTop)"/>
+    <path d="M178 174c20-30 52-46 92-45 38 1 70 17 92 44-32-8-70-11-110-10-34 1-60 4-74 11z" fill="url(#carGlass)"/>
+    <path d="M186 171c18-24 46-37 78-37 7 0 13 .2 19 .8-34 4-66 16-97 36z" fill="#d6f5ff" opacity=".42"/>
+    <path d="M84 206c48-15 114-22 190-22 58 0 104 4 140 12-38-4-90-6-148-5-74 1-134 6-182 15z" fill="#a9f0dc" opacity=".36"/>
+    <path d="M56 244c48 10 126 15 232 15h58c62 0 112-3 150-9-2 9-10 13-24 14l-392 12c-15 1-24-8-24-32z" fill="url(#carLower)"/>
+
+    <path d="M104 242c2-28 24-47 50-47s47 19 49 47c-7-20-26-33-49-33s-43 13-50 33z" fill="#04352c" opacity=".5"/>
+    <path d="M358 238c2-25 21-42 46-42s43 17 45 42c-6-17-24-29-45-29s-40 12-46 29z" fill="#04352c" opacity=".5"/>
+
+    <path d="M52 200c15-5 32-8 51-9l-3 16c-19 1-35 3-49 6z" fill="#eafff9"/>
+    <path d="M58 203c12-3 26-5 39-6l-2 10c-14 1-27 2-37 4z" fill="#fff"/>
+    <path d="M444 196c17 3 30 7 39 11l-5 12c-10-4-23-7-38-9z" fill="#ff7c63"/>
+    <path d="M50 238c27 6 64 10 110 12l-2 12c-48-2-87-6-114-13z" fill="#03211b"/>
+    <path d="M200 254c35 2 76 3 121 3h45l-1 11h-47c-47 0-88-1-118-3z" fill="#03211b"/>
+    <path d="M332 194c23 2 42 6 56 11l-8 21c-16-6-34-10-55-12z" fill="#05302a"/>
+    <path d="M62 256c43 9 110 13 197 13h59c49 0 90-3 122-9" fill="none" stroke="#c3e86c" stroke-width="4" stroke-linecap="round"/>
+
+    <ellipse cx="154" cy="246" rx="47" ry="44" fill="#0e161c"/>
+    <ellipse cx="404" cy="242" rx="42" ry="39" fill="#0e161c"/>
+    <ellipse cx="154" cy="246" rx="26" ry="24" fill="#c3ccd3"/>
+    <ellipse cx="404" cy="242" rx="22" ry="20" fill="#aab5bd"/>
+    <ellipse cx="154" cy="246" rx="18" ry="16" fill="none" stroke="#8d979f" stroke-width="3"/>
+    <ellipse cx="154" cy="246" rx="7" ry="6" fill="#78be20"/>
+    <ellipse cx="404" cy="242" rx="6" ry="5" fill="#78be20"/>
   </symbol>
 
   <!-- street map beneath the station locator -->
   <symbol id="art-map" viewBox="0 0 390 560" preserveAspectRatio="xMidYMid slice">
-    <rect width="390" height="560" fill="#eceff0"/>
-    <g fill="#e0e5e4">
-      <rect x="16" y="30" width="120" height="90" rx="4"/><rect x="160" y="24" width="90" height="70" rx="4"/>
-      <rect x="276" y="40" width="100" height="80" rx="4"/><rect x="20" y="152" width="96" height="110" rx="4"/>
-      <rect x="150" y="128" width="110" height="76" rx="4"/><rect x="292" y="150" width="84" height="96" rx="4"/>
-      <rect x="14" y="300" width="110" height="86" rx="4"/><rect x="160" y="240" width="96" height="120" rx="4"/>
-      <rect x="286" y="286" width="96" height="90" rx="4"/><rect x="26" y="420" width="120" height="100" rx="4"/>
-      <rect x="176" y="398" width="90" height="120" rx="4"/><rect x="300" y="410" width="86" height="110" rx="4"/>
+    <rect width="390" height="560" fill="#f1f2f0"/>
+    <g fill="#e3e5e2">
+      <rect x="12" y="18" width="104" height="76" rx="2"/><rect x="130" y="14" width="82" height="60" rx="2"/>
+      <rect x="228" y="26" width="70" height="66" rx="2"/><rect x="312" y="20" width="66" height="72" rx="2"/>
+      <rect x="14" y="112" width="98" height="86" rx="2"/><rect x="128" y="106" width="86" height="60" rx="2"/>
+      <rect x="230" y="110" width="68" height="82" rx="2"/><rect x="314" y="108" width="64" height="70" rx="2"/>
+      <rect x="12" y="216" width="100" height="94" rx="2"/><rect x="130" y="184" width="84" height="122" rx="2"/>
+      <rect x="230" y="210" width="70" height="96" rx="2"/><rect x="316" y="196" width="62" height="110" rx="2"/>
+      <rect x="16" y="330" width="96" height="88" rx="2"/><rect x="132" y="326" width="80" height="92" rx="2"/>
+      <rect x="228" y="324" width="74" height="96" rx="2"/><rect x="318" y="322" width="60" height="98" rx="2"/>
+      <rect x="14" y="438" width="102" height="104" rx="2"/><rect x="134" y="436" width="78" height="106" rx="2"/>
+      <rect x="230" y="440" width="72" height="102" rx="2"/><rect x="318" y="438" width="60" height="104" rx="2"/>
     </g>
-    <rect x="150" y="128" width="110" height="76" rx="4" fill="#d9e8cf"/>
-    <rect x="286" y="286" width="96" height="90" rx="4" fill="#d9e8cf"/>
-    <g stroke="#fff" fill="none" stroke-linecap="square">
-      <path d="M0 134h390M0 276h390M0 396h390" stroke-width="16"/>
-      <path d="M140 0v560M270 0v560" stroke-width="14"/>
-      <path d="M0 222h390M0 520h390" stroke-width="8"/>
-      <path d="M62 0v560M340 0v560" stroke-width="7"/>
+    <rect x="128" y="106" width="86" height="60" rx="2" fill="#dbe8d4"/>
+    <rect x="230" y="324" width="74" height="96" rx="2" fill="#dbe8d4"/>
+    <g stroke="#fff" fill="none">
+      <path d="M0 102h390M0 206h390M0 316h390M0 428h390" stroke-width="11"/>
+      <path d="M122 0v560M220 0v560M306 0v560" stroke-width="10"/>
+      <path d="M0 160h390M0 264h390M0 372h390M0 490h390" stroke-width="6"/>
+      <path d="M60 0v560M170 0v560M262 0v560" stroke-width="5"/>
     </g>
-    <path d="M0 134h390M0 276h390" stroke="#f6f8f8" stroke-width="2" fill="none"/>
-    <path d="M62 470 62 276 140 276 140 150" fill="none" stroke="#00a3e0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/>
-    <g fill="#9aa5aa" font-family="sans-serif" font-size="11">
-      <text x="176" y="129" >طريق الملك عبد الله</text>
-      <text x="20" y="271">شارع العليا</text>
-      <text x="286" y="391">طريق الخرج</text>
+    <path d="M60 460 60 206 122 206 122 118" fill="none" stroke="#00a3e0" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#3f8ddb"><circle cx="262" cy="160" r="4"/><circle cx="306" cy="372" r="4"/><circle cx="170" cy="264" r="4"/></g>
+    <g fill="#9aa3a6" font-family="sans-serif" font-size="10">
+      <text x="132" y="99">طريق الملك عبد الله</text>
+      <text x="16" y="202">شارع العليا</text>
+      <text x="236" y="312">طريق الخرج</text>
     </g>
   </symbol>
 
@@ -379,13 +400,13 @@
       <i style="width:34px;height:34px;top:20px;left:130px;opacity:.4"></i>
     </div>
     <div class="spread" style="align-items:flex-start;padding-top:4px">
-      <h2 class="display display--md" style="max-width:210px" data-i18n="h.greet">Good<br>morning</h2>
+      <h2 class="display display--md display--i" style="max-width:220px" data-i18n="h.greet">Good<br>morning</h2>
       <span class="tierpill">
         <span class="avatar"><svg viewBox="0 0 64 64"><use href="#art-avatar"/></svg></span>
         <span><b class="nums" data-points>5,500</b><span data-tier>Bronze</span></span>
       </span>
     </div>
-    <div style="font-size:20px;font-weight:500;margin-top:6px;opacity:.95" data-i18n="h.name">Faisal Al-Harbi</div>
+    <div style="font-size:20px;font-weight:500;font-style:italic;margin-top:5px;opacity:.97" data-i18n="h.name">Faisal Al-Harbi</div>
   </div>
 
   <div style="margin-top:-42px;position:relative;z-index:3;padding:0 20px">
@@ -411,7 +432,7 @@
       <h3 data-i18n="h.nearest">Time for a break?</h3>
       <button class="link" data-go="stations" data-i18n="cta.seeall">See all</button>
     </div>
-    <div class="hscroll" id="homeStations"></div>
+    <div class="stationgrid" id="homeStations"></div>
 
     <div class="sectionhead">
       <h3 data-i18n="h.picked">Just for you</h3>
@@ -627,17 +648,27 @@
     <div class="eyebrow" style="color:rgba(255,255,255,.92);margin-top:22px;letter-spacing:.28em"><span data-i18n="re.complete">Complete</span> <span data-i18n="fu.pump">pump</span> <span class="nums" data-pump>4</span></div>
     <div class="pumpamount">SAR <span class="nums" id="recAmount">96.00</span></div>
     <div class="track track--glass" style="margin-top:0"><span style="width:100%"></span></div>
-    <div class="tiny" style="opacity:.9;margin-top:8px"><span class="nums" id="recLitres">44.0</span> L · <span data-grade-name>Aramco 91</span></div>
-    <div class="row" style="gap:10px;margin-top:18px;align-items:stretch">
+    <div style="font-size:10px;font-weight:600;opacity:.92;margin-top:7px;letter-spacing:.04em"><span class="nums" id="recLitres">44</span> GL, <span data-grade-name style="text-transform:uppercase">ARAMCO 91</span></div>
+    <div class="row" style="gap:10px;margin-top:20px;align-items:stretch">
       <span class="infobox"><span class="lbl" data-i18n="re.paidwith">Paid with</span><b class="nums">mada 4821</b></span>
-      <span class="infobox"><span class="lbl" data-i18n="re.ptsfill">Points on this fill</span><b>+ <span class="nums" id="recPoints">96</span> <span data-i18n="pts">pts</span></b></span>
+      <span class="infobox">
+        <span class="lbl" data-i18n="re.ptsfill">Points on this fill</span>
+        <b>+ <span class="nums" id="recPoints">96</span> <span data-i18n="pts">pts</span></b>
+        <svg class="orb" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="orbG" x1=".2" y1="0" x2=".85" y2="1"><stop offset="0" stop-color="#9ada4e"/><stop offset=".5" stop-color="#2bb98a"/><stop offset="1" stop-color="#0f7fb8"/></linearGradient>
+            <radialGradient id="orbHi" cx=".34" cy=".26" r=".45"><stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+          </defs>
+          <circle cx="20" cy="20" r="18" fill="url(#orbG)"/><ellipse cx="15" cy="14" rx="8" ry="6" fill="url(#orbHi)"/>
+        </svg>
+      </span>
     </div>
     <div class="row" style="margin-top:10px;align-items:stretch">
-      <span class="infobox" style="flex:0 1 auto;min-width:150px"><span class="lbl" data-i18n="re.vehicle">Vehicle</span><b>Valhalla</b></span>
+      <span class="infobox" style="flex:0 1 auto;min-width:168px"><span class="lbl" data-i18n="re.vehicle">Vehicle</span><b>Valhalla</b></span>
     </div>
     <div class="carstage"><svg viewBox="0 0 460 176"><use href="#art-car"/></svg></div>
     <button class="btn btn--primary" data-scroll="receiptDetail" data-i18n="re.see">See receipt</button>
-    <button class="btn btn--white" style="margin-top:9px" data-go="home" data-i18n="pk.done">Back to home</button>
+    <button class="btn btn--white" style="margin-top:10px;color:#0d7a4f" data-go="home" data-i18n="pk.done">Back to home</button>
   </div>
 
   <div class="sheetbody" id="receiptDetail" style="margin-top:0;border-radius:24px 24px 0 0">
@@ -926,20 +957,24 @@
         <!-- ============ 17 · MEMBER QR SHEET (reachable from every screen) ============ -->
         <div class="sheet-backdrop" data-sheetid="qr">
           <div class="sheet center" style="padding-top:62px;overflow:visible">
-            <svg class="blob" viewBox="0 0 104 104" xmlns="http://www.w3.org/2000/svg">
+            <svg class="blob" viewBox="0 0 96 120" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <linearGradient id="qrBlob" x1=".2" y1="0" x2=".85" y2="1">
-                  <stop offset="0" stop-color="#a9e05a"/><stop offset=".5" stop-color="#3fbf7a"/><stop offset="1" stop-color="#0d8f86"/>
+                <linearGradient id="qrArch" x1=".15" y1="0" x2=".9" y2="1">
+                  <stop offset="0" stop-color="#8fd94f"/><stop offset=".45" stop-color="#2bb98a"/><stop offset="1" stop-color="#0f7fb8"/>
                 </linearGradient>
-                <radialGradient id="qrBlobHi" cx=".34" cy=".26" r=".5">
-                  <stop offset="0" stop-color="#fff" stop-opacity=".8"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                <linearGradient id="qrArchEdge" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0" stop-color="#0a5c4a" stop-opacity=".55"/><stop offset=".3" stop-color="#0a5c4a" stop-opacity="0"/>
+                </linearGradient>
+                <radialGradient id="qrArchHi" cx=".32" cy=".22" r=".45">
+                  <stop offset="0" stop-color="#fff" stop-opacity=".75"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
                 </radialGradient>
               </defs>
-              <path d="M52 4c27 0 48 19 48 44 0 29-20 52-48 52S4 77 4 48 25 4 52 4z" fill="url(#qrBlob)"/>
-              <ellipse cx="38" cy="32" rx="22" ry="16" fill="url(#qrBlobHi)"/>
-              <path d="M86 66c-7 17-21 28-37 30 22-3 37-15 37-30z" fill="#fff" opacity=".22"/>
+              <path d="M48 2c25 0 45 20 45 45v28c0 24-20 43-45 43S3 99 3 75V47C3 22 23 2 48 2z" fill="url(#qrArch)"/>
+              <path d="M48 2c25 0 45 20 45 45v28c0 24-20 43-45 43S3 99 3 75V47C3 22 23 2 48 2z" fill="url(#qrArchEdge)"/>
+              <ellipse cx="36" cy="34" rx="20" ry="15" fill="url(#qrArchHi)"/>
+              <path d="M84 82c-4 19-18 32-36 34 22-2 36-15 36-34z" fill="#fff" opacity=".2"/>
             </svg>
-            <h3 class="display display--sm display--brand" style="margin:0 0 16px" data-i18n="qr.h">Member QR</h3>
+            <h3 class="display display--sm display--brand display--i" style="margin:0 0 16px" data-i18n="qr.h">Member QR</h3>
             <div class="qrframe"><canvas data-qr="member" width="29" height="29"></canvas></div>
             <div class="codeblock nums" style="margin-top:16px">DSC 4821 7730</div>
             <div class="row" style="justify-content:center;gap:8px;margin-top:12px">

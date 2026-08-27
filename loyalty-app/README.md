@@ -74,10 +74,22 @@ redemption code. The member QR is one tap away from every screen.
 ## The visual system
 
 Taken from the supplied screen designs: Aramco blue for every primary action, a
-green-to-cyan brand gradient behind the hero areas, heavy uppercase display type
-for headlines, and white cards on a light ground. Tokens live at the top of
-`styles.css` — change `--blue`, `--green`, `--cyan` and the three `--grad-*`
-values and the whole prototype follows.
+green-to-cyan brand gradient behind the hero areas, and white cards on a light
+ground. Display headings are heavy and uppercase; the in-app ones the design
+sets in italic — GOOD MORNING, the member name, SAR totals, MEMBER QR — carry
+`.display--i`. Type is Archivo, loaded from Google Fonts with a system fallback,
+so the page still renders offline. Tokens live at the top of `styles.css` —
+change `--blue`, `--green`, `--cyan` and the three `--grad-*` values and the
+whole prototype follows.
+
+### Two SVG rules worth knowing
+
+References that live *inside* a `<symbol>` — gradients, masks — do not resolve
+reliably once the symbol is instantiated through `<use>`. Every `<defs>` in the
+sprite is therefore hoisted to the root of the sprite `<svg>`, and the two
+shapes that need a gradient of their own (the member-QR arch, the points orb)
+are inlined at the point of use rather than referenced. The car is drawn without
+a mask for the same reason.
 
 ## Imagery
 

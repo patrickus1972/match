@@ -283,7 +283,7 @@ var state = {
   channel: 'push',
   cap: 3,
   station: 0,
-  pump: null,
+  pump: 4,
   grade: '95',
   fuel: { amount: 0, litres: 0, points: 0, timer: null },
   cafe: {},
@@ -602,17 +602,17 @@ function openOffer(id) {
 
 var stationFilter = 'all';
 
-function stationCard(s, i, horizontal) {
-  var b = el('button', 'stationcard' + (horizontal ? ' stationcard--h' : ''));
-  if (!horizontal) { b.style.margin = '0 0 10px'; b.style.width = '100%'; }
+function stationCard(s, i, small) {
+  var b = el('button', 'stationcard' + (small ? ' stationcard--sm' : ''));
+  if (!small) b.style.margin = '0 0 10px';
   b.dataset.station = String(i);
   b.innerHTML =
     '<span class="info">' +
       '<span class="nm">' + t('st.' + i, s.name) + '</span>' +
-      '<span class="meta"><svg width="13" height="13"><use href="#i-pin"/></svg> <span class="nums">' + s.dist + '</span></span>' +
-      '<span class="meta"><svg width="13" height="13"><use href="#i-drop"/></svg> <span class="nums">' + s.free + '</span> ' + t('sl.of', 'of') + ' <span class="nums">' + s.total + '</span> ' + t('st.free', 'pumps free') + '</span>' +
+      '<span class="meta"><svg width="' + (small ? 11 : 13) + '" height="' + (small ? 11 : 13) + '"><use href="#i-pin"/></svg> <span class="nums">' + s.dist + '</span></span>' +
+      '<span class="meta"><svg width="' + (small ? 11 : 13) + '" height="' + (small ? 11 : 13) + '"><use href="#i-drop"/></svg> <span class="nums">' + s.free + '</span> ' + t('sl.of', 'of') + ' <span class="nums">' + s.total + '</span> ' + t('st.free', 'pumps free') + '</span>' +
       '<span class="mins"><b class="nums">' + s.min + '</b><span>' + t('st.mins', 'Minutes<br>away') + '</span></span>' +
-      '<span class="link" style="margin-top:8px">' + t('st.takeme', 'Take me there') + ' <svg width="13" height="13"><use href="#i-arrow"/></svg></span>' +
+      '<span class="link">' + t('st.takeme', 'Take me there') + ' <svg width="' + (small ? 11 : 13) + '" height="' + (small ? 11 : 13) + '"><use href="#i-arrow"/></svg></span>' +
     '</span>' +
     '<span class="photo"><svg viewBox="0 0 240 180" preserveAspectRatio="xMidYMid slice"><use href="#' + s.img + '"/></svg></span>';
   return b;
@@ -624,7 +624,7 @@ function renderStationList() {
   wrap.innerHTML = '';
   home.innerHTML = '';
   STATIONS.forEach(function (s, i) {
-    home.appendChild(stationCard(s, i, true));
+    if (i < 2) home.appendChild(stationCard(s, i, true));
     if (stationFilter !== 'all' && s.tags.indexOf(stationFilter) < 0) return;
     wrap.appendChild(stationCard(s, i, false));
   });
