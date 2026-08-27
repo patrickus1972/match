@@ -93,3 +93,13 @@ app.js       state, router, the EN/AR dictionary, and the screen renderers
 Vanilla HTML, CSS and JavaScript throughout — no framework, so any of it can be
 lifted straight into a design conversation or handed to a build team as a
 reference for behaviour.
+
+## Single-file bundle
+
+`prototype.html` is `index.html`, `styles.css` and `app.js` inlined into one
+self-contained file — easier to email, drop into a review folder or open on a
+machine that blocks local file requests. Regenerate it after any change:
+
+```bash
+sh build.sh
+```
