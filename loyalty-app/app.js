@@ -69,11 +69,11 @@ var OFFERS = [
 ];
 
 var STATIONS = [
-  { name:'Al Kharji Road',  dist:'2.4 km', free:6, total:8, tags:['cafe','wash','offer','open'], art:'linear-gradient(150deg,#0d6b57,#0086c8)', min:9,
+  { name:'Al Kharji road',   dist:'2.4 km', free:6, total:8,  min:9,  img:'art-station-1', tags:['cafe','wash','offer','open'],
     pumps:[{n:1,busy:false},{n:2,busy:true},{n:3,busy:false},{n:4,busy:false},{n:5,busy:true},{n:6,busy:false},{n:7,busy:false},{n:8,busy:false}] },
-  { name:'Riyadh Station',  dist:'1.7 km', free:4, total:6, tags:['cafe','open'], art:'linear-gradient(150deg,#c98b3a,#7a4f1e)', min:10,
+  { name:'Riyadh station',   dist:'1.7 km', free:4, total:6,  min:10, img:'art-station-2', tags:['cafe','open'],
     pumps:[{n:1,busy:false},{n:2,busy:false},{n:3,busy:true},{n:4,busy:false},{n:5,busy:false},{n:6,busy:true}] },
-  { name:'King Fahd Branch',dist:'5.1 km', free:2, total:10, tags:['wash','offer','open'], art:'linear-gradient(150deg,#3a4a6b,#0086c8)', min:14,
+  { name:'King Fahd branch', dist:'5.1 km', free:2, total:10, min:14, img:'art-station-3', tags:['wash','offer','open'],
     pumps:[{n:1,busy:true},{n:2,busy:true},{n:3,busy:true},{n:4,busy:false},{n:5,busy:true},{n:6,busy:true},{n:7,busy:true},{n:8,busy:false},{n:9,busy:true},{n:10,busy:true}] }
 ];
 
@@ -107,35 +107,38 @@ var HISTORY = [
 /* ---------------------------------------------------------- Arabic copy */
 
 var AR = {
-'pts':'نقطة',
+'pts':'نقطة','m.cta':'إرسال الرمز','re.complete':'اكتملت','re.paidwith':'الدفع عبر',
+'re.ptsfill':'نقاط هذه التعبئة','re.vehicle':'المركبة','re.see':'عرض الإيصال','sl.of':'من',
+'st.mins':'دقائق<br>للوصول','st.takeme':'خذني إلى هناك','st.2':'فرع الملك فهد','rw.card':'البطاقة الرقمية',
+'q.qr':'رمز العضوية','ac.vehicle':'مركبتي','ac.vehiclesub':'تظهر في شاشة المضخة',
 'cta.continue':'متابعة','cta.seeall':'عرض الكل','cta.close':'إغلاق','cta.gotit':'تمام','cta.cancel':'الاحتفاظ بحسابي',
 'tab.home':'الرئيسية','tab.rewards':'المكافآت','tab.stations':'المحطات','tab.account':'حسابي','tab.menu':'القائمة',
 
 'w.slot':'مساحة صورة — محطة حقيقية',
-'w.h':'ثلاثة أضعاف النقاط<br>مع كل زيارة للمقهى',
-'w.p':'الوقود يجمع النقاط تلقائياً. المقهى والغسيل والمتجر تجمع أسرع — هناك يقع الترجيح. سجّل خلال دقيقة برقم جوالك.',
+'w.h':'كل زيارة<br>يجب أن<br><span class="accent">تكافئك</span>',
+'w.p':'اجمع على الوقود، واجمع أسرع على القهوة وغسيل السيارة والخدمة. مكافآت تصل إليها في شهر قيادة عادي.',
 'w.cta':'انضم إلى أرامكو ريواردز','w.signin':'لدي حساب بالفعل',
 
-'m.h':'ما رقم جوالك؟','m.p':'نرسل رمزاً من ستة أرقام. الرقم يصبح هويتك عند الكاشير.',
+'m.h':'ما رقم<br>جوالك ؟','m.p':'اجمع على الوقود، واجمع أسرع على القهوة وغسيل السيارة والخدمة. مكافآت تصل إليها في شهر قيادة عادي.',
 'm.cc':'+966‎','m.note':'أرقام سعودية فقط في المرحلة الأولى. رمز الدولة ثابت.','m.demo':'تجربة',
 
-'o.h':'أدخل الرمز','o.p':'أُرسل إلى','o.auto':'لا حاجة للضغط — الرقم السادس يسجّل دخولك.','o.resend':'إعادة الإرسال خلال 0:24',
+'o.h':'أدخل<br>رمزك','o.p':'أُرسل إلى','o.auto':'لا حاجة للضغط — الرقم السادس يسجّل دخولك.','o.resend':'إعادة الإرسال خلال 0:24',
 
-'c.h':'كيف نستخدم بياناتك','c.p':'ثلاثة استخدامات بلغة واضحة. اثنان لازمان لتشغيل البرنامج. الثالث اختيارك، ومغلق حتى تفعّله.',
+'c.h':'كيف نستخدم<br>بياناتك','c.p':'ثلاثة استخدامات بلغة واضحة. اثنان لازمان لتشغيل البرنامج. الثالث اختيارك، ومغلق حتى تفعّله.',
 'c.1t':'إدارة عضويتك','c.1p':'النقاط والفئة والإيصالات والبطاقة الرقمية. مطلوب.',
 'c.2t':'ترتيب العروض لك','c.2p':'زياراتك ومشترياتك ترتّب القائمة. مطلوب للقائمة المرتّبة.',
 'c.3t':'إرسال العروض إليك','c.3p':'إشعار أو بريد أو رسالة على قناة واحدة تختارها. اختياري — مغلق افتراضياً.',
 'c.pdpl':'بموجب نظام حماية البيانات الشخصية يمكنك سحب الموافقة الاختيارية في أي وقت من «حسابي»، وحذف الحساب بالكامل من المكان نفسه.',
 'c.cta':'أوافق وأتابع','c.read':'قراءة الإشعار كاملاً',
 
-'b.h':'الدخول ببصمة الوجه','b.p':'عند المضخة تريد البطاقة على الشاشة خلال أقل من ثانية. بصمة الوجه تفعل ذلك. نسألك مرة واحدة، ويمكنك تفعيلها لاحقاً من «حسابي».',
+'b.h':'الدخول<br>ببصمة الوجه','b.p':'عند المضخة تريد البطاقة على الشاشة خلال أقل من ثانية. بصمة الوجه تفعل ذلك. نسألك مرة واحدة، ويمكنك تفعيلها لاحقاً من «حسابي».',
 'b.k1':'فتح التطبيق','b.v1':'فحص الوجه','b.k2':'عرض رمز العضوية','b.v2':'فحص الوجه','b.k3':'بطاقة المحفظة عند الكاشير','b.v3':'بدون فحص',
 'b.cta':'تفعيل بصمة الوجه','b.skip':'ليس الآن',
 
 'l.h':'مقفل','l.p':'الرصيد والمكافآت مخفية حتى ينجح فحص الوجه.','l.cta':'افتح ببصمة الوجه',
 'l.wallet':'بطاقة المحفظة تُمسح عند الكاشير والهاتف مقفل — بدون فحص وجه وبدون فتح التطبيق.',
 
-'h.greet':'صباح الخير','h.name':'فيصل الحربي','h.balance':'رصيد النقاط',
+'h.greet':'صباح<br>الخير','h.name':'فيصل الحربي','h.balance':'رصيد النقاط',
 'h.prog':'<b class="nums" data-visits>4</b> من <b class="nums" data-visits-target>6</b> زيارة مؤهلة نحو <span data-next-tier>الفضي</span>',
 'h.progsub':'— تُحتسب بالزيارات لا بالإنفاق',
 'q.pump':'الدفع عند المضخة','q.cafe':'اطلب من المقهى','q.rewards':'المكافآت','q.stations':'المحطات',
@@ -151,8 +154,8 @@ var AR = {
 
 'of.why':'لماذا ترى هذا','of.who':'من أطلقه','of.earn':'الجمع','of.valid':'ساري','of.where':'أين','of.cta':'اطلب مسبقاً الآن','of.find':'ابحث عن فرع مقهى',
 
-'sl.h':'المحطات القريبة','sl.slot':'خرائط — مساحة المزوّد',
-'sl.f1':'الكل','sl.f2':'عرض ساري','sl.f3':'مقهى','sl.f4':'غسيل سيارات','sl.f5':'مفتوحة الآن',
+'sl.h':'المحطات','sl.slot':'خرائط — مساحة المزوّد',
+'sl.f1':'القريبة','sl.f2':'عرض ساري','sl.f3':'مقهى','sl.f4':'غسيل سيارات','sl.f5':'مفتوحة 24 ساعة',
 'sd.pick':'اختر المضخة','sd.busy':'المضخات المشغولة محجوبة — لا يمكنك تفويض مضخة يستخدمها غيرك.',
 'sd.also':'متوفر هنا','sd.cafe':'المقهى','sd.cafep':'طلب مسبق · 3× نقاط','sd.wash':'غسيل السيارة','sd.washp':'من 25 ريال · جمع عادي','sd.cta':'المتابعة إلى المضخة',
 
@@ -199,7 +202,7 @@ var AR = {
 'rc.h':'أظهر هذا عند الكاشير','rc.exp':'ينتهي خلال','rc.left':'الرصيد بعدها',
 'rc.note':'يمسح الكاشير الرمز فتُخصم النقاط فوراً. إذا انتهت صلاحيته لا يُخصم شيء ويمكنك الصرف مجدداً.','rc.bright':'زد إضاءة الشاشة للماسح',
 
-'ac.tier':'تقدّم الفئة','ac.tiersub':'<span class="nums" data-visits-left>2</span> زيارات إضافية بأي مبلغ. بالزيارات لا بالإنفاق.',
+'ac.tier':'تقدّم الفئة','ac.tiersub':'أي زيارة مدفوعة تُحتسب، مهما كان مبلغها.',
 'ac.card':'البطاقة الرقمية وبطاقة المحفظة','ac.msg':'تفضيلات الرسائل','ac.msgsub':'إشعار · 3 أسبوعياً · هدوء 22:00–07:00',
 'ac.lang':'اللغة','ac.profile':'بيانات الملف الشخصي','ac.history':'السجل والإيصالات','ac.faq':'الأسئلة والدعم',
 'ac.privacy':'الخصوصية والموافقات','ac.privacysub':'نظام حماية البيانات — ما نحتفظ به ولماذا',
@@ -261,8 +264,8 @@ var TIERS = [
   { en: 'Gold',   ar: 'ذهبي',   target: 0 }
 ];
 var GRADE_NAME = {
-  '91':     { en: 'Petrol 91', ar: 'بنزين 91' },
-  '95':     { en: 'Petrol 95', ar: 'بنزين 95' },
+  '91':     { en: 'Aramco 91', ar: 'أرامكو 91' },
+  '95':     { en: 'Aramco 95', ar: 'أرامكو 95' },
   'diesel': { en: 'Diesel',    ar: 'ديزل' }
 };
 
@@ -311,7 +314,11 @@ function applyLang() {
   renderState();
 }
 
-function setLang(l) { state.lang = l; applyLang(); }
+function setLang(l) {
+  state.lang = l;
+  applyLang();
+  renderFeed(); renderStationList(); renderStation(); renderCafe(); renderRewards(); renderReward();
+}
 
 /* ---------------------------------------------------------- shared state render */
 
@@ -536,7 +543,7 @@ function renderPhone() {
   }
   $('#phoneDigits').textContent = out;
   $('#phoneContinue').disabled = d.length < 9;
-  $('#otpTarget').textContent = '+966 ' + (d.slice(0, 2) || '55') + ' ' + (d.slice(2, 5) || '214') + ' ' + (d.slice(5) || '8830');
+  $('#otpTarget').textContent = '+966 ' + (d.slice(0, 2) || '51') + ' ' + (d.slice(2, 5) || '234') + ' ' + (d.slice(5) || '5678');
 }
 
 function renderOtp() {
@@ -595,33 +602,38 @@ function openOffer(id) {
 
 var stationFilter = 'all';
 
+function stationCard(s, i, horizontal) {
+  var b = el('button', 'stationcard' + (horizontal ? ' stationcard--h' : ''));
+  if (!horizontal) { b.style.margin = '0 0 10px'; b.style.width = '100%'; }
+  b.dataset.station = String(i);
+  b.innerHTML =
+    '<span class="info">' +
+      '<span class="nm">' + t('st.' + i, s.name) + '</span>' +
+      '<span class="meta"><svg width="13" height="13"><use href="#i-pin"/></svg> <span class="nums">' + s.dist + '</span></span>' +
+      '<span class="meta"><svg width="13" height="13"><use href="#i-drop"/></svg> <span class="nums">' + s.free + '</span> ' + t('sl.of', 'of') + ' <span class="nums">' + s.total + '</span> ' + t('st.free', 'pumps free') + '</span>' +
+      '<span class="mins"><b class="nums">' + s.min + '</b><span>' + t('st.mins', 'Minutes<br>away') + '</span></span>' +
+      '<span class="link" style="margin-top:8px">' + t('st.takeme', 'Take me there') + ' <svg width="13" height="13"><use href="#i-arrow"/></svg></span>' +
+    '</span>' +
+    '<span class="photo"><svg viewBox="0 0 240 180" preserveAspectRatio="xMidYMid slice"><use href="#' + s.img + '"/></svg></span>';
+  return b;
+}
+
 function renderStationList() {
   var wrap = $('#stationList');
+  var home = $('#homeStations');
   wrap.innerHTML = '';
+  home.innerHTML = '';
   STATIONS.forEach(function (s, i) {
+    home.appendChild(stationCard(s, i, true));
     if (stationFilter !== 'all' && s.tags.indexOf(stationFilter) < 0) return;
-    var b = el('button', 'stationcard');
-    b.style.margin = '0 0 10px'; b.style.width = '100%';
-    b.dataset.station = String(i);
-    b.innerHTML =
-      '<span class="thumb" style="background:' + s.art + '"></span>' +
-      '<span class="grow">' +
-        '<h4>' + t('st.' + i, s.name) + '</h4>' +
-        '<div class="tiny muted" style="margin-bottom:5px"><span class="nums">' + s.dist + '</span> · <span class="nums">' + s.min + '</span> ' + (state.lang === 'ar' ? 'دقائق' : 'min') + ' · <span class="nums">' + s.free + '</span>/<span class="nums">' + s.total + '</span> ' + t('st.free', 'pumps free') + '</div>' +
-        '<span class="row" style="gap:5px;flex-wrap:wrap">' +
-          (s.tags.indexOf('offer') >= 0 ? '<span class="chip chip--green"><svg width="11" height="11"><use href="#i-spark"/></svg> ' + (state.lang === 'ar' ? 'عرض ساري' : 'Live offer') + '</span>' : '') +
-          (s.tags.indexOf('cafe') >= 0 ? '<span class="chip chip--blue"><svg width="11" height="11"><use href="#i-coffee"/></svg> ' + t('sd.cafe', 'Café') + '</span>' : '') +
-          (s.tags.indexOf('wash') >= 0 ? '<span class="chip"><svg width="11" height="11"><use href="#i-wash"/></svg> ' + t('sd.wash', 'Wash') + '</span>' : '') +
-        '</span>' +
-      '</span>' +
-      '<svg width="18" height="18" class="muted"><use href="#i-chev"/></svg>';
-    wrap.appendChild(b);
+    wrap.appendChild(stationCard(s, i, false));
   });
   if (!wrap.children.length) wrap.appendChild(el('p', 'small muted center', state.lang === 'ar' ? 'لا توجد محطات مطابقة.' : 'No stations match that filter.'));
 }
 
 function renderStation() {
   var s = STATIONS[state.station];
+  $('#stationHero').innerHTML = '<use href="#' + s.img + '"/>';
   $('#stationName').textContent = t('st.' + state.station, s.name);
   $('#stationDist').textContent = s.dist;
   $('#stationFree').innerHTML = '<span class="nums">' + s.free + '</span>/<span class="nums">' + s.total + '</span> ' + t('st.free', 'pumps free');
@@ -642,7 +654,7 @@ function renderStation() {
 function startFuelling() {
   stopFuelling();
   var price = PRICES[state.grade];
-  var target = 184.60;
+  var target = 96.00;
   var start = null, dur = 8200;
   $('#fuelState').textContent = t('fu.running', 'Fuelling');
   function step(ts) {
@@ -655,11 +667,12 @@ function startFuelling() {
     $('#fuelAmount').textContent = money(state.fuel.amount);
     $('#fuelLitres').textContent = money(state.fuel.litres);
     $('#fuelPoints').textContent = fmt(state.fuel.points);
-    $('#fuelDial').style.setProperty('--p', (eased * 100).toFixed(1) + '%');
+    $('#fuelRing').style.strokeDashoffset = (276.5 * (1 - eased)).toFixed(1);
     if (k < 1) state.fuel.timer = requestAnimationFrame(step);
     else { state.fuel.timer = null; setTimeout(function () { if (state.screen === 'fuelling') finishFuelling(); }, 700); }
   }
   state.fuel.amount = 0; state.fuel.litres = 0; state.fuel.points = 0;
+  $('#fuelRing').style.strokeDashoffset = '276.5';
   state.fuel.timer = requestAnimationFrame(step);
 }
 
@@ -673,8 +686,10 @@ function finishFuelling() {
   state.points += pts;
   commitVisit();
   $('#recAmount').textContent = money(state.fuel.amount);
-  $('#recLitres').textContent = money(state.fuel.litres);
+  $('#recLitres').textContent = state.fuel.litres.toFixed(1);
+  $('#recLitres2').textContent = state.fuel.litres.toFixed(1);
   $('#recPoints').textContent = fmt(pts);
+  $('#recPoints2').textContent = fmt(pts);
   go('receipt');
 }
 
@@ -863,6 +878,14 @@ document.addEventListener('click', function (ev) {
   n = ev.target.closest('[data-toast]');
   if (n) { toast(n.dataset.toast); return; }
 
+  /* scroll to a section on the same screen */
+  n = ev.target.closest('[data-scroll]');
+  if (n) {
+    var target = document.getElementById(n.dataset.scroll);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    return;
+  }
+
   /* navigation */
   if (ev.target.closest('[data-back]')) { back(); return; }
   n = ev.target.closest('[data-go]');
@@ -881,7 +904,7 @@ document.addEventListener('click', function (ev) {
   if (n) {
     var k = n.dataset.k;
     if (k === 'del') state.phone = state.phone.slice(0, -1);
-    else if (k === 'fill') state.phone = '552148830';
+    else if (k === 'fill') state.phone = '512345678';
     else if (state.phone.length < 9) state.phone += k;
     renderPhone();
     return;
@@ -998,16 +1021,11 @@ document.addEventListener('click', function (ev) {
   /* language + chrome */
   if (ev.target.closest('#langRow') || ev.target.closest('#langRow2')) {
     setLang(state.lang === 'en' ? 'ar' : 'en');
-    renderFeed(); renderRewards(); renderStationList(); renderCafe(); renderStation();
     closeSheets();
     return;
   }
   if (ev.target.closest('#fabQr')) { openSheet('qr'); return; }
-  if (ev.target.closest('#btnLang')) {
-    setLang(state.lang === 'en' ? 'ar' : 'en');
-    renderFeed(); renderRewards(); renderStationList(); renderCafe(); renderStation();
-    return;
-  }
+  if (ev.target.closest('#btnLang')) { setLang(state.lang === 'en' ? 'ar' : 'en'); return; }
   if (ev.target.closest('#btnNotes')) {
     state.notes = !state.notes;
     $('#notes').style.display = state.notes ? '' : 'none';

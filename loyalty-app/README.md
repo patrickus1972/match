@@ -71,16 +71,46 @@ redemption code. The member QR is one tap away from every screen.
 - **Language.** Every string has an Arabic translation and the layout mirrors
   properly. Numerals and Latin runs stay left-to-right inside the RTL layout.
 
+## The visual system
+
+Taken from the supplied screen designs: Aramco blue for every primary action, a
+green-to-cyan brand gradient behind the hero areas, heavy uppercase display type
+for headlines, and white cards on a light ground. Tokens live at the top of
+`styles.css` — change `--blue`, `--green`, `--cyan` and the three `--grad-*`
+values and the whole prototype follows.
+
+## Imagery
+
+Every image is inline SVG, drawn for this prototype, so the file stays
+self-contained and makes no network requests:
+
+- **Forecourt photography** — three sites (day, sunset, night), used on the home
+  carousel, the locator list and the station header. Landscape compositions, so
+  they crop cleanly in both the portrait card slot and the wide header.
+- **Member portrait** — an illustrated avatar in the hero, the tier pill and
+  Account.
+- **The car** — the member's vehicle on the pump-complete screen, matching the
+  design's dark green sports car.
+- **Street map** — blocks, roads, a park and a route line under the station
+  locator, with the pins and the live-pump badge laid over it.
+- **The Aramco mark** — a simplified reproduction of the brand square.
+
+Swap any of them for real assets by replacing the matching `<symbol>` in
+`index.html`; nothing else needs to change.
+
 ## Deliberate placeholders
 
 - **QR codes** are visually representative patterns, not encoded payloads. A
   real build renders the member ID and the redemption token.
-- **Map tiles** are a supplier slot, drawn as a schematic. Pins, the selected
-  state and the list below it are real.
-- **Photography** is a slot on the welcome screen and the card art.
+- **Photography and the car** are illustrations standing in for real
+  photography, and the map is a schematic standing in for supplier tiles.
+- **The Aramco mark** is a simplified stand-in for the real brand asset.
 - **Earn rates, tier thresholds and reward prices** are Stage 1 placeholders, as
   the brief states — not proposition economics.
 - **Wallet passes** confirm rather than call PassKit or the Google Wallet API.
+- **The four quick actions** from the brief live in the Menu tab rather than on
+  Home, because the supplied home design goes straight from the balance card to
+  the station carousel and puts a Menu item in the tab bar.
 
 ## Files
 
